@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { NavLink } from "react-router";
 
 function AsideNavlink({ name, submenu }) {
     const [active, setactive] = useState(false)
@@ -27,7 +28,7 @@ function AsideNavlink({ name, submenu }) {
             <div className={`sub-menu ${active ? 'active':''}`}>
                 {
                     submenu.length > 0 && submenu.map((el) => (
-                        <p onclick="location.href=`/finances`">{el}</p>
+                        <p><NavLink to="/clients">{el}</NavLink></p>
                     ))
                 }
             </div>

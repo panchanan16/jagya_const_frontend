@@ -1,13 +1,9 @@
-import AccountPage from "@/pages/accounting/AccountPage"
-import AsideBar from "./asideBar/asideBar"
+import AppRoutes from "@/router/AppRoutes"
 
 function MainLayout() {
     return (
-        <section>
-            <AsideBar />
-            <AccountPage />
-        </section>
+        <AppRoutes />
     )
 }
 
-export default MainLayout
+export default MainLayout;

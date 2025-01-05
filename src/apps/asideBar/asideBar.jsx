@@ -48,6 +48,7 @@ function AsideBar() {
                     <p onclick="location.href=`/vendors-suppliers`">Vendors</p>
                 </div>
             </li>
+            <AsideNavlink name="Clients & Vendors" submenu={['Clients', 'Vendors']} />
             <AsideNavlink name="Accounting" submenu={['Finance', 'Expense']} />          
             <li>
                 <a class="flex align-center gap-5">

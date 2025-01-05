@@ -1,17 +1,14 @@
 import '@/styles/app.css'
-
-import Header from '@/apps/header/header'
-import AsideBar from '@/apps/asideBar/asideBar'
-import MainLayout from './apps/mainLayout'
-
+import AppRoutes from './router/AppRoutes'
+import { BrowserRouter } from 'react-router'
 
 
 function App() {
 
   return (
-    <>
-      <MainLayout />
-    </>
+      <BrowserRouter >
+        <AppRoutes />
+      </BrowserRouter>
   )
 }
 
