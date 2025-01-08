@@ -1,8 +1,10 @@
-import React from 'react'
+import { usePopupContext } from '@/context/popupContext';
 
-function PopupLayout({ children, showPopup }) {
+function PopupLayout({ children }) {
+    const { state } = usePopupContext()
+
     return (
-        <div class={`main-popup ${showPopup ? '' : 'hide'}`}>
+        <div className={`main-popup ${state.openForm ? '' : 'hide'}`}>
             {children}
         </div>
     )

@@ -3,12 +3,12 @@ import PopupContextProvider from "@/context/popupContext"
 function DynamicLayout({ children }) {
     return (
         <PopupContextProvider>
-            <div class="right">
+            <div className="right">
                 {/* <!-- FIRST SLIDE  --> */}
                 {/* <!-- SECOND SLIDE  --> */}
                 {/* <!-- POPUP WINDOWS --> */}
                 {children}
-                <div class="section-popup hide"></div>
+                <div className="section-popup hide"></div>
             </div>
         </PopupContextProvider>
     )

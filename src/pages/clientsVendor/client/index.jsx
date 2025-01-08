@@ -2,15 +2,16 @@ import PageLayout from "@/layout/common/dynamicPageLayout";
 import FirstSlide from "../modules/clientsModule/firstSlide";
 import SecondSlide from "../modules/clientsModule/secondSlide";
 import DynamicLayout from "@/layout/common/dynamicLayout";
-import FirstSlideLayout from "@/layout/common/firstSlideLayout";
-import SecondSlideLayout from "@/layout/common/secondSlideLayout";
+import AddClientForm from "@/forms/addClient/addClientForm";
+
 
 function ClientPage() {
     return (
         <PageLayout>
             <DynamicLayout>
-                <FirstSlideLayout Contents={FirstSlide} />
-                <SecondSlideLayout Contents={SecondSlide} />
+                <FirstSlide />
+                <SecondSlide />
+                <AddClientForm />
             </DynamicLayout>
         </PageLayout>
     )

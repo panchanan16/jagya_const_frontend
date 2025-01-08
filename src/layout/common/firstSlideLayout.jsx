@@ -1,8 +1,11 @@
 import Header from '@/apps/header/header'
+import { usePopupContext } from '@/context/popupContext';
 
-function FirstSlideLayout({children, showSlide}) {
+function FirstSlideLayout({children}) {
+    const {state} = usePopupContext();
+
     return (
-        <div class={`first-slide ${showSlide ? '' : 'hide'}`} id="first-slide">
+        <div className={`first-slide ${state.openSlide ? '' : 'hide'}`} id="first-slide">
             <Header />
             {children}
         </div>

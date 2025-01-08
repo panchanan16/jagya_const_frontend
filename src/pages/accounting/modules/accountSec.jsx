@@ -2,16 +2,14 @@ import { usePopupContext } from '@/context/popupContext';
 import SecondSlideLayout from '@/layout/common/secondSlideLayout'
 import React, { useState } from 'react'
 
-function AccountSec({displayContent}) {
-     const {state, dispatch} = usePopupContext();
+function AccountSec() {
+    const { dispatchActions } = usePopupContext();
+    const { closeSecondSlide } = dispatchActions;
 
-    function backFromSlide() {
-        dispatch({ type: 'OPEN_BG' })
-    }
     return (
-        <SecondSlideLayout showSlide={state.openSlide}>
+        <SecondSlideLayout>
             <main>
-                <div class="main-btn flex" onClick={backFromSlide}>
+                <div class="main-btn flex" onClick={closeSecondSlide}>
                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                         id="arrow-left" class="main-svg" onclick="openProjectDetails('first-slide', this)">
                         <path fill=""

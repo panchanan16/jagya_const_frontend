@@ -1,47 +1,24 @@
+import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn';
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption';
 import { usePopupContext } from '@/context/popupContext';
 import FirstSlideLayout from '@/layout/common/firstSlideLayout';
 import React, { useState } from 'react'
-import { useContext } from 'react';
 
-function AddInstallmentBtn() {
-    const {dispatch} = usePopupContext();
-
-    function openInstallmentForm() {
-        dispatch({type: 'OPEN_FORM'})
-    }
-    return (
-        <div class="add-button" onClick={openInstallmentForm}>
-            <button class="btn-primary" type="button" onclick="addInstallment()">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus-circle"
-                    class="">
-                    <path fill=""
-                        d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z">
-                    </path>
-                </svg>
-                <span class="text">Add Installment</span>
-            </button>
-        </div>
-    )
-}
 
 function AccountMain() {
-    const {state, dispatch} = usePopupContext();
+    const {dispatchActions} = usePopupContext();
+    const {openSecondSlide, openFormAction} = dispatchActions;
     // console.log('state is : ', state.openSlide)
 
-
-    function showItemDetails() {
-        dispatch({type: 'CLOSE_BG'})
-    }
     return (
-        <FirstSlideLayout showSlide={state.openSlide}>
+        <FirstSlideLayout>
             <main>
                 <div class="heading">
                     <h1>Finance</h1>
                     <p class="title">Find all projects financial data here</p>
                 </div>
-                <SectionHeaderOption EndBtn={AddInstallmentBtn} />
+                <SectionHeaderOption EndBtn={<SectionHeaderBtn btnName='add installment' clickFn={openFormAction} />} />
                 <table>
                     <thead>
                         <tr>
@@ -69,7 +46,7 @@ function AccountMain() {
                                     <td class="text">Kankan Jyoti Nath</td>
                                     <td class="text">+91 6002649802</td>
                                     <td class="">
-                                        <ItemActionBox viewFn={showItemDetails} />
+                                        <ItemActionBox viewFn={openSecondSlide} />
                                     </td>
                                 </tr>
                             ))

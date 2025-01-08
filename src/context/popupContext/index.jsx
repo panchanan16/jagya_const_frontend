@@ -1,5 +1,6 @@
 import { useMemo, useReducer, createContext, useContext } from 'react';
 import { initialPopupState, popupReducer } from './reducers';
+import popupActions from './actions';
 
 const PopupContext = createContext();
 
@@ -14,5 +15,6 @@ export default function PopupContextProvider({ children }) {
 export function usePopupContext() {
     const display = useContext(PopupContext);
     const [state, dispatch] = display;
-    return {state, dispatch};
+    const dispatchActions = popupActions(dispatch)
+    return {state, dispatch, dispatchActions};
 }

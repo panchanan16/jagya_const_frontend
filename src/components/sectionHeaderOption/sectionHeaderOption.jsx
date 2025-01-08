@@ -26,7 +26,7 @@ function SectionHeaderOption({EndBtn}) {
                         <span className="text">Filter</span>
                     </button>
                 </div>
-                <EndBtn />               
+                {EndBtn}               
             </div>
         </div>
     )

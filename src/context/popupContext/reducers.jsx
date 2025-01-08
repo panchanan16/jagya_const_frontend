@@ -7,12 +7,12 @@ export const initialPopupState = {
 
 export function popupReducer(state, action) {
     switch (action.type) {
-        case 'OPEN_BG':
+        case 'OPEN_SLIDE':
             return {
                 ...state,
                 openSlide: true,
             };
-        case 'CLOSE_BG':
+        case 'CLOSE_SLIDE':
             return {
                 ...state,
                 openSlide: false,

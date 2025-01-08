@@ -745,8 +745,6 @@ table {
     border-collapse: collapse;
     border-radius: var(--radius-6);
     margin-top: var(--px-10);
-    /* overflow: hidden; */
-
 }
 
 table tr {
@@ -779,17 +777,22 @@ table :is(th, td) {
     word-wrap: break-word;
     pointer-events: auto;
 }
-table td.status.success{
+table button.status{
+    font-size: var(--f-size-10);
+    padding: var(--px-5) var(--px-8);
+    font-weight: 500;
+}
+table td button.status.success{
     background: var(--color-success-100);
     color: var(--color-success-700);
     border: 1px solid var(--color-success-200);
 }
-table td.status.warning{
+table td button.status.warning{
     background: var(--color-warning-100);
     color: var(--color-warning-700);
    border: 1px solid var(--color-warning-200);
 }
-table td.status.inProgress{
+table td button.status.inProgress{
     border: 1px solid var(--accent-color-200);
     background: var(--accent-color-100);
     color: var(--accent-color-600);
@@ -984,23 +987,29 @@ main p.text {
     border: 1px solid var(--color-200);
     border-radius: var(--radius-6);
 }
-.task-grid p.title{
+.task-grid .title{
     padding: var(--px-10);
     border-radius: var(--radius-6) var(--radius-6) 0 0;
     border: 1px solid var(--color-200);
     font-weight: 600;
-}
-.task-grid p.notStarted{
     border: 1px solid var(--color-200);
     background: var(--color-100);
     color: var(--color-950);
 }
-.task-grid p.inProgress{
+.task-grid select{
+    padding: var(--px-5) var(--px-8);
+    font-size: var(--f-size-12);
+    font-weight: 500;
+    border: 1px solid var(--color-200);
+    border-radius: var(--radius-6);
+}
+
+.task-grid div.title.inProgress{
     border: 1px solid var(--accent-color-200);
     background: var(--accent-color-100);
     color: var(--accent-color-600);
 }
-.task-grid p.completed{
+.task-grid div.title.completed{
     border: 1px solid var(--color-success-200);
     background: var(--color-success-100);
     color: var(--color-success-600);
@@ -1012,13 +1021,13 @@ span.dot{
     display: inline-block;
     border-radius: var(--radius-circle);
 }
-p.notStarted span.dot{
+.grid-box span.dot{
     background: var(--color-950);
 }
-p.inProgress span.dot{
+div.inProgress span.dot{
     background: var(--accent-color-500);
 }
-p.completed span.dot{
+div.completed span.dot{
     background: var(--color-success-500);
 }
 .task-box p.text{
@@ -1379,7 +1388,7 @@ figure span{
     font-size: var(--f-size-18);
     color: var(--color-900);
 }
-.inventory-popup, .addItem-popup, .editItem-popup{
+.inventory-popup, .addItem-popup, .editItem-popup, .editInchargeItem-popup{
     width: 100%;
     height: 96%;
     max-width: 650px !important;
@@ -1623,3 +1632,25 @@ figure span{
     margin: 10px auto;
 }
 
+/* CLIENTS & VENDORS */
+.tabs{
+    border: 1px solid var(--color-200);
+    padding: var(--px-10);
+    border-radius: var(--radius-5);
+    min-height: 70vh;
+}
+.tabs-list{
+    border-bottom: 1px solid var(--color-200);
+}
+.tabs-list h3{
+    padding-bottom: var(--px-8);
+    font-size: var(--f-size-15);
+    cursor: pointer;
+}
+.tabs-list h3.active{
+    color: var(--color-900);
+    border-bottom: 3px solid var(--color-900);
+}
+.tabs-content{
+    margin-top: var(--px-10);
+}

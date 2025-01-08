@@ -1,84 +1,91 @@
-import React from 'react'
+import { usePopupContext } from '@/context/popupContext';
+import SecondSlideLayout from '@/layout/common/secondSlideLayout'
+
 
 function SecondSlideProject() {
+    const { dispatchActions } = usePopupContext();
+    const { closeSecondSlide } = dispatchActions;
+
+
     return (
-        <main>
-            <div class="main-btn flex">
-                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                    id="arrow-left" class="main-svg" onclick="openProjectDetails('first-slide', this)">
-                    <path fill=""
-                        d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z">
-                    </path>
-                </svg>
-                <button class="btn-primary" type="button" onclick="editProject(this)">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="">
+        <SecondSlideLayout>
+            <main>
+                <div class="main-btn flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                        id="arrow-left" class="main-svg" onClick={closeSecondSlide}>
                         <path fill=""
-                            d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z">
+                            d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z">
                         </path>
                     </svg>
-                    <span>Edit</span>
-                </button>
-            </div>
+                    <button class="btn-primary" type="button" onclick="editProject(this)">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="">
+                            <path fill=""
+                                d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z">
+                            </path>
+                        </svg>
+                        <span>Edit</span>
+                    </button>
+                </div>
 
-            <div class="header-text">
-                <h2>Residential G+2 Building</h2>
-            </div>
-            {/* <!-- DETAILS  --> */}
-            <div class="contents grid gtc-2 gap-10">
-                <div class="description flex align-center gap-5">
-                    <h3>Client Name:</h3>
-                    <p class="text">Kankan Jyoti Nath</p>
+                <div class="header-text">
+                    <h2>Residential G+2 Building</h2>
                 </div>
-                <div class="description flex align-center gap-5">
-                    <h3>Phone / Alternate Number:</h3>
-                    <p class="text">6002649802 / 7636896075</p>
-                </div>
-                <div class="description flex align-center gap-5">
-                    <h3>Email ID:</h3>
-                    <p class="text">jyotikankan222@gmail.com</p>
-                </div>
-                <div class="description flex align-center gap-5">
-                    <h3>Address:</h3>
-                    <p class="text">House No. 60, Ashram Road, Lachitnagar, Guwahati, Assam</p>
-                </div>
-                <div class="description flex align-center gap-5">
-                    <h3>House type:</h3>
-                    <p class="text">Assam Type</p>
-                </div>
-                <div class="description flex align-center gap-5">
-                    <h3>Site Description:</h3>
-                    <p class="text">Assam Type of ghor juntu assamese hoi</p>
-                </div>
-                <div class="description flex align-center gap-5">
-                    <h3>Project Initiated:</h3>
-                    <p class="text">12-June-2024</p>
-                </div>
-                <div class="description flex align-center gap-5">
-                    <h3>Project Duration:</h3>
-                    <p class="text">1.5 years</p>
-                </div>
-            </div>
-
-            {/* <!-- EMPLOYEE LIST --> */}
-            <div class="p-employees flex align-center gap-10">
-                <h3>Assignees:</h3>
-
-                <div class="employee-container flex align-center gap-10">
-                    <div class="e-profile flex align-center" onclick="seeEmployee()">
-                        <img src="/img/admin.jpg" alt="profile" loading="lazy" />
-                            <p class="text">Mohibul Hoque</p>
+                {/* <!-- DETAILS  --> */}
+                <div class="contents grid gtc-2 gap-10">
+                    <div class="description flex align-center gap-5">
+                        <h3>Client Name:</h3>
+                        <p class="text">Kankan Jyoti Nath</p>
+                    </div>
+                    <div class="description flex align-center gap-5">
+                        <h3>Phone / Alternate Number:</h3>
+                        <p class="text">6002649802 / 7636896075</p>
+                    </div>
+                    <div class="description flex align-center gap-5">
+                        <h3>Email ID:</h3>
+                        <p class="text">jyotikankan222@gmail.com</p>
+                    </div>
+                    <div class="description flex align-center gap-5">
+                        <h3>Address:</h3>
+                        <p class="text">House No. 60, Ashram Road, Lachitnagar, Guwahati, Assam</p>
+                    </div>
+                    <div class="description flex align-center gap-5">
+                        <h3>House type:</h3>
+                        <p class="text">Assam Type</p>
+                    </div>
+                    <div class="description flex align-center gap-5">
+                        <h3>Site Description:</h3>
+                        <p class="text">Assam Type of ghor juntu assamese hoi</p>
+                    </div>
+                    <div class="description flex align-center gap-5">
+                        <h3>Project Initiated:</h3>
+                        <p class="text">12-June-2024</p>
+                    </div>
+                    <div class="description flex align-center gap-5">
+                        <h3>Project Duration:</h3>
+                        <p class="text">1.5 years</p>
                     </div>
                 </div>
 
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus"
-                    onclick="addEmployee()">
-                    <path
-                        d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z">
-                    </path>
-                </svg>
-            </div>
+                {/* <!-- EMPLOYEE LIST --> */}
+                <div class="p-employees flex align-center gap-10">
+                    <h3>Assignees:</h3>
 
-            <hr />
+                    <div class="employee-container flex align-center gap-10">
+                        <div class="e-profile flex align-center" onclick="seeEmployee()">
+                            <img src="/img/admin.jpg" alt="profile" loading="lazy" />
+                            <p class="text">Mohibul Hoque</p>
+                        </div>
+                    </div>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus"
+                        onclick="addEmployee()">
+                        <path
+                            d="M19,11H13V5a1,1,0,0,0-2,0v6H5a1,1,0,0,0,0,2h6v6a1,1,0,0,0,2,0V13h6a1,1,0,0,0,0-2Z">
+                        </path>
+                    </svg>
+                </div>
+
+                <hr />
                 {/* <!-- Attached Files --> */}
                 <div class="file-structure">
                     <div class="file-header flex align-start j-between">
@@ -161,66 +168,71 @@ function SecondSlideProject() {
                 </div>
 
                 <hr />
-                    {/* <!-- SUB-TASKS  --> */}
-                    <div class="task">
-                        <div class="task-header flex align-start j-between">
-                            <h3>Tasks</h3>
-                            <button class="btn-primary" type="button" onclick="addSubTask()">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus-circle"
-                                    class="">
-                                    <path fill=""
-                                        d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z">
-                                    </path>
-                                </svg>
-                                <span class="text">Add</span>
-                            </button>
-                        </div>
-                        <div class="task-grid grid gtc-3 gap-10">
-                            <div class="grid-box">
-                                <p class="title notStarted flex align-center gap-10">
-                                    <span class="dot"></span>
-                                    Phase I
-                                </p>
+                {/* <!-- SUB-TASKS  --> */}
+                <div class="task">
+                    <div class="task-header flex align-start j-between">
+                        <h3>Tasks</h3>
+                        <button class="btn-primary" type="button" onclick="addSubTask()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus-circle"
+                                class="">
+                                <path fill=""
+                                    d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z">
+                                </path>
+                            </svg>
+                            <span class="text">Add</span>
+                        </button>
+                    </div>
+                    <div class="task-grid grid gtc-3 gap-10">
+                        <div class="grid-box">
+                            <div class="title flex align-center gap-10">
+                                <span class="dot"></span>
+                                <span class="text flex-1">Phase I</span>
+                                <select name="" id="">
+                                    <option value="">Not Started</option>
+                                    <option value="">In Progress</option>
+                                    <option value="">Completed</option>
+                                </select>
+                            </div>
 
-                                <div class="task-box">
-                                    <p class="text">
-                                        Slab Casting
-                                        <span class="task-svg">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="user"
-                                                class="svg-18">
-                                                <path
-                                                    d="M15.71,12.71a6,6,0,1,0-7.42,0,10,10,0,0,0-6.22,8.18,1,1,0,0,0,2,.22,8,8,0,0,1,15.9,0,1,1,0,0,0,1,.89h.11a1,1,0,0,0,.88-1.1A10,10,0,0,0,15.71,12.71ZM12,12a4,4,0,1,1,4-4A4,4,0,0,1,12,12Z">
-                                                </path>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                onclick="confirmAlert()" class="svg-18">
-                                                <path fill=""
-                                                    d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z">
-                                                </path>
-                                            </svg>
-                                        </span>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="grid-box">
-                                <p class="title inProgress flex align-center gap-10">
-                                    <span class="dot"></span>
-                                    Phase II
+                            <div class="task-box">
+                                <p class="text">
+                                    Slab Casting
+                                    <span class="task-svg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="user"
+                                            class="svg-18">
+                                            <path
+                                                d="M15.71,12.71a6,6,0,1,0-7.42,0,10,10,0,0,0-6.22,8.18,1,1,0,0,0,2,.22,8,8,0,0,1,15.9,0,1,1,0,0,0,1,.89h.11a1,1,0,0,0,.88-1.1A10,10,0,0,0,15.71,12.71ZM12,12a4,4,0,1,1,4-4A4,4,0,0,1,12,12Z">
+                                            </path>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                            onclick="confirmAlert()" class="svg-18">
+                                            <path fill=""
+                                                d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z">
+                                            </path>
+                                        </svg>
+                                    </span>
                                 </p>
-                                <div class="task-box"></div>
                             </div>
-                            <div class="grid-box">
-                                <p class="title completed flex align-center gap-10">
-                                    <span class="dot"></span>
-                                    Phase III
-                                </p>
-                                <div class="task-box"></div>
-                            </div>
+                        </div>
+                        <div class="grid-box">
+                            <p class="title inProgress flex align-center gap-10">
+                                <span class="dot"></span>
+                                Phase II
+                            </p>
+                            <div class="task-box"></div>
+                        </div>
+                        <div class="grid-box">
+                            <p class="title completed flex align-center gap-10">
+                                <span class="dot"></span>
+                                Phase III
+                            </p>
+                            <div class="task-box"></div>
                         </div>
                     </div>
-
-                </main>
-                )
+                </div>
+            </main>
+        </SecondSlideLayout>
+    )
 }
 
-                export default SecondSlideProject
+export default SecondSlideProject

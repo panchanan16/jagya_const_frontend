@@ -3,13 +3,15 @@ import PopupLayout from '@/layout/common/popupLayout'
 
 
 function InstallmentForm() {
-    const {state, dispatch} = usePopupContext()
+    const {dispatchActions} = usePopupContext()
+    const {closeFormAction} = dispatchActions
+    
     return (
-        <PopupLayout showPopup={state.openForm}>
+        <PopupLayout>
             <div class="add-installment-popup blur">
                 <div class="form">
                     <h2>Add Installment</h2>
-                    <button type="button" class="btn-warning close" onClick={()=> dispatch({type: 'CLOSE_FORM'})}>Close</button>
+                    <button type="button" class="btn-warning close" onClick={closeFormAction}>Close</button>
                     <hr />
 
                     <div class="grid gtc-3 gap-10">
