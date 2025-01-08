@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Header() {
+    console.log("I am rendering...")
     return (
         <header class="flex align-center j-between">
             <div class="slashRoutes flex align-center">

@@ -1,10 +1,10 @@
 
-function SecondSlideLayout({Contents}) {
+function SecondSlideLayout({children, showSlide}) {
     return (
-        <div class="second-slide hide" id="second-slide">
-           <Contents />
+        <div class={`second-slide ${showSlide ? 'hide' : ''}`} id="second-slide">
+           {children}
         </div>
     )
 }
 
-export default SecondSlideLayout
+export default SecondSlideLayout;

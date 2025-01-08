@@ -1,17 +1,17 @@
+import PopupContextProvider from "@/context/popupContext"
 
-function DynamicLayout({children}) {
+function DynamicLayout({ children }) {
     return (
-        <div class="right">
-            {/* <!-- FIRST SLIDE  --> */}
-            {/* <!-- SECOND SLIDE  --> */}
-            {children}
-
-            {/* <!-- POPUP WINDOWS --> */}
-            <div class="main-popup hide"></div>
-
-            <div class="section-popup hide"></div>
-        </div>
+        <PopupContextProvider>
+            <div class="right">
+                {/* <!-- FIRST SLIDE  --> */}
+                {/* <!-- SECOND SLIDE  --> */}
+                {/* <!-- POPUP WINDOWS --> */}
+                {children}
+                <div class="section-popup hide"></div>
+            </div>
+        </PopupContextProvider>
     )
 }
 
-export default DynamicLayout
+export default DynamicLayout;

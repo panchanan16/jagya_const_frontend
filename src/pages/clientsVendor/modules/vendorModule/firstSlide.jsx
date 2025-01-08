@@ -1,18 +1,18 @@
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import React from 'react'
 
-function FirstSlide() {
+function FirstSlideVendor() {
     return (
         <main>
             <div class="heading">
-                <h1>All Clients</h1>
-                <p class="title">Find the list of clients here</p>
+                <h1>All Vendors</h1>
+                <p class="title">Find the list of vendors here</p>
             </div>
 
             <div class="top-section flex align-center j-between">
 
                 <div class="section-text">
-                    <h2 class="flex gap-10">All Clients</h2>
+                    <h2 class="flex gap-10">All Vendors</h2>
                 </div>
                 <div class="utility-section flex align-center gap-10">
                     <div class="search flex align-center">
@@ -40,14 +40,14 @@ function FirstSlide() {
                         </div>
                     </div>
                     <div class="add-button">
-                        <button class="btn-primary" type="button" onclick="addClientsProspects()">
+                        <button class="btn-primary" type="button" onclick="">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus-circle"
                                 class="">
                                 <path fill=""
                                     d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z">
                                 </path>
                             </svg>
-                            <span class="text">Add a Client</span>
+                            <span class="text">Add a Vendor</span>
                         </button>
                     </div>
 
@@ -64,7 +64,6 @@ function FirstSlide() {
                             <th class="">Phone Number</th>
                             <th class="">Alternate Number</th>
                             <th class="">Email</th>
-                            <th class="">Address</th>
                             <th class=""></th>
                         </tr>
                     </thead>
@@ -74,12 +73,11 @@ function FirstSlide() {
                             <td><input type="checkbox" name="" id="" onchange="toggleHighlight(this)"
                                 class="row-checkbox" /></td>
                             <td>1</td>
-                            <td class="text">Panchanan Deka</td>
+                            <td class="text">Mintu Sharma</td>
                             <td class="text">+91 <span>6000192289</span></td>
                             <td class="text">+91 <span>6000192289</span></td>
-                            <td class="text">dekapanchanan16534@gmail.com</td>
-                            <td class="text">Guwahati, Assam</td>
-                            <td class="flex">
+                            <td class="text">sharmaMintu@gmail.com</td>
+                            <td class="">
                                 <div class="menu-dropdown">
                                     <div class="dropdown-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -89,7 +87,7 @@ function FirstSlide() {
                                             </path>
                                         </svg>
                                     </div>
-                                   <ItemActionBox />
+                                    <ItemActionBox />
                                 </div>
                             </td>
                         </tr>
@@ -104,7 +102,6 @@ function FirstSlide() {
                                     </path>
                                 </svg>
                             </td>
-                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -126,4 +123,4 @@ function FirstSlide() {
     )
 }
 
-export default FirstSlide
+export default FirstSlideVendor

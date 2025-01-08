@@ -1,10 +1,10 @@
 import Header from '@/apps/header/header'
 
-function FirstSlideLayout({Contents}) {
+function FirstSlideLayout({children, showSlide}) {
     return (
-        <div class="first-slide" id="first-slide">
+        <div class={`first-slide ${showSlide ? '' : 'hide'}`} id="first-slide">
             <Header />
-            <Contents />
+            {children}
         </div>
     )
 }
