@@ -1,12 +1,12 @@
 import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn';
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption';
-import { usePopupContext } from '@/context/popupContext';
+import { useLayoutContext } from '@/context/layoutContext';
 import FirstSlideLayout from '@/layout/common/firstSlideLayout'
 
 
 function FirstSlide() {
-    const { dispatchActions } = usePopupContext();
+    const { dispatchActions } = useLayoutContext();
     const { openSecondSlide, openFormAction } = dispatchActions;
 
     return (

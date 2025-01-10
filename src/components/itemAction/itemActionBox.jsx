@@ -3,6 +3,8 @@ import { useState } from "react";
 function ItemActionBox({ viewFn }) {
     const [showModel, setShowModel] = useState(false)
 
+    console.log('I am ItemAction rendering again...')
+
     function toggleModel() {
         setShowModel(!showModel)
     }

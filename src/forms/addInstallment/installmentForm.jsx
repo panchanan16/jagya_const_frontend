@@ -1,9 +1,9 @@
-import { usePopupContext } from '@/context/popupContext'
+import { useLayoutContext } from '@/context/layoutContext'
 import PopupLayout from '@/layout/common/popupLayout'
 
 
 function InstallmentForm() {
-    const {dispatchActions} = usePopupContext()
+    const {dispatchActions} = useLayoutContext()
     const {closeFormAction} = dispatchActions
     
     return (

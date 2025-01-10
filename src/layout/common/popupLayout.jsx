@@ -1,12 +1,12 @@
-import { usePopupContext } from '@/context/popupContext';
+import { useLayoutContext } from '@/context/layoutContext';
 
 function PopupLayout({ children }) {
-    const { state } = usePopupContext()
+    const { state } = useLayoutContext();
 
     return (
-        <div className={`main-popup ${state.openForm ? '' : 'hide'}`}>
-            {children}
-        </div>
+            <div className={`main-popup ${state.openPopupLayout ? '' : 'hide'}`}>
+                {children}
+            </div>
     )
 }
 

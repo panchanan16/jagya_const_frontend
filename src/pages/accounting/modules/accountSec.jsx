@@ -1,10 +1,10 @@
-import { usePopupContext } from '@/context/popupContext';
+import { useLayoutContext } from '@/context/layoutContext';
 import SecondSlideLayout from '@/layout/common/secondSlideLayout'
 import React, { useState } from 'react'
 
 function AccountSec() {
-    const { dispatchActions } = usePopupContext();
-    const { closeSecondSlide } = dispatchActions;
+    const { dispatchLayoutAction } = useLayoutContext();
+    const { closeSecondSlide } = dispatchLayoutAction;
 
     return (
         <SecondSlideLayout>

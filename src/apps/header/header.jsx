@@ -1,12 +1,10 @@
-import React from 'react'
-
 function Header() {
-    console.log("I am rendering...")
+    console.log("I am header rendering...")
     return (
         <header className="flex align-center j-between">
             <div className="slashRoutes flex align-center">
-                <p>Dashboard<span>/</span></p>
-                <p className="active">Projects</p>
+                <p>Dashboard <span> / </span> </p>
+                <p className="active"> Projects</p>
             </div>
             <div className="header-icons flex align-center gap-10">
                 <div className="notification-icon flex align-center j-center" onclick="openNotification(this)">
@@ -49,4 +47,4 @@ function Header() {
     )
 }
 
-export default Header
+export default Header;

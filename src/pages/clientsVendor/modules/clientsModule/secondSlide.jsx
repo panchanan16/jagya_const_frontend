@@ -1,9 +1,9 @@
-import { usePopupContext } from '@/context/popupContext';
+import { useLayoutContext } from '@/context/layoutContext';
 import SecondSlideLayout from '@/layout/common/secondSlideLayout'
 import React from 'react'
 
 function SecondSlide() {
-    const { dispatchActions } = usePopupContext();
+    const { dispatchActions } = useLayoutContext();
     const { closeSecondSlide } = dispatchActions;
 
     return (

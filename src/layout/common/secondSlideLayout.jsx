@@ -1,10 +1,10 @@
-import { usePopupContext } from "@/context/popupContext";
+import { useLayoutContext } from "@/context/layoutContext";
 
 function SecondSlideLayout({ children }) {
-    const { state } = usePopupContext();
+    const {state} = useLayoutContext();
 
     return (
-        <div className={`second-slide ${state.openSlide ? 'hide' : ''}`} id="second-slide">
+        <div className={`second-slide ${state.openLayout ? 'hide' : ''}`} id="second-slide">
             {children}
         </div>
     )

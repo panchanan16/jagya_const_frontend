@@ -1,22 +1,12 @@
 export const initialPopupState = {
-    openSlide: true,
-    closeSlide: false,
+    openSubModal: false,
+    closeSubModal: true,
     openForm: false,
     closeForm: true
 }
 
 export function popupReducer(state, action) {
     switch (action.type) {
-        case 'OPEN_SLIDE':
-            return {
-                ...state,
-                openSlide: true,
-            };
-        case 'CLOSE_SLIDE':
-            return {
-                ...state,
-                openSlide: false,
-            };
         case 'OPEN_FORM':
             return {
                 ...state,
@@ -26,6 +16,16 @@ export function popupReducer(state, action) {
             return {
                 ...state,
                 openForm: false,
+            };
+        case 'OPEN_SUB_MODAL':
+            return {
+                ...state,
+                openSubModal: true,
+            };
+        case 'CLOSE_SUB_MODAL':
+            return {
+                ...state,
+                openSubModal: false,
             };
         default: {
             console.error("Unknown action type provided!")

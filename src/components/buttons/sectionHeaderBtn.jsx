@@ -1,8 +1,8 @@
 function SectionHeaderBtn({btnName, clickFn}) {
 
     return (
-        <div class="add-button" onClick={clickFn}>
-            <button class="btn-primary" type="button" onclick="addInstallment()">
+        <div class="add-button">
+            <button class="btn-primary" type="button" onClick={clickFn}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus-circle"
                     class="">
                     <path fill=""

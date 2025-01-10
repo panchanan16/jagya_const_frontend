@@ -3,6 +3,7 @@ import React from 'react'
 import asideMenuItems from '@/utils/asideMenu'
 
 function AsideBar() {
+    console.log('I am aside bar rendering')
     return (
         <div className="left">
             <div className="logo flex align-center gap-5">

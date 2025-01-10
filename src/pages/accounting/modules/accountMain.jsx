@@ -1,14 +1,14 @@
 import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn';
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption';
-import { usePopupContext } from '@/context/popupContext';
+import { useLayoutContext } from '@/context/layoutContext';
 import FirstSlideLayout from '@/layout/common/firstSlideLayout';
 import React, { useState } from 'react'
 
 
 function AccountMain() {
-    const {dispatchActions} = usePopupContext();
-    const {openSecondSlide, openFormAction} = dispatchActions;
+    const {dispatchLayoutAction} = useLayoutContext();
+    const {openSecondSlide, openFormAction} = dispatchLayoutAction;
     // console.log('state is : ', state.openSlide)
 
     return (

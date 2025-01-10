@@ -1,5 +1,5 @@
-
 function SectionHeaderOption({EndBtn}) {
+    console.log('I am sectionheader rendering ...')
     return (
         <div className="top-section flex align-center j-between">
 

@@ -1,10 +1,11 @@
 import { useMemo, useReducer, createContext, useContext } from 'react';
 import { initialPopupState, popupReducer } from './reducers';
 import popupActions from './actions';
+import popupSelectors from './selectors';
 
 const PopupContext = createContext();
 
-export default function PopupContextProvider({ children }) {
+export default function MainAppContextProvider({ children }) {
   const [state, dispatch] = useReducer(popupReducer, initialPopupState);
   const value = useMemo(() => [state, dispatch], [state]);
 
@@ -12,9 +13,10 @@ export default function PopupContextProvider({ children }) {
 }
 
 
-export function usePopupContext() {
+export function useMainAppContext() {
     const display = useContext(PopupContext);
     const [state, dispatch] = display;
     const dispatchActions = popupActions(dispatch)
-    return {state, dispatch, dispatchActions};
+    const popupSelectorFn = popupSelectors(state)
+    return {state, dispatch, dispatchActions, popupSelectorFn};
 }

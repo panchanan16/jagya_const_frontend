@@ -1,10 +1,10 @@
-import { usePopupContext } from '@/context/popupContext';
+import { useLayoutContext } from '@/context/layoutContext';
 import SecondSlideLayout from '@/layout/common/secondSlideLayout'
 
 
 function SecondSlideProject() {
-    const { dispatchActions } = usePopupContext();
-    const { closeSecondSlide } = dispatchActions;
+    const { dispatchLayoutAction } = useLayoutContext();
+    const { closeLayout } = dispatchLayoutAction;
 
 
     return (
@@ -12,7 +12,7 @@ function SecondSlideProject() {
             <main>
                 <div class="main-btn flex">
                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                        id="arrow-left" class="main-svg" onClick={closeSecondSlide}>
+                        id="arrow-left" class="main-svg" onClick={closeLayout}>
                         <path fill=""
                             d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z">
                         </path>

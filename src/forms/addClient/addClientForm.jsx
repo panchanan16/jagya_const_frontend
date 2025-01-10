@@ -1,10 +1,12 @@
-import { usePopupContext } from '@/context/popupContext'
+import { useLayoutContext } from '@/context/layoutContext'
 import PopupLayout from '@/layout/common/popupLayout'
 
 
 function AddClientForm() {
-   const { dispatchActions } = usePopupContext()
+   const { dispatchActions } = useLayoutContext()
    const {closeFormAction} = dispatchActions
+
+   console.log('I am client form re rendering..')
 
   return (
     <PopupLayout>

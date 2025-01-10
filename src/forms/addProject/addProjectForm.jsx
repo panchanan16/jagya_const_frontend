@@ -1,10 +1,11 @@
-import { usePopupContext } from '@/context/popupContext';
+import { useLayoutContext } from '@/context/layoutContext';
 import PopupLayout from '@/layout/common/popupLayout'
-import React from 'react'
+import React, { useState } from 'react'
 
 function AddProjectForm() {
-    const {dispatchActions} = usePopupContext()
+    const {dispatchActions} = useLayoutContext()
     const {closeFormAction} = dispatchActions;
+    const [profileAcc, setprofileAcc] = useState(false)
 
 
     return (
@@ -39,13 +40,13 @@ function AddProjectForm() {
                         <div class="accordion-heading flex align-center j-between">
                             <h3>Profile details</h3>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="angle-down"
-                                class="svg-18 arrow">
+                                class="svg-18 arrow" onClick={()=> setprofileAcc(!profileAcc)}>
                                 <path
                                     d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z">
                                 </path>
                             </svg>
                         </div>
-                        <div class="accordion-data profile-accordion hide">
+                        <div class={`accordion-data profile-accordion ${profileAcc ? '' : 'hide'}`}>
                             <div class="grid gtc-2 gap-10">
                                 <div class="field">
                                     <p class="title">Name</p>
@@ -80,13 +81,13 @@ function AddProjectForm() {
                         <div class="accordion-heading flex align-center j-between">
                             <h3>Project details</h3>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="angle-down"
-                                class="svg-18 arrow">
+                                class="svg-18 arrow" onClick={()=> setprofileAcc(!profileAcc)}>
                                 <path
                                     d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z">
                                 </path>
                             </svg>
                         </div>
-                        <div class="accordion-data hide">
+                        <div class={`accordion-data ${profileAcc ? '' : 'hide'}`}>
                             <div class="grid gtc-2 gap-10">
                                 <div class="field">
                                     <p class="title">Project Name</p>
@@ -137,7 +138,7 @@ function AddProjectForm() {
                                 </path>
                             </svg>
                         </div>
-                        <div class="accordion-data hide">
+                        <div class={`accordion-data ${profileAcc ? '' : 'hide'}`}>
                             <div class="field">
                                 <button class="btn-secondary" type="button" onclick="">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="image-plus">

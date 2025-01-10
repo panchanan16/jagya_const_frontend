@@ -1,16 +1,28 @@
-import PopupContextProvider from "@/context/popupContext"
+import LayoutContextProvider from "@/context/layoutContext";
+import ItemDetailsContextProvider from "@/context/secondSlideContext";
+import MainAppContextProvider from "@/context/firstSlideContext";
+import SubAppContextProvider from "@/context/secondSlideContext";
 
 function DynamicLayout({ children }) {
     return (
-        <PopupContextProvider>
-            <div className="right">
-                {/* <!-- FIRST SLIDE  --> */}
-                {/* <!-- SECOND SLIDE  --> */}
+
+        <div className="right">
+            <LayoutContextProvider>
+                <MainAppContextProvider>
+                    {/* <!-- FIRST SLIDE  --> */}
+                    {children[0] && children[0]}
+                </MainAppContextProvider>
+
+                <SubAppContextProvider>
+                    {/* <!-- SECOND SLIDE  --> */}
+                    {children[1] && children[1]}
+                </SubAppContextProvider>
                 {/* <!-- POPUP WINDOWS --> */}
-                {children}
-                <div className="section-popup hide"></div>
-            </div>
-        </PopupContextProvider>
+                {children[2] && children[2]}
+            </LayoutContextProvider>
+            <div className="section-popup hide"></div>
+        </div>
+
     )
 }
 
