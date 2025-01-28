@@ -1,16 +1,11 @@
 import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn';
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption';
-import { useLayoutContext } from '@/context/layoutContext';
 import FirstSlideLayout from '@/layout/common/firstSlideLayout';
 import React, { useState } from 'react'
 
 
-function AccountMain() {
-    const {dispatchLayoutAction} = useLayoutContext();
-    const {openSecondSlide, openFormAction} = dispatchLayoutAction;
-    // console.log('state is : ', state.openSlide)
-
+function FirstSlideFinance() {
     return (
         <FirstSlideLayout>
             <main>
@@ -18,7 +13,7 @@ function AccountMain() {
                     <h1>Finance</h1>
                     <p className="title">Find all projects financial data here</p>
                 </div>
-                <SectionHeaderOption EndBtn={<SectionHeaderBtn btnName='add installment' clickFn={openFormAction} />} />
+                <SectionHeaderOption EndBtn={<SectionHeaderBtn btnName='add installment' clickFn={'/finance/add-installment'} />} />
                 <table>
                     <thead>
                         <tr>
@@ -46,7 +41,7 @@ function AccountMain() {
                                     <td className="text">Kankan Jyoti Nath</td>
                                     <td className="text">+91 6002649802</td>
                                     <td className="">
-                                        <ItemActionBox viewFn={openSecondSlide} />
+                                        <ItemActionBox viewFn={'/finance/finance-details/4'} />
                                     </td>
                                 </tr>
                             ))
@@ -85,4 +80,4 @@ function AccountMain() {
     )
 }
 
-export default AccountMain;
+export default FirstSlideFinance;

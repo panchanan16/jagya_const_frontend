@@ -1,22 +1,21 @@
-import { useLayoutContext } from '@/context/layoutContext';
 import SecondSlideLayout from '@/layout/common/secondSlideLayout'
 import React, { useState } from 'react'
+import { Link } from 'react-router';
 
-function AccountSec() {
-    const { dispatchLayoutAction } = useLayoutContext();
-    const { closeSecondSlide } = dispatchLayoutAction;
-
+function SecondSlideFinance() {
     return (
         <SecondSlideLayout>
             <main>
-                <div className="main-btn flex" onClick={closeSecondSlide}>
-                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                        id="arrow-left" className="main-svg" onclick="openProjectDetails('first-slide', this)">
-                        <path fill=""
-                            d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z">
-                        </path>
-                    </svg>
-                </div>
+                <Link to='/finance'>
+                    <div className="main-btn flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
+                            id="arrow-left" className="main-svg" onclick="openProjectDetails('first-slide', this)">
+                            <path fill=""
+                                d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z">
+                            </path>
+                        </svg>
+                    </div>
+                </Link>
 
                 <div className="header-text">
                     <h2>Mintu Sharma</h2>
@@ -61,12 +60,12 @@ function AccountSec() {
                 <hr />
                 <div className="tabs">
                     <div className="tabs-list flex align-center gap-10">
-                        <h3 className="active">Installments</h3>
-                        <h3>Expenses</h3>
+                        <h3 className="">Installments</h3>
+                        <h3 className="active">Expenses</h3>
                     </div>
                     <div className="tabs-content">
                         {/* <!-- COLLECTIONS LIST --> */}
-                        <div className="c-installments">
+                        <div className="c-installments hide">
                             <div className="c-installments-heading flex align-start j-between">
                                 <h3 className="heading">Installments</h3>
                                 <div className="action-btn flex">
@@ -159,20 +158,9 @@ function AccountSec() {
                             </div>
                         </div>
                         {/* <!-- cLIENT EXPENSES  --> */}
-                        <div className="c-expenses hide">
+                        <div className="c-expenses">
                             <div className="c-expenses-heading flex align-start j-between">
-                                <h3 className="heading">Expenses</h3>
-                                {/* <!-- <div className="action-btn flex">
-                                <button className="btn-primary" type="button" onclick="addVendorPayments()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus-circle"
-                                        className="">
-                                        <path fill=""
-                                            d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z">
-                                        </path>
-                                    </svg>
-                                    <span className="text">Add a Payment</span>
-                                </button>
-                            </div> --> */}
+                                <h3 className="heading">Expenses</h3>                           
                             </div>
                             <table>
                                 <thead>
@@ -206,4 +194,4 @@ function AccountSec() {
     )
 }
 
-export default AccountSec
+export default SecondSlideFinance

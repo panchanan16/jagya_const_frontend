@@ -1,17 +1,17 @@
-import { useLayoutContext } from '@/context/layoutContext'
 import PopupLayout from '@/layout/common/popupLayout'
+import { Link } from 'react-router'
 
 
 function InstallmentForm() {
-    const {dispatchActions} = useLayoutContext()
-    const {closeFormAction} = dispatchActions
-    
+
     return (
         <PopupLayout>
             <div className="add-installment-popup blur">
                 <div className="form">
                     <h2>Add Installment</h2>
-                    <button type="button" className="btn-warning close" onClick={closeFormAction}>Close</button>
+                    <Link to={`/finance`}>
+                        <button type="button" className="btn-warning close">Close</button>
+                    </Link>
                     <hr />
 
                     <div className="grid gtc-3 gap-10">

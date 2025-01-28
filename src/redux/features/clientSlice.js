@@ -3,7 +3,8 @@ import { GET_REQUEST } from "../createThunk";
 
 const initialState = {
     clientList: [],
-    loading: null
+    loading: null,
+    error: null
 }
 
 
@@ -25,10 +26,12 @@ export const clientSlice = createSlice({
       })
       .addCase(GET_REQUEST.fulfilled, (state, action) => {
         state.loading = false; 
-        state.clientList = action.payload.data; 
+        state.clientList = action.payload.data;
+        state.error = null 
       })
       .addCase(GET_REQUEST.rejected, (state, action) => {
-        state.loading = false;        
+        state.loading = false; 
+        state.error = action.payload       
       });
     }
   })

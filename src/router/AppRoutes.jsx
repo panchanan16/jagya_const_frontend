@@ -1,5 +1,4 @@
 import { Routes, Route } from "react-router";
-import AccountPage from "@/pages/accounting";
 import ClientPage from "@/pages/clientsVendor/client";
 import DashboardPage from "@/pages/dashboard";
 import ProjectPage from "@/pages/projects";
@@ -9,7 +8,11 @@ import AddProjectForm from "@/forms/addProject/addProjectForm";
 import SecondSlideProject from "@/pages/projects/modules/secondSlide";
 import SecondSlide from "@/pages/clientsVendor/modules/clientsModule/secondSlide";
 import AddClientForm from "@/forms/addClient/addClientForm";
-import { useRoutes } from "react-router";
+import FinancePage from "@/pages/accounting/finance";
+import SecondSlideFinance from "@/pages/accounting/modules/financeModule/secondSlideFinance";
+import InstallmentForm from "@/forms/addInstallment/installmentForm";
+import ExpensePage from "@/pages/accounting/expense";
+import AddExpenseForm from "@/forms/addExpense/AddExpenseForm";
 
 
 
@@ -42,6 +45,16 @@ function AppRoutes() {
                     <Route path="add-clients" element={<AddClientForm />} />
                 </Route>
                 <Route path="/vendors" element={<VendorPage />} />
+                {/* Acounting Routes */}
+                <Route path="/finance" element={<FinancePage />}>
+                    <Route path="finance-details/:id" element={<SecondSlideFinance />} />
+                    <Route path="add-installment" element={<InstallmentForm />} />
+                </Route>
+                <Route path="/expense" element={<ExpensePage />}>
+                    <Route path="finance-details/:id" element={<SecondSlideFinance />} />
+                    <Route path="add-expense" element={<AddExpenseForm />} />
+                </Route>
+                {/* material Routes */}
                 <Route path="/material-request" element={<MaterialRequestPage />} />
             </Routes>
         )

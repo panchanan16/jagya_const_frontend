@@ -1,11 +1,15 @@
-function SectionHeaderOption({EndBtn}) {
+function SectionHeaderOption({ children, EndBtn }) {
     console.log('I am sectionheader rendering ...')
     return (
         <div className="top-section flex align-center j-between">
 
-            <div className="section-text">
-                <h2 className="flex gap-10">All Projects<span className="main-span">44</span></h2>
-            </div>
+            {
+                children ? children : <div className="section-text">
+                    <h2 className="flex gap-10">All Projects<span className="main-span">44</span></h2>
+                </div>
+            }
+
+
             <div className="utility-section flex align-center gap-10">
                 <div className="search flex align-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="search-icon">
@@ -26,7 +30,7 @@ function SectionHeaderOption({EndBtn}) {
                         <span className="text">Filter</span>
                     </button>
                 </div>
-                {EndBtn}               
+                {EndBtn}
             </div>
         </div>
     )

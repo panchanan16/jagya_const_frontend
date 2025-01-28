@@ -15,7 +15,6 @@ const initialValues = {
   clientAltNumber: '',
   clientAddress: '',
   clientDetails: ''
-
 }
 
 
@@ -41,7 +40,6 @@ const ClientSchema = Yup.object().shape({
 
 
 function AddClientForm() {
-  console.log('I am client form re rendering..')
   const dispatch = useDispatch()
 
   function addNewClient(clientData) {

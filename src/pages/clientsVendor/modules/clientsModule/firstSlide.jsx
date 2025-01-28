@@ -1,28 +1,20 @@
 import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn';
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption';
-import { useLayoutContext } from '@/context/layoutContext';
-import { useSubAppContext } from '@/context/secondSlideContext';
 import FirstSlideLayout from '@/layout/common/firstSlideLayout'
 import { useDispatch, useSelector } from 'react-redux';
-import { resetData } from '@/redux/features/clientSlice';
 import { useEffect } from 'react';
-import { clientData } from '@/utils/clientsData';
 import { _GET } from '@/utils/request/request';
-import { GET_REQUEST } from '@/redux/createThunk';
+import clientActions from '@/redux/features/clientSlice/action';
 
 
 function FirstSlide() {
-    const {clientList, loading} = useSelector((state) => state.clients)
+    const { clientList, loading } = useSelector((state) => state.clients)
     const dispatch = useDispatch()
+    const { getClientList } = clientActions
 
-    useEffect(()=> {
-        async function setSlideData() {                       
-            dispatch(GET_REQUEST('users'))
-        }
-
-        setSlideData();
-
+    useEffect(() => {
+        getClientList(dispatch)
     }, [])
 
     return (
