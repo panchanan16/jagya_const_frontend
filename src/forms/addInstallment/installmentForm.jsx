@@ -8,43 +8,43 @@ function InstallmentForm() {
     
     return (
         <PopupLayout>
-            <div class="add-installment-popup blur">
-                <div class="form">
+            <div className="add-installment-popup blur">
+                <div className="form">
                     <h2>Add Installment</h2>
-                    <button type="button" class="btn-warning close" onClick={closeFormAction}>Close</button>
+                    <button type="button" className="btn-warning close" onClick={closeFormAction}>Close</button>
                     <hr />
 
-                    <div class="grid gtc-3 gap-10">
-                        <div class="field">
-                            <p class="title">Date</p>
+                    <div className="grid gtc-3 gap-10">
+                        <div className="field">
+                            <p className="title">Date</p>
                             <input type="date" name="" id="" required />
                         </div>
-                        <div class="field">
-                            <p class="title">Amount</p>
+                        <div className="field">
+                            <p className="title">Amount</p>
                             <input type="number" name="" id="" required />
                         </div>
-                        <div class="field">
-                            <p class="title">Mode</p>
-                            <div class="flex f-wrap gap-10">
-                                <div class="flex gap-2">
+                        <div className="field">
+                            <p className="title">Mode</p>
+                            <div className="flex f-wrap gap-10">
+                                <div className="flex gap-2">
                                     <input type="radio" name="mode" id="" />
-                                    <p class="text">Cash</p>
+                                    <p className="text">Cash</p>
                                 </div>
-                                <div class="flex gap-2">
+                                <div className="flex gap-2">
                                     <input type="radio" name="mode" id="" />
-                                    <p class="text">UPI</p>
+                                    <p className="text">UPI</p>
                                 </div>
-                                <div class="flex gap-2">
+                                <div className="flex gap-2">
                                     <input type="radio" name="mode" id="" />
-                                    <p class="text">Cheque</p>
+                                    <p className="text">Cheque</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="action-btn flex align-center gap-10">
-                        <button type="button" class="btn-success flex-1">Update</button>
-                        <button type="button" class="btn-warning flex-1" onclick="closemainPopup()">Cancel</button>
+                    <div className="action-btn flex align-center gap-10">
+                        <button type="button" className="btn-success flex-1">Update</button>
+                        <button type="button" className="btn-warning flex-1" onclick="closemainPopup()">Cancel</button>
                     </div>
                 </div>
             </div>

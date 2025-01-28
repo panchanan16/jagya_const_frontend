@@ -1,10 +1,11 @@
-import { useLayoutContext } from "@/context/layoutContext";
+// import { useLayoutContext } from "@/context/layoutContext";
 
 function SecondSlideLayout({ children }) {
-    const {state} = useLayoutContext();
+    // const {state} = useLayoutContext();
+    // ${state.openLayout ? 'hide' : ''}
 
     return (
-        <div className={`second-slide ${state.openLayout ? 'hide' : ''}`} id="second-slide">
+        <div className={`second-slide`} id="second-slide">
             {children}
         </div>
     )

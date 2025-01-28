@@ -1,58 +1,67 @@
 import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn'
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption'
-import { useLayoutContext } from '@/context/layoutContext'
 import FirstSlideLayout from '@/layout/common/firstSlideLayout'
+import { resetData } from '@/redux/features/clientSlice'
+import { projectData } from '@/utils/projectData'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 
+function FirstSlideProject() {  
+    const { clientList, loading, error } = useSelector((state) => state.clients)
+    const dispatch = useDispatch()
 
-function FirstSlideProject() {
-    const { dispatchActions } = useLayoutContext()
-    const {openFormAction, openSecondSlide} = dispatchActions;
+    useEffect(()=> {
+        function setSlideData() {
+            dispatch(resetData(projectData))
+        }
+        setSlideData();
+    }, [])
 
     return (
-        <FirstSlideLayout>
+       <FirstSlideLayout>
             <main>
-                <div class="heading">
+                <div className="heading">
                     <h1>Projects</h1>
-                    <p class="title">Find all projects and their datails here</p>
+                    <p className="title">Find all projects and their datails here</p>
                 </div>
 
                 <SectionHeaderOption
-                    EndBtn={<SectionHeaderBtn btnName="Add Projects" clickFn={openFormAction} />}
+                    EndBtn={<SectionHeaderBtn btnName="Add Projects" clickFn='/projects/add-project' />}
                 />
                 <table>
                     <thead>
                         <tr>
-                            <th><input type="checkbox" name="checkbox" class="select-all" /></th>
-                            <th class="">No.</th>
-                            <th class="">Date</th>
-                            <th class="">Project Name</th>
-                            <th class="">Status</th>
-                            <th class="">Deadline</th>
-                            <th class="">Client Name</th>
-                            <th class="">Phone Number</th>
-                            <th class=""></th>
+                            <th><input type="checkbox" name="checkbox" className="select-all" /></th>
+                            <th className="">No.</th>
+                            <th className="">Date</th>
+                            <th className="">Project Name</th>
+                            <th className="">Status</th>
+                            <th className="">Deadline</th>
+                            <th className="">Client Name</th>
+                            <th className="">Phone Number</th>
+                            <th className=""></th>
                         </tr>
                     </thead>
 
                     <tbody>
                         {
-                            [1, 1, 1, 1, 11, 1, 1].map((item, ind) => (
+                            clientList && clientList.map((item, ind) => (
                                 <tr key={ind}>
                                     <td><input type="checkbox" name="" id="" onchange="toggleHighlight(this)"
-                                        class="row-checkbox" /></td>
+                                        className="row-checkbox" /></td>
                                     <td>1</td>
-                                    <td>12-Nov-2024</td>
-                                    <td class="text">Residential Building</td>
-                                    <td class="text">
-                                        <button class="status success">Completed</button>
+                                    <td>{item.name}</td>
+                                    <td className="text">Residential Building</td>
+                                    <td className="text">
+                                        <button className="status success">Completed</button>
                                     </td>
-                                    <td class="text">19/05/2024</td>
-                                    <td class="text">Kankan Jyoti Nath</td>
-                                    <td class="text">+91 6002649802</td>
-                                    <td class="">
-                                        <ItemActionBox viewFn={openSecondSlide} />
+                                    <td className="text">19/05/2024</td>
+                                    <td className="text">Kankan Jyoti Nath</td>
+                                    <td className="text">+91 6002649802</td>
+                                    <td className="">
+                                        <ItemActionBox viewFn='/projects/project-details/3' />
                                     </td>
                                 </tr>
                             ))

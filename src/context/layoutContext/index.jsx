@@ -12,10 +12,10 @@ export default function LayoutContextProvider({ children }) {
 
 }
 
-export function useLayoutContext() {
+export function useLayoutContext(setterFn) {
     const context = useContext(LayoutContext)
     const [state, dispatch] = context
     const dispatchLayoutAction = layoutActions(dispatch)
 
-    return {state, dispatchLayoutAction}
+    return {state, setterFn, dispatchLayoutAction}
 }

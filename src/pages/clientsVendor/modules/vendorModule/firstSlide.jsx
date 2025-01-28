@@ -4,84 +4,84 @@ import React from 'react'
 function FirstSlideVendor() {
     return (
         <main>
-            <div class="heading">
+            <div className="heading">
                 <h1>All Vendors</h1>
-                <p class="title">Find the list of vendors here</p>
+                <p className="title">Find the list of vendors here</p>
             </div>
 
-            <div class="top-section flex align-center j-between">
+            <div className="top-section flex align-center j-between">
 
-                <div class="section-text">
-                    <h2 class="flex gap-10">All Vendors</h2>
+                <div className="section-text">
+                    <h2 className="flex gap-10">All Vendors</h2>
                 </div>
-                <div class="utility-section flex align-center gap-10">
-                    <div class="search flex align-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="search-icon">
+                <div className="utility-section flex align-center gap-10">
+                    <div className="search flex align-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="search-icon">
                             <path
                                 d="M21.71,20.29,18,16.61A9,9,0,1,0,16.61,18l3.68,3.68a1,1,0,0,0,1.42,0A1,1,0,0,0,21.71,20.29ZM11,18a7,7,0,1,1,7-7A7,7,0,0,1,11,18Z">
                             </path>
                         </svg>
                         <input type="text" id="searchQuery" oninput="search()" placeholder="Search" />
                     </div>
-                    <div class="filter">
-                        <div class="filter-button">
-                            <button class="btn-filter flex align-center gap-5">
+                    <div className="filter">
+                        <div className="filter-button">
+                            <button className="btn-filter flex align-center gap-5">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="filter"
-                                    class="filter-icon">
+                                    className="filter-icon">
                                     <path
                                         d="M19,2H5A3,3,0,0,0,2,5V6.17a3,3,0,0,0,.25,1.2l0,.06a2.81,2.81,0,0,0,.59.86L9,14.41V21a1,1,0,0,0,.47.85A1,1,0,0,0,10,22a1,1,0,0,0,.45-.11l4-2A1,1,0,0,0,15,19V14.41l6.12-6.12a2.81,2.81,0,0,0,.59-.86l0-.06A3,3,0,0,0,22,6.17V5A3,3,0,0,0,19,2ZM13.29,13.29A1,1,0,0,0,13,14v4.38l-2,1V14a1,1,0,0,0-.29-.71L5.41,8H18.59ZM20,6H4V5A1,1,0,0,1,5,4H19a1,1,0,0,1,1,1Z">
                                     </path>
                                 </svg>
-                                <span class="text">Filter</span>
+                                <span className="text">Filter</span>
                             </button>
                         </div>
-                        <div class="filter-list">
+                        <div className="filter-list">
 
                         </div>
                     </div>
-                    <div class="add-button">
-                        <button class="btn-primary" type="button" onclick="">
+                    <div className="add-button">
+                        <button className="btn-primary" type="button" onclick="">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="plus-circle"
-                                class="">
+                                className="">
                                 <path fill=""
                                     d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z">
                                 </path>
                             </svg>
-                            <span class="text">Add a Vendor</span>
+                            <span className="text">Add a Vendor</span>
                         </button>
                     </div>
 
                 </div>
             </div>
 
-            <div class="main-table">
+            <div className="main-table">
                 <table>
                     <thead>
                         <tr>
-                            <th><input type="checkbox" name="checkbox" class="select-all" /></th>
-                            <th class="">No.</th>
-                            <th class="">Name</th>
-                            <th class="">Phone Number</th>
-                            <th class="">Alternate Number</th>
-                            <th class="">Email</th>
-                            <th class=""></th>
+                            <th><input type="checkbox" name="checkbox" className="select-all" /></th>
+                            <th className="">No.</th>
+                            <th className="">Name</th>
+                            <th className="">Phone Number</th>
+                            <th className="">Alternate Number</th>
+                            <th className="">Email</th>
+                            <th className=""></th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
                             <td><input type="checkbox" name="" id="" onchange="toggleHighlight(this)"
-                                class="row-checkbox" /></td>
+                                className="row-checkbox" /></td>
                             <td>1</td>
-                            <td class="text">Mintu Sharma</td>
-                            <td class="text">+91 <span>6000192289</span></td>
-                            <td class="text">+91 <span>6000192289</span></td>
-                            <td class="text">sharmaMintu@gmail.com</td>
-                            <td class="">
-                                <div class="menu-dropdown">
-                                    <div class="dropdown-icon">
+                            <td className="text">Mintu Sharma</td>
+                            <td className="text">+91 <span>6000192289</span></td>
+                            <td className="text">+91 <span>6000192289</span></td>
+                            <td className="text">sharmaMintu@gmail.com</td>
+                            <td className="">
+                                <div className="menu-dropdown">
+                                    <div className="dropdown-icon">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                            class="view-all">
+                                            className="view-all">
                                             <path fill=""
                                                 d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z">
                                             </path>

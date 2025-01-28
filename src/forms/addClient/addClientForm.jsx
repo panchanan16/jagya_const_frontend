@@ -1,54 +1,100 @@
 import { useLayoutContext } from '@/context/layoutContext'
 import PopupLayout from '@/layout/common/popupLayout'
+import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import FormLayout from '@/layout/formLayout/formLayout';
+import { Link } from 'react-router';
+import {addClient} from '@/redux/features/clientSlice'
+import { useDispatch } from 'react-redux';
+
+
+const initialValues = {
+  clientName: '',
+  clientEmail: '',
+  clientNumber: '',
+  clientAltNumber: '',
+  clientAddress: '',
+  clientDetails: ''
+
+}
+
+
+const ClientSchema = Yup.object().shape({
+  clientName: Yup.string()
+    .min(2, 'Too Short!')
+    .max(70, 'Too Long!')
+    .required('Required'),
+  clientEmail: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+  clientNumber: Yup.number().required('Number is required!').positive().integer(),
+  clientAltNumber: Yup.number().required('Alt. Number is required!').positive().integer(),
+  clientAddress: Yup.string()
+    .min(2, 'Too Short!')
+    .max(70, 'Too Long!')
+    .required('Address is required!'),
+  clientDetails: Yup.string()
+    .min(2, 'Too Short!')
+    .max(70, 'Too Long!')
+    .required('Required'),
+});
 
 
 function AddClientForm() {
-   const { dispatchActions } = useLayoutContext()
-   const {closeFormAction} = dispatchActions
+  console.log('I am client form re rendering..')
+  const dispatch = useDispatch()
 
-   console.log('I am client form re rendering..')
+  function addNewClient(clientData) {
+    dispatch(addClient(clientData))
+  }
 
   return (
     <PopupLayout>
-      <div class="add-clients-prospects blur">
-        <div class="form">
+      <div className="add-clients-prospects blur">
+        <div className="form">
           <h2>Add a Client</h2>
-          <button type="button" class="btn-warning close" onClick={closeFormAction}>Close</button>
+          <Link to={`/clients`}>
+            <button type="button" className="btn-warning close">Close</button>
+          </Link>
           <hr />
-
-            <div class="grid gtc-2 gap-10">
-              <div class="field">
-                <p class="title">Name</p>
-                <input type="text" name="" id="" required />
-                  <span class="err hide">Field cannot be empty</span>
+          <FormLayout validationSchema={ClientSchema} initialValues={initialValues} formHandler={addNewClient}>
+            <div className="grid gtc-2 gap-10">
+              <div className="field">
+                <p className="title">Name</p>
+                <Field type="text" name="clientName" id="" />
+                <ErrorMessage name="clientName" className='err' component="span" />
               </div>
-              <div class="field">
-                <p class="title">Contact Number</p>
-                <input type="number" name="" id="" required />
-                  <span class="err hide">Field cannot be empty</span>
+              <div className="field">
+                <p className="title">Contact Number</p>
+                <Field type="number" name="clientNumber" id="" />
+                <ErrorMessage name="clientNumber" className='err' component="span" />
               </div>
-              <div class="field">
-                <p class="title">Alternate Number<span>(*optional)</span></p>
-                <input type="number" name="" id="" />
+              <div className="field">
+                <p className="title">Alternate Number<span>(*optional)</span></p>
+                <Field type="number" name="clientAltNumber" id="" />
+                <ErrorMessage name="clientAltNumber" className='err' component="span" />
               </div>
-              <div class="field">
-                <p class="title">Email<span>(*optional)</span></p>
-                <input type="email" name="" id="" />
+              <div className="field">
+                <p className="title">Email<span>(*optional)</span></p>
+                <Field type="email" name="clientEmail" id="" />
+                <ErrorMessage name="clientEmail" className='err' component="span" />
               </div>
-              <div class="field">
-                <p class="title">Address<span>(*optional)</span></p>
-                <input type="text" name="" id="" />
+              <div className="field">
+                <p className="title">Address<span>(*optional)</span></p>
+                <Field type="text" name="clientAddress" id="" />
+                <ErrorMessage name="clientAddress" className='err' component="span" />
               </div>
-              <div class="field">
-                <p class="title">Other Details<span>(optional)</span></p>
-                <input type="text" name="" id="" />
+              <div className="field">
+                <p className="title">Other Details<span>(optional)</span></p>
+                <Field type="text" name="clientDetails" id="" />
+                <ErrorMessage name="clientDetails" className='err' component="span" />
               </div>
             </div>
-
-            <div class="action-btn flex gap-10">
-              <button type="button" class="btn-success flex-1">Add</button>
-              <button type="button" class="btn-warning flex-1" onclick="closemainPopup()">Cancel</button>
+            <div className="action-btn flex gap-10">
+              <button type="submit" className="btn-success flex-1">Add</button>
+              <button type="button" className="btn-warning flex-1">Cancel</button>
             </div>
+          </FormLayout>
         </div>
       </div>
     </PopupLayout>

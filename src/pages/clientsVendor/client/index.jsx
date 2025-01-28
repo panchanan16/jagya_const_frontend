@@ -3,6 +3,7 @@ import FirstSlide from "../modules/clientsModule/firstSlide";
 import SecondSlide from "../modules/clientsModule/secondSlide";
 import DynamicLayout from "@/layout/common/dynamicLayout";
 import AddClientForm from "@/forms/addClient/addClientForm";
+import { Outlet } from "react-router";
 
 
 function ClientPage() {
@@ -10,8 +11,9 @@ function ClientPage() {
         <PageLayout>
             <DynamicLayout>
                 <FirstSlide />
-                <SecondSlide />
-                <AddClientForm />
+                <Outlet />
+                {/* <SecondSlide />
+                <AddClientForm /> */}
             </DynamicLayout>
         </PageLayout>
     )

@@ -2,12 +2,28 @@ import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn';
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption';
 import { useLayoutContext } from '@/context/layoutContext';
+import { useSubAppContext } from '@/context/secondSlideContext';
 import FirstSlideLayout from '@/layout/common/firstSlideLayout'
+import { useDispatch, useSelector } from 'react-redux';
+import { resetData } from '@/redux/features/clientSlice';
+import { useEffect } from 'react';
+import { clientData } from '@/utils/clientsData';
+import { _GET } from '@/utils/request/request';
+import { GET_REQUEST } from '@/redux/createThunk';
 
 
 function FirstSlide() {
-    const { dispatchActions } = useLayoutContext();
-    const { openSecondSlide, openFormAction } = dispatchActions;
+    const {clientList, loading} = useSelector((state) => state.clients)
+    const dispatch = useDispatch()
+
+    useEffect(()=> {
+        async function setSlideData() {                       
+            dispatch(GET_REQUEST('users'))
+        }
+
+        setSlideData();
+
+    }, [])
 
     return (
         <FirstSlideLayout>
@@ -17,7 +33,7 @@ function FirstSlide() {
                     <p className="title">Find the list of clients here</p>
                 </div>
 
-                <SectionHeaderOption EndBtn={<SectionHeaderBtn btnName='add clients' clickFn={openFormAction} />} />
+                <SectionHeaderOption EndBtn={<SectionHeaderBtn btnName='add clients' clickFn={'/clients/add-clients'} />} />
 
                 <div className="main-table">
                     <table>
@@ -35,21 +51,25 @@ function FirstSlide() {
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td><input type="checkbox" name="" id="" onchange="toggleHighlight(this)"
-                                    className="row-checkbox" /></td>
-                                <td>1</td>
-                                <td className="text">Panchanan Deka</td>
-                                <td className="text">+91 <span>6000192289</span></td>
-                                <td className="text">+91 <span>6000192289</span></td>
-                                <td className="text">dekapanchanan16534@gmail.com</td>
-                                <td className="text">Guwahati, Assam</td>
-                                <td className="flex">
-                                    <ItemActionBox
-                                        viewFn={openSecondSlide}
-                                    />
-                                </td>
-                            </tr>
+                            {
+                                !loading && clientList.map((item, ind) => (
+                                    <tr key={ind}>
+                                        <td><input type="checkbox" name="" id="" onchange="toggleHighlight(this)"
+                                            className="row-checkbox" /></td>
+                                        <td>1</td>
+                                        <td className="text">{item.name}</td>
+                                        <td className="text">+91 <span>6000192289</span></td>
+                                        <td className="text">+91 <span>6000192289</span></td>
+                                        <td className="text">dekapanchanan16534@gmail.com</td>
+                                        <td className="text">Guwahati, Assam</td>
+                                        <td className="flex">
+                                            <ItemActionBox
+                                                viewFn={'/clients/client-details/3'}
+                                            />
+                                        </td>
+                                    </tr>
+                                ))
+                            }
                         </tbody>
                         <tfoot>
                             <tr>

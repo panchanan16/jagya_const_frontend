@@ -7,29 +7,29 @@ function EditReqItemForm({closeFormfn}) {
   console.log('I am editform rendering...')
 
   return (
-    <div class={`editInchargeItem-popup ${isSubModalOpen ? '' : 'hide'}`}>
-      <div class="form">
-        <div class="grid gtc-4 gap-10">
-          <div class="field">
-            <p class="title">Item</p>
+    <div className={`editInchargeItem-popup ${isSubModalOpen ? '' : 'hide'}`}>
+      <div className="form">
+        <div className="grid gtc-4 gap-10">
+          <div className="field">
+            <p className="title">Item</p>
             <input type="text" name="" id="" />
           </div>
-          <div class="field">
-            <p class="title">Quantity</p>
+          <div className="field">
+            <p className="title">Quantity</p>
             <input type="text" name="" id="" />
           </div>
-          <div class="field">
-            <p class="title">Rate</p>
+          <div className="field">
+            <p className="title">Rate</p>
             <input type="text" name="" id="" />
           </div>
-          <div class="field">
-            <p class="title">Amount</p>
+          <div className="field">
+            <p className="title">Amount</p>
             <input type="text" name="" id="" />
           </div>
         </div>
-        <div class="action-btn flex gap-10">
-          <button type="button" class="btn-success flex-1">Update</button>
-          <button type="button" class="btn-warning flex-1" onClick={closeFormfn}>Cancel</button>
+        <div className="action-btn flex gap-10">
+          <button type="button" className="btn-success flex-1">Update</button>
+          <button type="button" className="btn-warning flex-1" onClick={closeFormfn}>Cancel</button>
         </div>
       </div>
     </div>

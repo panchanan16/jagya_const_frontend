@@ -1,15 +1,15 @@
 import Header from '@/apps/header/header'
-import { useLayoutContext } from '@/context/layoutContext';
+// import { useLayoutContext } from '@/context/layoutContext';
 
 function FirstSlideLayout({children}) {
-    const {state} = useLayoutContext();
+    // ${state.openLayout ? '' : 'hide'}
 
     return (
-        <div className={`first-slide ${state.openLayout ? '' : 'hide'}`} id="first-slide">
+        <div className={`first-slide`} id="first-slide">
             <Header />
             {children}
         </div>
     )
 }
 
-export default FirstSlideLayout
+export default FirstSlideLayout;

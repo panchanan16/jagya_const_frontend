@@ -13,10 +13,10 @@ export default function SubAppContextProvider({ children }) {
 }
 
 
-export function useSubAppContext() {
+export function useSubAppContext(setterFn) {
     const display = useContext(ItemDetailsContext);
     const [state, dispatch] = display;
     const detailDispatchActions = detailActions(dispatch)
     const detailSelectorFn = detailSelectors(state)
-    return {state, dispatch, detailDispatchActions, detailSelectorFn};
+    return {state, setterFn, dispatch, detailDispatchActions, detailSelectorFn};
 }
