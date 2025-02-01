@@ -1,0 +1,99 @@
+import AddClientForm from "@/forms/addClient/addClientForm";
+import AddExpenseForm from "@/forms/addExpense/AddExpenseForm";
+import InstallmentForm from "@/forms/addInstallment/installmentForm";
+import AddInventoryForm from "@/forms/addInventory/addInventoryForm";
+import AddProjectForm from "@/forms/addProject/addProjectForm";
+import ExpensePage from "@/pages/accounting/expense";
+import FinancePage from "@/pages/accounting/finance";
+import SecondSlideExpense from "@/pages/accounting/modules/expenseModule/secondSlideExpense";
+import SecondSlideFinance from "@/pages/accounting/modules/financeModule/secondSlideFinance";
+import ClientPage from "@/pages/clientsVendor/client";
+import SecondSlide from "@/pages/clientsVendor/modules/clientsModule/secondSlide";
+import VendorPage from "@/pages/clientsVendor/vendor";
+import DashboardPage from "@/pages/dashboard";
+import LabourPage from "@/pages/manpower/labours";
+import FinanceRequestPage from "@/pages/material/financeRequest";
+import SecondSlideFinanceReq from "@/pages/material/financeRequest/modules/secondSlideFinanceReq";
+import InventoryPage from "@/pages/material/inventory";
+import SecondSlideInventory from "@/pages/material/inventory/modules/secondSlideInventory";
+import MaterialRequestPage from "@/pages/material/materialRequest";
+import SecondSlideMR from "@/pages/material/materialRequest/modules/secondSlide";
+import ProjectPage from "@/pages/projects";
+import SecondSlideProject from "@/pages/projects/modules/secondSlide";
+
+const routePages = [
+  {
+    path: "/",
+    element: <DashboardPage />,
+  },
+  {
+    path: "/projects",
+    element: <ProjectPage />,
+    children: [
+      { path: "add-project", element: <AddProjectForm /> },
+      { path: "project-details/:userId", element: <SecondSlideProject /> },
+    ],
+  },
+  {
+    path: "/clients",
+    element: <ClientPage />,
+    children: [
+      { path: "client-details/:clientId", element: <SecondSlide /> },
+      { path: "add-clients", element: <AddClientForm /> },
+    ],
+  },
+  {
+    path: "/vendors",
+    element: <VendorPage />,
+  },
+  {
+    path: "/finance",
+    element: <FinancePage />,
+    children: [
+      { path: "finance-details/:id", element: <SecondSlideFinance /> },
+      { path: "add-installment", element: <InstallmentForm /> },
+    ],
+  },
+  {
+    path: "/expense",
+    element: <ExpensePage />,
+    children: [
+      { path: "expense-details/:id", element: <SecondSlideExpense /> },
+      { path: "add-expense", element: <AddExpenseForm /> },
+    ],
+  },
+  {
+    path: "/inventory",
+    element: <InventoryPage />,
+    children: [
+      { path: "inventory-details/:id", element: <SecondSlideInventory /> },
+      { path: "add-inventory", element: <AddInventoryForm /> },
+    ],
+  },
+  {
+    path: "/material-request",
+    element: <MaterialRequestPage />,
+    children: [
+      { path: ":id", element: <SecondSlideMR /> },
+      { path: "add-inventory", element: <AddInventoryForm /> },
+    ],
+  },
+  {
+    path: "/finance-request",
+    element: <FinanceRequestPage />,
+    children: [
+      { path: ":id", element: <SecondSlideFinanceReq /> },
+      { path: "add-inventory", element: <AddInventoryForm /> },
+    ],
+  },
+  {
+    path: "/labour",
+    element: <LabourPage />,
+    children: [
+      { path: ":id", element: <SecondSlideMR /> },
+      { path: "add-inventory", element: <AddInventoryForm /> },
+    ],
+  },
+];
+
+export default routePages;

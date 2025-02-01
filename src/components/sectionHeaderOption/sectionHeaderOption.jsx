@@ -1,11 +1,11 @@
-function SectionHeaderOption({ children, EndBtn }) {
+function SectionHeaderOption({ children, EndBtn, HeadingText }) {
     console.log('I am sectionheader rendering ...')
     return (
         <div className="top-section flex align-center j-between">
 
             {
                 children ? children : <div className="section-text">
-                    <h2 className="flex gap-10">All Projects<span className="main-span">44</span></h2>
+                    <h2 className="flex gap-10">{HeadingText ? HeadingText : 'All projects'}<span className="main-span">44</span></h2>
                 </div>
             }
 

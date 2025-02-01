@@ -1,18 +1,18 @@
-import DynamicLayout from '@/layout/common/dynamicLayout'
 import PageLayout from '@/layout/common/dynamicPageLayout'
-import FirstSlideProject from './modules/firstSlide'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
+import FirstSlideInventory from './modules/firstSlideInventory'
+import DynamicLayout from '@/layout/common/dynamicLayout'
 
-
-function ProjectPage() {
+function InventoryPage() {
     return (
         <PageLayout>
             <DynamicLayout>
-                <FirstSlideProject />
+                <FirstSlideInventory />
                 <Outlet />
             </DynamicLayout>
         </PageLayout>
     )
 }
 
-export default ProjectPage;
+export default InventoryPage

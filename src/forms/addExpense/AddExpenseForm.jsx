@@ -1,6 +1,6 @@
 import PopupLayout from '@/layout/common/popupLayout'
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 function AddExpenseForm() {
     return (

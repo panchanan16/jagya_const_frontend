@@ -2,7 +2,7 @@ import SearchInput from '@/components/searchInput/searchInput';
 // import { useLayoutContext } from '@/context/layoutContext';
 import PopupLayout from '@/layout/common/popupLayout'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 function AddProjectForm() {
     const [profileAcc, setprofileAcc] = useState(false)

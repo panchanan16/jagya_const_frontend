@@ -1,5 +1,5 @@
 import SecondSlideLayout from '@/layout/common/secondSlideLayout'
-import { Link, useNavigate, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 
 function SecondSlideProject() {

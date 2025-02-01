@@ -1,0 +1,54 @@
+import { object, string, number } from "yup";
+
+export function validateForm(formObject) {
+  const validator = {
+    name: string()
+      .min(2, "Too Short!")
+      .max(70, "Too Long!")
+      .required("This field is required"),
+    number: number().required("Number is required!").max(13, `Can't be more 13 value`)
+    .positive('This should be a positive integer').integer(),
+    email: string().email("Invalid email").required("Email is required!"),
+    text: string()
+      .min(2, "Too Short!")
+      .max(70, "Too Long!")
+      .required("This field is required!"),
+  };
+
+  let validatorSchema = {};
+
+  for (const key in formObject) {
+    for (const field in validator) {
+      if (field == formObject[key]) {
+        validatorSchema[key] = validator[field]
+      }
+    }
+  }
+  let validation = object().shape(validatorSchema);
+
+  return validation;
+}
+
+// const ClientSchema = Yup.object().shape({
+//   clientName: Yup.string()
+//     .min(2, "Too Short!")
+//     .max(70, "Too Long!")
+//     .required("Required"),
+//   clientEmail: Yup.string().email("Invalid email").required("Required"),
+//   clientNumber: Yup.number()
+//     .required("Number is required!")
+//     .positive()
+//     .integer(),
+//   clientAltNumber: Yup.number()
+//     .required("Alt. Number is required!")
+//     .positive()
+//     .integer(),
+//   clientAddress: Yup.string()
+//     .min(2, "Too Short!")
+//     .max(70, "Too Long!")
+//     .required("Address is required!"),
+//   clientDetails: Yup.string()
+//     .min(2, "Too Short!")
+//     .max(70, "Too Long!")
+//     .required("Required"),
+// });

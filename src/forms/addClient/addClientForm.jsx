@@ -1,46 +1,17 @@
 import { useLayoutContext } from '@/context/layoutContext'
 import PopupLayout from '@/layout/common/popupLayout'
-import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import FormLayout from '@/layout/formLayout/formLayout';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import {addClient} from '@/redux/features/clientSlice'
 import { useDispatch } from 'react-redux';
-
-
-const initialValues = {
-  clientName: '',
-  clientEmail: '',
-  clientNumber: '',
-  clientAltNumber: '',
-  clientAddress: '',
-  clientDetails: ''
-}
-
-
-const ClientSchema = Yup.object().shape({
-  clientName: Yup.string()
-    .min(2, 'Too Short!')
-    .max(70, 'Too Long!')
-    .required('Required'),
-  clientEmail: Yup.string()
-    .email('Invalid email')
-    .required('Required'),
-  clientNumber: Yup.number().required('Number is required!').positive().integer(),
-  clientAltNumber: Yup.number().required('Alt. Number is required!').positive().integer(),
-  clientAddress: Yup.string()
-    .min(2, 'Too Short!')
-    .max(70, 'Too Long!')
-    .required('Address is required!'),
-  clientDetails: Yup.string()
-    .min(2, 'Too Short!')
-    .max(70, 'Too Long!')
-    .required('Required'),
-});
+import { validateForm } from '@/utils/validation/formValidation';
+import { initialValues, validate } from './fields';
 
 
 function AddClientForm() {
   const dispatch = useDispatch()
+  const ClientSchema = validateForm(validate)
 
   function addNewClient(clientData) {
     dispatch(addClient(clientData))

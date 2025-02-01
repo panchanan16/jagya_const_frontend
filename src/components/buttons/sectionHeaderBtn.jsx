@@ -1,4 +1,5 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
+
 
 function SectionHeaderBtn({ btnName, clickFn }) {
 

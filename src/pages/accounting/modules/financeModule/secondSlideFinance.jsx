@@ -1,6 +1,6 @@
 import SecondSlideLayout from '@/layout/common/secondSlideLayout'
 import React, { useState } from 'react'
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function SecondSlideFinance() {
     return (

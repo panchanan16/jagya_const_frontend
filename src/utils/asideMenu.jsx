@@ -40,17 +40,22 @@ const asideMenuItems = [
         submenu: [
             { name: 'inventory', url: 'inventory' },
             { name: 'material request', url: 'material-request' },
-            { name: 'incharge', url: 'incharge' }
+            { name: 'finance requests', url: 'finance-request' },
+            { name: 'incharge', url: 'incharge' },
+            { name: 'stock', url: 'inventory-stocks' }
         ],
         svgImg: MaterialsIcon,
         redirect: ''
     },
 
     {
-        name: 'Labours',
-        submenu: [],
+        name: 'Man Power',
+        submenu: [
+            { name: 'labour', url: 'labour' },
+            { name: 'contractor', url: 'contractor' }
+        ],
         svgImg: LaboursIcon,
-        redirect: '/'
+        redirect: ''
     },
 
     {

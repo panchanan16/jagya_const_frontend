@@ -1,7 +1,7 @@
 import { useLayoutContext } from '@/context/layoutContext';
 import SecondSlideLayout from '@/layout/common/secondSlideLayout'
 import React from 'react'
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 function SecondSlide() {
 

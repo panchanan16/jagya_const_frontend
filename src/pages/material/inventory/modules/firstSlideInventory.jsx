@@ -1,49 +1,51 @@
-import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
-import ItemActionBox from "@/components/itemAction/itemActionBox"
-import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
-import { useLayoutContext } from "@/context/layoutContext";
-import FirstSlideLayout from "@/layout/common/firstSlideLayout"
+import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn'
+import ItemActionBox from '@/components/itemAction/itemActionBox'
+import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption'
+import FirstSlideLayout from '@/layout/common/firstSlideLayout'
+import React from 'react'
 
-
-function FirstSlideMR() {
+function FirstSlideInventory() {
     return (
         <FirstSlideLayout>
             <main>
-                <div className="heading">
-                    <h1>Material Requests</h1>
-                    <p className="title">See all material request here</p>
+                <div class="heading">
+                    <h1>Inventory</h1>
+                    <p class="title">Find all material details here</p>
                 </div>
 
-                <SectionHeaderOption EndBtn={<SectionHeaderBtn btnName="Approve" clickFn={'jj'} />} />
+                <SectionHeaderOption
+                    HeadingText='Inventory List'
+                    EndBtn={<SectionHeaderBtn btnName='Add a purchase' clickFn='/inventory/add-inventory' />}
+                />
 
                 <table>
                     <thead>
                         <tr>
-                            <th><input type="checkbox" name="checkbox" className="select-all" /></th>
-                            <th className="">No.</th>
-                            <th className="">Date</th>
-                            <th className="">Client Name</th>
-                            <th className="">Phone Number</th>
-                            <th className="">Status</th>
-                            <th className="">Installment</th>
-                            <th className=""></th>
+                            <th><input type="checkbox" name="checkbox" class="select-all" /></th>
+                            <th class="">No.</th>
+                            <th class="">Date</th>
+                            <th class="">Client Name</th>
+                            <th class="">Phone Number</th>
+                            <th class="">Status</th>
+                            <th class="">Vendor Name</th>
+                            <th class=""></th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <tr>
                             <td><input type="checkbox" name="" id="" onchange="toggleHighlight(this)"
-                                className="row-checkbox" /></td>
+                                class="row-checkbox" /></td>
                             <td>1</td>
-                            <td>12-Nov-2024</td>
-                            <td className="text">Kankan Jyoti Nath</td>
-                            <td className="text">+91 6002649802</td>
-                            <td className="text">
-                                <button className="status warning">Not Approved</button>
+                            <td class="text">15-Mar-2024</td>
+                            <td class="text">Kankan Jyoti Nath</td>
+                            <td class="text">+91 6002649802</td>
+                            <td class="text">
+                                <button class="status success">Approved</button>
                             </td>
-                            <td className="text">1st Installment</td>
-                            <td className="">
-                               <ItemActionBox viewFn={'/material-request/4'} />
+                            <td class="text">Mintu Sharma</td>
+                            <td>
+                                <ItemActionBox viewFn='/inventory/inventory-details/3' />
                             </td>
                         </tr>
                     </tbody>
@@ -62,6 +64,7 @@ function FirstSlideMR() {
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <td>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                     id="arrow-to-right">
@@ -75,8 +78,7 @@ function FirstSlideMR() {
                 </table>
             </main>
         </FirstSlideLayout>
-
     )
 }
 
-export default FirstSlideMR
+export default FirstSlideInventory

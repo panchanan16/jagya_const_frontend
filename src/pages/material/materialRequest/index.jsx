@@ -1,15 +1,15 @@
 import DynamicLayout from "@/layout/common/dynamicLayout"
 import PageLayout from "@/layout/common/dynamicPageLayout"
-import FirstSlide from "./modules/firstSlide"
-import SecondSlide from "./modules/secondSlide"
+import FirstSlideMR from "./modules/firstSlide"
+import { Outlet } from "react-router-dom"
 
 
 function MaterialRequestPage() {
     return (
         <PageLayout>
             <DynamicLayout>
-               <FirstSlide />
-               <SecondSlide />
+               <FirstSlideMR />
+               <Outlet />
             </DynamicLayout>
         </PageLayout>
     )

@@ -1,5 +1,5 @@
 import PopupLayout from '@/layout/common/popupLayout'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 
 function InstallmentForm() {

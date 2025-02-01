@@ -9,3 +9,12 @@ export const GET_REQUEST = createAsyncThunk(
     return response
   },
 )
+
+
+export const POST_REQUEST = createAsyncThunk(
+  'POST-DATA',
+  async (endpoint, {rejectWithValue}) => {
+    const response = await _GET(endpoint)
+    return response
+  },
+)

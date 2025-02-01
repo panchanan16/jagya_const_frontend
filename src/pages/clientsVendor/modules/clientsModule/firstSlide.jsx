@@ -6,12 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { _GET } from '@/utils/request/request';
 import clientActions from '@/redux/features/clientSlice/action';
+import clientsEndpoint from '@/api/clientsApi';
 
 
 function FirstSlide() {
     const { clientList, loading } = useSelector((state) => state.clients)
     const dispatch = useDispatch()
     const { getClientList } = clientActions
+
+    console.log(clientsEndpoint.getOneWithId(23))
 
     useEffect(() => {
         getClientList(dispatch)

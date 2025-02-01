@@ -1,18 +1,18 @@
 import DynamicLayout from '@/layout/common/dynamicLayout'
 import PageLayout from '@/layout/common/dynamicPageLayout'
-import FirstSlideProject from './modules/firstSlide'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
+import FirstSlideFinanceReq from './modules/firstSlideFinanceReq'
 
-
-function ProjectPage() {
+function FinanceRequestPage() {
     return (
         <PageLayout>
             <DynamicLayout>
-                <FirstSlideProject />
+                <FirstSlideFinanceReq />
                 <Outlet />
             </DynamicLayout>
         </PageLayout>
     )
 }
 
-export default ProjectPage;
+export default FinanceRequestPage

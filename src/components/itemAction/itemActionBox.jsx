@@ -1,5 +1,5 @@
 import { memo, useCallback, useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 function ItemActionBox({ viewFn }) {
     const [showModel, setShowModel] = useState(false)
@@ -20,7 +20,8 @@ function ItemActionBox({ viewFn }) {
                 </svg>
             </div>
             <div className={`menu-dropdown-list flex align-center flex-column ${showModel ? '' : 'hide'}`}>
-                {viewFn && <Link to={viewFn}><p className="title flex align-center gap-5">
+              {  viewFn && <Link to={viewFn} onClick={toggleModel}>
+                <p className="title flex align-center gap-5">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                         id="eye" className="svg-18">
                         <path
@@ -28,7 +29,8 @@ function ItemActionBox({ viewFn }) {
                         </path>
                     </svg>
                     <span className="text">View</span>
-                </p></Link>}
+                </p>
+                </Link> }
                 <p className="title flex align-center gap-5" onclick="editProject()">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                         className="svg-18">

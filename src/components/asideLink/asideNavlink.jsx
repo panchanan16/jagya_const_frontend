@@ -1,17 +1,20 @@
 import { useState } from "react"
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 function AsideNavlink({ name, redirect, submenu, SvgImg }) {
     const [active, setactive] = useState(false)
     let navigate = useNavigate();
 
-    function openSubmenu() {
+    console.log('hey I am aside bar on click rendering')
+
+    function openSubmenu(e) {
+        e.stopPropagation()
         if (redirect) { return navigate(redirect) }
-        setactive(!active)
+        setactive(true)
     }
 
     return (
-        <li className={active ? 'active' : ''} onClick={openSubmenu}>
+        <li className={active ? 'active' : ''} onClick={()=> openSubmenu(event)}>
             <a className="flex align-center gap-5">
                 {SvgImg && <SvgImg />}
                 <span className="text">{name}</span>
@@ -28,7 +31,7 @@ function AsideNavlink({ name, redirect, submenu, SvgImg }) {
             <div className={`sub-menu ${active ? 'active' : ''}`}>
                 {
                     submenu.length > 0 && submenu.map((el, ind) => (
-                        <p key={ind} onClick={()=> navigate(`/${el.url}`)}>{el.name}</p>
+                       <Link to={`/${el.url}`}><p key={ind}>{el.name}</p></Link>
                     ))
                 }
             </div>
