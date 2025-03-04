@@ -103,31 +103,7 @@ function AddExpenseForm() {
                 <FieldArray name="expenseItems">
                   {(arrayHelpers) => (
                     <div>
-                      {values.expenseItems.map((friend, index) => (
-                        // <div key={index}>
-                        //   <label htmlFor={`expense.${index}.name`}>
-                        //     Friend Name
-                        //   </label>
-                        //   <Field
-                        //     name={`expense.${index}.name`}
-                        //     placeholder="Friend's Name"
-                        //   />
-
-                        //   <label htmlFor={`expense.${index}.age`}>Age</label>
-                        //   <Field
-                        //     name={`expense.${index}.age`}
-                        //     placeholder="Friend's Age"
-                        //     type="number"
-                        //   />
-
-                        //   {/* Remove a friend */}
-                        //   <button
-                            // type="button"
-                            // onClick={() => arrayHelpers.remove(index)}
-                        //   >
-                        //     Remove Friend
-                        //   </button>
-                        // </div>
+                      {values.expenseItems.map((friend, index) => (                        
                         <ExpenseField
                           key={index}
                           FieldNameList={{
