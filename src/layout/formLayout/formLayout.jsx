@@ -11,9 +11,7 @@ function FormLayout({ children, validationSchema, initialValues, formHandler }) 
                 actions.resetForm()
             }}
         >
-            {({ errors, touched }) => (
-                <Form> {children} </Form>
-            )}
+          {children}
         </Formik>
     )
 }

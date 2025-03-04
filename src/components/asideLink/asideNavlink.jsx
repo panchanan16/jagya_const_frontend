@@ -31,7 +31,7 @@ function AsideNavlink({ name, redirect, submenu, SvgImg }) {
             <div className={`sub-menu ${active ? 'active' : ''}`}>
                 {
                     submenu.length > 0 && submenu.map((el, ind) => (
-                       <Link to={`/${el.url}`}><p key={ind}>{el.name}</p></Link>
+                       <Link key={ind} to={`/${el.url}`}><p key={ind}>{el.name}</p></Link>
                     ))
                 }
             </div>

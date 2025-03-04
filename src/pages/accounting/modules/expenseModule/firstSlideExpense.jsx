@@ -50,7 +50,7 @@ function FirstSlideExpense() {
                 <td class="text">Projects</td>
                 <td class="text">null</td>
                 <td>
-                  <ItemActionBox viewFn={'/finance/finance-details/4'} />
+                  <ItemActionBox viewFn={'/expense/expense-details/4'} />
                 </td>
               </tr>
             </tbody>
