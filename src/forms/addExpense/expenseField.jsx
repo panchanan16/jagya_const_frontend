@@ -20,7 +20,7 @@ export default function ExpenseField({FieldNameList, RemoveFn, Ind}) {
         </div>
         <div className="field">
           <p className="title">Amount</p>
-          <Field type="text" name={FieldNameList.amount}  />
+          <Field type="number" name={FieldNameList.amount}  />
           <ErrorMessage
             name={FieldNameList.amount}
             className="err"
@@ -29,9 +29,9 @@ export default function ExpenseField({FieldNameList, RemoveFn, Ind}) {
         </div>
         <div className="field">
           <p className="title">
-            Note<span>(*optional)</span>
+            Note
           </p>
-          <Field type="number" name={FieldNameList.note} />
+          <Field type="text" name={FieldNameList.note} />
           <ErrorMessage
             name={FieldNameList.note}
             className="err"

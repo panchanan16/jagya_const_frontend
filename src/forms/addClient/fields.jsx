@@ -10,8 +10,8 @@ export const initialValues = {
 export const validate = {
   clientName: "name",
   clientEmail: "email",
-  clientNumber: "number",
-  clientAltNumber: "number",
+  clientNumber: "phnumber",
+  clientAltNumber: "phnumber",
   clientAddress: "text",
   clientDetails: "text",
 };

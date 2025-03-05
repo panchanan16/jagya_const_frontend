@@ -1,4 +1,4 @@
-import { object, string, number } from "yup";
+import { object, string, number, array } from "yup";
 
 export function validateForm(formObject) {
   const validator = {
@@ -6,13 +6,20 @@ export function validateForm(formObject) {
       .min(2, "Too Short!")
       .max(70, "Too Long!")
       .required("This field is required"),
-    number: number().required("Number is required!").max(13, `Can't be more 13 value`)
-    .positive('This should be a positive integer').integer(),
+    number: number().required("This field is required!").positive('This should be a positive integer').integer(),
+    phnumber: string().required("This field is required!").min(10, "10 digit should be there").max(13, "Invalid Number"),
     email: string().email("Invalid email").required("Email is required!"),
     text: string()
       .min(2, "Too Short!")
       .max(70, "Too Long!")
       .required("This field is required!"),
+    arrayItems: array().of(
+      object().shape({
+        client: string().min(2, 'too short'),
+        amount: number().required("Amount is required!").positive('This should be a positive integer').integer(),
+        note: string().min(3, "Too short !").required("This field is required!")
+      })
+    )
   };
 
   let validatorSchema = {};
