@@ -1,6 +1,6 @@
 import DynamicLayout from '@/layout/common/dynamicLayout'
 import PageLayout from '@/layout/common/dynamicPageLayout'
-import FirstSlideProject from './modules/firstSlide'
+import FirstSlideProject from './modules/firstSlideProject'
 import { Outlet } from 'react-router-dom'
 
 

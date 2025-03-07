@@ -1,18 +1,19 @@
 import DynamicLayout from '@/layout/common/dynamicLayout'
 import PageLayout from '@/layout/common/dynamicPageLayout'
-import FirstSlideVendor from './modules/firstSlideVendor'
+import React from 'react'
 import { Outlet } from 'react-router-dom'
+import FirstSlideInchargeReq from './modules/firstSlideInchargeReq'
 
 
-function VendorPage() {
+function InchargeReqPage() {
     return (
         <PageLayout>
             <DynamicLayout>
-                <FirstSlideVendor />
-                <Outlet />       
+                <FirstSlideInchargeReq />
+                <Outlet />
             </DynamicLayout>
         </PageLayout>
     )
 }
 
-export default VendorPage
+export default InchargeReqPage;

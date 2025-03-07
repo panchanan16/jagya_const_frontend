@@ -88,3 +88,53 @@ onSubmit={ (values) => {
   </Form>
 {/* // )} */}
 </Formik>
+
+
+
+
+
+
+
+
+
+  // return (
+  //     <Routes>
+  //         <Route path="/" element={<DashboardPage />} />
+  //         <Route path="/projects" element={<ProjectPage />}>
+  //             <Route path="add-project" element={<AddProjectForm />} />
+  //             <Route path="project-details/:userId" element={<SecondSlideProject />} />
+  //         </Route>
+  //         <Route path="/clients" element={<ClientPage />}>
+  //             <Route path="client-details/:clientId" element={<SecondSlide />} />
+  //             <Route path="add-clients" element={<AddClientForm />} />
+  //         </Route>
+  //         <Route path="/vendors" element={<VendorPage />} />
+  //         {/* Acounting Routes */}
+  //         <Route path="/finance" element={<FinancePage />}>
+  //             <Route path="finance-details/:id" element={<SecondSlideFinance />} />
+  //             <Route path="add-installment" element={<InstallmentForm />} />
+  //         </Route>
+  //         <Route path="/expense" element={<ExpensePage />}>
+  //             <Route path="finance-details/:id" element={<SecondSlideFinance />} />
+  //             <Route path="add-expense" element={<AddExpenseForm />} />
+  //         </Route>
+  //         {/* material Routes */}
+  //         <Route path="/inventory" element={<InventoryPage />}>
+  //             <Route path="inventory-details/:id" element={<SecondSlideInventory />} />
+  //             <Route path="add-inventory" element={<AddInventoryForm />} />
+  //         </Route>
+  //         <Route path="/material-request" element={<MaterialRequestPage />}>
+  //             <Route path=":id" element={<SecondSlideMR />} />
+  //             <Route path="add-inventory" element={<AddInventoryForm />} />
+  //         </Route>
+  //         <Route path="/finance-request" element={<FinanceRequestPage />}>
+  //             <Route path=":id" element={<SecondSlideFinanceReq />} />
+  //             <Route path="add-inventory" element={<AddInventoryForm />} />
+  //         </Route>
+  //         {/* Man Powers */}
+  //         <Route path="/labour" element={<LabourPage />}>
+  //             <Route path=":id" element={<SecondSlideMR />} />
+  //             <Route path="add-inventory" element={<AddInventoryForm />} />
+  //         </Route>
+  //     </Routes>
+  // )

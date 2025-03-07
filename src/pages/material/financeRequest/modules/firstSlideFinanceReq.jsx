@@ -1,6 +1,6 @@
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import FirstSlideLayout from '@/layout/common/firstSlideLayout'
-import React from 'react'
+
 
 function FirstSlideFinanceReq() {
     return (

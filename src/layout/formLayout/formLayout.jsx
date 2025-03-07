@@ -12,7 +12,6 @@ function FormLayout({
       validationSchema={validationSchema}
       onSubmit={(values, actions) => {
         formHandler(values);
-        console.log(values);
         actions.resetForm();
       }}
     >

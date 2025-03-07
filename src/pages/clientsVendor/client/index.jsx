@@ -1,8 +1,6 @@
 import PageLayout from "@/layout/common/dynamicPageLayout";
-import FirstSlide from "../modules/clientsModule/firstSlide";
-import SecondSlide from "../modules/clientsModule/secondSlide";
+import FirstSlide from "./modules/firstSlide";
 import DynamicLayout from "@/layout/common/dynamicLayout";
-import AddClientForm from "@/forms/addClient/addClientForm";
 import { Outlet } from "react-router-dom";
 
 

@@ -10,7 +10,7 @@ function AsideNavlink({ name, redirect, submenu, SvgImg }) {
     function openSubmenu(e) {
         e.stopPropagation()
         if (redirect) { return navigate(redirect) }
-        setactive(true)
+        setactive(!active)
     }
 
     return (

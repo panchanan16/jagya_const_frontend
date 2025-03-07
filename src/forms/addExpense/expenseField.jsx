@@ -1,23 +1,12 @@
 import React from "react";
 import { ErrorMessage, Field } from "formik";
+import SearchInput from "@/components/searchInput/searchInput";
 
 export default function ExpenseField({FieldNameList, RemoveFn, Ind}) {
   return (
     <div className="newItem">
-      <div className="itemGrid">
-        <div className="field">
-          <p className="title">Client</p>
-          <Field as="select" name={FieldNameList.client} >
-            <option value="cash">Cash</option>
-            <option value="upi">UPI</option>
-            <option value="chq">Cheque</option>
-          </Field>
-          <ErrorMessage
-            name={FieldNameList.client}
-            className="err"
-            component="span"
-          />
-        </div>
+      <div className="itemGrid">       
+        <SearchInput Name={FieldNameList.client} />
         <div className="field">
           <p className="title">Amount</p>
           <Field type="number" name={FieldNameList.amount}  />

@@ -15,7 +15,7 @@ export function validateForm(formObject) {
       .required("This field is required!"),
     arrayItems: array().of(
       object().shape({
-        client: string().min(2, 'too short'),
+        client: string().min(2, 'too short').required('This field is required!'),
         amount: number().required("Amount is required!").positive('This should be a positive integer').integer(),
         note: string().min(3, "Too short !").required("This field is required!")
       })
