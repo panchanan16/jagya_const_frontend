@@ -13,9 +13,18 @@ export function validateForm(formObject) {
       .min(2, "Too Short!")
       .max(70, "Too Long!")
       .required("This field is required!"),
-    arrayItems: array().of(
+    vendorExpense: array().of(
       object().shape({
         client: string().min(2, 'too short').required('This field is required!'),
+        vendor: string().min(2, 'too short').required('This field is required!'),
+        amount: number().required("Amount is required!").positive('This should be a positive integer').integer(),
+        note: string().min(3, "Too short !").required("This field is required!")
+      })
+    ),
+    contractorExpense: array().of(
+      object().shape({
+        client: string().min(2, 'too short').required('This field is required!'),
+        contractor: string().min(2, 'too short').required('This field is required!'),
         amount: number().required("Amount is required!").positive('This should be a positive integer').integer(),
         note: string().min(3, "Too short !").required("This field is required!")
       })

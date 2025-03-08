@@ -26,6 +26,12 @@ import SecondSlideMR from "@/pages/material/materialRequest/modules/secondSlide"
 import ProjectPage from "@/pages/projects";
 import SecondSlideProject from "@/pages/projects/modules/secondSlideProject";
 import AssignContractorForm from "@/forms/assignContractor/AssignContractorForm";
+import ContractorAssigned from "@/pages/projects/modules/contractors/ContractorAssigned";
+import AddNewPhaseForm from "@/forms/addPhase/AddNewPhaseForm";
+import AddSubphaseForm from "@/forms/addSubphase/AddSubphaseForm";
+import ContractorPage from "@/pages/manpower/contractors";
+import SecondSlideContractor from "@/pages/manpower/contractors/modules/secondSlideContractors";
+import AddContractorForm from "@/forms/addContractor/addContractorForm";
 
 const routePages = [
   {
@@ -40,7 +46,12 @@ const routePages = [
       {
         path: ":userId",
         element: <SecondSlideProject />,
-        children: [{ path: "assign", element: <AssignContractorForm /> }],
+        children: [
+          { path: "assign", element: <AssignContractorForm /> },
+          { path: "assigned", element: <ContractorAssigned /> },
+          { path: "add-phase", element: <AddNewPhaseForm /> },
+          { path: "add-subphase", element: <AddSubphaseForm /> },
+        ],
       },
     ],
   },
@@ -114,6 +125,15 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlideMR /> },
       { path: "add-inventory", element: <AddInventoryForm /> },
+    ],
+  },
+
+  {
+    path: "/contractor",
+    element: <ContractorPage />,
+    children: [
+      { path: ":id", element: <SecondSlideContractor /> },
+      { path: "add-contractor", element: <AddContractorForm /> },
     ],
   },
 ];

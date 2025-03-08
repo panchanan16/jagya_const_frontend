@@ -11,13 +11,6 @@ function DynamicLayout({ children }) {
                 <MainAppContextProvider>
                     {children && children}
                 </MainAppContextProvider>
-
-                {/* <SubAppContextProvider>
-                    {children[1] && children[1]}
-                </SubAppContextProvider> */}
-                {/* <!-- POPUP WINDOWS --> */}
-                {/* {children[2] && children[2]} */}
-            {/* </LayoutContextProvider> */}
             <div className="section-popup hide"></div>
         </div>
 

@@ -6,7 +6,7 @@ function TabLayout({Heading, isTabActive, TableHeading, TableRows}) {
       <div className="flex align-start j-between">
         <h2>{Heading}</h2>
         <div className="action-btn flex">
-          <button
+          {/* <button
             className="btn-primary"
             type="button"
             onclick="addVendorPurchase()"
@@ -23,7 +23,7 @@ function TabLayout({Heading, isTabActive, TableHeading, TableRows}) {
               ></path>
             </svg>
             <span className="text">Add a Purchase</span>
-          </button>
+          </button> */}
         </div>
       </div>
       <div>

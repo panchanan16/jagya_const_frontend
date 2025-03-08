@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, useFormikContext } from "formik";
 import { useState } from "react";
 
-function SearchInput({Name}) {
+function SearchInput({Name, Label}) {
   const [showList, setShowList] = useState(false);
   const {setFieldValue} = useFormikContext()
 
@@ -14,7 +14,7 @@ function SearchInput({Name}) {
 
   return (
     <div className="field selectBox">
-      <p className="title client-selector">Select a Client</p>
+      <p className="title client-selector">Select a {Label}</p>
       <Field
         name={Name}
         type="text"

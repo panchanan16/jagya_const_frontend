@@ -60,9 +60,13 @@ const asideMenuItems = [
 
     {
         name: 'Branches',
-        submenu: [],
+        submenu: [
+            { name: 'Branch List', url: 'branch-list' },
+            { name: 'Branch Request', url: 'branch-request' },
+            { name: 'Branch Dashboard', url: '' }
+        ],
         svgImg: BranchIcon,
-        redirect: '/'
+        redirect: ''
     },
 
     {

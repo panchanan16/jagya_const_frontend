@@ -61,7 +61,7 @@ function FirstSlideProject() {
                                     <td className="text">Kankan Jyoti Nath</td>
                                     <td className="text">+91 6002649802</td>
                                     <td className="">
-                                        <ItemActionBox viewFn='/projects/project-details/3' />
+                                        <ItemActionBox viewFn='/projects/3' />
                                     </td>
                                 </tr>
                             ))

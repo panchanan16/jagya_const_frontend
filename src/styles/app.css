@@ -1175,6 +1175,22 @@ main .sub-task{
     font-weight: 500;
     font-size: var(--f-size-15);
 }
+
+.form ul{
+    height: 40vh;
+    overflow-y: scroll;
+}
+.form ul li{
+    margin: var(--px-5) auto;
+    font-size: var(--f-size-14);
+    font-weight: 500;
+    padding: var(--px-10) var(--px-15);
+    background: var(--color-50);
+    border: 1px solid var(--color-200);
+    border-radius: var(--px-5);
+    color: var(--color-900);
+}
+
 .form .flex{
     flex-direction: row;
 }

@@ -35,39 +35,86 @@ function ExpenseFormWithField({ values, resetFn }) {
         </div>
       </div>
 
-      <FieldArray name="expenseItems">
-        {({remove, push}) => (
+      <FieldArray name="vendorExpenses">
+        {({ remove, push }) => (
           <div>
-            {values.expenseItems.map((friend, index) => (
+            {values.vendorExpenses.map((friend, index) => (
               <ExpenseField
                 key={index}
                 FieldNameList={{
-                  client: `expenseItems[${index}].client`,
-                  amount: `expenseItems[${index}].amount`,
-                  note: `expenseItems[${index}].note`,
+                  client: `vendorExpenses[${index}].client`,
+                  vendor: `vendorExpenses[${index}].vendor`,
+                  amount: `vendorExpenses[${index}].amount`,
+                  note: `vendorExpenses[${index}].note`,
                 }}
                 RemoveFn={remove}
                 Ind={index}
+                Type={"vendor"}
               />
             ))}
-            <button
-              type="button"
-              className="btn-success flex-1"
-              onClick={() =>
-                push({ client: "", amount: "", note: "" })
-              }
-            >
-              Add a Expense
-            </button>
           </div>
         )}
       </FieldArray>
+
+      <FieldArray name="contractorExpenses">
+        {({ remove }) => (
+          <div>
+            {values.contractorExpenses.map((friend, index) => (
+              <ExpenseField
+                key={index}
+                FieldNameList={{
+                  client: `contractorExpenses[${index}].client`,
+                  contractor: `contractorExpenses[${index}].contractor`,
+                  amount: `contractorExpenses[${index}].amount`,
+                  note: `contractorExpenses[${index}].note`,
+                }}
+                RemoveFn={remove}
+                Ind={index}
+                Type={"contractor"}
+              />
+            ))}
+          </div>
+        )}
+      </FieldArray>
+
+      <div className="flex gap-10">
+        <FieldArray name="vendorExpenses">
+          {({ push }) => (
+            <button
+              type="button"
+              className="btn-success"
+              onClick={() =>
+                push({ client: "", vendor: "", amount: "", note: "" })
+              }
+            >
+              Add Vendor Expense
+            </button>
+          )}
+        </FieldArray>
+        <FieldArray name="contractorExpenses">
+          {({ push }) => (
+            <button
+              type="button"
+              className="btn-success"
+              onClick={() =>
+                push({ client: "", contractor: "", amount: "", note: "" })
+              }
+            >
+              Add Contractor Expense
+            </button>
+          )}
+        </FieldArray>
+      </div>
 
       <div class="action-btn flex gap-10">
         <button type="submit" className="btn-success flex-1">
           Add
         </button>
-        <button type="button" onClick={() => resetFn()} className="btn-warning flex-1">
+        <button
+          type="button"
+          onClick={() => resetFn()}
+          className="btn-warning flex-1"
+        >
           Cancel
         </button>
       </div>
@@ -96,7 +143,7 @@ function AddExpenseForm() {
           <hr />
 
           <FormLayout
-            MainForm={ExpenseFormWithField}            
+            MainForm={ExpenseFormWithField}
             initialValues={initialValues}
             validationSchema={ClientSchema}
             formHandler={addExpense}

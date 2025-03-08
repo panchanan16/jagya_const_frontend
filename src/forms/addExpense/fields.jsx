@@ -3,7 +3,8 @@ export const validate = {
   expenseName: "text",
   Amount: "number",
   remarks: "text",
-  expenseItems: "arrayItems"
+  vendorExpenses: "vendorExpense",
+  contractorExpenses: "contractorExpense"
 };
 
 export const initialValues = {
@@ -11,5 +12,6 @@ export const initialValues = {
   Amount: "",
   expenseName: "",
   remarks: "",
-  expenseItems: [{ client: "", amount: "", note: "" }],
+  vendorExpenses: [{ client: "", vendor: "", amount: "", note: "" }],
+  contractorExpenses: [{ client: "", contractor: "", amount: "", note: "" }],
 };
