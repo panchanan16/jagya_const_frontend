@@ -63,7 +63,7 @@ const asideMenuItems = [
         submenu: [
             { name: 'Branch List', url: 'branch-list' },
             { name: 'Branch Request', url: 'branch-request' },
-            { name: 'Branch Dashboard', url: '' }
+            { name: 'Branch Dashboard', url: 'branch-dashboard' }
         ],
         svgImg: BranchIcon,
         redirect: ''
