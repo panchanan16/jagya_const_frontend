@@ -4,17 +4,16 @@ import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderO
 import FirstSlideLayout from '@/layout/common/firstSlideLayout'
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { _GET } from '@/utils/request/request';
+import { _GET } from '@/request/request';
 import clientActions from '@/redux/features/clientSlice/action';
-import clientsEndpoint from '@/api/clientsApi';
+import Alert from '@/components/alert/Alert';
+
 
 
 function FirstSlide() {
     const { clientList, loading } = useSelector((state) => state.clients)
     const dispatch = useDispatch()
     const { getClientList } = clientActions
-
-    console.log(clientsEndpoint.getOneWithId(23))
 
     useEffect(() => {
         getClientList(dispatch)
@@ -51,8 +50,8 @@ function FirstSlide() {
                                     <tr key={ind}>
                                         <td><input type="checkbox" name="" id="" onchange="toggleHighlight(this)"
                                             className="row-checkbox" /></td>
-                                        <td>1</td>
-                                        <td className="text">{item.name}</td>
+                                        <td>{item.client_id}</td>
+                                        <td className="text">{item.client_name }</td>
                                         <td className="text">+91 <span>6000192289</span></td>
                                         <td className="text">+91 <span>6000192289</span></td>
                                         <td className="text">dekapanchanan16534@gmail.com</td>
@@ -94,7 +93,7 @@ function FirstSlide() {
                         </tfoot>
                     </table>
                 </div>
-            </main>
+            </main>     
         </FirstSlideLayout>
     )
 }

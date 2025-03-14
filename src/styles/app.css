@@ -1567,7 +1567,7 @@ figure span{
     position: absolute;
     box-shadow: var(--b-shadow-1);
     top: -105%;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, -50%);
     max-width: 500px;
     word-break: normal;

@@ -1,4 +1,5 @@
 import { Formik, Form } from "formik";
+import toast from "react-hot-toast";
 
 function FormLayout({
   MainForm,
@@ -10,13 +11,19 @@ function FormLayout({
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={(values, actions) => {
-        formHandler(values);
-        actions.resetForm();
+      onSubmit={async (values, actions) => {
+        formHandler(values).then(() => {
+          actions.resetForm();
+          actions.setSubmitting(false);
+        });
       }}
     >
-      {({ values, resetForm  }) => (
-          <MainForm values={values} resetFn={resetForm } />
+      {({ values, resetForm, isSubmitting }) => (
+        <MainForm
+          values={values}
+          resetFn={resetForm}
+          isSubmitting={isSubmitting}
+        />
       )}
     </Formik>
   );

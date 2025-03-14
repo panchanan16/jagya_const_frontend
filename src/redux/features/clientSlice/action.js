@@ -1,14 +1,15 @@
-import {addClient, resetData} from '@/redux/features/clientSlice'
-import { GET_REQUEST } from '@/redux/createThunk';
+import { GET_REQUEST, POST_REQUEST } from '@/redux/createThunk';
+import clientsEndpoint from '@/api/clientsApi';
 
 
 const clientActions = {
-    createClient : (dispatch)=> {
-         dispatch(addClient('users'))
+    createClient : (dispatch, body)=> {
+         const endpoint = clientsEndpoint.createClient()
+         dispatch(POST_REQUEST({endpoint, body}))
     },
 
     getClientList : (dispatch)=> {
-        dispatch(GET_REQUEST('users'))
+        dispatch(GET_REQUEST(clientsEndpoint.getAll()))
    }
 }
 
