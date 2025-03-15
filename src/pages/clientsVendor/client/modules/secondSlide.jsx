@@ -1,18 +1,58 @@
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
-import TabLayout from "@/layout/common/TabLayout";
+import TabLayout from "@/layout/tabLayout/TabLayout";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SecondSlide() {
-  const [isTabActive, setTabActive] = useState(true);
   const tableDataOne = [
-    [1, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1001"],
-    [2, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1003"],
+    {
+      id: 1,
+      date: "10/100/1000",
+      amount: "2000",
+      mode: "UPI",
+      remarks: "This is for xyz purpose",
+      project: "1002",
+    },
+    {
+      id: 2,
+      date: "20/200/2000",
+      amount: "2000",
+      mode: "UPI",
+      remarks: "This is for xyz purpose",
+      project: "1001",
+    },
+    {
+      id: 3,
+      date: "30/300/3000",
+      amount: "3000",
+      mode: "CASH",
+      remarks: "This is for abc purpose",
+      project: "1003",
+    },
   ];
 
   const tableDataTwo = [
-    [1, "10/02/2001", "3000", "Cash", "Bought for false ceiling"],
-    [2, "10/02/2001", "3000", "Cash", "Bought for false ceiling"],
+    {
+      id: 1,
+      date: "10/100/1000",
+      amount: "2000",
+      mode: "UPI",
+      remarks: "This is for xyz purpose",
+    },
+    {
+      id: 2,
+      date: "20/200/2000",
+      amount: "20000",
+      mode: "UPI",
+      remarks: "This is for xyz purpose",
+    },
+    {
+      id: 3,
+      date: "30/300/3000",
+      amount: "30000",
+      mode: "CASH",
+      remarks: "This is for abc purpose",
+    },
   ];
 
   return (
@@ -88,57 +128,29 @@ function SecondSlide() {
             </p>
           </div>
         </div>
-
         <hr />
-        <div className="tabs">
-          <div className="tabs-list flex align-center gap-10">
-            <h3
-              className={isTabActive ? "active" : ""}
-              onClick={() => setTabActive(true)}
-            >
-              Collections
-            </h3>
-            <h3
-              className={!isTabActive ? "active" : ""}
-              onClick={() => setTabActive(false)}
-            >
-              Expenses
-            </h3>
-          </div>
-          <div className="tabs-content">
-            
-            {/* <!-- COLLECTIONS LIST --> */}
-            <TabLayout
-              Heading="Installments"
-              isTabActive={isTabActive}
-              TableHeading={[
-                "No.",
-                "Date",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Project",
-                "Action",
-              ]}
-              TableRows={tableDataOne}
-            />
 
-            {/* <!-- cLIENT EXPENSES  --> */}
-            <TabLayout
-              Heading="Expenses"
-              isTabActive={!isTabActive}
-              TableHeading={[
-                "No.",
-                "Date",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Action",
-              ]}
-              TableRows={tableDataTwo}
-            />
-          </div>
-        </div>
+        <TabLayout
+          tabHeading={{
+            main: "Collections",
+            list: [
+              "No.",
+              "Date",
+              "Amount",
+              "Mode",
+              "Remarks",
+              "Project",
+              "Action",
+            ],
+            limit: ["id", "date", "amount", "mode", "remarks", "project"],
+          }}
+          tabHeadingII={{
+            main: "Expenses",
+            list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
+          }}
+          tabDataOne={tableDataOne}
+          tabDataTwo={tableDataTwo}
+        />
       </main>
     </SecondSlideLayout>
   );

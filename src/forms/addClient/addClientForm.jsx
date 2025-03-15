@@ -10,8 +10,6 @@ import clientActions from "@/redux/features/clientSlice/action";
 
 
 function ClientFormWithField({ resetFn, isSubmitting }) {
-  4;
-  // console.log('from client form ----', isSubmitting)
   return (
     <Form>
       <div className="grid gtc-2 gap-10">
@@ -98,7 +96,6 @@ function AddClientForm() {
       <div className="add-clients-prospects blur">
         <div className="form">
           <h2>Add a Client</h2>
-          <p>{loading ? "Loading...." : ""}</p>
           <Link to={`/clients`}>
             <button type="button" className="btn-warning close">
               Close

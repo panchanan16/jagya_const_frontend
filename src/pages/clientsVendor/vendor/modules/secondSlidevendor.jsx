@@ -1,11 +1,9 @@
-import Table from "@/components/table/Table";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
-import TabLayout from "@/layout/common/TabLayout";
+import TabLayout from "@/layout/tabLayout/TabLayout";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SecondSlideVendor() {
-  const [isTabActive, setTabActive] = useState(true);
   const tableDataOne = [
     [1, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1001"],
     [2, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1003"],
@@ -77,55 +75,26 @@ function SecondSlideVendor() {
 
         <hr />
 
-        <div className="tabs">
-          <div className="tabs-list flex align-center gap-10">
-            {/* Purchase */}
-            <h3
-              className={isTabActive ? "active" : ""}
-              onClick={() => setTabActive(true)}
-            >
-              Purchases
-            </h3>
-            <h3
-              className={!isTabActive ? "active" : ""}
-              onClick={() => setTabActive(false)}
-            >
-              Payments
-            </h3>
-          </div>
-          <div className="tabs-content">
-            {/* <!-- VENDOR PURCHASE  --> */}
-            <TabLayout
-              Heading="Item Purchased"
-              isTabActive={isTabActive}
-              TableHeading={[
-                "No.",
-                "Date",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Project",
-                "Action",
-              ]}
-              TableRows={tableDataOne}
-            />
-
-            {/* <!-- VENDOR PAYMENTS  --> */}
-            <TabLayout
-              Heading="Payments Made"
-              isTabActive={!isTabActive}
-              TableHeading={[
-                "No.",
-                "Date",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Action",
-              ]}
-              TableRows={tableDataTwo}
-            />        
-          </div>
-        </div>
+        <TabLayout
+          tabHeading={{
+            main: "Purchases",
+            list: [
+              "No.",
+              "Date",
+              "Amount",
+              "Mode",
+              "Remarks",
+              "Project",
+              "Action",
+            ]        
+          }}
+          tabHeadingII={{
+            main: "Payments",
+            list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
+          }}
+          tabDataOne={tableDataOne}
+          tabDataTwo={tableDataTwo}
+        />
       </main>
     </SecondSlideLayout>
   );

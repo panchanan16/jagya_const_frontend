@@ -1,10 +1,16 @@
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-function ItemActionBox({ viewFn }) {
+function ItemActionBox({ viewFn, editFn, deleteFn }) {
   const [showModel, setShowModel] = useState(false);
   const itemMenuRef = useRef();
   console.log("I am ItemAction rendering again...");
+  const dispatch = useDispatch();
+
+  function deleteItem(id) {
+    deleteFn(dispatch, {id})
+  }
 
   function toggleModel(event) {
     if (
@@ -12,7 +18,6 @@ function ItemActionBox({ viewFn }) {
       itemMenuRef.current &&
       itemMenuRef.current.contains(event.target)
     ) {
-      console.log("Inside clicked...");
     } else {
       setShowModel(false);
     }
@@ -45,7 +50,7 @@ function ItemActionBox({ viewFn }) {
         }`}
       >
         {viewFn && (
-          <Link to={viewFn} onClick={()=> setShowModel(false)}>
+          <Link to={viewFn} onClick={() => setShowModel(false)}>
             <p className="title flex align-center gap-5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -59,20 +64,25 @@ function ItemActionBox({ viewFn }) {
             </p>
           </Link>
         )}
-        <p className="title flex align-center gap-5" onclick="editProject()">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="svg-18"
-          >
-            <path
-              fill=""
-              d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"
-            ></path>
-          </svg>
-          <span className="text">Edit</span>
-        </p>
-        <p className="title flex align-center gap-5" onclick="confirmAlert()">
+
+        {editFn && (
+          <Link to={editFn} onClick={() => setShowModel(false)}>
+            <p className="title flex align-center gap-5">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className="svg-18"
+              >
+                <path
+                  fill=""
+                  d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"
+                ></path>
+              </svg>
+              <span className="text">Edit</span>
+            </p>
+          </Link>
+        )}
+        <p className="title flex align-center gap-5" onClick={()=> deleteItem(viewFn)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
