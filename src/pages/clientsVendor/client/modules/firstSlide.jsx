@@ -31,7 +31,7 @@ function FirstSlide() {
                     <Table
                        Theader={['Sl No.', 'Name', 'Ref No.', 'Contact', 'Alt Contact', 'Address', 'Email', 'Action']}
                        Trow={clientList}
-                       Actions={{viewUrl:'client_id', deleteUrl: deleteClient}}
+                       Actions={{viewUrl:'client_id', deleteUrl: deleteClient, editUrl: 'client_id'}}
                     />
                 </div>
             </main>     

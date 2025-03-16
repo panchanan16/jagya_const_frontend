@@ -26,7 +26,19 @@ export async function _POST(endpoint, body) {
 
 export async function _DELETE(endpoint, body) {
     try {
-        const response = await apiClient.delete(`${endpoint}`, body);
+        const response = await apiClient.delete(`${endpoint}`, {data: body});
+        successHandler(response, { notifyOnSuccess: true })
+        return response;
+    } catch (error) {
+        return errorHandler(error)
+    }
+}
+
+
+
+export async function _UPDATE(endpoint, body) {
+    try {
+        const response = await apiClient.put(`${endpoint}`, body);
         successHandler(response, { notifyOnSuccess: true })
         return response;
     } catch (error) {

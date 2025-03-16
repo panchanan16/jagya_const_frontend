@@ -2,12 +2,10 @@ import PopupLayout from "@/layout/common/popupLayout";
 import { Form, Field, ErrorMessage } from "formik";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { validateForm } from "@/utils/validation/formValidation";
+import { useSelector } from "react-redux";
 import { initialValues, validate } from "./fields";
-import { _POST } from "@/request/request";
 import clientActions from "@/redux/features/clientSlice/action";
-
+import useFormSubmit from "@/hooks/useFormSubmit";
 
 function ClientFormWithField({ resetFn, isSubmitting }) {
   return (
@@ -60,8 +58,8 @@ function ClientFormWithField({ resetFn, isSubmitting }) {
           <p className="title">
             Other Details<span>(optional)</span>
           </p>
-          <Field type="text" name="client_ref_no" id="" />
-          <ErrorMessage name="client_ref_no" className="err" component="span" />
+          <Field type="text" name="client_details" id="" />
+          <ErrorMessage name="client_details" className="err" component="span" />
         </div>
       </div>
       <div className="action-btn flex gap-10">
@@ -81,15 +79,23 @@ function ClientFormWithField({ resetFn, isSubmitting }) {
 }
 
 function AddClientForm() {
-  const dispatch = useDispatch();
-  const ClientSchema = validateForm(validate);
-  const { loading } = useSelector((state) => state.clients);
-  const { createClient } = clientActions;
-
-  async function addNewClient(clientData) {
-    createClient(dispatch, clientData);
-  }
-
+  const { clientList } = useSelector((state) => state.clients);
+  const { createClient, updateClient } = clientActions;
+  const [
+    addNewItem,
+    updateTheItem,
+    initialSchema,
+    validateSchema,
+    urlParam,
+    isReturn,
+  ] = useFormSubmit(
+    clientList,
+    initialValues,
+    validate,
+    "client_id",
+    createClient,
+    updateClient
+  );
 
   return (
     <PopupLayout>
@@ -104,9 +110,10 @@ function AddClientForm() {
           <hr />
           <FormLayout
             MainForm={ClientFormWithField}
-            initialValues={initialValues}
-            validationSchema={ClientSchema}
-            formHandler={addNewClient}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={urlParam ? updateTheItem : addNewItem}
+            isReturn={isReturn}
           />
         </div>
       </div>

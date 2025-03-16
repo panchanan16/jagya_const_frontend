@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 function ItemActionBox({ viewFn, editFn, deleteFn }) {
   const [showModel, setShowModel] = useState(false);
   const itemMenuRef = useRef();
-  console.log("I am ItemAction rendering again...");
+  // console.log("I am ItemAction rendering again...");
   const dispatch = useDispatch();
 
   function deleteItem(id) {
     deleteFn(dispatch, {id})
+    setShowModel(false)
   }
 
   function toggleModel(event) {

@@ -21,14 +21,13 @@ function Table({ Theader, Trow, Tfooter, Limit, Actions }) {
 
         <tbody>
           {Trow &&
-            Trow.map((columns) => (
-              <tr>
+            Trow.map((columns, ind) => (
+              <tr key={ind}>
                 <td>
                   <input
                     type="checkbox"
                     name=""
-                    id=""
-                    onchange="toggleHighlight(this)"
+                    id=""          
                     className="row-checkbox"
                   />
                 </td>
@@ -52,7 +51,7 @@ function Table({ Theader, Trow, Tfooter, Limit, Actions }) {
                 <td className="flex">
                   <ItemActionBox
                     viewFn={`${Actions?.viewUrl && columns[Actions.viewUrl]}`}
-                    editFn={Actions?.editUrl && Actions.editUrl}
+                    editFn={`add-clients/${Actions?.editUrl && columns[Actions.editUrl]}`}
                     deleteFn={Actions?.deleteUrl && Actions.deleteUrl}
                   />
                 </td>

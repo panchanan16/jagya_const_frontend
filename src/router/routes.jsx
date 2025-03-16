@@ -69,6 +69,7 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlide /> },
       { path: "add-clients", element: <AddClientForm /> },
+      { path: "add-clients/:id", element: <AddClientForm /> }
     ],
   },
   {

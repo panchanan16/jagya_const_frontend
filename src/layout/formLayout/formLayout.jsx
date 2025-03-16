@@ -6,26 +6,29 @@ function FormLayout({
   initialValues,
   validationSchema,
   formHandler,
+  isReturn,
 }) {
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={async (values, actions) => {
-        formHandler(values).then(() => {
-          actions.resetForm();
-          actions.setSubmitting(false);
-        });
-      }}
-    >
-      {({ values, resetForm, isSubmitting }) => (
-        <MainForm
-          values={values}
-          resetFn={resetForm}
-          isSubmitting={isSubmitting}
-        />
-      )}
-    </Formik>
+    isReturn && (
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={async (values, actions) => {
+          formHandler(values).then(() => {
+            actions.resetForm();
+            actions.setSubmitting(false);
+          });
+        }}
+      >
+        {({ values, resetForm, isSubmitting }) => (
+          <MainForm
+            values={values}
+            resetFn={resetForm}
+            isSubmitting={isSubmitting}
+          />
+        )}
+      </Formik>
+    )
   );
 }
 

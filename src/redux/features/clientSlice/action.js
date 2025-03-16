@@ -1,11 +1,10 @@
-import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST } from '@/redux/createThunk';
+import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from '@/redux/createThunk';
 import clientsEndpoint from '@/api/clientsApi';
 
 
 const clientActions = {
      createClient: (dispatch, body) => {
-          const endpoint = clientsEndpoint.createClient()
-          dispatch(POST_REQUEST({ endpoint, body }))
+          dispatch(POST_REQUEST({ endpoint: clientsEndpoint.createClient(), body }))
      },
 
      getClientList: (dispatch) => {
@@ -13,7 +12,11 @@ const clientActions = {
      },
 
      deleteClient: (dispatch, body) => {
-          dispatch(DELETE_REQUEST({endpoint: clientsEndpoint.deleteClient(), body}))
+          dispatch(DELETE_REQUEST({ endpoint: clientsEndpoint.deleteClient(), body }))
+     },
+
+     updateClient: (dispatch, body) => {
+          dispatch(UPDATE_REQUEST({ endpoint: clientsEndpoint.updateClient(), body }))
      }
 }
 
