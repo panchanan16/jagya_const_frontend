@@ -1,24 +1,34 @@
 import { Formik, Form } from "formik";
+import toast from "react-hot-toast";
 
 function FormLayout({
   MainForm,
   initialValues,
   validationSchema,
   formHandler,
+  isReturn,
 }) {
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      onSubmit={(values, actions) => {
-        formHandler(values);
-        actions.resetForm();
-      }}
-    >
-      {({ values, resetForm  }) => (
-          <MainForm values={values} resetFn={resetForm } />
-      )}
-    </Formik>
+    isReturn && (
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={async (values, actions) => {
+          formHandler(values).then(() => {
+            actions.resetForm();
+            actions.setSubmitting(false);
+          });
+        }}
+      >
+        {({ values, resetForm, isSubmitting }) => (
+          <MainForm
+            values={values}
+            resetFn={resetForm}
+            isSubmitting={isSubmitting}
+          />
+        )}
+      </Formik>
+    )
   );
 }
 

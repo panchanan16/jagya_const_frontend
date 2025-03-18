@@ -523,7 +523,7 @@ li .sub-menu.active p.active{
 .right :is(.first-slide, .second-slide) {
     width: 100%;
     position: absolute;
-    background-color: #fff;
+    background-color: white;
 }
 
 
@@ -1175,22 +1175,6 @@ main .sub-task{
     font-weight: 500;
     font-size: var(--f-size-15);
 }
-
-.form ul{
-    height: 40vh;
-    overflow-y: scroll;
-}
-.form ul li{
-    margin: var(--px-5) auto;
-    font-size: var(--f-size-14);
-    font-weight: 500;
-    padding: var(--px-10) var(--px-15);
-    background: var(--color-50);
-    border: 1px solid var(--color-200);
-    border-radius: var(--px-5);
-    color: var(--color-900);
-}
-
 .form .flex{
     flex-direction: row;
 }
@@ -1269,6 +1253,20 @@ main .sub-task{
     color: var(--color-warning-500);
 }
 
+.form ul{
+    height: 40vh;
+    overflow-y: scroll;
+}
+.form ul li{
+    margin: var(--px-5) auto;
+    font-size: var(--f-size-14);
+    font-weight: 500;
+    padding: var(--px-10) var(--px-15);
+    background: var(--color-50);
+    border: 1px solid var(--color-200);
+    border-radius: var(--px-5);
+    color: var(--color-900);
+}
 
 .add-employee-popup .btn-primary{
     margin-bottom: var(--px-10);
@@ -1428,7 +1426,8 @@ figure span{
     font-size: var(--f-size-18);
     color: var(--color-900);
 }
-.inventory-popup, .addItem-popup, .editItem-popup, .editInchargeItem-popup{
+.inventory-popup, .addItem-popup, .editItem-popup, .editInchargeItem-popup,
+.contractorDetails, .branch-project-popup{
     width: 100%;
     height: 96%;
     max-width: 650px !important;
@@ -1568,7 +1567,7 @@ figure span{
     position: absolute;
     box-shadow: var(--b-shadow-1);
     top: -105%;
-    left: 50%;
+    left: 60%;
     transform: translate(-50%, -50%);
     max-width: 500px;
     word-break: normal;
@@ -1694,4 +1693,74 @@ figure span{
 }
 .tabs-content{
     margin-top: var(--px-10);
+}
+/* LABOURS  */
+.main-popup .photo-popup{
+    max-width: 650px;
+}
+button.view{
+    font-size: var(--f-size-10);
+    padding: var(--px-5) var(--px-8);
+    font-weight: 500;
+    border: 1px solid var(--color-200);
+    color: var(--color-700);
+    background: var(--color-50);
+    transition: var(--transition-1);
+}
+button.view:hover{
+    color: var(--color-950);
+    background: var(--color-200);
+}
+.main-photo{
+    width: 100%;
+}
+.main-photo img{
+    aspect-ratio: 16 /9;
+}
+.photo-grid{
+    margin-top: var(--px-10);
+    background: var(--color-100);
+    border-radius: var(--px-5);
+    padding: var(--px-5);
+}
+.photo-grid img{
+    width: 75px;
+    aspect-ratio: 1;
+    border: 5px solid var(--color-100);
+    border-radius: var(--px-5);
+}
+.photo-grid img.active{
+    border: 5px solid var(--color-50);
+}
+/* BRANCH  */
+.branch-project-content{
+    margin-top: var(--px-10);
+}
+
+
+
+/* INVOICE  */
+.invoice-section{
+    border: 1px solid var(--color-300);
+    border-radius: var(--px-5);
+    padding: var(--px-20);
+}
+.invoice-header img{
+    width: 50px;
+}
+.invoice-details > div{
+    gap: var(--px-5);
+}
+.invoice-address{
+    margin: var(--px-10) auto;
+}
+.invoice-terms{
+    margin: var(--px-10) auto;
+}
+.authorized-img img{
+    width: 180px;
+    aspect-ratio: 4 /1;
+}
+.invoice-footer{
+    justify-content: space-evenly;
 }

@@ -32,6 +32,14 @@ import AddSubphaseForm from "@/forms/addSubphase/AddSubphaseForm";
 import ContractorPage from "@/pages/manpower/contractors";
 import SecondSlideContractor from "@/pages/manpower/contractors/modules/secondSlideContractors";
 import AddContractorForm from "@/forms/addContractor/addContractorForm";
+import BranchRequestPage from "@/pages/branch/branchRequest";
+import SecondSlideBranchRequest from "@/pages/branch/branchRequest/modules/secondSlideBranchRequest";
+import BranchListPage from "@/pages/branch/branch";
+import SecondSlideBranchList from "@/pages/branch/branch/modules/secondSlideBranchList";
+import AddBranchForm from "@/forms/addBranch/addBranch";
+import BranchDashboard from "@/pages/branch/branchDashboard";
+import AddBranchProjectForm from "@/forms/addBranchProject/addBranchProjectForm";
+import SecondSlideBranchDashboard from "@/pages/branch/branchDashboard/modules/secondSlideBranchDashboard";
 
 const routePages = [
   {
@@ -61,6 +69,7 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlide /> },
       { path: "add-clients", element: <AddClientForm /> },
+      { path: "add-clients/:id", element: <AddClientForm /> }
     ],
   },
   {
@@ -133,9 +142,36 @@ const routePages = [
     element: <ContractorPage />,
     children: [
       { path: ":id", element: <SecondSlideContractor /> },
-      { path: "add-contractor", element: <AddContractorForm /> },
+      { path: "add-contractor", element: <AddContractorForm /> }
     ],
   },
+
+  {
+    path: "/branch-dashboard",
+    element: <BranchDashboard />,
+    children: [
+      { path: ":id", element: <SecondSlideBranchDashboard /> },
+      { path: "add-branch-project", element: <AddBranchProjectForm /> }
+    ],
+  },
+
+  {
+    path: "/branch-request",
+    element: <BranchRequestPage />,
+    children: [
+      { path: ":id", element: <SecondSlideBranchRequest /> },
+      { path: "add-contractor", element: <AddContractorForm /> }
+    ],
+  },
+
+  {
+    path: "/branch-list",
+    element: <BranchListPage />,
+    children: [
+      { path: ":id", element: <SecondSlideBranchList /> },
+      { path: "add-branch", element: <AddBranchForm /> }
+    ],
+  }
 ];
 
 export default routePages;

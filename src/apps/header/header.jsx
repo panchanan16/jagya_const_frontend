@@ -10,7 +10,7 @@ function Header() {
                 <p className="active">{location && location.pathname}</p>
             </div>
             <div className="header-icons flex align-center gap-10">
-                <div className="notification-icon flex align-center j-center" onclick="openNotification(this)">
+                <div className="notification-icon flex align-center j-center">
                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                         id="bell" className="lg-icon">
                         <path fill="##000000"

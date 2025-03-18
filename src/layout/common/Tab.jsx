@@ -1,6 +1,6 @@
 import Table from "@/components/table/Table";
 
-function TabLayout({Heading, isTabActive, TableHeading, TableRows}) {
+function Tab({Heading, isTabActive, TableHeading, TableRows}) {
   return (
     <div className={`${isTabActive ? "" : "hide"}`}>
       <div className="flex align-start j-between">
@@ -36,4 +36,4 @@ function TabLayout({Heading, isTabActive, TableHeading, TableRows}) {
   );
 }
 
-export default TabLayout;
+export default Tab;

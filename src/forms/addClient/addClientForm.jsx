@@ -1,34 +1,37 @@
-import { useLayoutContext } from "@/context/layoutContext";
 import PopupLayout from "@/layout/common/popupLayout";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Form, Field, ErrorMessage } from "formik";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { Link } from "react-router-dom";
-import { addClient } from "@/redux/features/clientSlice";
-import { useDispatch } from "react-redux";
-import { validateForm } from "@/utils/validation/formValidation";
+import { useSelector } from "react-redux";
 import { initialValues, validate } from "./fields";
+import clientActions from "@/redux/features/clientSlice/action";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
-function ClientFormWithField({resetFn}) {
+function ClientFormWithField({ resetFn, isSubmitting }) {
   return (
     <Form>
       <div className="grid gtc-2 gap-10">
         <div className="field">
           <p className="title">Name</p>
-          <Field type="text" name="clientName" id="" />
-          <ErrorMessage name="clientName" className="err" component="span" />
+          <Field type="text" name="client_name" id="" />
+          <ErrorMessage name="client_name" className="err" component="span" />
         </div>
         <div className="field">
           <p className="title">Contact Number</p>
-          <Field type="number" name="clientNumber" id="" />
-          <ErrorMessage name="clientNumber" className="err" component="span" />
+          <Field type="number" name="client_contact" id="" />
+          <ErrorMessage
+            name="client_contact"
+            className="err"
+            component="span"
+          />
         </div>
         <div className="field">
           <p className="title">
             Alternate Number<span>(*optional)</span>
           </p>
-          <Field type="number" name="clientAltNumber" id="" />
+          <Field type="number" name="client_alt_contact" id="" />
           <ErrorMessage
-            name="clientAltNumber"
+            name="client_alt_contact"
             className="err"
             component="span"
           />
@@ -37,29 +40,37 @@ function ClientFormWithField({resetFn}) {
           <p className="title">
             Email<span>(*optional)</span>
           </p>
-          <Field type="email" name="clientEmail" id="" />
-          <ErrorMessage name="clientEmail" className="err" component="span" />
+          <Field type="email" name="client_email" id="" />
+          <ErrorMessage name="client_email" className="err" component="span" />
         </div>
         <div className="field">
           <p className="title">
             Address<span>(*optional)</span>
           </p>
-          <Field type="text" name="clientAddress" id="" />
-          <ErrorMessage name="clientAddress" className="err" component="span" />
+          <Field type="text" name="client_address" id="" />
+          <ErrorMessage
+            name="client_address"
+            className="err"
+            component="span"
+          />
         </div>
         <div className="field">
           <p className="title">
             Other Details<span>(optional)</span>
           </p>
-          <Field type="text" name="clientDetails" id="" />
-          <ErrorMessage name="clientDetails" className="err" component="span" />
+          <Field type="text" name="client_details" id="" />
+          <ErrorMessage name="client_details" className="err" component="span" />
         </div>
       </div>
       <div className="action-btn flex gap-10">
-        <button type="submit" className="btn-success flex-1">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn-success flex-1"
+        >
           Add
         </button>
-        <button type="button" onClick={()=> resetFn()} className="btn-warning flex-1">
+        <button type="button" onClick={resetFn} className="btn-warning flex-1">
           Cancel
         </button>
       </div>
@@ -68,13 +79,23 @@ function ClientFormWithField({resetFn}) {
 }
 
 function AddClientForm() {
-  const dispatch = useDispatch();
-  const ClientSchema = validateForm(validate);
-
-  function addNewClient(clientData) {
-    // dispatch(addClient(clientData))
-    alert(JSON.stringify(clientData));
-  }
+  const { clientList } = useSelector((state) => state.clients);
+  const { createClient, updateClient } = clientActions;
+  const [
+    addNewItem,
+    updateTheItem,
+    initialSchema,
+    validateSchema,
+    urlParam,
+    isReturn,
+  ] = useFormSubmit(
+    clientList,
+    initialValues,
+    validate,
+    "client_id",
+    createClient,
+    updateClient
+  );
 
   return (
     <PopupLayout>
@@ -89,9 +110,10 @@ function AddClientForm() {
           <hr />
           <FormLayout
             MainForm={ClientFormWithField}
-            initialValues={initialValues}
-            validationSchema={ClientSchema}
-            formHandler={addNewClient}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={urlParam ? updateTheItem : addNewItem}
+            isReturn={isReturn}
           />
         </div>
       </div>

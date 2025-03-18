@@ -9,7 +9,7 @@ function AsideBar() {
             <div className="logo flex align-center gap-5">
                 <img src="/img/logo.png" alt="Logo" />
                 <div className="logo-title">
-                    <h3 className="uppercase">JAGYA CONSTRUCTION</h3>
+                    <h3 className="uppercase">CONSTRUCTION</h3>
                 </div>
             </div>
             <nav>

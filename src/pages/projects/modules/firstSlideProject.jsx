@@ -2,22 +2,10 @@ import SectionHeaderBtn from '@/components/buttons/sectionHeaderBtn'
 import ItemActionBox from '@/components/itemAction/itemActionBox'
 import SectionHeaderOption from '@/components/sectionHeaderOption/sectionHeaderOption'
 import FirstSlideLayout from '@/layout/common/firstSlideLayout'
-import { resetData } from '@/redux/features/clientSlice'
-import { projectData } from '@/utils/projectData'
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+
 
 
 function FirstSlideProject() {  
-    const { clientList, loading, error } = useSelector((state) => state.clients)
-    const dispatch = useDispatch()
-
-    useEffect(()=> {
-        function setSlideData() {
-            dispatch(resetData(projectData))
-        }
-        setSlideData();
-    }, [])
 
     return (
        <FirstSlideLayout>

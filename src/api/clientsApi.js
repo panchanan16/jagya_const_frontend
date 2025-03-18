@@ -1,6 +1,11 @@
+import { API_ENTITY } from "@/config/api.config";
+
 const clientsEndpoint = {
-    getAll : ()=> '/v1/getAll',
-    getOneWithId : (id)=> `/v1/getOne/${id}`
+    getAll : ()=> `${API_ENTITY}client/readAll`,
+    getOneWithId : (id)=> `${API_ENTITY}client/getOne/${id}`,
+    createClient : ()=> `${API_ENTITY}client/create`,
+    deleteClient: ()=> `${API_ENTITY}client/remove`,
+    updateClient: ()=> `${API_ENTITY}client/update`
 }
 
 export default clientsEndpoint;
