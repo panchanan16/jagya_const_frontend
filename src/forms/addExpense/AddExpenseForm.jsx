@@ -147,6 +147,7 @@ function AddExpenseForm() {
             initialValues={initialValues}
             validationSchema={ClientSchema}
             formHandler={addExpense}
+            isReturn={true}
           />
         </div>
       </div>
