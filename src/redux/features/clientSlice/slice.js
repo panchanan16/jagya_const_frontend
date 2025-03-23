@@ -1,7 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
-import toast from "react-hot-toast";
-
 
 const initialState = {
   clientList: [],
