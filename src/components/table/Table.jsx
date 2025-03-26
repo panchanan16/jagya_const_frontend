@@ -2,6 +2,7 @@ import React from "react";
 import ItemActionBox from "../itemAction/itemActionBox";
 
 function Table({ Theader, Trow, Tfooter, Limit, Actions }) {
+
   return (
     <>
       <table>
@@ -51,7 +52,7 @@ function Table({ Theader, Trow, Tfooter, Limit, Actions }) {
                 <td className="flex">
                   <ItemActionBox
                     viewFn={`${Actions?.viewUrl && columns[Actions.viewUrl]}`}
-                    editFn={`add-clients/${Actions?.editUrl && columns[Actions.editUrl]}`}
+                    editFn={`create/${Actions?.editUrl && columns[Actions.editUrl]}`}
                     deleteFn={Actions?.deleteUrl && Actions.deleteUrl}
                   />
                 </td>

@@ -68,8 +68,8 @@ const routePages = [
     element: <ClientPage />,
     children: [
       { path: ":id", element: <SecondSlide /> },
-      { path: "add-clients", element: <AddClientForm /> },
-      { path: "add-clients/:id", element: <AddClientForm /> }
+      { path: "create", element: <AddClientForm /> },
+      { path: "create/:id", element: <AddClientForm /> }
     ],
   },
   {
@@ -77,7 +77,8 @@ const routePages = [
     element: <VendorPage />,
     children: [
       { path: ":id", element: <SecondSlideVendor /> },
-      { path: "add-vendor", element: <AddvendorForm /> },
+      { path: "create", element: <AddvendorForm /> },
+      { path: "create/:id", element: <AddvendorForm /> }
     ],
   },
   {

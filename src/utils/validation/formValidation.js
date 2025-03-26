@@ -7,7 +7,7 @@ export function validateForm(formObject) {
       .max(70, "Too Long!")
       .required("This field is required"),
     number: number().required("This field is required!").positive('This should be a positive integer').integer(),
-    phnumber: string().required("This field is required!").min(10, "10 digit should be there").max(13, "Invalid Number"),
+    phnumber: string().required("This field is required!").min(9, "10 digit should be there").max(13, "Invalid Number"),
     email: string().email("Invalid email").required("Email is required!"),
     text: string()
       .min(2, "Too Short!")

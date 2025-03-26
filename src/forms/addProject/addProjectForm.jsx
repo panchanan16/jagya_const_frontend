@@ -1,19 +1,33 @@
 import SearchInput from "@/components/searchInput/searchInput";
-// import { useLayoutContext } from '@/context/layoutContext';
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, Form } from "formik";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { initialValues, validate } from "./fields";
-import { validateForm } from "@/utils/validation/formValidation";
+import useFormSubmit from "@/hooks/useFormSubmit";
+import { Link } from "react-router-dom";
 
-function ProjectFormWithField({resetFn}) {
+function ProjectFormWithField({ resetFn }) {
   const [profileAcc, setprofileAcc] = useState(false);
+  const setFieldItem = [
+    "client_name",
+    "client_email",
+    "client_contact",
+    "client_alt_contact",
+    "client_address",
+  ];
+
   return (
     <Form>
       <div className="grid gtc-2 gap-10 add-project-header">
-        <SearchInput Name={"name"} />
+        <SearchInput
+          Name="name"
+          Label="Client"
+          Entity="client"
+          SetOptinalList={setFieldItem}
+          SetFKey={{pro_client_r_id: 'client_id'}}
+          SetDisplayKey={{name: 'client_name', id: 'client_ref_no'}}
+        />
         <div className="field add-field-btn">
           <p className="opacity-0">0</p>
           <button className="btn-primary j-center" type="button">
@@ -40,7 +54,7 @@ function ProjectFormWithField({resetFn}) {
             viewBox="0 0 24 24"
             id="angle-down"
             className="svg-18 arrow"
-            onClick={()=> setprofileAcc(!profileAcc)}
+            onClick={() => setprofileAcc(!profileAcc)}
           >
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
@@ -53,41 +67,61 @@ function ProjectFormWithField({resetFn}) {
           <div className="grid gtc-2 gap-10">
             <div className="field">
               <p className="title">Name</p>
-              <Field type="text" name="name" id="" />
-               <ErrorMessage name="name" className="err" component="span" />
+              <Field type="text" name="client_name" id="" />
+              <ErrorMessage
+                name="client_name"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">Contact Number</p>
-              <Field type="number" name="contact" id="" />
-               <ErrorMessage name="contact" className="err" component="span" />
+              <Field type="number" name="client_contact" id="" />
+              <ErrorMessage
+                name="client_contact"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
                 Alternate Number<span>(*optional)</span>
               </p>
-              <Field type="number" name="altContact" id="" />
-               <ErrorMessage name="altContact" className="err" component="span" />
+              <Field type="number" name="client_alt_contact" id="" />
+              <ErrorMessage
+                name="client_alt_contact"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
                 Email<span>(*optional)</span>
               </p>
-              <Field type="email" name="email" id="" />
-               <ErrorMessage name="email" className="err" component="span" />
+              <Field type="email" name="client_email" id="" />
+              <ErrorMessage
+                name="client_email"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
                 Address<span>(*optional)</span>
               </p>
-              <Field type="text" name="address" id="" />
-              <ErrorMessage name="address" className="err" component="span" />
+              <Field type="text" name="client_address" id="" />
+              <ErrorMessage
+                name="client_address"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
                 Other Details<span>(*optional)</span>
               </p>
               <Field type="text" name="others" id="" />
-               <ErrorMessage name="others" className="err" component="span" />
+              <ErrorMessage name="others" className="err" component="span" />
             </div>
           </div>
         </div>
@@ -106,14 +140,20 @@ function ProjectFormWithField({resetFn}) {
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
         </div>
-        <div className={`accordion-data profile-accordion ${
+        <div
+          className={`accordion-data profile-accordion ${
             profileAcc ? "" : "hide"
-          }`}>
+          }`}
+        >
           <div className="grid gtc-2 gap-10">
             <div className="field">
               <p className="title">Project Name</p>
-              <Field type="text" name="projectName" id="" />
-              <ErrorMessage name="projectName" className="err" component="span" />
+              <Field type="text" name="pro_name" id="" />
+              <ErrorMessage
+                name="pro_name"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
@@ -124,46 +164,67 @@ function ProjectFormWithField({resetFn}) {
             </div>
             <div className="field">
               <p className="title">Total Amount</p>
-              <Field type="text" name="totalAmount" id="" />
-              <ErrorMessage name="totalAmount" className="err" component="span" />
+              <Field type="text" name="pro_totalcost" id="" />
+              <ErrorMessage
+                name="pro_totalcost"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">Advance Amount</p>
-              <Field type="text" name="advanceAmount" id="" />
-              <ErrorMessage name="advanceAmount" className="err" component="span" />
+              <Field type="text" name="pro_advancepayment" id="" />
+              <ErrorMessage
+                name="pro_advancepayment"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">House Type</p>
-              <Field as='select' name="houseType" id="houseType" className="house-type">
-                <option value="">Assam Type</option>
+              <Field
+                as="select"
+                name="pro_housetype"
+                id="houseType"
+                className="house-type"
+              >
+                <option value="ASSAMTYPE">Assam Type</option>
                 <optgroup label="RCC">
                   <option value="G+1">G+1</option>
                   <option value="G+2">G+2</option>
                 </optgroup>
               </Field>
-              <ErrorMessage name="houseType" className="err" component="span" />
+              <ErrorMessage name="pro_housetype" className="err" component="span" />
             </div>
             <div className="field">
               <p className="title">
                 Site Description<span>(*optional)</span>
               </p>
-              <Field type="text" name="siteDescription" id="" />
-              <ErrorMessage name="siteDescription" className="err" component="span" />
+              <Field type="text" name="pro_sitedesc" id="" />
+              <ErrorMessage
+                name="pro_sitedesc"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
                 Project Duration <span>in years</span>
                 <span>(*optional)</span>
               </p>
-              <Field type="text" name="projectDuration" id="" />
-              <ErrorMessage name="projectDuration" className="err" component="span" />
+              <Field type="text" name="pro_duration" id="" />
+              <ErrorMessage
+                name="pro_duration"
+                className="err"
+                component="span"
+              />
             </div>
           </div>
         </div>
       </div>
 
       <hr />
-      <div className="accordion">
+      {/* <div className="accordion">
         <div className="accordion-heading flex align-center j-between">
           <h3>Attached files</h3>
           <svg
@@ -175,9 +236,11 @@ function ProjectFormWithField({resetFn}) {
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
         </div>
-        <div className={`accordion-data profile-accordion ${
+        <div
+          className={`accordion-data profile-accordion ${
             profileAcc ? "" : "hide"
-          }`}>
+          }`}
+        >
           <div className="field">
             <button className="btn-secondary" type="button" onclick="">
               <svg
@@ -198,17 +261,13 @@ function ProjectFormWithField({resetFn}) {
             </figure>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="action-btn flex gap-10">
         <button type="submit" className="btn-success flex-1">
           Add
         </button>
-        <button
-          type="button"
-          className="btn-warning flex-1"
-          onClick={resetFn}
-        >
+        <button type="button" className="btn-warning flex-1" onClick={resetFn}>
           Cancel
         </button>
       </div>
@@ -216,38 +275,31 @@ function ProjectFormWithField({resetFn}) {
   );
 }
 
-function AddProjectForm() { 
-  const navigate = useNavigate();
+function AddProjectForm() {
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+    useFormSubmit(initialValues, validate, "pro_id", "project");
 
-  function addNewProject(values) {
-     console.log(values)
-     alert(JSON.stringify(values))
+  function testSubmit(values) {
+    alert(JSON.stringify(values, null));
   }
-
-  const handleNavigation = () => {
-    navigate("/projects");
-  };
-
-  const projectSchema = validateForm(validate)
 
   return (
     <PopupLayout>
       <div className="add-project-popup blur">
         <div className="form">
           <h2>Add a Project</h2>
-          <button
-            type="button"
-            className="btn-warning close"
-            onClick={handleNavigation}
-          >
-            Close
-          </button>
+          <Link to="/projects">
+            <button type="button" className="btn-warning close">
+              Close
+            </button>
+          </Link>
           <hr />
           <FormLayout
             MainForm={ProjectFormWithField}
-            initialValues={initialValues}
-            validationSchema={projectSchema}
-            formHandler={addNewProject}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={submithandler}
+            isReturn={isReturn}
           />
         </div>
       </div>

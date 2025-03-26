@@ -5,10 +5,10 @@ import toast from 'react-hot-toast'
 
 export const GET_REQUEST = createAsyncThunk(
   'GET-DATA',
-  async (endpoint, { rejectWithValue }) => {
+  async ({endpoint, entity}, { rejectWithValue }) => {
     try {
       const response = await _GET(endpoint)
-      return response
+      return {response, source: entity}
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -18,12 +18,12 @@ export const GET_REQUEST = createAsyncThunk(
 
 export const POST_REQUEST = createAsyncThunk(
   'POST-DATA',
-  async ({ endpoint, body }, { rejectWithValue }) => {
+  async ({ endpoint, body, entity }, { rejectWithValue }) => {
     try {
       toast.loading('Submission in Update...', { id: 'loader' })
       const response = await _POST(endpoint, body)
       if (response.status) {
-        return response
+        return {response, source: entity}
       } 
 
       throw response
@@ -46,7 +46,7 @@ export const DELETE_REQUEST = createAsyncThunk(
         return response
       } 
 
-      throw response
+      throw {response, source: entity}
     } catch (error) {
       return rejectWithValue(error)
     } finally {
