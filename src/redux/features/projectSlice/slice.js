@@ -36,17 +36,12 @@ const projectSlice = createSlice({
             state.loading = true
             state.error = action.payload
         }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-            if (action.payload?.source == 'project') {
-                state.loading = false
-                state.itemList = state.itemList.filter((item) => item.pro_id != action.payload.data.id)
-            }
+            fulfilledStateReducer(state, action, 'project', 'DELETE', 'pro_id')
         }).addCase(DELETE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
         }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
-            state.loading = false
-            state.itemList = state.itemList.filter((item) => item.client_id != action.payload.data?.client?.client_id)
-            state.itemList.push(action.payload.data.client)
+            fulfilledStateReducer(state, action, 'project', 'UPDATE', 'pro_id')
         }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload

@@ -5,6 +5,7 @@ export const initialValues = {
   client_email: "",
   client_address: "",
   others: "",
+  pro_ref_no: "",
   pro_client_r_id: "",
   pro_name: "",
   pro_housetype: "",

@@ -51,6 +51,7 @@ const routePages = [
     element: <ProjectPage />,
     children: [
       { path: "add-project", element: <AddProjectForm /> },
+      { path: "create/:id", element: <AddProjectForm /> },
       {
         path: ":userId",
         element: <SecondSlideProject />,

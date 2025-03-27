@@ -36,17 +36,12 @@ export const vendorSlice = createSlice({
             state.loading = true
             state.error = action.payload
         }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-            if (action.payload?.source == 'vendor') {
-                state.loading = false
-                state.itemList = state.itemList.filter((item) => item.vendor_id != action.payload.data.vendor_id)
-            }     
+            fulfilledStateReducer(state, action, 'vendor', 'DELETE')    
         }).addCase(DELETE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
         }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
-            state.loading = false
-            state.itemList = state.itemList.filter((item) => item.vendor_id != action.payload.data.vendor_id)
-            state.itemList.push(action.payload.data)
+            fulfilledStateReducer(state, action, 'vendor', 'UPDATE', 'pro_id')
         }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload

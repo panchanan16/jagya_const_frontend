@@ -16,11 +16,6 @@ describe('Form Submission test with display msg and loader', () => {
         cy.get('button[type=submit]').contains('Add').click()
         cy.get('span').contains('This field is required')
         cy.get('input[name="client_ref_no"]').type('7832ktd1')
-        // cy.intercept('POST', 'http://localhost:3500/api/v1/entity/client/create', {
-        //     statusCode: 201,
-        //     body: { success: true, msg: "created successfully!" },
-        //     log: false
-        // }).as('createClient')
 
         cy.get('button[type=submit]').contains('Add').click()
         cy.get('div').contains('Submission in Update...')

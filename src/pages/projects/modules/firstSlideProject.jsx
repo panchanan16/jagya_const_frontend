@@ -21,15 +21,13 @@ function FirstSlideProject() {
           <Table
             Theader={[
               "Sl No.",
-              "Ref No.",
               "Name",
-              "Contact",
-              "Alt Contact",
-              "Address",
-              "Email",
-              "Status",
+              "Ref No.",
+              "House type",
+              "Duration",
               "Action",
             ]}
+            Limit={['pro_id', 'pro_ref_no', 'pro_name', 'pro_housetype', 'pro_duration', ]}
             Trow={itemList}
             Actions={{
               viewUrl: "pro_id",

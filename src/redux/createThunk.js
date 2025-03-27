@@ -38,15 +38,15 @@ export const POST_REQUEST = createAsyncThunk(
 
 export const DELETE_REQUEST = createAsyncThunk(
   'DELETE-DATA',
-  async ({ endpoint, body }, { rejectWithValue }) => {
+  async ({ endpoint, body, entity }, { rejectWithValue }) => {
     try {
       toast.loading('Deleting the data...', { id: 'loader' })
       const response = await _DELETE(endpoint, body)
       if (response.status) {
-        return response
+        return {response, source: entity}
       } 
 
-      throw {response, source: entity}
+      throw response
     } catch (error) {
       return rejectWithValue(error)
     } finally {
@@ -59,12 +59,12 @@ export const DELETE_REQUEST = createAsyncThunk(
 
 export const UPDATE_REQUEST = createAsyncThunk(
   'UPDATE-DATA',
-  async ({ endpoint, body }, { rejectWithValue }) => {
+  async ({ endpoint, body, entity }, { rejectWithValue }) => {
     try {
       toast.loading('Updating the data...', { id: 'loader' })
       const response = await _UPDATE(endpoint, body)
       if (response.status) {
-        return response
+        return {response, source: entity}
       } 
 
       throw response

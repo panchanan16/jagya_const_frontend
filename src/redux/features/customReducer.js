@@ -1,10 +1,9 @@
-function fulfilledStateReducer(state, action, src, type) {
+function fulfilledStateReducer(state, action, src, type, key) {
 
     switch (type) {
         case 'POST':
             if (action.payload?.source == src) {
                 state.loading = false
-                console.log(action.payload.response.data)
                 state.itemList.push(action.payload.response.data)
             }
 
@@ -18,9 +17,19 @@ function fulfilledStateReducer(state, action, src, type) {
 
             break;
         case 'DELETE':
+            if (action.payload?.source == src) {
+                state.loading = false
+                state.itemList = state.itemList.filter((item) => item[key] != action.payload.response.data?.id)
+            }
 
             break;
         case 'UPDATE':
+            if (action.payload?.source == src) {
+                console.log(action.payload)
+                state.loading = false
+                state.itemList = state.itemList.filter((item) => item[key] != action.payload.response?.data[key])
+                state.itemList.push(action.payload.response.data)
+            }
 
             break;
 

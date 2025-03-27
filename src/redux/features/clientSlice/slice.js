@@ -38,17 +38,12 @@ export const clientSlice = createSlice({
       state.loading = true
       state.error = action.payload
     }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-      if (action.payload?.source == 'client') {
-        state.loading = false
-        state.itemList = state.itemList.filter((item) => item.client_id != action.payload.data.deletedId)
-      }
+       fulfilledStateReducer(state, action, 'client', 'DELETE')
     }).addCase(DELETE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
     }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
-      state.loading = false
-      state.itemList = state.itemList.filter((item) => item.client_id != action.payload.data?.client?.client_id)
-      state.itemList.push(action.payload.data.client)
+      fulfilledStateReducer(state, action, 'client', 'UPDATE', 'pro_id')
     }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
