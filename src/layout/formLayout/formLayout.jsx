@@ -12,7 +12,7 @@ function FormLayout({
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
-        onSubmit={async (values, actions) => {
+        onSubmit={(values, actions) => {
           formHandler(values).then(() => {
             actions.resetForm();
             actions.setSubmitting(false);

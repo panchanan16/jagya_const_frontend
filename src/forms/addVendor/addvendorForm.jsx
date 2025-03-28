@@ -1,10 +1,9 @@
 import PopupLayout from "@/layout/common/popupLayout"
 import FormLayout from "@/layout/formLayout/formLayout";
-import { validateForm } from "@/utils/validation/formValidation";
 import { ErrorMessage, Field, Form } from "formik";
-import { useDispatch } from "react-redux";
 import { initialValues, validate } from "./fields";
 import { Link } from "react-router-dom";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
 
 
@@ -14,21 +13,21 @@ function VendorFormWithField({resetFn}) {
       <div className="grid gtc-2 gap-10">
         <div className="field">
           <p className="title">Name</p>
-          <Field type="text" name="clientName" id="" />
-          <ErrorMessage name="clientName" className="err" component="span" />
+          <Field type="text" name="vendor_name" id="" />
+          <ErrorMessage name="vendor_name" className="err" component="span" />
         </div>
         <div className="field">
           <p className="title">Contact Number</p>
-          <Field type="number" name="clientNumber" id="" />
-          <ErrorMessage name="clientNumber" className="err" component="span" />
+          <Field type="number" name="vendor_contact" id="" />
+          <ErrorMessage name="vendor_contact" className="err" component="span" />
         </div>
         <div className="field">
           <p className="title">
             Alternate Number<span>(*optional)</span>
           </p>
-          <Field type="number" name="clientAltNumber" id="" />
+          <Field type="number" name="vendor_alt_contact" id="" />
           <ErrorMessage
-            name="clientAltNumber"
+            name="vendor_alt_contact"
             className="err"
             component="span"
           />
@@ -37,22 +36,15 @@ function VendorFormWithField({resetFn}) {
           <p className="title">
             Email<span>(*optional)</span>
           </p>
-          <Field type="email" name="clientEmail" id="" />
-          <ErrorMessage name="clientEmail" className="err" component="span" />
+          <Field type="email" name="vendor_email" id="" />
+          <ErrorMessage name="vendor_email" className="err" component="span" />
         </div>
         <div className="field">
           <p className="title">
-            Address<span>(*optional)</span>
+            Address
           </p>
-          <Field type="text" name="clientAddress" id="" />
-          <ErrorMessage name="clientAddress" className="err" component="span" />
-        </div>
-        <div className="field">
-          <p className="title">
-            Other Details<span>(optional)</span>
-          </p>
-          <Field type="text" name="clientDetails" id="" />
-          <ErrorMessage name="clientDetails" className="err" component="span" />
+          <Field type="text" name="vendor_address" id="" />
+          <ErrorMessage name="vendor_address" className="err" component="span" />
         </div>
       </div>
       <div className="action-btn flex gap-10">
@@ -68,13 +60,18 @@ function VendorFormWithField({resetFn}) {
 }
 
 function AddvendorForm() {
-  const dispatch = useDispatch();
-  const ClientSchema = validateForm(validate);
+  const [
+    submithandler,
+    initialSchema,
+    validateSchema,
+    isReturn,
+  ] = useFormSubmit(
+    initialValues,
+    validate,
+    "vendor_id",
+    "vendor"
+  );
 
-  function addNewVendor(clientData) {
-    // dispatch(addClient(clientData))
-    alert(JSON.stringify(clientData));
-  }
 
   return (
     <PopupLayout>
@@ -89,9 +86,10 @@ function AddvendorForm() {
           <hr />
           <FormLayout
             MainForm={VendorFormWithField}
-            initialValues={initialValues}
-            validationSchema={ClientSchema}
-            formHandler={addNewVendor}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={submithandler}
+            isReturn={isReturn}
           />
         </div>
       </div>

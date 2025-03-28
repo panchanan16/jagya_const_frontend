@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
+import fulfilledStateReducer from "../customReducer";
 
 const initialState = {
-  clientList: [],
+  itemList: [],
   clientData: [],
   loading: null,
   error: null
@@ -10,11 +11,11 @@ const initialState = {
 
 
 export const clientSlice = createSlice({
-  name: 'clientList',
+  name: 'clientSlice',
   initialState: initialState,
   reducers: {
     resetData: (state, action) => {
-      state.clientList = action.payload
+      state.itemList = action.payload
     }
   },
 
@@ -22,17 +23,14 @@ export const clientSlice = createSlice({
     builder.addCase(GET_REQUEST.pending, (state) => {
       state.loading = true
     }).addCase(GET_REQUEST.fulfilled, (state, action) => {
-      state.loading = false;
-      state.clientList = action.payload.data;
-      state.error = null
+      fulfilledStateReducer(state, action, 'client', 'GET')
     }).addCase(GET_REQUEST.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload
     }).addCase(POST_REQUEST.pending, (state) => {
       state.loading = true
     }).addCase(POST_REQUEST.fulfilled, (state, action) => {
-      state.loading = false
-      state.clientList.push(action.payload.data)
+      fulfilledStateReducer(state, action, 'client', 'POST')
     }).addCase(POST_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
@@ -40,17 +38,12 @@ export const clientSlice = createSlice({
       state.loading = true
       state.error = action.payload
     }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-      console.log(action.payload.data)
-      state.loading = false
-      state.clientList = state.clientList.filter((item) => item.client_id != action.payload.data.deletedId)
+       fulfilledStateReducer(state, action, 'client', 'DELETE')
     }).addCase(DELETE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
     }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
-      console.log(action.payload.data)
-      state.loading = false
-      state.clientList = state.clientList.filter((item) => item.client_id != action.payload.data.client.client_id)
-      state.clientList.push(action.payload.data.client)
+      fulfilledStateReducer(state, action, 'client', 'UPDATE', 'pro_id')
     }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload

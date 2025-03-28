@@ -1,16 +1,42 @@
+import crudActions from "@/redux/features/crudActions";
 import { ErrorMessage, Field, useFormikContext } from "formik";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-function SearchInput({Name, Label}) {
+
+// Name: Name of the searchinput
+// Label: Display Label of the input field
+// Entity: Which entity list should be show in the list 
+// SetOptionalList: Onclick the entity from list  these field to be show in the form 
+// SetFkey: to Set foreignkey which hidded in the form
+// SetDisplayKey: Which field's data like name, uniqueid.. to be show in list item.
+
+function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayKey }) {
   const [showList, setShowList] = useState(false);
-  const {setFieldValue} = useFormikContext()
+  const dispatch = useDispatch();
+  const { setFieldValue } = useFormikContext();
+  const { getItemList } = crudActions;
+  const { itemList } = useSelector((state) => state[Entity]);
+
+  useEffect(() => {
+    !itemList?.length && getItemList(Entity, dispatch);
+  }, []);
 
 
-  function setInput(name, value) {
-    setFieldValue(name, value)
+  function setInput(ItemEntity, name, value) {
+    setFieldValue(name, value);
+    // set input value ---
+    SetOptinalList?.length && SetOptinalList.forEach((fieldItem) => {
+      setFieldValue(fieldItem, ItemEntity[fieldItem]);
+    });
+
+    if (SetFKey) {
+      for (const key in SetFKey) {
+        setFieldValue(key, ItemEntity[SetFKey[key]])
+      }
+    } 
     setShowList(!showList);
   }
-
 
   return (
     <div className="field selectBox">
@@ -18,45 +44,22 @@ function SearchInput({Name, Label}) {
       <Field
         name={Name}
         type="text"
+        id="searchInp"
         placeholder="Search here...."
         onClick={() => setShowList(!showList)}
       />
-      <ErrorMessage
-        name={Name}
-        className="err"
-        component="span"
-      />
+      <ErrorMessage name={Name} className="err" component="span" />
       <ul className={`${showList ? "" : "hide"} list-options`}>
-        <li
-          data-value="Manash Kakoti"
-          onClick={() => setInput(Name, "Rontu kakati")}
-        >
-          Manash Kakoti
-        </li>
-        <li
-          data-value="Kankan Jyoti Nath"
-          onClick={() => setInput(Name, "Kankan Jyoti Nath")}
-        >
-          Kankan Jyoti Nath
-        </li>
-        <li
-          data-value="Panchanan Deka"
-          onClick={() => setInput(Name, "Panchanan Deka")}
-        >
-          Panchanan Deka
-        </li>
-        <li
-          data-value="Mintu Sharma"
-          onClick={() => setInput(Name, "Mintu Sharma")}
-        >
-          Mintu Sharma
-        </li>
-        <li
-          data-value="Dipankor Doley"
-          onClick={() => setInput(Name, "Dipankor Doley")}
-        >
-          Dipankor Doley
-        </li>
+        {itemList &&
+          itemList?.map((item, ind) => (
+            <li
+              key={ind}
+              id="fieldDis"
+              onClick={() => setInput(item, Name, item[SetDisplayKey?.id])}
+            >
+                {item[SetDisplayKey?.id]} -| {item[SetDisplayKey?.name]}
+            </li>
+          ))}
       </ul>
     </div>
   );

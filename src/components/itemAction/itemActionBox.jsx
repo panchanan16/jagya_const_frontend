@@ -1,3 +1,4 @@
+import crudActions from "@/redux/features/crudActions";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -5,12 +6,12 @@ import { Link } from "react-router-dom";
 function ItemActionBox({ viewFn, editFn, deleteFn }) {
   const [showModel, setShowModel] = useState(false);
   const itemMenuRef = useRef();
-  // console.log("I am ItemAction rendering again...");
   const dispatch = useDispatch();
+  const { deleteItem } = crudActions;
 
-  function deleteItem(id) {
-    deleteFn(dispatch, {id})
-    setShowModel(false)
+  function deleteTheItem(id) {
+    deleteItem(deleteFn, dispatch, { id });
+    setShowModel(false);
   }
 
   function toggleModel(event) {
@@ -83,7 +84,10 @@ function ItemActionBox({ viewFn, editFn, deleteFn }) {
             </p>
           </Link>
         )}
-        <p className="title flex align-center gap-5" onClick={()=> deleteItem(viewFn)}>
+        <p
+          className="title flex align-center gap-5"
+          onClick={() => deleteTheItem(viewFn)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

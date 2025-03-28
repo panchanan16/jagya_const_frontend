@@ -1,0 +1,41 @@
+function fulfilledStateReducer(state, action, src, type, key) {
+
+    switch (type) {
+        case 'POST':
+            if (action.payload?.source == src) {
+                state.loading = false
+                state.itemList.push(action.payload.response.data)
+            }
+
+            break;
+        case 'GET':
+            if (action.payload?.source == src) {
+                state.loading = false;
+                state.itemList = action.payload.response.data;
+                state.error = null
+            }
+
+            break;
+        case 'DELETE':
+            if (action.payload?.source == src) {
+                state.loading = false
+                state.itemList = state.itemList.filter((item) => item[key] != action.payload.response.data?.id)
+            }
+
+            break;
+        case 'UPDATE':
+            if (action.payload?.source == src) {
+                console.log(action.payload)
+                state.loading = false
+                state.itemList = state.itemList.filter((item) => item[key] != action.payload.response?.data[key])
+                state.itemList.push(action.payload.response.data)
+            }
+
+            break;
+
+        default:
+            break;
+    }
+}
+
+export default fulfilledStateReducer;

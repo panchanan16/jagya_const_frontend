@@ -2,12 +2,11 @@ import PopupLayout from "@/layout/common/popupLayout";
 import { Form, Field, ErrorMessage } from "formik";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { initialValues, validate } from "./fields";
-import clientActions from "@/redux/features/clientSlice/action";
 import useFormSubmit from "@/hooks/useFormSubmit";
 
 function ClientFormWithField({ resetFn, isSubmitting }) {
+
   return (
     <Form>
       <div className="grid gtc-2 gap-10">
@@ -59,7 +58,11 @@ function ClientFormWithField({ resetFn, isSubmitting }) {
             Other Details<span>(optional)</span>
           </p>
           <Field type="text" name="client_details" id="" />
-          <ErrorMessage name="client_details" className="err" component="span" />
+          <ErrorMessage
+            name="client_details"
+            className="err"
+            component="span"
+          />
         </div>
       </div>
       <div className="action-btn flex gap-10">
@@ -79,23 +82,8 @@ function ClientFormWithField({ resetFn, isSubmitting }) {
 }
 
 function AddClientForm() {
-  const { clientList } = useSelector((state) => state.clients);
-  const { createClient, updateClient } = clientActions;
-  const [
-    addNewItem,
-    updateTheItem,
-    initialSchema,
-    validateSchema,
-    urlParam,
-    isReturn,
-  ] = useFormSubmit(
-    clientList,
-    initialValues,
-    validate,
-    "client_id",
-    createClient,
-    updateClient
-  );
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+    useFormSubmit(initialValues, validate, "client_id", "client");
 
   return (
     <PopupLayout>
@@ -112,7 +100,7 @@ function AddClientForm() {
             MainForm={ClientFormWithField}
             initialValues={initialSchema}
             validationSchema={validateSchema}
-            formHandler={urlParam ? updateTheItem : addNewItem}
+            formHandler={submithandler}
             isReturn={isReturn}
           />
         </div>

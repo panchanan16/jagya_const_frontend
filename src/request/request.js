@@ -28,7 +28,7 @@ export async function _DELETE(endpoint, body) {
     try {
         const response = await apiClient.delete(`${endpoint}`, {data: body});
         successHandler(response, { notifyOnSuccess: true })
-        return response;
+        return response.data;
     } catch (error) {
         return errorHandler(error)
     }
@@ -40,7 +40,7 @@ export async function _UPDATE(endpoint, body) {
     try {
         const response = await apiClient.put(`${endpoint}`, body);
         successHandler(response, { notifyOnSuccess: true })
-        return response;
+        return response.data;
     } catch (error) {
         return errorHandler(error)
     }
