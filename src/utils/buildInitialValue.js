@@ -3,7 +3,8 @@ export function buildInitialValues(List, id, obj, dkey) {
     const initialObject = {}
     initialObject[dkey] = id ? id : ""
     for (const key in obj) {
-      initialObject[key] = client && client.length > 0 ? client[0][key] : ""
+      initialObject[key] = client && client.length > 0 ? client[0][key] 
+      : typeof obj[key] == 'object' ? obj[key] : ""
     }  
     return initialObject;
 }

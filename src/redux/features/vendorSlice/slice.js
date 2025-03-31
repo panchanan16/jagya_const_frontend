@@ -1,6 +1,6 @@
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
 import { createSlice } from "@reduxjs/toolkit";
-import fulfilledStateReducer from "../customReducer";
+import fulfilledStateReducer from "../../customReducer";
 
 const initialState = {
     itemList: [],
@@ -36,7 +36,7 @@ export const vendorSlice = createSlice({
             state.loading = true
             state.error = action.payload
         }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'vendor', 'DELETE')    
+            fulfilledStateReducer(state, action, 'vendor', 'DELETE', 'vendor_id')    
         }).addCase(DELETE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload

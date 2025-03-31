@@ -130,6 +130,18 @@ function SecondSlide() {
         </div>
         <hr />
 
+        <div class="client-project-list flex flex-column">
+          <h2>Projects Lists</h2>
+          <div className="flex gap-10">
+            <div class="projectName flex align-center active">
+              <p class="text">JGC002 || Residential G+2 Project</p>
+            </div>
+            <div class="projectName flex align-center">
+              <p class="text">JGC003 || Residential G+2 Project</p> 
+            </div>
+          </div>
+        </div>
+
         <TabLayout
           tabHeading={{
             main: "Collections",

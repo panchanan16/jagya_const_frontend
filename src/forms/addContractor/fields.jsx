@@ -1,18 +1,15 @@
 export const initialValues = {
-   contractorName: "",
-   contractorContact: "",
-   contractorAltContact:  "",
-   contractorEmail: "",
-   contractorAddress: "",
-   contractorOthers: ""
-}
+  con_name: "",
+  con_contact: "",
+  con_alt_contact: "",
+  con_address: "",
+  con_email: "",
+};
 
 export const validate = {
-    contractorName: "name",
-    contractorContact: "phnumber",
-    contractorAltContact: "phnumber",
-    contractorEmail: "email",
-    contractorAddress: "text",
-    contractorOthers: ""
-}
-
+  con_name: "name",
+  con_contact: "phnumber",
+  con_alt_contact: "phnumber",
+  con_address: "text",
+  con_email: "email",
+};

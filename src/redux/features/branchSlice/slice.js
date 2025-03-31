@@ -10,8 +10,8 @@ const initialState = {
 }
 
 
-export const clientSlice = createSlice({
-  name: 'clientSlice',
+export const branchSlice = createSlice({
+  name: 'branchSlice',
   initialState: initialState,
   reducers: {
     resetData: (state, action) => {
@@ -23,14 +23,14 @@ export const clientSlice = createSlice({
     builder.addCase(GET_REQUEST.pending, (state) => {
       state.loading = true
     }).addCase(GET_REQUEST.fulfilled, (state, action) => {
-      fulfilledStateReducer(state, action, 'client', 'GET')
+      fulfilledStateReducer(state, action, 'branch_data', 'GET')
     }).addCase(GET_REQUEST.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload
     }).addCase(POST_REQUEST.pending, (state) => {
       state.loading = true
     }).addCase(POST_REQUEST.fulfilled, (state, action) => {
-      fulfilledStateReducer(state, action, 'client', 'POST')
+      fulfilledStateReducer(state, action, 'branch_data', 'POST')
     }).addCase(POST_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
@@ -38,12 +38,12 @@ export const clientSlice = createSlice({
       state.loading = true
       state.error = action.payload
     }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-       fulfilledStateReducer(state, action, 'client', 'DELETE')
+       fulfilledStateReducer(state, action, 'branch_data', 'DELETE', 'b_id')
     }).addCase(DELETE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
     }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
-      fulfilledStateReducer(state, action, 'client', 'UPDATE', 'pro_id')
+      fulfilledStateReducer(state, action, 'branch_data', 'UPDATE', 'b_id')
     }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
@@ -51,6 +51,5 @@ export const clientSlice = createSlice({
   }
 })
 
-export const { addClient, resetData } = clientSlice.actions
 
-export default clientSlice.reducer
+export default branchSlice.reducer

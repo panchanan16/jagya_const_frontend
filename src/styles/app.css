@@ -1672,6 +1672,20 @@ figure span{
 }
 
 /* CLIENTS & VENDORS */
+.projectName{
+    font-weight: 500;
+    font-size: var(--f-size-15);
+    padding: var(--px-8) var(--px-10);
+    border: 1px solid var(--color-200);
+    font-size: var(--f-size-14);
+    border-radius: var(--radius-5);
+    cursor: pointer;
+}
+.projectName.active{
+    background: var(--color-950);
+    color: var(--color-20);
+}
+
 .tabs{
     border: 1px solid var(--color-200);
     padding: var(--px-10);

@@ -5,12 +5,11 @@ import fulfilledStateReducer from "../../customReducer";
 const initialState = {
     itemList: [],
     loading: false,
-    error: null,
-    projectData: []
+    error: null 
 }
 
-const projectSlice = createSlice({
-    name: 'projectSlice',
+const expenseSlice = createSlice({
+    name: 'expenseSlice',
     initialState: initialState,
     reducers: {
         resetData: (state, action) => {
@@ -21,14 +20,14 @@ const projectSlice = createSlice({
         builder.addCase(GET_REQUEST.pending, (state) => {
             state.loading = true
         }).addCase(GET_REQUEST.fulfilled, (state, action) => {        
-            fulfilledStateReducer(state, action, 'project', 'GET')
+            fulfilledStateReducer(state, action, 'expense', 'GET')
         }).addCase(GET_REQUEST.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload
         }).addCase(POST_REQUEST.pending, (state) => {
             state.loading = true
         }).addCase(POST_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'project', 'POST')
+            fulfilledStateReducer(state, action, 'expense', 'POST')
         }).addCase(POST_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
@@ -36,12 +35,12 @@ const projectSlice = createSlice({
             state.loading = true
             state.error = action.payload
         }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'project', 'DELETE', 'pro_id')
+            fulfilledStateReducer(state, action, 'expense', 'DELETE', 'exp_id')
         }).addCase(DELETE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
         }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'project', 'UPDATE', 'pro_id')
+            fulfilledStateReducer(state, action, 'expense', 'UPDATE', 'exp_id')
         }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
@@ -49,5 +48,4 @@ const projectSlice = createSlice({
     }
 })
 
-export default projectSlice.reducer;
-
+export default expenseSlice.reducer;

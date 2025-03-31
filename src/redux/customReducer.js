@@ -19,7 +19,7 @@ function fulfilledStateReducer(state, action, src, type, key) {
         case 'DELETE':
             if (action.payload?.source == src) {
                 state.loading = false
-                state.itemList = state.itemList.filter((item) => item[key] != action.payload.response.data?.id)
+                state.itemList = state.itemList.filter((item) => item[key] != action.payload.response.data[key])
             }
 
             break;
