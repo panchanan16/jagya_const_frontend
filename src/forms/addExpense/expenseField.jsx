@@ -2,12 +2,12 @@ import React from "react";
 import { ErrorMessage, Field } from "formik";
 import SearchInput from "@/components/searchInput/searchInput";
 
-export default function ExpenseField({FieldNameList, RemoveFn, Ind, Type}) {
+export default function ExpenseField({FieldNameList, RemoveFn, Ind, Type, typeDisplay}) {
   return (
     <div className="newItem">
       <div className="itemGrid">       
-        <SearchInput Name={FieldNameList.client} Label={'Client'} />
-        <SearchInput Name={FieldNameList[Type]} Label={Type} />
+        <SearchInput Name={FieldNameList.client} Label={'Client'} Entity='client' SetDisplayKey={{id: 'client_id', name: 'client_name'}} />
+        <SearchInput Name={FieldNameList[Type]} Label={Type} Entity={Type} SetDisplayKey={typeDisplay} />
         <div className="field">
           <p className="title">Amount</p>
           <Field type="number" name={FieldNameList.amount}  />

@@ -1,4 +1,4 @@
-import crudActions from "@/redux/features/crudActions";
+import crudActions from "@/redux/crudActions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 

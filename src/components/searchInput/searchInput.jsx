@@ -1,4 +1,4 @@
-import crudActions from "@/redux/features/crudActions";
+import crudActions from "@/redux/crudActions";
 import { ErrorMessage, Field, useFormikContext } from "formik";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from "react-redux";
 // Name: Name of the searchinput
 // Label: Display Label of the input field
 // Entity: Which entity list should be show in the list 
-// SetOptionalList: Onclick the entity from list  these field to be show in the form 
+// SetOptionalList: Onclick the entity from list these field to be show in the form // generally for update form
 // SetFkey: to Set foreignkey which hidded in the form
-// SetDisplayKey: Which field's data like name, uniqueid.. to be show in list item.
+// SetDisplayKey: Which field's data like name, uniqueid.. to be show in list item. type = {id: string, name: string}
 
 function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayKey }) {
   const [showList, setShowList] = useState(false);

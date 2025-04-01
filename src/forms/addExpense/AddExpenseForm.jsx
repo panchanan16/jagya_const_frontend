@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import ExpenseField from "./expenseField";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, FieldArray, Form } from "formik";
-import { validateForm } from "@/utils/validation/formValidation";
 import { initialValues, validate } from "./fields";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
 function ExpenseFormWithField({ values, resetFn }) {
   return (
@@ -50,6 +50,7 @@ function ExpenseFormWithField({ values, resetFn }) {
                 RemoveFn={remove}
                 Ind={index}
                 Type={"vendor"}
+                typeDisplay = {{id: 'vendor_id', name: 'vendor_name'}}
               />
             ))}
           </div>
@@ -71,6 +72,7 @@ function ExpenseFormWithField({ values, resetFn }) {
                 RemoveFn={remove}
                 Ind={index}
                 Type={"contractor"}
+                typeDisplay = {{id: 'con_id', name: 'con_name'}}
               />
             ))}
           </div>
@@ -123,12 +125,13 @@ function ExpenseFormWithField({ values, resetFn }) {
 }
 
 function AddExpenseForm() {
-  const addExpense = (values) => {
-    console.log(values);
-    alert(JSON.stringify(values, null, 2));
-  };
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+  useFormSubmit(initialValues, validate, "exp_id", {name: "expense", route: 'create'});
 
-  const ClientSchema = validateForm(validate);
+
+  // const addExpense = (values) => {
+  //   alert(JSON.stringify(values, null, 2));
+  // };
 
   return (
     <PopupLayout>
@@ -144,10 +147,10 @@ function AddExpenseForm() {
 
           <FormLayout
             MainForm={ExpenseFormWithField}
-            initialValues={initialValues}
-            validationSchema={ClientSchema}
-            formHandler={addExpense}
-            isReturn={true}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={submithandler}
+            isReturn={isReturn}
           />
         </div>
       </div>

@@ -4,28 +4,37 @@ import { validateForm } from "@/utils/validation/formValidation";
 import { ErrorMessage, Field, Form } from "formik";
 import { Link } from "react-router-dom";
 import { initialValues, validate } from "./fields";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
-function ContractorFormWithField({resetFn}) {
+function ContractorFormWithField({ resetFn }) {
   return (
     <Form>
       <div className="grid gtc-2 gap-10">
         <div className="field">
           <p className="title">Name</p>
-          <Field type="text" name="contractorName" id="" />
-          <ErrorMessage name="contractorName" className="err" component="span" />
+          <Field type="text" name="con_name" id="" />
+          <ErrorMessage
+            name="con_name"
+            className="err"
+            component="span"
+          />
         </div>
         <div className="field">
           <p className="title">Contact Number</p>
-          <Field type="number" name="contractorContact" id="" />
-          <ErrorMessage name="contractorContact" className="err" component="span" />
+          <Field type="number" name="con_contact" id="" />
+          <ErrorMessage
+            name="con_contact"
+            className="err"
+            component="span"
+          />
         </div>
         <div className="field">
           <p className="title">
             Alternate Number<span>(*optional)</span>
           </p>
-          <Field type="number" name="contractorAltContact" id="" />
+          <Field type="number" name="con_alt_contact" id="" />
           <ErrorMessage
-            name="contractorAltContact"
+            name="con_alt_contact"
             className="err"
             component="span"
           />
@@ -34,22 +43,34 @@ function ContractorFormWithField({resetFn}) {
           <p className="title">
             Email<span>(*optional)</span>
           </p>
-          <Field type="email" name="contractorEmail" id="" />
-          <ErrorMessage name="contractorEmail" className="err" component="span" />
+          <Field type="email" name="con_email" id="" />
+          <ErrorMessage
+            name="con_email"
+            className="err"
+            component="span"
+          />
         </div>
         <div className="field">
           <p className="title">
             Address<span>(*optional)</span>
           </p>
-          <Field type="text" name="contractorAddress" id="" />
-          <ErrorMessage name="contractorAddress" className="err" component="span" />
+          <Field type="text" name="con_address" id="" />
+          <ErrorMessage
+            name="con_address"
+            className="err"
+            component="span"
+          />
         </div>
         <div className="field">
           <p className="title">
             Other Details<span>(optional)</span>
           </p>
           <Field type="text" name="contractorOthers" id="" />
-          <ErrorMessage name="contractorOthers" className="err" component="span" />
+          <ErrorMessage
+            name="contractorOthers"
+            className="err"
+            component="span"
+          />
         </div>
       </div>
       <div className="action-btn flex gap-10">
@@ -69,12 +90,8 @@ function ContractorFormWithField({resetFn}) {
 }
 
 function AddContractorForm() {
-  const contractorSchema = validateForm(validate)
-
-  function addContractor(values) {
-    console.log(values)
-    alert(JSON.stringify(values))
-  }
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+    useFormSubmit(initialValues, validate, "con_id", "contractor");
 
   return (
     <PopupLayout>
@@ -89,9 +106,10 @@ function AddContractorForm() {
           <hr />
           <FormLayout
             MainForm={ContractorFormWithField}
-            initialValues={initialValues}
-            validationSchema={contractorSchema}
-            formHandler={addContractor}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={submithandler}
+            isReturn={isReturn}
           />
         </div>
       </div>

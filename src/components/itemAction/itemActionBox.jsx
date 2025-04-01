@@ -1,4 +1,4 @@
-import crudActions from "@/redux/features/crudActions";
+import crudActions from "@/redux/crudActions";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";

@@ -7,8 +7,6 @@ import AddRequestForm from "@/forms/addRequest/addRequestForm";
 import AddvendorForm from "@/forms/addVendor/addvendorForm";
 import ExpensePage from "@/pages/accounting/expense";
 import FinancePage from "@/pages/accounting/finance";
-import SecondSlideExpense from "@/pages/accounting/modules/expenseModule/secondSlideExpense";
-import SecondSlideFinance from "@/pages/accounting/modules/financeModule/secondSlideFinance";
 import ClientPage from "@/pages/clientsVendor/client";
 import SecondSlide from "@/pages/clientsVendor/client/modules/secondSlide";
 import SecondSlideVendor from "@/pages/clientsVendor/vendor/modules/secondSlidevendor";
@@ -40,6 +38,8 @@ import AddBranchForm from "@/forms/addBranch/addBranch";
 import BranchDashboard from "@/pages/branch/branchDashboard";
 import AddBranchProjectForm from "@/forms/addBranchProject/addBranchProjectForm";
 import SecondSlideBranchDashboard from "@/pages/branch/branchDashboard/modules/secondSlideBranchDashboard";
+import SecondSlideFinance from "@/pages/accounting/finance/modules/secondSlideFinance";
+import SecondSlideExpense from "@/pages/accounting/expense/modules/secondSlideExpense";
 
 const routePages = [
   {
@@ -94,7 +94,7 @@ const routePages = [
     path: "/expense",
     element: <ExpensePage />,
     children: [
-      { path: "expense-details/:id", element: <SecondSlideExpense /> },
+      { path: ":id", element: <SecondSlideExpense /> },
       { path: "add-expense", element: <AddExpenseForm /> },
     ],
   },
@@ -144,7 +144,8 @@ const routePages = [
     element: <ContractorPage />,
     children: [
       { path: ":id", element: <SecondSlideContractor /> },
-      { path: "add-contractor", element: <AddContractorForm /> }
+      { path: "create", element: <AddContractorForm /> },
+      { path: "create/:id", element: <AddContractorForm /> }
     ],
   },
 
