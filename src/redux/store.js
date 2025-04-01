@@ -5,6 +5,7 @@ import projectSlice from './features/projectSlice/slice'
 import contractorSlice from './features/contractorSlice/slice'
 import expenseSlice from  './features/expenseSlice/slice'
 import branchSlice  from './features/branchSlice/slice'
+import collectionSlice from './features/collectionSlice/slice'
 
 
 export const store = configureStore({
@@ -14,7 +15,8 @@ export const store = configureStore({
     project: projectSlice,
     contractor: contractorSlice,
     expense: expenseSlice,
-    branch_data: branchSlice
+    branch_data: branchSlice,
+    collection: collectionSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

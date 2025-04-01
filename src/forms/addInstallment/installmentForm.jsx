@@ -4,34 +4,38 @@ import FormLayout from "@/layout/formLayout/formLayout";
 import { Field, Form } from "formik";
 import { Link } from "react-router-dom";
 import { initialValues, validate } from "./fields";
-import { validateForm } from "@/utils/validation/formValidation";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
 function InstallmentFormWithField({ resetFn }) {
   return (
     <Form>
       <div className="grid gtc-3 gap-10">
-        <SearchInput Name="project" Label={'client'} />
+        <SearchInput Name="col_project_id" Label={'client'} Entity='client' SetDisplayKey={{id: 'client_id', name: 'client_name'}} />
         <div className="field">
           <p className="title">Date</p>
-          <Field type="date" name="dateofInstallment" id="" />
+          <Field type="date" name="col_date" id="" />
         </div>
         <div className="field">
           <p className="title">Amount</p>
-          <Field type="number" name="amount" id="" />
+          <Field type="number" name="col_amount" id="" />
+        </div>
+        <div className="field">
+          <p className="title">Remarks</p>
+          <Field type="text" name="col_remark" id="" />
         </div>
         <div className="field">
           <p className="title">Mode</p>
           <div className="flex f-wrap gap-10">
             <div className="flex gap-2">
-              <Field type="radio" name="modeofpay" value="cash" id="" />
+              <Field type="radio" name="col_mode" value="cash" id="" />
               <p className="text">Cash</p>
             </div>
             <div className="flex gap-2">
-              <Field type="radio" name="modeofpay" value="upi" id="" />
+              <Field type="radio" name="col_mode" value="upi" id="" />
               <p className="text">UPI</p>
             </div>
             <div className="flex gap-2">
-              <Field type="radio" name="modeofpay" value="cheque" id="" />
+              <Field type="radio" name="col_mode" value="cheque" id="" />
               <p className="text">Cheque</p>
             </div>
           </div>
@@ -51,8 +55,8 @@ function InstallmentFormWithField({ resetFn }) {
 }
 
 function InstallmentForm() {
-
-  const installmentSchema = validateForm(validate)
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+  useFormSubmit(initialValues, validate, "col_id", 'collection');
 
   function addInstallment(values) {
     console.log(values)
@@ -73,9 +77,10 @@ function InstallmentForm() {
 
           <FormLayout
             MainForm={InstallmentFormWithField}
-            initialValues={initialValues}
-            validationSchema={installmentSchema}
-            formHandler={addInstallment}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={submithandler}
+            isReturn={isReturn}
           />
         </div>
       </div>

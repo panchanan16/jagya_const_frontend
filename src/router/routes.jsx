@@ -40,6 +40,7 @@ import AddBranchProjectForm from "@/forms/addBranchProject/addBranchProjectForm"
 import SecondSlideBranchDashboard from "@/pages/branch/branchDashboard/modules/secondSlideBranchDashboard";
 import SecondSlideFinance from "@/pages/accounting/finance/modules/secondSlideFinance";
 import SecondSlideExpense from "@/pages/accounting/expense/modules/secondSlideExpense";
+import SettingsPage from "@/pages/settings";
 
 const routePages = [
   {
@@ -170,6 +171,14 @@ const routePages = [
   {
     path: "/branch-list",
     element: <BranchListPage />,
+    children: [
+      { path: ":id", element: <SecondSlideBranchList /> },
+      { path: "add-branch", element: <AddBranchForm /> }
+    ],
+  },
+  {
+    path: "/settings",
+    element: <SettingsPage />,
     children: [
       { path: ":id", element: <SecondSlideBranchList /> },
       { path: "add-branch", element: <AddBranchForm /> }

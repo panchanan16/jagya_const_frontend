@@ -87,7 +87,7 @@ const asideMenuItems = [
         name: 'Settings',
         submenu: [],
         svgImg: SettingsIcon,
-        redirect: '/'
+        redirect: '/settings'
     },
 
     {
