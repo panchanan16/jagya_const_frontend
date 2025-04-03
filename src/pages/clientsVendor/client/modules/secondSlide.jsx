@@ -1,7 +1,9 @@
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import coreCrudActions from "@/redux/coreCrudAction";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 function SecondSlide() {
   const tableDataOne = [
@@ -54,6 +56,27 @@ function SecondSlide() {
       remarks: "This is for abc purpose",
     },
   ];
+
+  const { getItemList } = coreCrudActions;
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const { itemData } = useSelector((state) => state["client"]);
+  const [isHighlight, seIsHighlight] = useState(
+    itemData.length && itemData[0].pro_ref_no
+  );
+
+  useEffect(() => {
+    getItemList(
+      "client",
+      dispatch,
+      `get_clientProject?client_id=${id}`,
+      "itemData"
+    );
+  }, [id]);
+
+  function changeTabContent(highlightItem) {
+    seIsHighlight(highlightItem);
+  }
 
   return (
     <SecondSlideLayout>
@@ -130,38 +153,58 @@ function SecondSlide() {
         </div>
         <hr />
 
-        <div class="client-project-list flex flex-column">
+        <div className="client-project-list flex flex-column">
           <h2>Projects Lists</h2>
           <div className="flex gap-10">
-            <div class="projectName flex align-center active">
-              <p class="text">JGC002 || Residential G+2 Project</p>
-            </div>
-            <div class="projectName flex align-center">
-              <p class="text">JGC003 || Residential G+2 Project</p> 
-            </div>
+            {itemData.length ? (
+              itemData.map((item, key) => (
+                <div
+                  key={key}
+                  className={`projectName flex align-center ${
+                    isHighlight == item.pro_ref_no ? "active" : ""
+                  }`}
+                  onClick={() => changeTabContent(item.pro_ref_no)}
+                >
+                  <p className="text">
+                    {item.pro_ref_no} || {item.pro_name}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div className="projectName flex flex-wrap align-center">
+                <p className="text">No Project Found</p>
+              </div>
+            )}
           </div>
         </div>
 
         <TabLayout
-          tabHeading={{
-            main: "Collections",
-            list: [
-              "No.",
-              "Date",
-              "Amount",
-              "Mode",
-              "Remarks",
-              "Project",
-              "Action",
-            ],
-            limit: ["id", "date", "amount", "mode", "remarks", "project"],
-          }}
-          tabHeadingII={{
-            main: "Expenses",
-            list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
-          }}
-          tabDataOne={tableDataOne}
-          tabDataTwo={tableDataTwo}
+          TabList={[
+            {
+              main: "Collections",
+              list: [
+                "No.",
+                "Date",
+                "Amount",
+                "Mode",
+                "Remarks",
+                "Project",
+                "Action",
+              ],
+              limit: ["id", "date", "amount", "mode", "remarks", "project"],
+              tabData: tableDataOne,
+            },
+            {
+              main: "Items Used",
+              list: ["No.", "Date", "Item", "Quantity", "Remarks", "Action"],
+              tabData: tableDataTwo,
+            },
+            {
+              main: "Expenses",
+              list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
+              tabData: tableDataTwo,
+            },
+          ]}
         />
       </main>
     </SecondSlideLayout>

@@ -47,6 +47,7 @@ function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayK
         id="searchInp"
         placeholder="Search here...."
         onClick={() => setShowList(!showList)}
+        readOnly="true"
       />
       <ErrorMessage name={Name} className="err" component="span" />
       <ul className={`${showList ? "" : "hide"} list-options`}>

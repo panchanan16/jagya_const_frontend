@@ -41,6 +41,7 @@ import SecondSlideBranchDashboard from "@/pages/branch/branchDashboard/modules/s
 import SecondSlideFinance from "@/pages/accounting/finance/modules/secondSlideFinance";
 import SecondSlideExpense from "@/pages/accounting/expense/modules/secondSlideExpense";
 import SettingsPage from "@/pages/settings";
+import AddLabourForm from "@/forms/addLabour/AddLabourForm";
 
 const routePages = [
   {
@@ -87,8 +88,9 @@ const routePages = [
     path: "/finance",
     element: <FinancePage />,
     children: [
-      { path: "finance-details/:id", element: <SecondSlideFinance /> },
+      { path: ":id", element: <SecondSlideFinance /> },
       { path: "add-installment", element: <InstallmentForm /> },
+      { path: "create/:id", element: <InstallmentForm /> }
     ],
   },
   {
@@ -97,6 +99,7 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlideExpense /> },
       { path: "add-expense", element: <AddExpenseForm /> },
+      { path: "create/:id", element: <AddExpenseForm /> }
     ],
   },
   {
@@ -136,7 +139,8 @@ const routePages = [
     element: <LabourPage />,
     children: [
       { path: ":id", element: <SecondSlideMR /> },
-      { path: "add-inventory", element: <AddInventoryForm /> },
+      { path: "create", element: <AddLabourForm /> },
+      { path: "create/:id", element: <AddLabourForm /> },
     ],
   },
 

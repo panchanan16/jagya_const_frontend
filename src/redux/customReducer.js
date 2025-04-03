@@ -10,8 +10,8 @@ function fulfilledStateReducer(state, action, src, type, key) {
             break;
         case 'GET':
             if (action.payload?.source == src) {
-                state.loading = false;
-                state.itemList = action.payload.response.data;
+                state.loading = false;    
+                state[action.payload?.stateKey ? action.payload?.stateKey : 'itemList'] = action.payload.response.data;
                 state.error = null
             }
 
