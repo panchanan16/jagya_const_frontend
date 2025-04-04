@@ -1,13 +1,10 @@
-import entityEndpoint from "@/api/api";
-import useFormSubmit from "@/hooks/useFormSubmit";
 import useRequest from "@/hooks/useRequest";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { addPhase, insertPhase } from "@/redux/features/settingsSlice/slice";
-import { _GET } from "@/request/request";
+import { _GET, _POST } from "@/request/request";
+import { validateForm } from "@/utils/validation/formValidation";
 import { ErrorMessage, Field, Form } from "formik";
-import { useEffect } from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function InputField() {
   return (
@@ -49,42 +46,37 @@ const validate = {
   phase_name: "name",
 };
 
+
 function WorkType() {
-  const [submithandler, initialSchema, validateSchema, isReturn] =
-    useFormSubmit(initialValues, validate, "phase_id", "client");
-  const dispatch = useDispatch();
+  const validationSchema = validateForm(validate)
   const { phaseList } = useSelector((state) => state.settings);
+  const { makeRequest, loading } = useRequest("phase", addPhase);
 
-  const { requestData } = useRequest("phase", addPhase);
-  console.log(phaseList);
-
-  const addExpense = (values) => {
-    alert(JSON.stringify(values, null, 2));
-    dispatch(insertPhase(values))
+  const addAPhase = async (values) => {
+    makeRequest(values, insertPhase)
   };
 
   return (
     <div className="set-details">
       <div className="work-type flex align-center j-between">
-        <h1>Work Type</h1>
+        <h1>Work Type {loading && 'Loading'}</h1>
         <FormLayout
           MainForm={InputField}
-          isReturn={isReturn}
-          formHandler={addExpense}
+          isReturn={true}
+          formHandler={addAPhase}
           initialValues={initialValues}
-          validationSchema={validateSchema}
+          validationSchema={validationSchema}
         />
       </div>
 
       <div className="edit-details flex align-center f-wrap gap-10">
         {phaseList.length &&
-          phaseList.map((item) => (
-            <div className="set-title flex align-center j-between">
+          phaseList.map((item, key) => (
+            <div key={key} className="set-title flex align-center j-between">
               <h2>{item.phase_name}</h2>
               <div className="flex">
                 <span
                   className="flex align-center j-center"
-                  onclick="editWorkType(this)"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
