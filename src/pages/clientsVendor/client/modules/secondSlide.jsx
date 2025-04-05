@@ -6,62 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
 function SecondSlide() {
-  const tableDataOne = [
-    {
-      id: 1,
-      date: "10/100/1000",
-      amount: "2000",
-      mode: "UPI",
-      remarks: "This is for xyz purpose",
-      project: "1002",
-    },
-    {
-      id: 2,
-      date: "20/200/2000",
-      amount: "2000",
-      mode: "UPI",
-      remarks: "This is for xyz purpose",
-      project: "1001",
-    },
-    {
-      id: 3,
-      date: "30/300/3000",
-      amount: "3000",
-      mode: "CASH",
-      remarks: "This is for abc purpose",
-      project: "1003",
-    },
-  ];
-
-  const tableDataTwo = [
-    {
-      id: 1,
-      date: "10/100/1000",
-      amount: "2000",
-      mode: "UPI",
-      remarks: "This is for xyz purpose",
-    },
-    {
-      id: 2,
-      date: "20/200/2000",
-      amount: "20000",
-      mode: "UPI",
-      remarks: "This is for xyz purpose",
-    },
-    {
-      id: 3,
-      date: "30/300/3000",
-      amount: "30000",
-      mode: "CASH",
-      remarks: "This is for abc purpose",
-    },
-  ];
-
   const { getItemList } = coreCrudActions;
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { itemData } = useSelector((state) => state["client"]);
+  const { itemData, itemDetails } = useSelector((state) => state["client"]);
   const [isHighlight, seIsHighlight] = useState(
+    itemData.length && itemData[0].pro_ref_no
+  );
+  const [projectRef, setProjectRef] = useState(
     itemData.length && itemData[0].pro_ref_no
   );
 
@@ -74,8 +26,20 @@ function SecondSlide() {
     );
   }, [id]);
 
+  useEffect(() => {
+    getItemList(
+      "client",
+      dispatch,
+      `get_ProjectInfo?pro_ref_id=${projectRef}`,
+      "itemDetails"
+    );
+  }, [projectRef]);
+
+  console.log(itemDetails);
+
   function changeTabContent(highlightItem) {
     seIsHighlight(highlightItem);
+    setProjectRef(highlightItem);
   }
 
   return (
@@ -191,18 +155,14 @@ function SecondSlide() {
                 "Project",
                 "Action",
               ],
-              limit: ["id", "date", "amount", "mode", "remarks", "project"],
-              tabData: tableDataOne,
-            },
-            {
-              main: "Items Used",
-              list: ["No.", "Date", "Item", "Quantity", "Remarks", "Action"],
-              tabData: tableDataTwo,
+              limit: ["col_id", "col_amount", "col_mode", "col_remark", "col_date", "col_project_id"],
+              tabData: itemDetails.collections,
             },
             {
               main: "Expenses",
-              list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
-              tabData: tableDataTwo,
+              list: ["No.", "Expense Name", "Date", "Amount", "Mode", "project", "Remarks", "Action"],
+              limit: ["exp_id", "exp_name", "exp_amount", "exp_mode", "exp_remark", "exp_date", "exp_project_ref"],
+              tabData: itemDetails.expenses,
             },
           ]}
         />
