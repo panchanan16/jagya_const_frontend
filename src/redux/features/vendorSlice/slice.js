@@ -41,7 +41,7 @@ export const vendorSlice = createSlice({
             state.loading = false
             state.error = action.payload
         }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'vendor', 'UPDATE', 'pro_id')
+            fulfilledStateReducer(state, action, 'vendor', 'UPDATE', 'vendor_id')
         }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload

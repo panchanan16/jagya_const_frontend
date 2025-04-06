@@ -5,7 +5,8 @@ import fulfilledStateReducer from "../../customReducer";
 const initialState = {
     itemList: [],
     loading: false,
-    error: null 
+    error: null,
+    itemData: {contractor: [], vendor: []}
 }
 
 const expenseSlice = createSlice({

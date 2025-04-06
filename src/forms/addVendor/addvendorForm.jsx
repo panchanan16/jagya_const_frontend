@@ -1,13 +1,11 @@
-import PopupLayout from "@/layout/common/popupLayout"
+import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, Form } from "formik";
 import { initialValues, validate } from "./fields";
 import { Link } from "react-router-dom";
 import useFormSubmit from "@/hooks/useFormSubmit";
 
-
-
-function VendorFormWithField({resetFn}) {
+function VendorFormWithField({ resetFn }) {
   return (
     <Form>
       <div className="grid gtc-2 gap-10">
@@ -19,7 +17,11 @@ function VendorFormWithField({resetFn}) {
         <div className="field">
           <p className="title">Contact Number</p>
           <Field type="number" name="vendor_contact" id="" />
-          <ErrorMessage name="vendor_contact" className="err" component="span" />
+          <ErrorMessage
+            name="vendor_contact"
+            className="err"
+            component="span"
+          />
         </div>
         <div className="field">
           <p className="title">
@@ -40,18 +42,24 @@ function VendorFormWithField({resetFn}) {
           <ErrorMessage name="vendor_email" className="err" component="span" />
         </div>
         <div className="field">
-          <p className="title">
-            Address
-          </p>
+          <p className="title">Address</p>
           <Field type="text" name="vendor_address" id="" />
-          <ErrorMessage name="vendor_address" className="err" component="span" />
+          <ErrorMessage
+            name="vendor_address"
+            className="err"
+            component="span"
+          />
         </div>
       </div>
       <div className="action-btn flex gap-10">
         <button type="submit" className="btn-success flex-1">
           Add
         </button>
-        <button type="button" onClick={()=> resetFn()} className="btn-warning flex-1">
+        <button
+          type="button"
+          onClick={() => resetFn()}
+          className="btn-warning flex-1"
+        >
           Cancel
         </button>
       </div>
@@ -60,18 +68,12 @@ function VendorFormWithField({resetFn}) {
 }
 
 function AddvendorForm() {
-  const [
-    submithandler,
-    initialSchema,
-    validateSchema,
-    isReturn,
-  ] = useFormSubmit(
-    initialValues,
-    validate,
-    "vendor_id",
-    "vendor"
-  );
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+    useFormSubmit(initialValues, validate, "vendor_id", "vendor");
 
+  function testSubmit(values) {
+    alert(JSON.stringify(values, null));
+  }
 
   return (
     <PopupLayout>
@@ -97,4 +99,4 @@ function AddvendorForm() {
   );
 }
 
-export default AddvendorForm
+export default AddvendorForm;

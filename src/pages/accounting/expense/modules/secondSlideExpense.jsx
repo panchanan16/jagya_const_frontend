@@ -1,13 +1,22 @@
+import Table from "@/components/table/Table";
+import usePageRender from "@/hooks/usePageRender";
 import PopupLayout from "@/layout/common/popupLayout";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function SecondSlideExpense() {
+  const { id } = useParams();
+  const { itemData } = usePageRender(
+    "expense",
+    `get_expense_details/${id}`,
+    "itemData"
+  );
+
   return (
     <PopupLayout>
       <div className="inventory-popup">
         <div className="flex align-start j-between">
-          <h2>Request No: 1</h2>
+          <h2>Expense No: {id}</h2>
           <Link to="/expense">
             <button type="button" className="btn-warning close">
               Close
@@ -22,65 +31,23 @@ function SecondSlideExpense() {
           <div className="description flex align-center gap-5">
             <h3>Amount :</h3>
             <p className="text">$ 500000</p>
-          </div>        
-        </div>     
+          </div>
+        </div>
         {/* <EditReqItemForm closeFormfn={'/'} /> */}
         <div className="inventory-table">
-          <table>
-            <thead>
-              <tr>
-                <th>
-                  <input
-                    type="checkbox"
-                    name="checkbox"
-                    className="select-all"
-                  />
-                </th>
-                <th className="">No.</th>
-                <th className="">Item</th>
-                <th className="">Quantity</th>
-                <th className="">Rate</th>
-                <th className="">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((item, ind) => (
-                <tr key={ind}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      name=""
-                      id=""
-                      onchange="toggleHighlight(this)"
-                      className="row-checkbox"
-                    />
-                  </td>
-                  <td className="text">1</td>
-                  <td className="text">Cement</td>
-                  <td className="text">10</td>
-                  <td className="text">&#8377; 500</td>
-                  <td className="flex gap-5">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      onClick={""}
-                    >
-                      <path
-                        fill=""
-                        d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"
-                      ></path>
-                    </svg>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                      <path
-                        fill=""
-                        d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"
-                      ></path>
-                    </svg>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h3>Contractor</h3>
+          <Table
+            Theader={["ProjectID", "Amount", "Note", "Action"]}
+            Trow={itemData?.contractor}
+            Limit={["pay_amount", "pay_project_id", "pay_note"]}
+          />
+
+          <h3>Vendor</h3>
+          <Table
+            Theader={["ProjectID", "Amount", "Note", "Action"]}
+            Trow={itemData?.contractor}
+            Limit={["pay_amount", "pay_project_id", "pay_note"]}
+          />
         </div>
       </div>
     </PopupLayout>

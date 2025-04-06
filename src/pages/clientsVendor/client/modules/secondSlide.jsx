@@ -1,46 +1,15 @@
+import useRenderProjects from "@/hooks/useRenderProjects";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
-import coreCrudActions from "@/redux/coreCrudAction";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function SecondSlide() {
-  const { getItemList } = coreCrudActions;
-  const dispatch = useDispatch();
-  const { id } = useParams();
-  const { itemData, itemDetails } = useSelector((state) => state["client"]);
-  const [isHighlight, seIsHighlight] = useState(
-    itemData.length && itemData[0].pro_ref_no
-  );
-  const [projectRef, setProjectRef] = useState(
-    itemData.length && itemData[0].pro_ref_no
-  );
-
-  useEffect(() => {
-    getItemList(
+  const { changeTabContent, isHighlight, itemData, itemDetails } =
+    useRenderProjects(
       "client",
-      dispatch,
-      `get_clientProject?client_id=${id}`,
-      "itemData"
+      { item: "get_clientProject", details: "get_ProjectInfo" },
+      { item: "client_id", details: "pro_ref_id" }
     );
-  }, [id]);
-
-  useEffect(() => {
-    getItemList(
-      "client",
-      dispatch,
-      `get_ProjectInfo?pro_ref_id=${projectRef}`,
-      "itemDetails"
-    );
-  }, [projectRef]);
-
-  console.log(itemDetails);
-
-  function changeTabContent(highlightItem) {
-    seIsHighlight(highlightItem);
-    setProjectRef(highlightItem);
-  }
 
   return (
     <SecondSlideLayout>
@@ -155,13 +124,37 @@ function SecondSlide() {
                 "Project",
                 "Action",
               ],
-              limit: ["col_id", "col_amount", "col_mode", "col_remark", "col_date", "col_project_id"],
+              limit: [
+                "col_id",
+                "col_amount",
+                "col_mode",
+                "col_remark",
+                "col_date",
+                "col_project_id",
+              ],
               tabData: itemDetails.collections,
             },
             {
               main: "Expenses",
-              list: ["No.", "Expense Name", "Date", "Amount", "Mode", "project", "Remarks", "Action"],
-              limit: ["exp_id", "exp_name", "exp_amount", "exp_mode", "exp_remark", "exp_date", "exp_project_ref"],
+              list: [
+                "No.",
+                "Expense Name",
+                "Date",
+                "Amount",
+                "Mode",
+                "project",
+                "Remarks",
+                "Action",
+              ],
+              limit: [
+                "exp_id",
+                "exp_name",
+                "exp_amount",
+                "exp_mode",
+                "exp_remark",
+                "exp_date",
+                "exp_project_ref",
+              ],
               tabData: itemDetails.expenses,
             },
           ]}
