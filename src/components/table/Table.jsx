@@ -2,7 +2,6 @@ import React from "react";
 import ItemActionBox from "../itemAction/itemActionBox";
 
 function Table({ Theader, Trow, Tfooter, Limit, Actions }) {
-
   return (
     <>
       <table>
@@ -21,14 +20,14 @@ function Table({ Theader, Trow, Tfooter, Limit, Actions }) {
         </thead>
 
         <tbody>
-          {Trow &&
+          {Trow.length ?
             Trow.map((columns, ind) => (
               <tr key={ind}>
                 <td>
                   <input
                     type="checkbox"
                     name=""
-                    id=""          
+                    id=""
                     className="row-checkbox"
                   />
                 </td>
@@ -52,12 +51,15 @@ function Table({ Theader, Trow, Tfooter, Limit, Actions }) {
                 <td className="flex">
                   <ItemActionBox
                     viewFn={`${Actions?.viewUrl && columns[Actions.viewUrl]}`}
-                    editFn={`create/${Actions?.editUrl && columns[Actions.editUrl]}`}
+                    editFn={`create/${
+                      Actions?.editUrl && columns[Actions.editUrl]
+                    }`}
                     deleteFn={Actions?.deleteUrl && Actions.deleteUrl}
                   />
                 </td>
               </tr>
-            ))}
+            )) : (<div className=""><h2>No Data Found</h2></div>)
+          }
         </tbody>
         {Tfooter && (
           <tfoot>

@@ -10,7 +10,7 @@ function RequestFormWithField({ values, resetFn }) {
   return (
     <Form>
       <div class="grid gtc-3 gap-10">
-        <SearchInput Name={"client"} />
+        {/* <SearchInput Name={"client"} /> */}
         <div class="field">
           <p class="title v-selector">Select a Phase</p>
           <Field as="select" name="phase" id="" class="v-selector">
@@ -122,6 +122,7 @@ function AddRequestForm() {
             initialValues={initialValues}
             validationSchema={requestSchema}
             formHandler={addRequest}
+            isReturn={true}
           />
         </div>
       </div>

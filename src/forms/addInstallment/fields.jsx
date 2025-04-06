@@ -1,8 +1,9 @@
 export const initialValues = {
-   project: "",
-   dateofInstallment : "",
-   amount: "",
-   modeofpay: ""
+   col_project_id: "",
+   col_date : "",
+   col_amount: "",
+   modeofpay: "",
+   col_remark: ""
 }
 
 

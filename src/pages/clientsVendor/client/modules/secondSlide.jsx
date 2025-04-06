@@ -1,59 +1,46 @@
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import coreCrudActions from "@/redux/coreCrudAction";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
 
 function SecondSlide() {
-  const tableDataOne = [
-    {
-      id: 1,
-      date: "10/100/1000",
-      amount: "2000",
-      mode: "UPI",
-      remarks: "This is for xyz purpose",
-      project: "1002",
-    },
-    {
-      id: 2,
-      date: "20/200/2000",
-      amount: "2000",
-      mode: "UPI",
-      remarks: "This is for xyz purpose",
-      project: "1001",
-    },
-    {
-      id: 3,
-      date: "30/300/3000",
-      amount: "3000",
-      mode: "CASH",
-      remarks: "This is for abc purpose",
-      project: "1003",
-    },
-  ];
+  const { getItemList } = coreCrudActions;
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const { itemData, itemDetails } = useSelector((state) => state["client"]);
+  const [isHighlight, seIsHighlight] = useState(
+    itemData.length && itemData[0].pro_ref_no
+  );
+  const [projectRef, setProjectRef] = useState(
+    itemData.length && itemData[0].pro_ref_no
+  );
 
-  const tableDataTwo = [
-    {
-      id: 1,
-      date: "10/100/1000",
-      amount: "2000",
-      mode: "UPI",
-      remarks: "This is for xyz purpose",
-    },
-    {
-      id: 2,
-      date: "20/200/2000",
-      amount: "20000",
-      mode: "UPI",
-      remarks: "This is for xyz purpose",
-    },
-    {
-      id: 3,
-      date: "30/300/3000",
-      amount: "30000",
-      mode: "CASH",
-      remarks: "This is for abc purpose",
-    },
-  ];
+  useEffect(() => {
+    getItemList(
+      "client",
+      dispatch,
+      `get_clientProject?client_id=${id}`,
+      "itemData"
+    );
+  }, [id]);
+
+  useEffect(() => {
+    getItemList(
+      "client",
+      dispatch,
+      `get_ProjectInfo?pro_ref_id=${projectRef}`,
+      "itemDetails"
+    );
+  }, [projectRef]);
+
+  console.log(itemDetails);
+
+  function changeTabContent(highlightItem) {
+    seIsHighlight(highlightItem);
+    setProjectRef(highlightItem);
+  }
 
   return (
     <SecondSlideLayout>
@@ -130,38 +117,54 @@ function SecondSlide() {
         </div>
         <hr />
 
-        <div class="client-project-list flex flex-column">
+        <div className="client-project-list flex flex-column">
           <h2>Projects Lists</h2>
           <div className="flex gap-10">
-            <div class="projectName flex align-center active">
-              <p class="text">JGC002 || Residential G+2 Project</p>
-            </div>
-            <div class="projectName flex align-center">
-              <p class="text">JGC003 || Residential G+2 Project</p> 
-            </div>
+            {itemData.length ? (
+              itemData.map((item, key) => (
+                <div
+                  key={key}
+                  className={`projectName flex align-center ${
+                    isHighlight == item.pro_ref_no ? "active" : ""
+                  }`}
+                  onClick={() => changeTabContent(item.pro_ref_no)}
+                >
+                  <p className="text">
+                    {item.pro_ref_no} || {item.pro_name}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <div className="projectName flex flex-wrap align-center">
+                <p className="text">No Project Found</p>
+              </div>
+            )}
           </div>
         </div>
 
         <TabLayout
-          tabHeading={{
-            main: "Collections",
-            list: [
-              "No.",
-              "Date",
-              "Amount",
-              "Mode",
-              "Remarks",
-              "Project",
-              "Action",
-            ],
-            limit: ["id", "date", "amount", "mode", "remarks", "project"],
-          }}
-          tabHeadingII={{
-            main: "Expenses",
-            list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
-          }}
-          tabDataOne={tableDataOne}
-          tabDataTwo={tableDataTwo}
+          TabList={[
+            {
+              main: "Collections",
+              list: [
+                "No.",
+                "Date",
+                "Amount",
+                "Mode",
+                "Remarks",
+                "Project",
+                "Action",
+              ],
+              limit: ["col_id", "col_amount", "col_mode", "col_remark", "col_date", "col_project_id"],
+              tabData: itemDetails.collections,
+            },
+            {
+              main: "Expenses",
+              list: ["No.", "Expense Name", "Date", "Amount", "Mode", "project", "Remarks", "Action"],
+              limit: ["exp_id", "exp_name", "exp_amount", "exp_mode", "exp_remark", "exp_date", "exp_project_ref"],
+              tabData: itemDetails.expenses,
+            },
+          ]}
         />
       </main>
     </SecondSlideLayout>

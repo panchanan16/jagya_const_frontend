@@ -6,7 +6,8 @@ const initialState = {
   itemList: [],
   itemData: [],
   loading: null,
-  error: null
+  error: null,
+  itemDetails: {collections: [], expenses: []}
 }
 
 

@@ -1,7 +1,7 @@
 import DynamicLayout from '@/layout/common/dynamicLayout'
 import PageLayout from '@/layout/common/dynamicPageLayout'
 import FirstSlideLabour from './modules/firstSlideLabour'
-import { Outlet } from 'react-router'
+import { Outlet } from 'react-router-dom'
 
 function LabourPage() {
   return (

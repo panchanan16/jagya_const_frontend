@@ -5,10 +5,10 @@ import toast from 'react-hot-toast'
 
 export const GET_REQUEST = createAsyncThunk(
   'GET-DATA',
-  async ({endpoint, entity}, { rejectWithValue }) => {
+  async ({endpoint, entity, stateKey}, { rejectWithValue }) => {
     try {
       const response = await _GET(endpoint)
-      return {response, source: entity}
+      return {response, source: entity, stateKey}
     } catch (error) {
       return rejectWithValue(error.message)
     }
