@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 // Name: Name of the searchinput
 // Label: Display Label of the input field
 // Entity: Which entity list should be show in the list 
-// SetOptionalList: Onclick the entity from list these field to be show in the form // generally for update form
-// SetFkey: to Set foreignkey which hidded in the form
+// SetOptionalList: Onclick the entity from list these field to be show in the form fields// generally for update form
+// SetFkey: to Set foreignkey which hidded in the form type = {fienName: ItemEntityKey}
 // SetDisplayKey: Which field's data like name, uniqueid.. to be show in list item. type = {id: string, name: string}
 
 function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayKey }) {
@@ -25,7 +25,6 @@ function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayK
 
   function setInput(ItemEntity, name, value) {
     setFieldValue(name, value);
-    // set input value ---
     SetOptinalList?.length && SetOptinalList.forEach((fieldItem) => {
       setFieldValue(fieldItem, ItemEntity[fieldItem]);
     });

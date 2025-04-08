@@ -76,24 +76,52 @@ function SecondSlideVendor() {
         <hr />
 
         <TabLayout
-          tabHeading={{
-            main: "Purchases",
-            list: [
-              "No.",
-              "Date",
-              "Amount",
-              "Mode",
-              "Remarks",
-              "Project",
-              "Action",
-            ]        
-          }}
-          tabHeadingII={{
-            main: "Payments",
-            list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
-          }}
-          tabDataOne={tableDataOne}
-          tabDataTwo={tableDataTwo}
+          TabList={[
+            {
+              main: "Payments",
+              list: [
+                "No.",
+                "Date",
+                "Amount",
+                "Mode",
+                "Remarks",
+                "Project",
+                "Action",
+              ],
+              // limit: [
+              //   "col_id",
+              //   "col_amount",
+              //   "col_mode",
+              //   "col_remark",
+              //   "col_date",
+              //   "col_project_id",
+              // ],
+              tabData: tableDataOne,
+            },
+            {
+              main: "Purchases",
+              list: [
+                "No.",
+                "Expense Name",
+                "Date",
+                "Amount",
+                "Mode",
+                "project",
+                "Remarks",
+                "Action",
+              ],
+              // limit: [
+              //   "exp_id",
+              //   "exp_name",
+              //   "exp_amount",
+              //   "exp_mode",
+              //   "exp_remark",
+              //   "exp_date",
+              //   "exp_project_ref",
+              // ],
+              tabData: tableDataTwo,
+            },
+          ]}
         />
       </main>
     </SecondSlideLayout>

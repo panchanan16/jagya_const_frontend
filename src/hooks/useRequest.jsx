@@ -1,9 +1,10 @@
 import entityEndpoint from "@/api/api";
+import coreEndpoint from "@/api/coreApi";
 import { _GET, _POST } from "@/request/request";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-function useRequest(entity, action) {
+function useRequest(entity, action, tail) {
   const [requestData, setRequestData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -11,7 +12,8 @@ function useRequest(entity, action) {
 
   async function makeRequest(body, action) {
     try {
-      const response = await _POST(entityEndpoint.createItem(entity), body);
+      const endpoint = tail ? coreEndpoint.createItem(entity, tail) : entityEndpoint.createItem(entity)
+      const response = await _POST(endpoint, body);
       setRequestData(response.data);
       action && dispatch(action(response.data))
       return response.data;
@@ -25,9 +27,10 @@ function useRequest(entity, action) {
 
   useEffect(() => {
     async function makeRequest() {
-      const data = await _GET(entityEndpoint.getAll(entity));
+      const endpoint = tail ? coreEndpoint.getAll(entity, tail) : entityEndpoint.getAll(entity)
+      const data = await _GET(endpoint);
       setRequestData(data.data);
-      dispatch(action(data.data));
+      action && dispatch(action(data.data));
     }
     makeRequest();
   }, []);
