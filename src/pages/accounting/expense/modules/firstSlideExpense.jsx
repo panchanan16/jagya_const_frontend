@@ -1,6 +1,3 @@
-import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
-import ItemActionBox from "@/components/itemAction/itemActionBox";
-import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
@@ -9,25 +6,7 @@ function FirstSlideExpense() {
   const { itemList } = usePageRender("expense");
 
   return (
-    <FirstSlideLayout Heading="Expense">
-      <SectionHeaderOption
-        EndBtn={
-          <SectionHeaderBtn
-            btnName="Add Expense"
-            clickFn="/expense/add-expense"
-          />
-        }
-      >
-        <div className="change-options flex align-center">
-          <button type="button" className="btn-change flex-1">
-            All
-          </button>
-          <button type="button" className="btn-change flex-1 active">
-            Project
-          </button>
-        </div>
-      </SectionHeaderOption>
-
+    <FirstSlideLayout Heading="Expense" Btn={"Add Expense"} BtnFn={"/expense/add-expense"}>
       <div className="main-table">
         <Table
           Theader={[

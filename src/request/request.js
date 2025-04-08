@@ -1,6 +1,6 @@
 import { errorHandler } from '@/handlers/errorHandler';
 import apiClient from '@/config/api.request';
-import { successHandler } from './handleSuccess';
+import { successHandler } from '../handlers/handleSuccess';
 
 export async function _GET(endpoint) {
     try {
@@ -45,3 +45,4 @@ export async function _UPDATE(endpoint, body) {
         return errorHandler(error)
     }
 }
+

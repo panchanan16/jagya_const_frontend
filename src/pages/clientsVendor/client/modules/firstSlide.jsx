@@ -8,16 +8,7 @@ function FirstSlide() {
   const { itemList } = usePageRender("client");
 
   return (
-    <FirstSlideLayout Heading="Clients">
-        <SectionHeaderOption
-          EndBtn={
-            <SectionHeaderBtn
-              btnName="add clients"
-              clickFn={"/clients/create"}
-            />
-          }
-        />
-
+    <FirstSlideLayout Heading="Clients" Btn="add clients" BtnFn="/clients/create">
         <div className="main-table">
           <Table
             Theader={[
