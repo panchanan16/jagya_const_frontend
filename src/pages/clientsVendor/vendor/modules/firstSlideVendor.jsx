@@ -1,5 +1,3 @@
-import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
-import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
@@ -9,16 +7,7 @@ function FirstSlideVendor() {
   const { itemList } = usePageRender('vendor')
 
   return (
-    <FirstSlideLayout Heading='Vendors'>
-        <SectionHeaderOption
-          EndBtn={
-            <SectionHeaderBtn
-              btnName="add a vendor"
-              clickFn={"/vendors/create"}
-            />
-          }
-        />
-
+    <FirstSlideLayout Heading='Vendors' Btn={"Add a Vendor"} BtnFn={"/vendors/create"}>
         <div className="main-table">
           <Table
             Theader={[

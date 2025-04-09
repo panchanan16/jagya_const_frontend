@@ -1,41 +1,41 @@
-import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
-import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideProject() {
-  const { itemList } = usePageRender('project')
+  const { itemList } = usePageRender("project");
 
   return (
-    <FirstSlideLayout Heading={'Projects'}>
-        <SectionHeaderOption
-          EndBtn={
-            <SectionHeaderBtn
-              btnName="Add Projects"
-              clickFn="/projects/add-project"
-            />
-          }
+    <FirstSlideLayout
+      Heading={"Projects"}
+      Btn="Add Projects"
+      BtnFn="/projects/add-project"
+    >
+      <div className="main-table">
+        <Table
+          Theader={[
+            "Sl No.",
+            "Name",
+            "Ref No.",
+            "House type",
+            "Duration",
+            "Action",
+          ]}
+          Limit={[
+            "pro_id",
+            "pro_ref_no",
+            "pro_name",
+            "pro_housetype",
+            "pro_duration",
+          ]}
+          Trow={itemList}
+          Actions={{
+            viewUrl: "pro_id",
+            deleteUrl: "project",
+            editUrl: "pro_id",
+          }}
         />
-        <div className="main-table">
-          <Table
-            Theader={[
-              "Sl No.",
-              "Name",
-              "Ref No.",
-              "House type",
-              "Duration",
-              "Action",
-            ]}
-            Limit={['pro_id', 'pro_ref_no', 'pro_name', 'pro_housetype', 'pro_duration', ]}
-            Trow={itemList}
-            Actions={{
-              viewUrl: "pro_id",
-              deleteUrl: "project",
-              editUrl: "pro_id",
-            }}
-          />
-        </div>
+      </div>
     </FirstSlideLayout>
   );
 }

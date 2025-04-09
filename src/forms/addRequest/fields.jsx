@@ -1,10 +1,14 @@
-export const initialValues  = {
-    client: "",
-    phase: "",
-    itemList: [{itemName: "", itemQnt: ""}]
-}
+export const initialValues = {
+  mr_project_id: "",
+  mr_project_ref: "",
+  mr_phase: "",
+  mr_date: "",
+  materialItemsData: [{ mr_item_name: "", mr_item_quantity: "" }],
+};
 
 export const validate = {
-   client: 'text',
-   phase: 'text'
-}
+  mr_project_id: "number",
+  mr_project_ref: "text",
+  mr_phase: "text",
+  mr_date: "text",
+};

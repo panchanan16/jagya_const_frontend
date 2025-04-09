@@ -42,6 +42,9 @@ import SecondSlideFinance from "@/pages/accounting/finance/modules/secondSlideFi
 import SecondSlideExpense from "@/pages/accounting/expense/modules/secondSlideExpense";
 import SettingsPage from "@/pages/settings";
 import AddLabourForm from "@/forms/addLabour/AddLabourForm";
+import InvoicePage from "@/pages/accounting/invoice";
+import AddInvoiceForm from "@/forms/addInvoice/AddInvoiceForm";
+import SecondSlideInvoice from "@/pages/accounting/invoice/modules/SecondSlideInvoice";
 
 const routePages = [
   {
@@ -72,7 +75,7 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlide /> },
       { path: "create", element: <AddClientForm /> },
-      { path: "create/:id", element: <AddClientForm /> }
+      { path: "create/:id", element: <AddClientForm /> },
     ],
   },
   {
@@ -81,7 +84,7 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlideVendor /> },
       { path: "create", element: <AddvendorForm /> },
-      { path: "create/:id", element: <AddvendorForm /> }
+      { path: "create/:id", element: <AddvendorForm /> },
     ],
   },
   {
@@ -90,7 +93,7 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlideFinance /> },
       { path: "add-installment", element: <InstallmentForm /> },
-      { path: "create/:id", element: <InstallmentForm /> }
+      { path: "create/:id", element: <InstallmentForm /> },
     ],
   },
   {
@@ -99,7 +102,16 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlideExpense /> },
       { path: "add-expense", element: <AddExpenseForm /> },
-      { path: "create/:id", element: <AddExpenseForm /> }
+      { path: "create/:id", element: <AddExpenseForm /> },
+    ],
+  },
+  {
+    path: "/invoices",
+    element: <InvoicePage />,
+    children: [
+      { path: ":id", element: <SecondSlideInvoice /> },
+      { path: "create", element: <AddInvoiceForm /> },
+      { path: "create/:id", element: <AddInvoiceForm /> },
     ],
   },
   {
@@ -131,7 +143,7 @@ const routePages = [
     element: <InchargeReqPage />,
     children: [
       { path: ":id", element: <SecondSlideInchargeReq /> },
-      { path: "add-request", element: <AddRequestForm /> },
+      { path: "create", element: <AddRequestForm /> },
     ],
   },
   {
@@ -150,7 +162,7 @@ const routePages = [
     children: [
       { path: ":id", element: <SecondSlideContractor /> },
       { path: "create", element: <AddContractorForm /> },
-      { path: "create/:id", element: <AddContractorForm /> }
+      { path: "create/:id", element: <AddContractorForm /> },
     ],
   },
 
@@ -159,7 +171,7 @@ const routePages = [
     element: <BranchDashboard />,
     children: [
       { path: ":id", element: <SecondSlideBranchDashboard /> },
-      { path: "add-branch-project", element: <AddBranchProjectForm /> }
+      { path: "add-branch-project", element: <AddBranchProjectForm /> },
     ],
   },
 
@@ -168,7 +180,7 @@ const routePages = [
     element: <BranchRequestPage />,
     children: [
       { path: ":id", element: <SecondSlideBranchRequest /> },
-      { path: "add-contractor", element: <AddContractorForm /> }
+      { path: "add-contractor", element: <AddContractorForm /> },
     ],
   },
 
@@ -177,7 +189,7 @@ const routePages = [
     element: <BranchListPage />,
     children: [
       { path: ":id", element: <SecondSlideBranchList /> },
-      { path: "add-branch", element: <AddBranchForm /> }
+      { path: "add-branch", element: <AddBranchForm /> },
     ],
   },
   {
@@ -185,9 +197,9 @@ const routePages = [
     element: <SettingsPage />,
     children: [
       { path: ":id", element: <SecondSlideBranchList /> },
-      { path: "add-branch", element: <AddBranchForm /> }
+      { path: "add-branch", element: <AddBranchForm /> },
     ],
-  }
+  },
 ];
 
 export default routePages;

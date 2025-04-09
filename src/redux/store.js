@@ -8,6 +8,7 @@ import branchSlice from './features/branchSlice/slice'
 import collectionSlice from './features/collectionSlice/slice'
 import labourSlice from './features/labourSlice/slice'
 import settingSlice from './features/settingsSlice/slice'
+import material_reqSlice from './features/materiai_reqSlice/slice'
 
 
 export const store = configureStore({
@@ -20,6 +21,7 @@ export const store = configureStore({
     branch_data: branchSlice,
     collection: collectionSlice,
     labour: labourSlice,
+    material_req: material_reqSlice,
     settings: settingSlice
 
   },

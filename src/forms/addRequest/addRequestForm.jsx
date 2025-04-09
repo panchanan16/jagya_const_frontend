@@ -5,29 +5,45 @@ import { ErrorMessage, Field, FieldArray, Form } from "formik";
 import { Link } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import { validateForm } from "@/utils/validation/formValidation";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
 function RequestFormWithField({ values, resetFn }) {
   return (
     <Form>
       <div class="grid gtc-3 gap-10">
-        {/* <SearchInput Name={"client"} /> */}
+        <SearchInput
+          Name={"mr_project_ref"}
+          Label={"Project"}
+          Entity={"project"}
+          SetFKey={{mr_project_id: "pro_id"}}
+          SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
+        />
         <div class="field">
           <p class="title v-selector">Select a Phase</p>
-          <Field as="select" name="phase" id="" class="v-selector">
+          <Field as="select" name="mr_phase" id="" class="v-selector">
             <option value="mulukj">Mukunda Sharma</option>
             <option value="vuhuho">Vidit Gujrati</option>
           </Field>
-          <ErrorMessage name="phase" className="err" component="span" />
+          <ErrorMessage name="mr_phase" className="err" component="span" />
+        </div>
+        <div class="field">
+          <p class="title v-selector">Select Date</p>
+          <Field
+            type="date"
+            name="mr_date"
+            id=""
+          />
+          <ErrorMessage name="mr_date" className="err" component="span" />
         </div>
       </div>
 
-      <FieldArray name="itemList">
+      <FieldArray name="materialItemsData">
         {({ remove, push }) => (
           <div>
             <button
               class="btn-dashed flex align-items j-center"
               type="button"
-              onClick={() => push({ itemName: "", itemQnt: "" })}
+              onClick={() => push({ mr_item_name: "", mr_item_quantity: "" })}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -42,28 +58,36 @@ function RequestFormWithField({ values, resetFn }) {
               </svg>
               <span class="text">Add Item</span>
             </button>
-            {values.itemList.map((friend, index) => (
+            {values.materialItemsData.map((friend, index) => (
               <div class="newItem">
                 <div class="grid gap-10 inventoryGrid">
                   <div class="field">
                     <p class="title">Item</p>
-                    <Field type="text" name={`itemList[${index}].itemName`} id="" />
+                    <Field
+                      type="text"
+                      name={`materialItemsData[${index}].mr_item_name`}
+                      id=""
+                    />
                     <ErrorMessage
-                      name={`itemList[${index}].itemName`}
+                      name={`materialItemsData[${index}].mr_item_name`}
                       className="err"
                       component="span"
                     />
                   </div>
                   <div class="field">
                     <p class="title">Quantity</p>
-                    <Field type="text" name={`itemList[${index}].itemQnt`} id="" />
+                    <Field
+                      type="text"
+                      name={`materialItemsData[${index}].mr_item_quantity`}
+                      id=""
+                    />
                     <ErrorMessage
-                      name={`itemList[${index}].itemQnt`}
+                      name={`materialItemsData[${index}].mr_item_quantity`}
                       className="err"
                       component="span"
                     />
                   </div>
-                  <div class="field" onClick={()=> remove(index)}>
+                  <div class="field" onClick={() => remove(index)}>
                     <p class="opacity-0">p</p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -100,12 +124,14 @@ function RequestFormWithField({ values, resetFn }) {
 }
 
 function AddRequestForm() {
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+    useFormSubmit(initialValues, validate, "mr_r_id", {name: "material_req", route: "create"});
+
   function addRequest(values) {
     console.log(values);
     alert(JSON.stringify(values));
   }
 
-  const requestSchema = validateForm(validate);
   return (
     <PopupLayout>
       <div class="add-collection blur">
@@ -119,10 +145,10 @@ function AddRequestForm() {
           <hr />
           <FormLayout
             MainForm={RequestFormWithField}
-            initialValues={initialValues}
-            validationSchema={requestSchema}
-            formHandler={addRequest}
-            isReturn={true}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={submithandler}
+            isReturn={isReturn}
           />
         </div>
       </div>
