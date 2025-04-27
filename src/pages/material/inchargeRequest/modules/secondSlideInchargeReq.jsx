@@ -1,14 +1,22 @@
 import Table from "@/components/table/Table";
+import usePageRender from "@/hooks/usePageRender";
 import PopupLayout from "@/layout/common/popupLayout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function SecondSlideInchargeReq() {
+  const { id } = useParams();
+  const { itemData } = usePageRender(
+    "material_req",
+    `realAll_by_materialId/${id}`,
+    "itemData"
+  );
+
   return (
     <PopupLayout>
       <div class="inventory-popup">
         <div class="flex align-start j-between">
-          <h2>Request No: 1</h2>
-          <Link to='/incharge'>
+          <h2>Request No: {id}</h2>
+          <Link to="/incharge">
             <button
               type="button"
               class="btn-warning close"
@@ -28,7 +36,7 @@ function SecondSlideInchargeReq() {
             <p class="text">6002649802 | 7636896075</p>
           </div>
         </div>
-      
+
         <div class="addItem-popup hide">
           <div class="form">
             <div class="grid gap-10 inventoryGrid">
@@ -96,8 +104,9 @@ function SecondSlideInchargeReq() {
         </div>
         <div class="inventory-table">
           <Table
-            Theader={['No.', 'Item', 'Quantity', 'Action']}
-            Trow={[[1, 'brick', '2truck']]}
+            Theader={["ProjectID", "Item", "Quantity", "Amount", "Action"]}
+            Limit={["mr_project_r_id", "mr_item_name", "mr_item_quantity", "mr_item_amount"]}
+            Trow={itemData}
           />
         </div>
       </div>

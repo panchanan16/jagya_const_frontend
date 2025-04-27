@@ -4,8 +4,9 @@ import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, FieldArray, Form } from "formik";
 import { Link } from "react-router-dom";
 import { initialValues, validate } from "./fields";
-import { validateForm } from "@/utils/validation/formValidation";
 import useFormSubmit from "@/hooks/useFormSubmit";
+import SelectOption from "@/components/SelectOption/SelectOption";
+import { addPhase } from "@/redux/features/settingsSlice/slice";
 
 function RequestFormWithField({ values, resetFn }) {
   return (
@@ -18,14 +19,7 @@ function RequestFormWithField({ values, resetFn }) {
           SetFKey={{mr_project_id: "pro_id"}}
           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
         />
-        <div class="field">
-          <p class="title v-selector">Select a Phase</p>
-          <Field as="select" name="mr_phase" id="" class="v-selector">
-            <option value="mulukj">Mukunda Sharma</option>
-            <option value="vuhuho">Vidit Gujrati</option>
-          </Field>
-          <ErrorMessage name="mr_phase" className="err" component="span" />
-        </div>
+        <SelectOption Name={"mr_phase"} Label={"Phase"} action={addPhase} />
         <div class="field">
           <p class="title v-selector">Select Date</p>
           <Field

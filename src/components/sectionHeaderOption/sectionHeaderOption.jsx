@@ -1,5 +1,4 @@
 function SectionHeaderOption({ children, EndBtn, HeadingText }) {
-    console.log('I am sectionheader rendering ...')
     return (
         <div className="top-section flex align-center j-between">
 

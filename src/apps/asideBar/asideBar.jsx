@@ -1,6 +1,6 @@
 import AsideNavlink from '@/components/asideLink/asideNavlink'
+import asideMenuItems from '@/utils/others/asideMenu'
 import React from 'react'
-import asideMenuItems from '@/utils/asideMenu'
 
 function AsideBar() {
     console.log('I am aside bar rendering')
