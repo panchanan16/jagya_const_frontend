@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 // SetOptionalList: Onclick the entity from list these field to be show in the form fields// generally for update form
 // SetFkey: to Set foreignkey which hidded in the form type = {fieldName: ItemEntityKey}
 // SetDisplayKey: Which field's data like name, uniqueid.. to be show in list item. type = {id: string, name: string}
-// editDisplayInput: On edit what data should be show in input field since actual field data will be hidden to user.
+// editDisplayInput: On edit what data should be show in input field since actual field data will be hidden to user. string type
 
 function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayKey, editDisplayInput }) {
   const [showList, setShowList] = useState(false);
@@ -20,7 +20,6 @@ function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayK
   const { getItemList } = crudActions;
   const { itemList } = useSelector((state) => state[Entity]);
 
-  console.log(editDisplayInput)
 
   useEffect(() => {
     !itemList?.length && getItemList(Entity, dispatch);

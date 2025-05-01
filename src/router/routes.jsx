@@ -45,6 +45,7 @@ import AddLabourForm from "@/forms/addLabour/AddLabourForm";
 import InvoicePage from "@/pages/accounting/invoice";
 import AddInvoiceForm from "@/forms/addInvoice/AddInvoiceForm";
 import SecondSlideInvoice from "@/pages/accounting/invoice/modules/SecondSlideInvoice";
+import AddRequestFinance from "@/forms/addRequestFinance/AddRequestFinance";
 
 const routePages = [
   {
@@ -135,6 +136,7 @@ const routePages = [
     element: <FinanceRequestPage />,
     children: [
       { path: ":id", element: <SecondSlideFinanceReq /> },
+      { path: "create/:id", element: <AddRequestFinance /> },
       { path: "add-inventory", element: <AddInventoryForm /> },
     ],
   },

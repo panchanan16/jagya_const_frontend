@@ -4,11 +4,12 @@ export function buildInitialValuesWithArray(List, id, obj, dkey, editList) {
     initialObject[dkey] = id ? id : ""
     for (const key in obj) {
         if (client && client.length) { 
+            console.log(editList)
             if (typeof obj[key] == 'object') {  
-                console.log(editList[key])
-                initialObject[key] = editList[key]
+                // console.log(editList[key])
+                initialObject[key] = editList[key] ? editList[key] : editList
             } else {
-                console.log(client[0])
+                // console.log(client[0])
                 initialObject[key] = client[0][key]
             }
         } else {
@@ -19,6 +20,8 @@ export function buildInitialValuesWithArray(List, id, obj, dkey, editList) {
             }
         }
     }
+
+    console.log(initialObject)
 
     return initialObject;
 

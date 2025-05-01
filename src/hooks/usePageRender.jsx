@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-function usePageRender(entity, tail, key, itemId) {
+function usePageRender(entity, tail, key, itemId, loc) {
   const { itemList, itemData } = useSelector((state) => state[entity]);
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ function usePageRender(entity, tail, key, itemId) {
 
   useEffect(() => {
     getItemList(entity, dispatch, tail, key);
-  }, []);
+  }, [loc]);
 
   return { itemList, itemData, viewedItem, id };
 }

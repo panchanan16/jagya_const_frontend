@@ -1,11 +1,11 @@
 import PopupLayout from "@/layout/common/popupLayout";
-import { validateForm } from "@/utils/validation/formValidation";
 import { Field, Form } from "formik";
 import { Link } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import FormLayout from "@/layout/formLayout/formLayout";
 import SearchInput from "@/components/searchInput/searchInput";
 import { useState } from "react";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
 function AssignFormWithField({resetFn}) {
   const [showNewContractor, setShowNewContractor] = useState(false)
@@ -14,7 +14,7 @@ function AssignFormWithField({resetFn}) {
   return (
     <Form>
       <div class="grid gtc-3 gap-10">
-        <SearchInput Name={'contractor'} />
+        <SearchInput Name={'contractor'} Label={'Contractor'} Entity={'contractor'} SetDisplayKey={{id: 'con_id', name: 'con_name'}} SetFKey={{con_id: 'con_id'}} />
         <div class="field">
           <p class="title">
             Select phase<span>(*optional)</span>
@@ -86,7 +86,8 @@ function AssignFormWithField({resetFn}) {
 }
 
 function AssignContractorForm() {
-  const assignContractorSchema = validateForm(validate)
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+  useFormSubmit(initialValues, validate, "vendor_id", "vendor");
 
   function assignContractorToProject(values) {
     console.log(values)
@@ -97,7 +98,7 @@ function AssignContractorForm() {
     <PopupLayout>
       <div class="add-employee-popup blur">
         <div class="form">
-          <h2>Add an Employee</h2>
+          <h2>Add an Contractor</h2>
           <Link to="/projects/80">
             <button
               type="button"
@@ -110,9 +111,10 @@ function AssignContractorForm() {
           <hr />
           <FormLayout
             MainForm={AssignFormWithField}
-            initialValues={initialValues}
-            validationSchema={assignContractorSchema}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
             formHandler={assignContractorToProject}
+            isReturn={isReturn}
           />
         </div>
       </div>
