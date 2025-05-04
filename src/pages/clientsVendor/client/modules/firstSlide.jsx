@@ -1,5 +1,3 @@
-import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
-import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
