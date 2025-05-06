@@ -1,7 +1,7 @@
 import AsideBar from "@/apps/asideBar/asideBar";
 
 
-function PageLayout({children}) {
+function PageLayout({children, name}) {
     return (
         <section>
             <AsideBar />

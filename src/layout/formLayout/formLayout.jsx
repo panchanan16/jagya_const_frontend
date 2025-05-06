@@ -19,10 +19,11 @@ function FormLayout({
           });
         }}
       >
-        {({ values, resetForm, isSubmitting }) => (
+        {({ values, resetForm, errors, isSubmitting }) => (
           <MainForm
             values={values}
             resetFn={resetForm}
+            errors={errors}
             isSubmitting={isSubmitting}
           />
         )}

@@ -1,11 +1,11 @@
 import PopupLayout from "@/layout/common/popupLayout";
-import React from "react";
 import { Link } from "react-router-dom";
 import ExpenseField from "./expenseField";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, FieldArray, Form } from "formik";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
+import ExpenseSchema from "@/utils/validation/expenseSchema";
 
 function ExpenseFormWithField({ values, resetFn }) {
   return (
@@ -13,39 +13,40 @@ function ExpenseFormWithField({ values, resetFn }) {
       <div className="grid gtc-2 gap-10">
         <div class="field">
           <p class="title">Date: </p>
-          <Field type="date" name="dateofexpense" />
-          <ErrorMessage name="dateofexpense" className="err" component="span" />
+          <Field type="date" name="exp_date" />
+          <ErrorMessage name="exp_date" className="err" component="span" />
         </div>
         <div class="field">
           <p class="title">Total Amount: </p>
-          <Field type="number" name="Amount" />
-          <ErrorMessage name="Amount" className="err" component="span" />
+          <Field type="number" name="exp_amount" />
+          <ErrorMessage name="exp_amount" className="err" component="span" />
         </div>
 
         <div class="field">
           <p class="title">Expense Name</p>
-          <Field type="text" name="expenseName" />
-          <ErrorMessage name="expenseName" className="err" component="span" />
+          <Field type="text" name="exp_name" />
+          <ErrorMessage name="exp_name" className="err" component="span" />
         </div>
 
         <div class="field">
           <p class="title">Remarks: </p>
-          <Field type="text" name="remarks" />
-          <ErrorMessage name="remarks" className="err" component="span" />
+          <Field type="text" name="exp_remark" />
+          <ErrorMessage name="exp_remark" className="err" component="span" />
         </div>
       </div>
 
-      <FieldArray name="vendorExpenses">
+      <FieldArray name="vendor">
         {({ remove, push }) => (
           <div>
-            {values.vendorExpenses.map((friend, index) => (
+            {values.vendor.map((friend, index) => (
               <ExpenseField
                 key={index}
                 FieldNameList={{
-                  client: `vendorExpenses[${index}].client`,
-                  vendor: `vendorExpenses[${index}].vendor`,
-                  amount: `vendorExpenses[${index}].amount`,
-                  note: `vendorExpenses[${index}].note`,
+                  cname: friend.pay_note,
+                  client: `vendor[${index}].pay_project_id`,
+                  vendor: `vendor[${index}].pay_vendor_id`,
+                  amount: `vendor[${index}].pay_amount`,
+                  note: `vendor[${index}].pay_note`,
                 }}
                 RemoveFn={remove}
                 Ind={index}
@@ -57,17 +58,17 @@ function ExpenseFormWithField({ values, resetFn }) {
         )}
       </FieldArray>
 
-      <FieldArray name="contractorExpenses">
+      <FieldArray name="contractor">
         {({ remove }) => (
           <div>
-            {values.contractorExpenses.map((friend, index) => (
+            {values.contractor.map((friend, index) => (
               <ExpenseField
                 key={index}
                 FieldNameList={{
-                  client: `contractorExpenses[${index}].client`,
-                  contractor: `contractorExpenses[${index}].contractor`,
-                  amount: `contractorExpenses[${index}].amount`,
-                  note: `contractorExpenses[${index}].note`,
+                  client: `contractor[${index}].pay_project_id`,
+                  contractor: `contractor[${index}].pay_con_id`,
+                  amount: `contractor[${index}].pay_amount`,
+                  note: `contractor[${index}].pay_note`,
                 }}
                 RemoveFn={remove}
                 Ind={index}
@@ -80,26 +81,26 @@ function ExpenseFormWithField({ values, resetFn }) {
       </FieldArray>
 
       <div className="flex gap-10">
-        <FieldArray name="vendorExpenses">
+        <FieldArray name="vendor">
           {({ push }) => (
             <button
               type="button"
               className="btn-success"
               onClick={() =>
-                push({ client: "", vendor: "", amount: "", note: "" })
+                push({ pay_project_id: "", pay_vendor_id: "", pay_amount: "", pay_note: "" })
               }
             >
               Add Vendor Expense
             </button>
           )}
         </FieldArray>
-        <FieldArray name="contractorExpenses">
+        <FieldArray name="contractor">
           {({ push }) => (
             <button
               type="button"
               className="btn-success"
               onClick={() =>
-                push({ client: "", contractor: "", amount: "", note: "" })
+                push({ pay_project_id: "", pay_con_id: "", pay_amount: "", pay_note: "" })
               }
             >
               Add Contractor Expense
@@ -125,13 +126,14 @@ function ExpenseFormWithField({ values, resetFn }) {
 }
 
 function AddExpenseForm() {
-  const [submithandler, initialSchema, validateSchema, isReturn] =
+  const [submithandler, initialSchema, isReturn] =
   useFormSubmit(initialValues, validate, "exp_id", {name: "expense", route: 'create'});
 
 
-  // const addExpense = (values) => {
-  //   alert(JSON.stringify(values, null, 2));
-  // };
+  const addExpense = (values) => {
+    alert(JSON.stringify(values, null, 2));
+    console.log(values)
+  };
 
   return (
     <PopupLayout>
@@ -148,8 +150,8 @@ function AddExpenseForm() {
           <FormLayout
             MainForm={ExpenseFormWithField}
             initialValues={initialSchema}
-            validationSchema={validateSchema}
-            formHandler={submithandler}
+            validationSchema={ExpenseSchema}
+            formHandler={addExpense}
             isReturn={isReturn}
           />
         </div>

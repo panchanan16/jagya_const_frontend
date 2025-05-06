@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom'
 
 function ProjectPage() {
     return (
-        <PageLayout>
+        <PageLayout name="">
             <DynamicLayout>
                 <FirstSlideProject />
                 <Outlet />

@@ -91,6 +91,7 @@ function EditRequestForm({ showEditForm, originalItems }) {
       initialValues={initialValues}
       validationSchema={editRequestSchema}
       formHandler={editMaterialRequest}
+      isReturn={true}
     />
   );
 }

@@ -1,23 +1,25 @@
 import coreCrudActions from "@/redux/coreCrudAction";
 import crudActions from "@/redux/crudActions";
-import { buildInitialValues } from "@/utils/buildInitialValue";
+import { buildInitialValues } from "@/utils/builds/buildInitialValue";
+import { buildInitialValuesWithArray } from "@/utils/builds/formArrayBuilder";
 import { validateForm } from "@/utils/validation/formValidation";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 function useFormSubmit(initialValueObj, validateObj, IdKey, entity) {
-  const { itemList } = useSelector(
+  const { itemList, itemData } = useSelector(
     (state) => state[`${typeof entity == "object" ? entity?.name : entity}`]
   );
   const dispatch = useDispatch();
   const { id: urlParam } = useParams();
   const Actions = typeof entity == "object" ? coreCrudActions : crudActions;
   const { createItem, updateItem } = Actions;
-  const initialSchema = buildInitialValues(
+  const initialSchema = buildInitialValuesWithArray(
     itemList,
     urlParam,
     initialValueObj,
-    IdKey
+    IdKey,
+    itemData
   );
   const validateSchema = validateForm(validateObj);
   const isReturn = itemList.length > 0 || !urlParam;
@@ -29,7 +31,8 @@ function useFormSubmit(initialValueObj, validateObj, IdKey, entity) {
   }
 
   async function updateTheItem(clientData) {
-    updateItem(entity, dispatch, clientData);
+    const entityName = typeof entity == "object" ? entity?.name : entity
+    updateItem(entityName, dispatch, clientData);
   }
 
   const submithandler = urlParam ? updateTheItem : addNewItem;

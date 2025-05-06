@@ -1,0 +1,4 @@
+const initialValues = {
+   user: {},
+   ROLES: []
+}

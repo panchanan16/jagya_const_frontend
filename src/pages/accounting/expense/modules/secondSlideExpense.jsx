@@ -6,10 +6,11 @@ import { Link, useParams } from "react-router-dom";
 
 function SecondSlideExpense() {
   const { id } = useParams();
-  const { itemData } = usePageRender(
+  const { itemData, viewedItem } = usePageRender(
     "expense",
     `get_expense_details/${id}`,
-    "itemData"
+    "itemData",
+    "exp_id"
   );
 
   return (
@@ -17,20 +18,29 @@ function SecondSlideExpense() {
       <div className="inventory-popup">
         <div className="flex align-start j-between">
           <h2>Expense No: {id}</h2>
-          <Link to="/expense">
-            <button type="button" className="btn-warning close">
-              Close
-            </button>
-          </Link>
+          <div className="flex gap-10">
+            <Link to={`/expense/create/${id}`}>
+              <button type="button" className="btn-primary">
+                Edit
+              </button>
+            </Link>
+            <Link to="/expense">
+              <button type="button" className="btn-warning close">
+                Close
+              </button>
+            </Link>
+          </div>
         </div>
         <div className="contents grid gap-10">
           <div className="description flex align-center gap-5">
             <h3>Date:</h3>
-            <p className="text">12-Nov-2024</p>
+            <p className="text">
+              {new Date(viewedItem?.exp_date).toDateString()}
+            </p>
           </div>
           <div className="description flex align-center gap-5">
             <h3>Amount :</h3>
-            <p className="text">$ 500000</p>
+            <p className="text">₹ {viewedItem?.exp_amount}</p>
           </div>
         </div>
         {/* <EditReqItemForm closeFormfn={'/'} /> */}
@@ -40,13 +50,14 @@ function SecondSlideExpense() {
             Theader={["ProjectID", "Amount", "Note", "Action"]}
             Trow={itemData?.contractor}
             Limit={["pay_amount", "pay_project_id", "pay_note"]}
+            Actions={{}}
           />
 
           <h3>Vendor</h3>
           <Table
             Theader={["ProjectID", "Amount", "Note", "Action"]}
-            Trow={itemData?.contractor}
-            Limit={["pay_amount", "pay_project_id", "pay_note"]}
+            Trow={itemData?.vendor}
+            Limit={["pay_project_id", "pay_amount", "pay_note"]}
           />
         </div>
       </div>

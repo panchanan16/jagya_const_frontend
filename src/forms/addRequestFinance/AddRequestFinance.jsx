@@ -8,25 +8,22 @@ import useFormSubmit from "@/hooks/useFormSubmit";
 import SelectOption from "@/components/SelectOption/SelectOption";
 import { addPhase } from "@/redux/features/settingsSlice/slice";
 
-function RequestFormWithField({ values, resetFn }) {
+function RequestFinanceFormWithField({ values, resetFn }) {
   return (
     <Form>
       <div class="grid gtc-3 gap-10">
         <SearchInput
           Name={"mr_project_ref"}
           Label={"Project"}
-          Entity={"project"}
-          SetFKey={{mr_project_id: "pro_id"}}
+          Entity="project"
+          SetFKey={{ mr_project_id: "pro_id" }} // setting client ref key in the form which is not displayed
           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
+          editDisplayInput={`mr_phase`}
         />
         <SelectOption Name={"mr_phase"} Label={"Phase"} action={addPhase} />
         <div class="field">
           <p class="title v-selector">Select Date</p>
-          <Field
-            type="date"
-            name="mr_date"
-            id=""
-          />
+          <Field type="date" name="mr_date" id="" />
           <ErrorMessage name="mr_date" className="err" component="span" />
         </div>
       </div>
@@ -81,6 +78,53 @@ function RequestFormWithField({ values, resetFn }) {
                       component="span"
                     />
                   </div>
+
+                  <div class="field">
+                    <p class="title">Amount</p>
+                    <Field
+                      type="text"
+                      name={`materialItemsData[${index}].mr_item_amount`}
+                      id=""
+                    />
+                    <ErrorMessage
+                      name={`materialItemsData[${index}].mr_item_amount`}
+                      className="err"
+                      component="span"
+                    />
+                  </div>
+
+                  <div class="field">
+                    <p class="title v-selector">Select Status</p>
+                    <Field
+                      as="select"
+                      name={`materialItemsData[${index}].fd_approval`}
+                      id=""
+                      class="v-selector"
+                    >
+                      <option value="1">Approve</option>
+                      <option value="0">Decline</option>
+                    </Field>
+                    <ErrorMessage
+                      name={`materialItemsData[${index}].fd_approval`}
+                      className="err"
+                      component="span"
+                    />
+                  </div>
+
+                  <div class="field">
+                    <p class="title">Status</p>
+                    <Field
+                      type="text"
+                      name={`materialItemsData[${index}].fd_approval`}
+                      id=""
+                    />
+                    <ErrorMessage
+                      name={`materialItemsData[${index}].fd_approval`}
+                      className="err"
+                      component="span"
+                    />
+                  </div>
+
                   <div class="field" onClick={() => remove(index)}>
                     <p class="opacity-0">p</p>
                     <svg
@@ -117,9 +161,12 @@ function RequestFormWithField({ values, resetFn }) {
   );
 }
 
-function AddRequestForm() {
+function AddRequestFinance() {
   const [submithandler, initialSchema, validateSchema, isReturn] =
-    useFormSubmit(initialValues, validate, "mr_r_id", {name: "material_req", route: "create"});
+    useFormSubmit(initialValues, validate, "mr_r_id", {
+      name: "material_req",
+      route: "create",
+    });
 
   function addRequest(values) {
     console.log(values);
@@ -131,15 +178,15 @@ function AddRequestForm() {
       <div class="add-collection blur">
         <div class="form">
           <h2>Request Materials</h2>
-          <Link to="/incharge">
+          <Link to="/finance-request/10">
             <button type="button" class="btn-warning close">
               Close
             </button>
           </Link>
           <hr />
           <FormLayout
-            MainForm={RequestFormWithField}
-            initialValues={initialValues}
+            MainForm={RequestFinanceFormWithField}
+            initialValues={initialSchema}
             validationSchema={validateSchema}
             formHandler={addRequest}
             isReturn={isReturn}
@@ -150,4 +197,4 @@ function AddRequestForm() {
   );
 }
 
-export default AddRequestForm;
+export default AddRequestFinance;

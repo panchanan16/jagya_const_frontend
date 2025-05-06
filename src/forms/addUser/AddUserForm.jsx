@@ -1,28 +1,25 @@
 import PopupLayout from "@/layout/common/popupLayout";
+import { Form, Field, ErrorMessage } from "formik";
 import FormLayout from "@/layout/formLayout/formLayout";
-import { ErrorMessage, Field, Form } from "formik";
 import { Link } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 
-function ContractorFormWithField({ resetFn }) {
+function UserFormWithField({ resetFn, isSubmitting }) {
+
   return (
     <Form>
       <div className="grid gtc-2 gap-10">
         <div className="field">
           <p className="title">Name</p>
-          <Field type="text" name="con_name" id="" />
-          <ErrorMessage
-            name="con_name"
-            className="err"
-            component="span"
-          />
+          <Field type="text" name="client_name" id="" />
+          <ErrorMessage name="client_name" className="err" component="span" />
         </div>
         <div className="field">
           <p className="title">Contact Number</p>
-          <Field type="number" name="con_contact" id="" />
+          <Field type="number" name="client_contact" id="" />
           <ErrorMessage
-            name="con_contact"
+            name="client_contact"
             className="err"
             component="span"
           />
@@ -31,9 +28,9 @@ function ContractorFormWithField({ resetFn }) {
           <p className="title">
             Alternate Number<span>(*optional)</span>
           </p>
-          <Field type="number" name="con_alt_contact" id="" />
+          <Field type="number" name="client_alt_contact" id="" />
           <ErrorMessage
-            name="con_alt_contact"
+            name="client_alt_contact"
             className="err"
             component="span"
           />
@@ -42,20 +39,16 @@ function ContractorFormWithField({ resetFn }) {
           <p className="title">
             Email<span>(*optional)</span>
           </p>
-          <Field type="email" name="con_email" id="" />
-          <ErrorMessage
-            name="con_email"
-            className="err"
-            component="span"
-          />
+          <Field type="email" name="client_email" id="" />
+          <ErrorMessage name="client_email" className="err" component="span" />
         </div>
         <div className="field">
           <p className="title">
             Address<span>(*optional)</span>
           </p>
-          <Field type="text" name="con_address" id="" />
+          <Field type="text" name="client_address" id="" />
           <ErrorMessage
-            name="con_address"
+            name="client_address"
             className="err"
             component="span"
           />
@@ -64,23 +57,23 @@ function ContractorFormWithField({ resetFn }) {
           <p className="title">
             Other Details<span>(optional)</span>
           </p>
-          <Field type="text" name="contractorOthers" id="" />
+          <Field type="text" name="client_details" id="" />
           <ErrorMessage
-            name="contractorOthers"
+            name="client_details"
             className="err"
             component="span"
           />
         </div>
       </div>
       <div className="action-btn flex gap-10">
-        <button type="submit" className="btn-success flex-1">
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="btn-success flex-1"
+        >
           Add
         </button>
-        <button
-          type="button"
-          onClick={() => resetFn()}
-          className="btn-warning flex-1"
-        >
+        <button type="button" onClick={resetFn} className="btn-warning flex-1">
           Cancel
         </button>
       </div>
@@ -88,23 +81,25 @@ function ContractorFormWithField({ resetFn }) {
   );
 }
 
-function AddContractorForm() {
+function AddUserForm() {
   const [submithandler, initialSchema, validateSchema, isReturn] =
-    useFormSubmit(initialValues, validate, "con_id", "contractor");
+    useFormSubmit(initialValues, validate, "client_id", "client");
+
+
 
   return (
     <PopupLayout>
       <div className="add-clients-prospects blur">
         <div className="form">
-          <h2>Add a Contractor</h2>
-          <Link to={`/contractor`}>
+          <h2>Add a New User</h2>
+          <Link to={`/users`}>
             <button type="button" className="btn-warning close">
               Close
             </button>
           </Link>
           <hr />
           <FormLayout
-            MainForm={ContractorFormWithField}
+            MainForm={UserFormWithField}
             initialValues={initialSchema}
             validationSchema={validateSchema}
             formHandler={submithandler}
@@ -116,4 +111,4 @@ function AddContractorForm() {
   );
 }
 
-export default AddContractorForm;
+export default AddUserForm;

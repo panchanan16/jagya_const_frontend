@@ -10,13 +10,16 @@ import { useDispatch, useSelector } from "react-redux";
 // SetOptionalList: Onclick the entity from list these field to be show in the form fields// generally for update form
 // SetFkey: to Set foreignkey which hidded in the form type = {fieldName: ItemEntityKey}
 // SetDisplayKey: Which field's data like name, uniqueid.. to be show in list item. type = {id: string, name: string}
+// editDisplayInput: On edit what data should be show in input field since actual field data will be hidden to user. string type
 
-function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayKey }) {
+function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayKey, editDisplayInput }) {
   const [showList, setShowList] = useState(false);
   const dispatch = useDispatch();
+  const [inputDisplay, setInputDisplay] = useState(editDisplayInput ? editDisplayInput : "");
   const { setFieldValue } = useFormikContext();
   const { getItemList } = crudActions;
   const { itemList } = useSelector((state) => state[Entity]);
+
 
   useEffect(() => {
     !itemList?.length && getItemList(Entity, dispatch);
@@ -24,7 +27,7 @@ function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayK
 
 
   function setInput(ItemEntity, name, value) {
-    setFieldValue(name, value);
+    setInputDisplay(value)
     SetOptinalList?.length && SetOptinalList.forEach((fieldItem) => {
       setFieldValue(fieldItem, ItemEntity[fieldItem]);
     });
@@ -42,6 +45,7 @@ function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayK
       <p className="title client-selector">Select a {Label}</p>
       <Field
         name={Name}
+        value={inputDisplay}
         type="text"
         id="searchInp"
         placeholder="Search here...."
@@ -55,7 +59,7 @@ function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayK
             <li
               key={ind}
               id="fieldDis"
-              onClick={() => setInput(item, Name, item[SetDisplayKey?.id])}
+              onClick={() => setInput(item, Name, item[SetDisplayKey?.name])}
             >
                 {item[SetDisplayKey?.id]} -| {item[SetDisplayKey?.name]}
             </li>

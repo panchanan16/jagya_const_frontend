@@ -1,17 +1,35 @@
 export const validate = {
-  dateofexpense: "text",
-  expenseName: "text",
-  Amount: "number",
-  remarks: "text",
-  vendorExpenses: "vendorExpense",
-  contractorExpenses: "contractorExpense"
+  exp_date: "text",
+  exp_name: "text",
+  exp_amount: "number",
+  exp_remark: "text",
+  vendor: "vendor",
+  contractor: "contractor",
 };
 
 export const initialValues = {
-  dateofexpense: "",
-  Amount: "",
-  expenseName: "",
-  remarks: "",
-  vendorExpenses: [{ client: "", vendor: "", amount: "", note: "" }],
-  contractorExpenses: [{ client: "", contractor: "", amount: "", note: "" }],
+  exp_date: "",
+  exp_amount: "",
+  exp_name: "",
+  exp_remark: "",
+  vendor: [
+    {
+      clientname: "",       
+      pay_id: "",
+      pay_project_id: "",
+      pay_vendor_id: "",
+      pay_amount: "",
+      pay_note: "",
+    },
+  ],
+  contractor: [
+    {
+      clientname : "",
+      pay_id: "",
+      pay_project_id: "",
+      pay_con_id: "",
+      pay_amount: "",
+      pay_note: "",
+    },
+  ],
 };
