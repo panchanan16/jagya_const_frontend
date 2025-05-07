@@ -83,14 +83,15 @@ function SecondSlideFinanceReq() {
         
         <div class="inventory-table">
           <Table
-            Theader={["ProjectID", "Item", "Quantity", "Amount", "Action"]}
+            Theader={["ProjectID", "Item", "Quantity", "Amount", "Status"]}
             Limit={[
               "mr_project_r_id",
               "mr_item_name",
               "mr_item_quantity",
               "mr_item_amount",
+              {key: "fd_approval"}
             ]}
-            Trow={itemData}
+            Trow={itemData}            
           />
         </div>
       </div>

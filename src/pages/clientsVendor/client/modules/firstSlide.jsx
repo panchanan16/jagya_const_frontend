@@ -25,6 +25,8 @@ function FirstSlide() {
               deleteUrl: "client",
               editUrl: "client_id",
             }}
+            Paginate={true}
+            
           />
         </div>
     </FirstSlideLayout>

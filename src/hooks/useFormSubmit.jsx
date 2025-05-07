@@ -37,7 +37,7 @@ function useFormSubmit(initialValueObj, validateObj, IdKey, entity) {
 
   const submithandler = urlParam ? updateTheItem : addNewItem;
 
-  return [submithandler, initialSchema, validateSchema, isReturn];
+  return [submithandler, initialSchema, validateSchema, isReturn, urlParam];
 }
 
 

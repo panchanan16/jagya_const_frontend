@@ -49,11 +49,16 @@ import AddRequestFinance from "@/forms/addRequestFinance/AddRequestFinance";
 import UsersPage from "@/pages/userManager/users";
 import AddUserForm from "@/forms/addUser/AddUserForm";
 import Protected from "./protected";
+import AdminLoginPage from "@/pages/login/admin";
 
 const routePages = [
   {
     path: "/",
     element: <DashboardPage />,
+  },
+  {
+    path: "/admin/login",
+    element: <AdminLoginPage />,
   },
   {
     path: "/projects",
@@ -209,7 +214,7 @@ const routePages = [
     // path: "/users",
     element: <Protected />,
     children: [
-      { path: "users", element:<UsersPage /> },
+      { path: "users", element: <UsersPage /> },
       { path: ":id", element: <SecondSlideBranchList /> },
       {
         path: "add-user",

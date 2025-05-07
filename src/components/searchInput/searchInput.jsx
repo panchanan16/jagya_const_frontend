@@ -11,8 +11,9 @@ import { useDispatch, useSelector } from "react-redux";
 // SetFkey: to Set foreignkey which hidded in the form type = {fieldName: ItemEntityKey}
 // SetDisplayKey: Which field's data like name, uniqueid.. to be show in list item. type = {id: string, name: string}
 // editDisplayInput: On edit what data should be show in input field since actual field data will be hidden to user. string type
+// errorKey is Errormessage key errorKey: string;
 
-function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayKey, editDisplayInput }) {
+function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayKey, editDisplayInput, errorKey }) {
   const [showList, setShowList] = useState(false);
   const dispatch = useDispatch();
   const [inputDisplay, setInputDisplay] = useState(editDisplayInput ? editDisplayInput : "");
@@ -52,7 +53,7 @@ function SearchInput({ Name, Label, Entity, SetOptinalList, SetFKey, SetDisplayK
         onClick={() => setShowList(!showList)}
         readOnly="true"
       />
-      <ErrorMessage name={Name} className="err" component="span" />
+      <ErrorMessage name={errorKey ? errorKey : Name} className="err" component="span" />
       <ul className={`${showList ? "" : "hide"} list-options`}>
         {itemList &&
           itemList?.map((item, ind) => (

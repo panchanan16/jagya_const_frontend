@@ -18,6 +18,7 @@ function RequestFormWithField({ values, resetFn }) {
           Entity={"project"}
           SetFKey={{mr_project_id: "pro_id"}}
           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
+          errorKey={'mr_project_id'}
         />
         <SelectOption Name={"mr_phase"} Label={"Phase"} action={addPhase} />
         <div class="field">
@@ -126,6 +127,10 @@ function AddRequestForm() {
     alert(JSON.stringify(values));
   }
 
+  function addnewproject(params) {
+    
+  }
+
   return (
     <PopupLayout>
       <div class="add-collection blur">
@@ -139,9 +144,9 @@ function AddRequestForm() {
           <hr />
           <FormLayout
             MainForm={RequestFormWithField}
-            initialValues={initialValues}
+            initialValues={initialSchema}
             validationSchema={validateSchema}
-            formHandler={addRequest}
+            formHandler={submithandler}
             isReturn={isReturn}
           />
         </div>
