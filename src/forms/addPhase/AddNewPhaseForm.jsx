@@ -1,3 +1,4 @@
+import SelectOption from "@/components/SelectOption/SelectOption";
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, Form } from "formik";
@@ -6,18 +7,30 @@ import { Link } from "react-router-dom";
 function PhaseFormWithField({ resetFn }) {
   return (
     <Form>
-      <ul>
-        <li class="flex align-center gap-5">
-          <Field type="checkbox" name="" id="" />
-          <ErrorMessage name="subphase" className="err" component="span" />
-          <span class="name">Phase I</span>
-        </li>
-        <li class="flex align-center gap-5">
-          <Field type="checkbox" name="" id="" />
-          <ErrorMessage name="subphase" className="err" component="span" />
-          <span class="name">Phase II</span>
-        </li>
-      </ul>
+      <div>
+        <SelectOption Name={"Phase"} Label={"Phase"} />
+      </div>
+      <div class="field">
+        <p class="title">Date: </p>
+        <Field type="date" name="exp_date" />
+        <ErrorMessage name="exp_date" className="err" component="span" />
+      </div>
+      <div class="field">
+        <Field as="select" name={'status'} id="" class="v-selector">
+          <option value="" disabled selected>
+            Select from here
+          </option>
+          <option value="Pending">
+           Pending
+          </option>               
+          <option value="In Progress">
+           In Progress
+          </option>      
+
+        </Field>
+        <ErrorMessage name={'status'} className="err" component="span" />
+      </div>
+
       <div class="action-btn flex align-center gap-10">
         <button type="submit" class="btn-success flex-1">
           Add
@@ -31,10 +44,9 @@ function PhaseFormWithField({ resetFn }) {
 }
 
 function AddNewPhaseForm() {
-
   function addPhase(values) {
-     console.log(values)
-     alert(JSON.stringify(values))
+    console.log(values);
+    alert(JSON.stringify(values));
   }
   return (
     <PopupLayout>
@@ -52,6 +64,7 @@ function AddNewPhaseForm() {
             initialValues={{}}
             validationSchema={{}}
             formHandler={addPhase}
+            isReturn={true}
           />
         </div>
       </div>

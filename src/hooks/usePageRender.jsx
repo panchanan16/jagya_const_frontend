@@ -20,7 +20,7 @@ function usePageRender(entity, tail, key, itemId, loc) {
 
   useEffect(() => {
     getItemList(entity, dispatch, tail, key);
-  }, [loc, searchParams.get('category')]);
+  }, [loc]);
 
   return { itemList, itemData, viewedItem, id };
 }

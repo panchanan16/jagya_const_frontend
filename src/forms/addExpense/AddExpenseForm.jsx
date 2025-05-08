@@ -42,7 +42,8 @@ function ExpenseFormWithField({ values, resetFn }) {
               <ExpenseField
                 key={index}
                 FieldNameList={{
-                  cname: friend.pay_note,
+                  cname: friend.pro_name, // to be display to the user
+                  showname: "ABC supplies",
                   client: `vendor[${index}].pay_project_id`,
                   vendor: `vendor[${index}].pay_vendor_id`,
                   amount: `vendor[${index}].pay_amount`,
@@ -65,6 +66,8 @@ function ExpenseFormWithField({ values, resetFn }) {
               <ExpenseField
                 key={index}
                 FieldNameList={{
+                  cname: friend.pro_name,
+                  showname: "B. Talukdaar",
                   client: `contractor[${index}].pay_project_id`,
                   contractor: `contractor[${index}].pay_con_id`,
                   amount: `contractor[${index}].pay_amount`,

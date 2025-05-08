@@ -13,6 +13,8 @@ export default function ExpenseField({
 }) {
   const { id } = useParams();
 
+  console.log(FieldNameList)
+
   return (
     <div className="newItem">
       <div className="itemGrid">
@@ -30,7 +32,7 @@ export default function ExpenseField({
           Entity={Type}
           SetFKey={{ [FieldNameList[Type]]: typeDisplay?.id }}
           SetDisplayKey={typeDisplay}
-          editDisplayInput={FieldNameList?.cname}
+          editDisplayInput={FieldNameList?.showname}
         />
         <div className="field">
           <p className="title">Amount</p>
