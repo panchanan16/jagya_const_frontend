@@ -1,8 +1,10 @@
 import SelectOption from "@/components/SelectOption/SelectOption";
+import useFormSubmit from "@/hooks/useFormSubmit";
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, Form } from "formik";
 import { Link } from "react-router-dom";
+import { initialValues, validate } from "../addBranch/fields";
 
 function PhaseFormWithField({ resetFn }) {
   return (
@@ -16,19 +18,15 @@ function PhaseFormWithField({ resetFn }) {
         <ErrorMessage name="exp_date" className="err" component="span" />
       </div>
       <div class="field">
-        <Field as="select" name={'status'} id="" class="v-selector">
+        <p class="title">Select status: </p>
+        <Field as="select" name={"status"} id="" class="v-selector">
           <option value="" disabled selected>
             Select from here
           </option>
-          <option value="Pending">
-           Pending
-          </option>               
-          <option value="In Progress">
-           In Progress
-          </option>      
-
+          <option value="Pending">Pending</option>
+          <option value="In Progress">In Progress</option>
         </Field>
-        <ErrorMessage name={'status'} className="err" component="span" />
+        <ErrorMessage name={"status"} className="err" component="span" />
       </div>
 
       <div class="action-btn flex align-center gap-10">
@@ -44,6 +42,12 @@ function PhaseFormWithField({ resetFn }) {
 }
 
 function AddNewPhaseForm() {
+  const [submithandler, initialSchema, validateSchema, isReturn, urlParam] =
+    useFormSubmit(initialValues, validate, "mr_r_id", {
+      name: "material_req",
+      route: "create",
+    });
+
   function addPhase(values) {
     console.log(values);
     alert(JSON.stringify(values));
@@ -61,10 +65,10 @@ function AddNewPhaseForm() {
 
           <FormLayout
             MainForm={PhaseFormWithField}
-            initialValues={{}}
-            validationSchema={{}}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
             formHandler={addPhase}
-            isReturn={true}
+            isReturn={isReturn}
           />
         </div>
       </div>

@@ -36,7 +36,15 @@ function RequestFinanceFormWithField({ values, resetFn }) {
             <button
               class="btn-dashed flex align-items j-center"
               type="button"
-              onClick={() => push({ mr_item_name: "", mr_item_quantity: "" })}
+              onClick={() =>
+                push({
+                  mr_item_name: "",
+                  mr_item_quantity: "",
+                  mr_item_amount: "",
+                  fd_approval: 0,
+                  vendor_id: null,     
+                })
+              }
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +62,15 @@ function RequestFinanceFormWithField({ values, resetFn }) {
             {values.materialItemsData.map((friend, index) => (
               <div class="newItem">
                 <div class="grid gap-10 inventoryGrid">
+                  <SearchInput
+                    Name={"vendor_id"}
+                    Label={"Vendor"}
+                    Entity="vendor"
+                    SetFKey={{ [`materialItemsData[${index}].vendor_id`]: "vendor_id" }} // setting client ref key in the form which is not displayed
+                    SetDisplayKey={{ id: "vendor_id", name: "vendor_name" }}
+                    editDisplayInput={friend.mr_item_name}
+                    errorKey={"vendor_id"}
+                  />
                   <div class="field">
                     <p class="title">Item</p>
                     <Field

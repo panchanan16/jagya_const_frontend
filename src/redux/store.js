@@ -10,6 +10,7 @@ import collectionSlice from './features/collectionSlice/slice'
 import labourSlice from './features/labourSlice/slice'
 import settingSlice from './features/settingsSlice/slice'
 import material_reqSlice from './features/materiai_reqSlice/slice'
+import projectPhaseSlice from './features/projectPhaseSlice/slice'
 
 
 export const store = configureStore({
@@ -24,7 +25,8 @@ export const store = configureStore({
     collection: collectionSlice,
     labour: labourSlice,
     material_req: material_reqSlice,
-    settings: settingSlice
+    settings: settingSlice,
+    project_phase: projectPhaseSlice
 
   },
   middleware: (getDefaultMiddleware) =>

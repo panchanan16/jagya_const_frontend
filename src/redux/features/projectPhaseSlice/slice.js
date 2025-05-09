@@ -5,15 +5,12 @@ import fulfilledStateReducer from "../../customReducer";
 const initialState = {
     loading: false,
     error: null,
-    phaseList: [],
-    subPhaseList: [],
-    contractorList: [],
-    projectFile: []
+    itemList: []
 
 }
 
-const projectMaterial = createSlice({
-    name: 'projectMaterial',
+const projectPhaseSlice = createSlice({
+    name: 'projectPhase',
     initialState: initialState,
     reducers: {
         resetData: (state, action) => {
@@ -58,5 +55,5 @@ const projectMaterial = createSlice({
     }
 })
 
-export default projectMaterial.reducer;
+export default projectPhaseSlice.reducer;
 
