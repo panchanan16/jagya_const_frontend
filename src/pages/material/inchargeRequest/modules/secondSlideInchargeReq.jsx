@@ -104,9 +104,9 @@ function SecondSlideInchargeReq() {
         </div>
         <div class="inventory-table">
           <Table
-            Theader={["ProjectID", "Item", "Quantity", "Amount", "Action"]}
+            Theader={["ProjectID", "Item", "Quantity", "Amount"]}
             Limit={["mr_project_r_id", "mr_item_name", "mr_item_quantity", "mr_item_amount"]}
-            Trow={itemData}
+            Trow={itemData?.materialItemsData ? itemData.materialItemsData : []}
           />
         </div>
       </div>

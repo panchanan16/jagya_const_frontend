@@ -6,6 +6,7 @@ export async function _GET(endpoint) {
     try {
         const response = await apiClient.get(`${endpoint}`);
         successHandler(response, { notifyOnSuccess: true })
+        console.log(response)
         return response.data;
     } catch (error) {
         errorHandler(error)

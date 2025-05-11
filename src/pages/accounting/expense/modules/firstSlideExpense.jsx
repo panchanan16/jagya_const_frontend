@@ -15,10 +15,9 @@ function FirstSlideExpense() {
             "Amount",
             "Mode of pay",
             "Date",
-            "Project ID",
             "Action",
           ]}
-          Limit={['exp_id', 'exp_name', 'exp_amount', 'exp_mode', 'exp_project_ref', 'exp_date']}
+          Limit={['exp_id', 'exp_name', 'exp_amount', 'exp_mode', 'exp_date']}
           Trow={itemList}
           Actions={{
             viewUrl: "exp_id",

@@ -4,6 +4,10 @@ import { _GET, _POST } from "@/request/request";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
+// entity: name of the entity
+// tail: api core endpoint.
+// action: if we need update redux state then if we pass action then it will be dispatch : optional.
+
 function useRequest(entity, action, tail) {
   const [requestData, setRequestData] = useState([]);
   const [loading, setLoading] = useState(false);

@@ -9,6 +9,7 @@ import SelectOption from "@/components/SelectOption/SelectOption";
 import { addPhase } from "@/redux/features/settingsSlice/slice";
 
 function RequestFinanceFormWithField({ values, resetFn }) {
+  console.log(values);
   return (
     <Form>
       <div class="grid gtc-3 gap-10">
@@ -18,7 +19,8 @@ function RequestFinanceFormWithField({ values, resetFn }) {
           Entity="project"
           SetFKey={{ mr_project_id: "pro_id" }} // setting client ref key in the form which is not displayed
           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
-          editDisplayInput={`mr_phase`}
+          editDisplayInput={values.mr_phase}
+          errorKey={"mr_project_id"}
         />
         <SelectOption Name={"mr_phase"} Label={"Phase"} action={addPhase} />
         <div class="field">
@@ -34,7 +36,15 @@ function RequestFinanceFormWithField({ values, resetFn }) {
             <button
               class="btn-dashed flex align-items j-center"
               type="button"
-              onClick={() => push({ mr_item_name: "", mr_item_quantity: "" })}
+              onClick={() =>
+                push({
+                  mr_item_name: "",
+                  mr_item_quantity: "",
+                  mr_item_amount: "",
+                  fd_approval: 0,
+                  vendor_id: null,     
+                })
+              }
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -52,6 +62,15 @@ function RequestFinanceFormWithField({ values, resetFn }) {
             {values.materialItemsData.map((friend, index) => (
               <div class="newItem">
                 <div class="grid gap-10 inventoryGrid">
+                  <SearchInput
+                    Name={"vendor_id"}
+                    Label={"Vendor"}
+                    Entity="vendor"
+                    SetFKey={{ [`materialItemsData[${index}].vendor_id`]: "vendor_id" }} // setting client ref key in the form which is not displayed
+                    SetDisplayKey={{ id: "vendor_id", name: "vendor_name" }}
+                    editDisplayInput={friend.mr_item_name}
+                    errorKey={"vendor_id"}
+                  />
                   <div class="field">
                     <p class="title">Item</p>
                     <Field
@@ -162,7 +181,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
 }
 
 function AddRequestFinance() {
-  const [submithandler, initialSchema, validateSchema, isReturn] =
+  const [submithandler, initialSchema, validateSchema, isReturn, urlParam] =
     useFormSubmit(initialValues, validate, "mr_r_id", {
       name: "material_req",
       route: "create",
@@ -178,7 +197,7 @@ function AddRequestFinance() {
       <div class="add-collection blur">
         <div class="form">
           <h2>Request Materials</h2>
-          <Link to="/finance-request/10">
+          <Link to={`/finance-request/${urlParam}`}>
             <button type="button" class="btn-warning close">
               Close
             </button>
@@ -188,7 +207,7 @@ function AddRequestFinance() {
             MainForm={RequestFinanceFormWithField}
             initialValues={initialSchema}
             validationSchema={validateSchema}
-            formHandler={addRequest}
+            formHandler={submithandler}
             isReturn={isReturn}
           />
         </div>

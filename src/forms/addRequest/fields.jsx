@@ -8,7 +8,6 @@ export const initialValues = {
 
 export const validate = {
   mr_project_id: "number",
-  mr_project_ref: "text",
   mr_phase: "text",
   mr_date: "text",
 };
