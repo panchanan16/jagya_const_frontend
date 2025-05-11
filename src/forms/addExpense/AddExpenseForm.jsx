@@ -154,7 +154,7 @@ function AddExpenseForm() {
             MainForm={ExpenseFormWithField}
             initialValues={initialSchema}
             validationSchema={ExpenseSchema}
-            formHandler={addExpense}
+            formHandler={submithandler}
             isReturn={isReturn}
           />
         </div>

@@ -1,9 +1,8 @@
 import useRequest from "@/hooks/useRequest";
 import { ErrorMessage, Field } from "formik";
 
-function SelectOption({ Name, Label, action }) {
+function SelectOption({ Name, Label, action, keyValue }) {
   const { requestData } = useRequest("phase", action);
-  console.log(requestData);
 
   return (
     <div class="field">
@@ -12,7 +11,7 @@ function SelectOption({ Name, Label, action }) {
         <option value="" disabled selected>Select from here</option>
         {requestData &&
           requestData.map((el) => (
-            <option value={el.phase_name}>{el.phase_name}</option>
+            <option value={el[keyValue]}>{el.phase_name}</option>
           ))}
       </Field>
       <ErrorMessage name={Name} className="err" component="span" />
