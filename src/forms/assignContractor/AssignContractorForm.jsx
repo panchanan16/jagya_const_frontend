@@ -1,5 +1,5 @@
 import PopupLayout from "@/layout/common/popupLayout";
-import { Form, useFormikContext } from "formik";
+import { ErrorMessage, Field, Form, useFormikContext } from "formik";
 import { Link, useParams } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import FormLayout from "@/layout/formLayout/formLayout";
@@ -9,12 +9,12 @@ import SelectOption from "@/components/SelectOption/SelectOption";
 import { useEffect } from "react";
 
 function AssignFormWithField({ resetFn }) {
-  const { userId } = useParams();
+  const { projectId } = useParams();
   const { setFieldValue } = useFormikContext();
 
   useEffect(() => {
-    setFieldValue("pro_id", userId);
-  }, [userId]);
+    setFieldValue("pro_id", projectId);
+  }, [projectId]);
 
   return (
     <Form>
@@ -24,8 +24,9 @@ function AssignFormWithField({ resetFn }) {
           Label={"Contractor"}
           Entity={"contractor"}
           SetDisplayKey={{ id: "con_id", name: "con_name" }}
+          SetOptinalList={["con_name"]}
           SetFKey={{ con_id: "con_id" }}
-          errorKey={'con_id'}
+          errorKey={"con_id"}
         />
 
         <SelectOption
@@ -49,8 +50,9 @@ function AssignFormWithField({ resetFn }) {
 }
 
 function AssignContractorForm() {
+  const { projectId } = useParams();
   const [submithandler, initialSchema, validateSchema, isReturn] =
-    useFormSubmit(initialValues, validate, "vendor_id", "vendor");
+    useFormSubmit(initialValues, validate, null, "project_contractor");
 
   function assignContractorToProject(values) {
     console.log(values);
@@ -62,7 +64,7 @@ function AssignContractorForm() {
       <div class="add-employee-popup blur">
         <div class="form">
           <h2>Add an Contractor</h2>
-          <Link to="/projects/80">
+          <Link to={`/projects/${projectId}`}>
             <button
               type="button"
               class="btn-warning close"

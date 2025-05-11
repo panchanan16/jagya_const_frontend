@@ -4,17 +4,22 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams   } from "react-router-dom";
 
-function usePageRender(entity, tail, key, itemId, loc) {
+//entity: which slice need to access
+//tail: if it is core 
+//key: which key need to update on the initial state
+//itemid: which item need to access from itemList.
+
+function usePageRender(entity, tail, key, itemId, loc, urlKey) {
   const { itemList, itemData } = useSelector((state) => state[entity]);
-  const { id } = useParams();
+  const { [urlKey ? urlKey : 'id']: urlParam } = useParams();
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const Actions = tail ? coreCrudActions : crudActions;
   const { getItemList } = Actions;
   let viewedItem = null
 
-  if (id && itemId) {
-    const Item = itemList.filter((item)=> item[itemId] == id)
+  if (urlParam && itemId) {
+    const Item = itemList.filter((item)=> item[itemId] == urlParam)
     viewedItem = Item[0]
   }
 
@@ -22,7 +27,7 @@ function usePageRender(entity, tail, key, itemId, loc) {
     getItemList(entity, dispatch, tail, key);
   }, [loc]);
 
-  return { itemList, itemData, viewedItem, id };
+  return { itemList, itemData, viewedItem, urlParam };
 }
 
 export default usePageRender;

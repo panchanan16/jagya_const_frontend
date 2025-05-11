@@ -1,16 +1,18 @@
 // editlist is entity's itemlist in redux state
 // List is main entity's list
 // id is urlparam of entity's primary key
-// dkey is primary field name in db.
+// dkey is primary field name in db. Required for update form initialvalues.
 
 export function buildInitialValuesWithArray(List, id, obj, dkey, editList) {
     const client = id && List && List.filter((item) => item[dkey] == id);
     const initialObject = {}
-    initialObject[dkey] = id ? id : ""
+    if (dkey) {
+        initialObject[dkey] = id ? id : ""
+    }
     for (const key in obj) {
-        if (client && client.length) { 
+        if (client && client.length) {
             console.log(editList)
-            if (typeof obj[key] == 'object') {  
+            if (typeof obj[key] == 'object') {
                 initialObject[key] = editList[key] ? editList[key] : editList  // adding initial value in initial object including array if it is.
             } else {
                 // console.log(client[0])

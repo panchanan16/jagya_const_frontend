@@ -1,7 +1,6 @@
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import PopupLayout from "@/layout/common/popupLayout";
-import { useEffect } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 
 function SecondSlideFinanceReq() {
@@ -14,7 +13,6 @@ function SecondSlideFinanceReq() {
     location
   );
 
-  console.log(itemData);
 
   return (
     <PopupLayout>

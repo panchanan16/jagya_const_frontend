@@ -27,14 +27,14 @@ const projectPhaseSlice = createSlice({
         builder.addCase(GET_REQUEST.pending, (state) => {
             state.loading = true
         }).addCase(GET_REQUEST.fulfilled, (state, action) => {        
-            fulfilledStateReducer(state, action, 'project', 'GET')
+            fulfilledStateReducer(state, action, 'project_phase', 'GET')
         }).addCase(GET_REQUEST.rejected, (state, action) => {
             state.loading = false;
             state.error = action.payload
         }).addCase(POST_REQUEST.pending, (state) => {
             state.loading = true
         }).addCase(POST_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'project', 'POST')
+            fulfilledStateReducer(state, action, 'project_phase', 'POST')
         }).addCase(POST_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
@@ -42,12 +42,12 @@ const projectPhaseSlice = createSlice({
             state.loading = true
             state.error = action.payload
         }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'project', 'DELETE', 'pro_id')
+            fulfilledStateReducer(state, action, 'project_phase', 'DELETE', 'phase_id')
         }).addCase(DELETE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
         }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'project', 'UPDATE', 'pro_id')
+            fulfilledStateReducer(state, action, 'project_phase', 'UPDATE', 'phase_id')
         }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
