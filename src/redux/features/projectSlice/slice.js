@@ -7,7 +7,7 @@ const initialState = {
     loading: false,
     error: null,
     itemData: {
-        contractors: [], phases: []
+        contractors: [], phases: [], documents: []
     }
 }
 

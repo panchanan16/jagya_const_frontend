@@ -6,11 +6,18 @@ function Phases({ Name, Status }) {
       <div className="title flex align-center gap-10">
         <span className="dot"></span>
         <span className="text flex-1">{Name}</span>
-        <select name="" id="" defaultValue={Status}>
-          <option value="Not Started">Not Started</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Completed">Completed</option>
-        </select>
+        <div class="flex align-center j-between gap-5">
+          <Link to="assigned">
+            <button>Contractor</button>
+          </Link>
+
+          <select name="" id="" defaultValue={Status}>
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
         <span className="task-svg">
           <Link to="assigned">
             <svg

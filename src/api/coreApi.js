@@ -5,7 +5,8 @@ const coreEndpoint = {
     getOneWithId : (entity, id)=> `${API_CORE}${entity}/readOne/${id}`,
     createItem : (entity, endpoint)=> `${API_CORE}${entity}/${endpoint}`,
     deleteItem: (entity)=> `${API_CORE}${entity}/remove`,
-    updateItem: (entity)=> `${API_CORE}${entity}/update`
+    updateItem: (entity)=> `${API_CORE}${entity}/update`,
+    uploadFile: (entity, id)=> `${API_CORE}${entity}/upload/file/${id}`
 }
 
 export default coreEndpoint;

@@ -18,12 +18,12 @@ export const GET_REQUEST = createAsyncThunk(
 
 export const POST_REQUEST = createAsyncThunk(
   'POST-DATA',
-  async ({ endpoint, body, entity }, { rejectWithValue }) => {
+  async ({ endpoint, body, entity, stateKey }, { rejectWithValue }) => {
     try {
       toast.loading('Submission in Update...', { id: 'loader' })
       const response = await _POST(endpoint, body)
       if (response.status) {
-        return {response, source: entity}
+        return {response, source: entity, stateKey}
       } 
 
       throw response

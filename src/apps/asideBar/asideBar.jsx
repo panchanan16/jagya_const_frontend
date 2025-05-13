@@ -7,7 +7,7 @@ function AsideBar() {
     return (
         <div className="left">
             <div className="logo flex align-center gap-5">
-                <img src="/img/logo.png" alt="Logo" />
+                {/* <img src="/img/logo.png" alt="Logo" /> */}
                 <div className="logo-title">
                     <h3 className="uppercase">CONSTRUCTION</h3>
                 </div>

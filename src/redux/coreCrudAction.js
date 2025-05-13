@@ -7,8 +7,8 @@ const coreCrudActions = {
         dispatch(GET_REQUEST({endpoint: coreEndpoint.getAll(entity, end), entity, stateKey }))
     },
 
-    createItem: (entity, dispatch, body, end) => {
-        dispatch(POST_REQUEST({ endpoint: coreEndpoint.createItem(entity, end), body, entity }))
+    createItem: (entity, dispatch, body, end, stateKey = undefined) => {
+        dispatch(POST_REQUEST({ endpoint: coreEndpoint.createItem(entity, end), body, entity, stateKey }))
    },
 
     deleteItem: (entity, dispatch, body, end)=> {
