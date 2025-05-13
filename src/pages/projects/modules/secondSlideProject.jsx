@@ -34,7 +34,7 @@ function SecondSlideProject() {
             </svg>
           </Link>
           <button
-            className="btn-primary"
+            className="btn-secondary"
             type="button"
             onclick="editProject(this)"
           >
@@ -56,45 +56,45 @@ function SecondSlideProject() {
           <h2>Residential G+2 Building</h2>
         </div>
         {/* <!-- DETAILS  --> */}
-        <div className="contents grid gtc-2 gap-10">
-          <div className="description flex align-center gap-5">
+        <div className="contents grid gtc-2">
+          <div className="description flex align-center">
             <h3>Client Name:</h3>
             <p className="text">Kankan Jyoti Nath</p>
           </div>
-          <div className="description flex align-center gap-5">
+          <div className="description flex align-center">
             <h3>Phone / Alternate Number:</h3>
             <p className="text">6002649802 / 7636896075</p>
           </div>
-          <div className="description flex align-center gap-5">
+          <div className="description flex align-center">
             <h3>Email ID:</h3>
             <p className="text">jyotikankan222@gmail.com</p>
           </div>
-          <div className="description flex align-center gap-5">
+          <div className="description flex align-center">
             <h3>Address:</h3>
             <p className="text">
               House No. 60, Ashram Road, Lachitnagar, Guwahati, Assam
             </p>
           </div>
-          <div className="description flex align-center gap-5">
+          <div className="description flex align-center">
             <h3>House type:</h3>
             <p className="text">Assam Type</p>
           </div>
-          <div className="description flex align-center gap-5">
+          <div className="description flex align-center">
             <h3>Site Description:</h3>
             <p className="text">Assam Type of ghor juntu assamese hoi</p>
           </div>
-          <div className="description flex align-center gap-5">
+          <div className="description flex align-center">
             <h3>Project Initiated:</h3>
             <p className="text">12-June-2024</p>
           </div>
-          <div className="description flex align-center gap-5">
+          <div className="description flex align-center">
             <h3>Project Duration:</h3>
             <p className="text">1.5 years</p>
           </div>
         </div>
 
         {/* <!-- EMPLOYEE LIST --> */}
-        <div className="p-employees flex align-center gap-10">
+        <div className="p-employees flex align-center">
           <h3>Assign Contractor:</h3>
           <Link to="assign">
             <svg
@@ -108,17 +108,16 @@ function SecondSlideProject() {
           </Link>
         </div>
 
-        <hr />
         {/* <!-- Attached Files --> */}
         <div className="file-structure">
           <div className="file-header flex align-start j-between">
-            <h3 className="heading">Attached Files:</h3>
+            <h3>Attached Files:</h3>
             <InputFile Id={projectId} />
           </div>
 
         
 
-          <div className="files flex align-center gap-10 f-wrap">
+          <div className="files flex align-center f-wrap">
             {itemData?.documents.map((doc, key) => (
               <a
                 style={{ textDecoration: "none", color: "inherit" }}
@@ -218,12 +217,11 @@ function SecondSlideProject() {
           </div>
         </div>
 
-        <hr />
         {/* <!-- SUB-TASKS  --> */}
         <div className="task">
           <div className="task-header flex align-start j-between">
             <h3>Tasks</h3>
-            <div className="flex gap-10">
+            <div className="btns flex align-center">
               {/* <Link to="add-subphase">
                 <button
                   className="btn-primary"
@@ -246,7 +244,7 @@ function SecondSlideProject() {
               </Link> */}
               <Link to="add-phase">
                 <button
-                  className="btn-primary"
+                  className="btn-secondary"
                   type="button"
                   onclick="addSubTask()"
                 >
@@ -266,7 +264,7 @@ function SecondSlideProject() {
               </Link>
             </div>
           </div>
-          <div className="task-grid grid gtc-3 gap-10">
+          <div className="task-grid grid">
             {itemData?.phases.map((ph) => (
               <Phases Name={ph.phase_name} Status={ph.pro_phase_status} />
             ))}

@@ -9,18 +9,19 @@ function Header() {
                 <p>Dashboard&nbsp;</p>
                 <p className="active">{location && location.pathname}</p>
             </div>
-            <div className="header-icons flex align-center gap-10">
+            <div className="header-icons flex align-center">
                 <div className="notification-icon flex align-center j-center">
                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
-                        id="bell" className="lg-icon">
+                        id="bell">
                         <path fill="##000000"
                             d="M18,13.18V10a6,6,0,0,0-5-5.91V3a1,1,0,0,0-2,0V4.09A6,6,0,0,0,6,10v3.18A3,3,0,0,0,4,16v2a1,1,0,0,0,1,1H8.14a4,4,0,0,0,7.72,0H19a1,1,0,0,0,1-1V16A3,3,0,0,0,18,13.18ZM8,10a4,4,0,0,1,8,0v3H8Zm4,10a2,2,0,0,1-1.72-1h3.44A2,2,0,0,1,12,20Zm6-3H6V16a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z">
                         </path>
                     </svg>
+                    <span id="notification-count">12</span>
                 </div>
 
-                <div className="dark-icon flex align-center gap-10">
-                    <div className="mode flex align-center j-center">
+                <div className="dark-icon flex align-center">
+                    <div className="mode flex align-center j-center active">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="sun"
                             className="lg-icon">
                             <path
@@ -28,7 +29,7 @@ function Header() {
                             </path>
                         </svg>
                     </div>
-                    <div className="mode flex align-center j-center active">
+                    <div className="mode flex align-center j-center moon">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="moon"
                             className="lg-icon">
                             <path
@@ -38,11 +39,11 @@ function Header() {
                     </div>
                 </div>
 
-                <div className="profile-icon flex gap-5">
-                    <img src="/img/admin.jpg" alt="admin" />
+                <div className="profile-icon flex align-center">
+                    <img src="/img/admin.png" alt="admin" />
                     <div className="profile-text">
-                        <p>Howdy</p>
-                        <p>Kankan Nath</p>
+                        <p>Kankan Jyoti Nath</p>
+                        <p>Admin</p>
                     </div>
                 </div>
             </div>

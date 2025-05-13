@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 function Phases({ Name, Status }) {
   return (
     <div className="grid-box">
-      <div className="title flex align-center gap-10">
+      <div className="title flex align-center">
         <span className="dot"></span>
-        <span className="text flex-1">{Name}</span>
-        <div class="flex align-center j-between gap-5">
+        <span className="text flex-1 uppercase">{Name}</span>
+        <div class="flex align-center j-between">
           <Link to="assigned">
             <button>Contractor</button>
           </Link>
