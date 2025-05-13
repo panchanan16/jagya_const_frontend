@@ -2539,3 +2539,93 @@ canvas {
     background: var(--success-gradient);
     box-shadow: var(--success-b-shadow);
 }
+
+
+/* LOGIN  */
+body.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/img/bg.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(6px);
+}
+
+
+.login-container{
+    max-width: 750px;
+    height: 65%;
+    width: 100%;
+    border-radius: var(--px-5);
+    display: flex;
+    border: 1px solid var(--btn-color);
+}
+.left-login{
+    width: 50%;
+    position: relative;
+    border-right: 1px solid var(--light-primary-300);
+    background: rgba(255, 255, 255, 0.4);
+    overflow: hidden;
+}
+.left-login img{
+    height: 100%;
+}
+.right-login{
+    width: 50%;
+    padding: 30px;
+    background: var(--search-background);
+}
+.login-container :is(h1,p){
+    text-align: center;
+    display: block;
+    width: 100%;
+    color: var(--primary-900);
+}
+.login-container p{
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--light-primary-500);
+    line-height: 1.5;
+    font-size: var(--px-14);
+}
+.login-container form{
+    margin-top: var(--rem-1);
+}
+.login-container .field{
+    margin-top: var(--px-10);
+    position: relative;
+}
+.login-container .field label{
+    font-size: var(--px-14);
+    color: var(--primary-900);
+}
+.login-container button{
+    margin-top: var(--px-10);
+}
+#eye{
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-900);
+}
+#eye.active::before{
+    content: '\ebaf';
+}
+
+@media screen and (max-width : 768px) {
+    .login-container{
+        flex-direction: column;
+        min-width: 300px;
+        height: 100%;
+    }
+    .left-login{
+        width: 100%;
+    }
+    .right-login{
+        width: 100%;
+    }
+}
