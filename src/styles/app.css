@@ -2603,7 +2603,7 @@ body.login {
 .login-container button{
     margin-top: var(--px-10);
 }
-#eye{
+.login-container #eye{
     position: absolute;
     top: 50%;
     right: 5%;
@@ -2612,7 +2612,7 @@ body.login {
     font-weight: 600;
     color: var(--color-900);
 }
-#eye.active::before{
+.login-container #eye.active::before{
     content: '\ebaf';
 }
 

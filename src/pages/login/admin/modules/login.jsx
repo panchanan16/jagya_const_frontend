@@ -20,7 +20,7 @@ function AdminLogin() {
             <i class="uil uil-eye-slash" id="eye"></i>
           </div>
           <div class="field field-btn">
-            <button type="submit" name="signin" id="signin">
+            <button type="submit" name="signin" id="signin" className="btn-primary">
               Log In
             </button>
           </div>
