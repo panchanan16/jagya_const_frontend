@@ -5,14 +5,13 @@ function SectionHeaderOption({ children, EndBtn, HeadingText }) {
         children
       ) : (
         <div className="section-text">
-          <h2 className="flex gap-10">
+          <h2>
             {HeadingText ? HeadingText : "All projects"}
-            <span className="main-span">44</span>
           </h2>
         </div>
       )}
 
-      <div className="utility-section flex align-center gap-10">
+      <div className="utility-section flex align-center">
         <div className="search flex align-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +35,7 @@ function SectionHeaderOption({ children, EndBtn, HeadingText }) {
           </svg>
         </div>
         <div className="filter">
-          <button className="btn-filter flex align-center gap-5">
+          <button className="btn-filter flex align-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

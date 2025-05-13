@@ -20,6 +20,7 @@ function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate }) {
 
   return (
     <>
+    <div className="data-info">
       <table>
         <thead>
           <tr>
@@ -142,6 +143,7 @@ function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate }) {
           </tfoot>
         )}
       </table>
+      </div>
     </>
   );
 }

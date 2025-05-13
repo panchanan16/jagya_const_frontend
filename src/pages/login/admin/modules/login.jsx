@@ -3,10 +3,10 @@
 function AdminLogin() {
   return (
     <div class="login-container">
-      <div class="left">
+      <div class="left-login">
         <img src="/img/logo.jpg" alt="logo" id="logo" />
       </div>
-      <div class="right">
+      <div class="right-login">
         <h1>JAGYA CONSTRUCTION</h1>
         <p>Welcome, Admin</p>
         <form method="POST" action="/admin/auth" id="login-form">
@@ -20,7 +20,7 @@ function AdminLogin() {
             <i class="uil uil-eye-slash" id="eye"></i>
           </div>
           <div class="field field-btn">
-            <button type="submit" name="signin" id="signin">
+            <button type="submit" name="signin" id="signin" className="btn-primary">
               Log In
             </button>
           </div>

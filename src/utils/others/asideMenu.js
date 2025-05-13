@@ -77,13 +77,6 @@ const asideMenuItems = [
     },
 
     {
-        name: 'Notifications',
-        submenu: [],
-        svgImg: NotificationIcon,
-        redirect: '/'
-    },
-
-    {
         name: 'Settings',
         submenu: [],
         svgImg: SettingsIcon,
