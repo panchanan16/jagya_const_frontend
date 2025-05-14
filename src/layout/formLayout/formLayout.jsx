@@ -6,6 +6,7 @@ function FormLayout({
   validationSchema,
   formHandler,
   isReturn,
+  loading
 }) {
   return (
     isReturn && (
@@ -24,7 +25,7 @@ function FormLayout({
             values={values}
             resetFn={resetForm}
             errors={errors}
-            isSubmitting={isSubmitting}
+            isSubmitting={loading}
           />
         )}
       </Formik>

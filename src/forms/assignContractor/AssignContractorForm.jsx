@@ -78,7 +78,7 @@ function AssignContractorForm() {
             MainForm={AssignFormWithField}
             initialValues={initialSchema}
             validationSchema={validateSchema}
-            formHandler={assignContractorToProject}
+            formHandler={submithandler}
             isReturn={isReturn}
           />
         </div>

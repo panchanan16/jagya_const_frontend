@@ -2,7 +2,7 @@ import Header from "@/apps/header/header";
 import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
 import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
 
-function FirstSlideLayout({ children, Heading, Btn, BtnFn }) {
+function FirstSlideLayout({ children, Heading, Btn, BtnFn, Entity }) {
   return (
     <div className={`first-slide`} id="first-slide">
       <Header />
@@ -20,6 +20,7 @@ function FirstSlideLayout({ children, Heading, Btn, BtnFn }) {
               clickFn={BtnFn}
             />
           }
+          Entity={Entity}
         />
         {children}
       </main>

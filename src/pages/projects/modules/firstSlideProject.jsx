@@ -3,13 +3,14 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideProject() {
-  const { itemList } = usePageRender("project");
+  const { itemList, outputItemList } = usePageRender("project");
 
   return (
     <FirstSlideLayout
       Heading={"Projects"}
       Btn="Add Projects"
       BtnFn="/projects/add-project"
+      Entity={"project"}
     >
       <div className="main-table">
         <Table
@@ -28,7 +29,7 @@ function FirstSlideProject() {
             "pro_housetype",
             "pro_duration",
           ]}
-          Trow={itemList}
+          Trow={outputItemList}
           Actions={{
             viewUrl: "pro_id",
             deleteUrl: "project",

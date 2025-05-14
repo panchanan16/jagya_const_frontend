@@ -87,7 +87,7 @@ const asideMenuItems = [
         name: 'Logout',
         submenu: [],
         svgImg: LogoutIcon,
-        redirect: '/'
+        redirect: '/admin/login'
     }
 ]
 
