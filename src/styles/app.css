@@ -2046,13 +2046,16 @@ figure span {
 }
 
 .inventoryGrid {
-    grid-template-columns: repeat(2, 1fr) 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    /* height: 50vh; */
+    overflow-y: scroll;
     margin: var(--px-10) auto;
 }
 
 .itemGrid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) 2rem;
+    grid-template-columns: repeat(5, 1fr) 2rem;
     gap: 10px;
     margin: var(--px-15) auto;
 }
