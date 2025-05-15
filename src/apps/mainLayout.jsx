@@ -1,9 +1,8 @@
-import AppRoutes from "@/router/AppRoutes"
+import AppRoutes from "@/router/AppRoutes";
+import { useSelector } from "react-redux";
 
 function MainLayout() {
-    return (
-        <AppRoutes />
-    )
+  return <AppRoutes />;
 }
 
 export default MainLayout;

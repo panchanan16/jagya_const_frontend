@@ -1,11 +1,40 @@
-import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
-import { createSlice } from "@reduxjs/toolkit";
-import fulfilledStateReducer from "../../customReducer";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { _POST } from "@/request/request";
+import Cookies from "js-cookie";
+
+
+export const LOGIN_REQUEST = createAsyncThunk(
+    'LOGIN-DATA',
+    async ({ endpoint, body, entity, stateKey }, { rejectWithValue }) => {
+        try {
+            const response = await _POST(endpoint, body)
+            if (response.status) {
+                return { response, source: entity, stateKey }
+            }
+            throw response
+        } catch (error) {
+            console.log(error)
+            return rejectWithValue(error)
+        }
+    },
+)
+
+
+function getInitialvalues() {
+    const isAccsess = Cookies.get("isLoggedIn");
+    console.log(isAccsess)
+    return isAccsess
+}
+
+
 
 const initialState = {
+    isLoggedIn: getInitialvalues(),
     loading: false,
     error: null,
-    super_admin: []
+    role: null,
+    super_admin: {},
+    finance_admin: {}
 }
 
 const loginSlice = createSlice({
@@ -21,18 +50,14 @@ const loginSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(GET_REQUEST.pending, (state) => {
+        builder.addCase(LOGIN_REQUEST.pending, (state) => {
             state.loading = true
-        }).addCase(GET_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'login', 'GET')
-        }).addCase(GET_REQUEST.rejected, (state, action) => {
+        }).addCase(LOGIN_REQUEST.fulfilled, (state, action) => {
             state.loading = false;
-            state.error = action.payload
-        }).addCase(POST_REQUEST.pending, (state) => {
-            state.loading = true
-        }).addCase(POST_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'login', 'POST')
-        }).addCase(POST_REQUEST.rejected, (state, action) => {
+            state.isLoggedIn = true
+            state.error = null;
+            state[action.payload?.stateKey] = action.payload?.response?.data
+        }).addCase(LOGIN_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
         })

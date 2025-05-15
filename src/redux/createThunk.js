@@ -24,10 +24,11 @@ export const POST_REQUEST = createAsyncThunk(
       const response = await _POST(endpoint, body)
       if (response.status) {
         return {response, source: entity, stateKey}
-      } 
+      }
 
       throw response
     } catch (error) {
+      console.log(error)
       return rejectWithValue(error)
     } finally {
       toast.dismiss('loader')

@@ -2,7 +2,8 @@ import useLogin from "@/hooks/useLogin";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { validateForm } from "@/utils/validation/formValidation";
 import { ErrorMessage, Field, Form } from "formik";
-import React, { useState } from "react";
+import { useEffect } from "react";
+import { redirect, useNavigate } from "react-router-dom";
 
 const initialValues = {
   user_id: "",
@@ -14,9 +15,12 @@ const validate = {
   password: "text",
 };
 
-function AdminLoginFormWithField({ resetFn, isSubmitting }) {
+function AdminLoginFormWithField({ errors, isSubmitting }) {
   return (
     <Form>
+      <span style={{ color: "red", fontSize: "13px" }}>
+        {errors && errors.message}
+      </span>
       <div class="field">
         <label htmlFor="your_name">Email Address</label>
         <Field type="text" name="user_id" id="user_id" />
@@ -39,12 +43,15 @@ function AdminLoginFormWithField({ resetFn, isSubmitting }) {
 
 function AdminLoginForm() {
   const validateSchema = validateForm(validate);
+  const navigate = useNavigate();
   const { stateItem, LoginUser } = useLogin("super-admin", "super_admin");
 
-  //   console.log(stateItem);
+  useEffect(() => {
+    stateItem.isLoggedIn && navigate("/admin/projects");
+  }, [stateItem.isLoggedIn]);
 
   async function testSubmit(values) {
-    await LoginUser(values);
+    LoginUser(values);
   }
 
   return (
@@ -56,6 +63,7 @@ function AdminLoginForm() {
         formHandler={testSubmit}
         isReturn={true}
         loading={stateItem?.loading}
+        isError={stateItem.error}
       />
     </>
   );

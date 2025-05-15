@@ -6,7 +6,8 @@ function FormLayout({
   validationSchema,
   formHandler,
   isReturn,
-  loading
+  loading,
+  isError
 }) {
   return (
     isReturn && (
@@ -24,7 +25,7 @@ function FormLayout({
           <MainForm
             values={values}
             resetFn={resetForm}
-            errors={errors}
+            errors={isError}
             isSubmitting={loading}
           />
         )}
