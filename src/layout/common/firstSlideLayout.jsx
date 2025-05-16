@@ -10,7 +10,7 @@ function FirstSlideLayout({ children, Heading, Btn, BtnFn, Entity }) {
         {Heading && (
           <div className="heading">
             <h1>{Heading && Heading}</h1>
-            <p className="title">Find all projects and their datails here</p>
+            <p className="title">Find all projects and their details here</p>
           </div>
         )}
         <SectionHeaderOption

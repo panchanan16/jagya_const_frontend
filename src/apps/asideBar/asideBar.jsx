@@ -10,7 +10,7 @@ function AsideBar() {
         {/* <img src="/img/logo.png" alt="Logo" /> */}
         <h3 className="uppercase">JAGYA CONSTRUCTION</h3>
       </div>
-        <div className="side-menu flex align-center j-center">
+        <div className="side-menu flex align-center j-center hide">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

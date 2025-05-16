@@ -2,7 +2,7 @@ import { DashboardIcon, ProjectIcon, ClientVendorIcon, AccountingIcon, Materials
 const entity = "admin"
 const asideMenuItems = [
     {
-        name: 'Dashboard',
+        name: 'Analytics',
         submenu: [],
         svgImg: DashboardIcon,
         redirect: '/'
@@ -17,8 +17,8 @@ const asideMenuItems = [
     {
         name: 'Clients & Vendors',
         submenu: [
-            { name: 'clients', url: `${entity}/clients` },
-            { name: 'vendors', url: `${entity}/vendors` }
+            { name: 'Clients', url: `${entity}/clients` },
+            { name: 'Vendors', url: `${entity}/vendors` }
         ],
         svgImg: ClientVendorIcon,
         redirect: ''
@@ -27,9 +27,9 @@ const asideMenuItems = [
     {
         name: 'Accounting',
         submenu: [
-            { name: 'finance', url: `${entity}/finance` },
-            { name: 'expense', url: `${entity}/expense` },
-            { name: 'invoices', url: `${entity}/invoices` }
+            { name: 'Finance', url: `${entity}/finance` },
+            { name: 'Expense', url: `${entity}/expense` },
+            { name: 'Invoices', url: `${entity}/invoices` }
         ],
         svgImg: AccountingIcon,
         redirect: ''
@@ -38,11 +38,11 @@ const asideMenuItems = [
     {
         name: 'Materials',
         submenu: [
-            { name: 'inventory', url: 'inventory' },
-            { name: 'material request', url: `${entity}/material-request` },
-            { name: 'finance requests', url: `${entity}/finance-request` },
-            { name: 'incharge', url: `${entity}/incharge` },
-            { name: 'stock', url: `${entity}/inventory-stocks` }
+            { name: 'Inventory', url: 'inventory' },
+            { name: 'Material request', url: `${entity}/material-request` },
+            { name: 'Finance requests', url: `${entity}/finance-request` },
+            { name: 'Incharge', url: `${entity}/incharge` },
+            { name: 'Stock', url: `${entity}/inventory-stocks` }
         ],
         svgImg: MaterialsIcon,
         redirect: ''
@@ -51,8 +51,8 @@ const asideMenuItems = [
     {
         name: 'Man Power',
         submenu: [
-            { name: 'labour', url: `${entity}/labour` },
-            { name: 'contractor', url: `${entity}/contractor` }
+            { name: 'Labour', url: `${entity}/labour` },
+            { name: 'Contractor', url: `${entity}/contractor` }
         ],
         svgImg: LaboursIcon,
         redirect: ''

@@ -10,7 +10,7 @@ function Header() {
                 <p className="active">{location && location.pathname}</p>
             </div>
             <div className="header-icons flex align-center">
-                <div className="notification-icon flex align-center j-center">
+                <div className="notification-icon flex align-center j-center hide">
                     <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24"
                         id="bell">
                         <path fill="##000000"
@@ -20,7 +20,7 @@ function Header() {
                     <span id="notification-count">12</span>
                 </div>
 
-                <div className="dark-icon flex align-center">
+                <div className="dark-icon flex align-center hide">
                     <div className="mode flex align-center j-center active">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="sun"
                             className="lg-icon">

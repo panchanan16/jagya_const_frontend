@@ -7,13 +7,13 @@ function SectionHeaderOption({ children, EndBtn, HeadingText, Entity }) {
         children
       ) : (
         <div className="section-text">
-          <h2>{HeadingText ? HeadingText : "All projects"}</h2>
+          <h2>{HeadingText ? HeadingText : "All Projects"}</h2>
         </div>
       )}
 
       <div className="utility-section flex align-center">
         <SearchBox SearchEntity={Entity} />
-        <div className="filter">
+        <div className="filter hide">
           <button className="btn-filter flex align-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"

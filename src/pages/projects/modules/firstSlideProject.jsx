@@ -8,7 +8,7 @@ function FirstSlideProject() {
   return (
     <FirstSlideLayout
       Heading={"Projects"}
-      Btn="Add Projects"
+      Btn="Add a Project"
       BtnFn="/projects/add-project"
       Entity={"project"}
     >

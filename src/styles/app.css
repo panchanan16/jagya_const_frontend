@@ -438,14 +438,14 @@ nav ul li a span.text {
     flex: 1;
 }
 
-nav ul li:is(.active, :hover) a,
+nav ul li:is(.active, :hover) a:not(li .sub-menu a),
 .log-out a:is(:hover, .active) {
     border: 1px solid var(--btn-color);
     background: var(--gradient-3);
     color: var(--btn-color);
 }
 
-ul li a svg,
+li a svg,
 .log-out a svg {
     width: var(--px-22);
     height: var(--px-22);
@@ -482,8 +482,8 @@ li .sub-menu a {
 }
 
 li .sub-menu.active a:is(.active, :hover) {
-    border-left: 4px solid var(--light-primary-900);
     background: var(--light-primary-100);
+    border-left: 4px solid var(--light-primary-900);
     color: var(--primary-900);
     border-radius: 0 var(--radius-6) var(--radius-6) 0;
 }
@@ -722,8 +722,8 @@ main .main-span {
 }
 
 .search svg {
-    width: var(--px-18);
-    height: var(--px-18);
+    width: var(--px-20);
+    height: var(--px-20);
     margin: 0 var(--px-10);
     fill: var(--primary-900);
 }
@@ -732,8 +732,8 @@ main .main-span {
     background: transparent;
     width: 100%;
     padding: var(--px-8) var(--px-10);
-    border-left: 1px solid var(--light-primary-300);
     border-right: 1px solid var(--light-primary-300);
+    border-left: 1px solid var(--light-primary-300);
     font-size: var(--f-size-14);
     font-weight: 500;
     color: var(--primary-900);
@@ -1133,6 +1133,12 @@ main .p-employees {
     border-bottom: 1px solid var(--light-primary-300);
 }
 
+.file-structure .btn-secondary{
+    padding: var(--px-8) var(--px-10);
+    border-radius: var(--px-5);
+    font-size: var(--px-14);
+    font-weight: 500;
+}
 .files {
     gap: var(--px-10);
 }
