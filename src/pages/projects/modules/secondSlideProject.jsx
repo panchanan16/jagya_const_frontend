@@ -3,9 +3,11 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import Phases from "./phases/Phases";
 import usePageRender from "@/hooks/usePageRender";
 import InputFile from "@/components/fileInput/InputFile";
+import { useSelector } from "react-redux";
 
 function SecondSlideProject() {
   const { projectId } = useParams();
+  const { itemList } = useSelector((state) => state["project_phase"]);
   const { itemData } = usePageRender(
     "project",
     `get_project_detail/${projectId}`,
@@ -19,7 +21,7 @@ function SecondSlideProject() {
     <SecondSlideLayout>
       <main>
         <div className="main-btn flex">
-          <Link to={`/projects`}>
+          <Link to={`/admin/projects`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"
@@ -115,8 +117,6 @@ function SecondSlideProject() {
             <InputFile Id={projectId} />
           </div>
 
-        
-
           <div className="files flex align-center f-wrap">
             {itemData?.documents.map((doc, key) => (
               <a
@@ -124,83 +124,6 @@ function SecondSlideProject() {
                 href={`localhost:3500/public/project/files/file-441d2c5b-2e89-4954-a4b3-442c83547333-1747119848623.pdf`}
                 target="_blank"
               >
-                {/* <div className="file-data flex align-center gap-5" key={key}>
-                  <div className="file-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      id="file-upload-alt"
-                      className="svg-25"
-                    >
-                      <path d="M13,20H6a1,1,0,0,1-1-1V5A1,1,0,0,1,6,4h5V7a3,3,0,0,0,3,3h3v2a1,1,0,0,0,2,0V9s0,0,0-.06a1.31,1.31,0,0,0-.06-.27l0-.09a1.07,1.07,0,0,0-.19-.28h0l-6-6h0a1.07,1.07,0,0,0-.28-.19.32.32,0,0,0-.09,0A.88.88,0,0,0,12.05,2H6A3,3,0,0,0,3,5V19a3,3,0,0,0,3,3h7a1,1,0,0,0,0-2ZM13,5.41,15.59,8H14a1,1,0,0,1-1-1ZM8,8a1,1,0,0,0,0,2H9A1,1,0,0,0,9,8Zm6,4H8a1,1,0,0,0,0,2h6a1,1,0,0,0,0-2Zm6.71,5.29-2-2a1,1,0,0,0-.33-.21,1,1,0,0,0-.76,0,1,1,0,0,0-.33.21l-2,2a1,1,0,0,0,1.42,1.42l.29-.3V21a1,1,0,0,0,2,0V18.41l.29.3a1,1,0,0,0,1.42,0A1,1,0,0,0,20.71,17.29ZM12,18a1,1,0,0,0,0-2H8a1,1,0,0,0,0,2Z"></path>
-                    </svg>
-                  </div>
-                  <div className="file-details">
-                    <span className="text">Resume.pdf</span>
-                    <div className="dropdown">
-                      <span className="view-more">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          className="svg-15"
-                        >
-                          <path
-                            fill=""
-                            d="M12,7a2,2,0,1,0-2-2A2,2,0,0,0,12,7Zm0,10a2,2,0,1,0,2,2A2,2,0,0,0,12,17Zm0-7a2,2,0,1,0,2,2A2,2,0,0,0,12,10Z"
-                          ></path>
-                        </svg>
-                      </span>
-                      <div className="dropdown-list flex align-center flex-column hide">
-                        <p
-                          className="title flex align-center gap-5"
-                          onclick="openProjectDetails('second-slide', this)"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            id="eye"
-                            className="svg-18"
-                          >
-                            <path d="M21.92,11.6C19.9,6.91,16.1,4,12,4S4.1,6.91,2.08,11.6a1,1,0,0,0,0,.8C4.1,17.09,7.9,20,12,20s7.9-2.91,9.92-7.6A1,1,0,0,0,21.92,11.6ZM12,18c-3.17,0-6.17-2.29-7.9-6C5.83,8.29,8.83,6,12,6s6.17,2.29,7.9,6C18.17,15.71,15.17,18,12,18ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z"></path>
-                          </svg>
-                          <span className="text">View</span>
-                        </p>
-                        <p
-                          className="title flex align-center gap-5"
-                          onclick="editProject()"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            className="svg-18"
-                          >
-                            <path
-                              fill=""
-                              d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"
-                            ></path>
-                          </svg>
-                          <span className="text">Edit</span>
-                        </p>
-                        <p
-                          className="title flex align-center gap-5"
-                          onclick="confirmAlert()"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                            className="svg-18"
-                          >
-                            <path
-                              fill=""
-                              d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"
-                            ></path>
-                          </svg>
-                          <span className="text">Delete</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
                 <div class="file-data flex align-center">
                   <div class="file-icon">
                     <div class="file-corner"></div>
@@ -265,9 +188,12 @@ function SecondSlideProject() {
             </div>
           </div>
           <div className="task-grid grid">
-            {itemData?.phases.map((ph) => (
-              <Phases Name={ph.phase_name} Status={ph.pro_phase_status} />
-            ))}
+            {itemList
+              .filter((ph) => ph.pro_id == projectId)
+              .concat(itemData.phases)
+              ?.map((ph) => (
+                <Phases Name={ph.phase_name} Status={ph.pro_phase_status} />
+              ))}
           </div>
         </div>
       </main>
@@ -275,6 +201,5 @@ function SecondSlideProject() {
     </SecondSlideLayout>
   );
 }
-
 
 export default SecondSlideProject;

@@ -3,6 +3,7 @@ export const initialValues = {
   pro_id: "",
   pro_phase_status: "In Progress",
   pro_phase_deadline: "",
+  phase_name: ""
 };
 
 export const validate = {

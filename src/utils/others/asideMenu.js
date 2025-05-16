@@ -73,7 +73,7 @@ const asideMenuItems = [
         name: 'User Manager',
         submenu: [],
         svgImg: UserMangerIcon,
-        redirect: `${entity}/users`
+        redirect: `/${entity}/users`
     },
 
     {

@@ -5,21 +5,23 @@ import { Link, useParams } from "react-router-dom";
 function ContractorAssigned() {
   const { projectId } = useParams();
   const { itemData } = useSelector((state) => state["project"]);
-  console.log(itemData);
+  const { itemList } = useSelector((state) => state["project_contractor"]);
 
   return (
     <SectionLayout>
       <div class="pro-emp-popup">
         <div class="form">
           <h3>Residential G+2 building</h3>
-          <Link to={`/projects/${projectId}`}>
+          <Link to={`/admin/projects/${projectId}`}>
             <button type="button" class="btn-warning close">
               Close
             </button>
           </Link>
           <div class="employee-column">
-            {itemData?.contractors.length &&
-              itemData.contractors.map((cont) => (
+            {itemList
+              .filter((cn) => cn.pro_id == projectId)
+              .concat(itemData.contractors)
+              ?.map((cont) => (
                 <div class="employee-list flex align-center j-between">
                   <div class="emp-profile flex gap-5">
                     <img src="/img/admin.jpg" alt="jpg" />
@@ -45,7 +47,7 @@ function ContractorAssigned() {
                     ></path>
                   </svg>
                 </div>
-              ))}
+              ))}          
           </div>
         </div>
       </div>

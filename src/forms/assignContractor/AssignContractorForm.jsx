@@ -33,6 +33,7 @@ function AssignFormWithField({ resetFn }) {
           Name={"pro_phase"}
           Label={"Phase"}
           keyValue={"phase_name"}
+          // setName={true}
         />
       </div>
       <hr />
@@ -64,7 +65,7 @@ function AssignContractorForm() {
       <div class="add-employee-popup blur">
         <div class="form">
           <h2>Add an Contractor</h2>
-          <Link to={`/projects/${projectId}`}>
+          <Link to={`/admin/projects/${projectId}`}>
             <button
               type="button"
               class="btn-warning close"

@@ -55,34 +55,6 @@ function WorkType() {
     makeRequest(values, insertPhase);
   };
 
-  //  <div class="work-type grid-box">
-  //                                   <div class="title flex align-center">
-  //                                       <span class="dot"></span>
-  //                                       <span class="text flex-1 uppercase">Work Type</span>
-  //                                   </div>
-  //                                   <div class="set-details flex align-center">
-  //                                       <input type="text">
-  //                                       <button type="button" class="btn-primary" onclick="addWorkType(this)">Add</button>
-  //                                   </div>
-  //                                   <div class="edit-details">
-  // <ul>
-  //     <li class="flex align-center">
-  //         <span class="dot"></span>
-  //         <span class="flex-1">Interior</span>
-  //         <button class="btn-secondary" onclick="editWorkType(this)">Edit</button>
-  //         <span class="flex align-center j-center icon">
-  //             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-  //                 id="trash-alt">
-  //                 <path
-  //                     d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z">
-  //                 </path>
-  //             </svg>
-  //         </span>
-  //     </li>
-  // </ul>
-  //                                   </div>
-  //                               </div>
-
   return (
     <div className="set-details work-type grid-box">
       <div className="work-type flex align-center j-between">

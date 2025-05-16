@@ -6,6 +6,7 @@ import { ErrorMessage, Field, Form, useFormikContext } from "formik";
 import { Link, useParams } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 function PhaseFormWithField({ resetFn }) {
   const { projectId } = useParams();
@@ -18,7 +19,12 @@ function PhaseFormWithField({ resetFn }) {
   return (
     <Form>
       <div>
-        <SelectOption Name={"phase_id"} Label={"Phase"} keyValue={"phase_id"} />
+        <SelectOption
+          Name={"phase_id"}
+          Label={"Phase"}
+          keyValue={"phase_id"}
+          setName={true}
+        />
       </div>
 
       <div class="field">
@@ -64,6 +70,7 @@ function AddNewPhaseForm() {
   const [submithandler, initialSchema, validateSchema, isReturn] =
     useFormSubmit(initialValues, validate, "phase_id", "project_phase");
 
+
   function addPhase(values) {
     console.log(values);
     alert(JSON.stringify(values));
@@ -73,7 +80,7 @@ function AddNewPhaseForm() {
       <div class="phase-popup blur">
         <div class="form">
           <h2>Add Phase</h2>
-          <Link to={`/projects/${projectId}`}>
+          <Link to={`/admin/projects/${projectId}`}>
             <button type="button" class="btn-warning close">
               Close
             </button>
