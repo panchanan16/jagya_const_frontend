@@ -121,8 +121,9 @@ function SecondSlideProject() {
             {itemData?.documents.map((doc, key) => (
               <a
                 style={{ textDecoration: "none", color: "inherit" }}
-                href={`localhost:3500/public/project/files/file-441d2c5b-2e89-4954-a4b3-442c83547333-1747119848623.pdf`}
+                href={`http://localhost:3500/public/project/files/file-441d2c5b-2e89-4954-a4b3-442c83547333-1747119848623.pdf`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <div class="file-data flex align-center">
                   <div class="file-icon">
