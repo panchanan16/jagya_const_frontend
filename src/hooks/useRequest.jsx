@@ -14,9 +14,9 @@ function useRequest(entity, action, tail) {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  async function makeRequest(body, action) {
+  async function makeRequest(body, action, end) {
     try {
-      const endpoint = tail ? coreEndpoint.createItem(entity, tail) : entityEndpoint.createItem(entity)
+      const endpoint = end ? coreEndpoint.createItem(entity, tail) : entityEndpoint.createItem(entity)
       const response = await _POST(endpoint, body);
       setRequestData(response.data);
       action && dispatch(action(response.data))

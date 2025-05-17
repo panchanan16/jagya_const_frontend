@@ -1,7 +1,11 @@
+import { Outlet } from "react-router-dom";
+
 function DashboardPage() {
   return (
-    <div>DashboardPage</div>
-  )
+    <>
+      <Outlet />
+    </>
+  );
 }
 
-export default DashboardPage
+export default DashboardPage;

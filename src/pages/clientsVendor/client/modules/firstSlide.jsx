@@ -3,7 +3,7 @@ import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 
 function FirstSlide() {
-  const { itemList } = usePageRender("client");
+  const { outputItemList } = usePageRender("client");
 
   return (
     <FirstSlideLayout Heading="Clients" Btn="add clients" BtnFn="/clients/create">
@@ -19,7 +19,7 @@ function FirstSlide() {
               "Email",
               "Action",
             ]}
-            Trow={itemList}
+            Trow={outputItemList}
             Actions={{
               viewUrl: "client_id",
               deleteUrl: "client",

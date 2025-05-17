@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
 
-function Phases() {
+function Phases({ Name, Status }) {
   return (
     <div className="grid-box">
-      <div className="title flex align-center gap-10">
+      <div className="title flex align-center">
         <span className="dot"></span>
-        <span className="text flex-1">Phase I</span>     
-        <select name="" id="">
-          <option value="">Not Started</option>
-          <option value="">In Progress</option>
-          <option value="">Completed</option>
-        </select>
+        <span className="text flex-1 uppercase">{Name}</span>
+        <div class="flex align-center j-between">
+          <Link to="assigned">
+            <button>Contractor</button>
+          </Link>
+
+          <select name="" id="" defaultValue={Status}>
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </div>
+
         <span className="task-svg">
           <Link to="assigned">
             <svg
@@ -32,7 +39,7 @@ function Phases() {
               fill=""
               d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"
             ></path>
-          </svg>                    
+          </svg>
         </span>
       </div>
 
@@ -50,7 +57,7 @@ function Phases() {
                 fill=""
                 d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"
               ></path>
-            </svg>            
+            </svg>
           </span>
         </p>
       </div>

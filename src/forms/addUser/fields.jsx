@@ -1,29 +1,15 @@
-// const initialValues = {
-//     name: "",
-//     contact: "",
-//     password: "",
-//     contact: "",
-//     deignation: "",
-//     role: ""
-// }
-
-
 export const initialValues = {
-    client_name: "",
-    client_ref_no: "",
-    client_contact: "",
-    client_alt_contact: "",
-    client_address: "",
-    client_email: "",
-    client_details: "",
-  };
-  
-  export const validate = {
-    client_name: "name",
-    client_email: "email",
-    client_contact: "phnumber",
-    client_alt_contact: "phnumber",
-    client_address: "text",
-    client_details: "text",
-  };
-  
+  su_name: "",
+  su_email: " ",
+  su_contact: "",
+  su_alt_contact: "",
+  su_address: "",
+};
+
+export const validate = {
+  su_name: "name",
+  su_email: "email",
+  su_contact: "phnumber",
+  su_alt_contact: "phnumber",
+  su_address: "text",
+};

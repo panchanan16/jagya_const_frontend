@@ -47,15 +47,14 @@ function SecondSlideExpense() {
         <div className="inventory-table">
           <h3>Contractor</h3>
           <Table
-            Theader={["ProjectID", "Amount", "Note", "Action"]}
+            Theader={["ProjectID", "Amount", "Note"]}
             Trow={itemData?.contractor}
             Limit={["pay_amount", "pay_project_id", "pay_note"]}
-            Actions={{}}
           />
 
           <h3>Vendor</h3>
           <Table
-            Theader={["ProjectID", "Amount", "Note", "Action"]}
+            Theader={["ProjectID", "Amount", "Note"]}
             Trow={itemData?.vendor}
             Limit={["pay_project_id", "pay_amount", "pay_note"]}
           />

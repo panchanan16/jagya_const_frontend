@@ -2,7 +2,14 @@ import Header from "@/apps/header/header";
 import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
 import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
 
-function FirstSlideLayout({ children, Heading, Btn, BtnFn }) {
+function FirstSlideLayout({
+  children,
+  Heading,
+  Btn,
+  BtnFn,
+  Entity,
+  HeaderSection,
+}) {
   return (
     <div className={`first-slide`} id="first-slide">
       <Header />
@@ -13,14 +20,14 @@ function FirstSlideLayout({ children, Heading, Btn, BtnFn }) {
             <p className="title">Find all projects and their datails here</p>
           </div>
         )}
-        <SectionHeaderOption
-          EndBtn={
-            <SectionHeaderBtn
-              btnName={Btn}
-              clickFn={BtnFn}
-            />
-          }
-        />
+
+        {HeaderSection == undefined && (
+          <SectionHeaderOption
+            EndBtn={<SectionHeaderBtn btnName={Btn} clickFn={BtnFn} />}
+            Entity={Entity}
+          />
+        )}
+
         {children}
       </main>
     </div>

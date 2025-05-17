@@ -1,5 +1,5 @@
 import { DashboardIcon, ProjectIcon, ClientVendorIcon, AccountingIcon, MaterialsIcon, LaboursIcon, BranchIcon, UserMangerIcon, NotificationIcon, SettingsIcon, LogoutIcon } from "./icons";
-
+const entity = "admin"
 const asideMenuItems = [
     {
         name: 'Dashboard',
@@ -12,13 +12,13 @@ const asideMenuItems = [
         name: 'Projects',
         submenu: [],
         svgImg: ProjectIcon,
-        redirect: '/projects'
+        redirect: `/${entity}/projects`
     },
     {
         name: 'Clients & Vendors',
         submenu: [
-            { name: 'clients', url: 'clients' },
-            { name: 'vendors', url: 'vendors' }
+            { name: 'clients', url: `${entity}/clients` },
+            { name: 'vendors', url: `${entity}/vendors` }
         ],
         svgImg: ClientVendorIcon,
         redirect: ''
@@ -27,9 +27,9 @@ const asideMenuItems = [
     {
         name: 'Accounting',
         submenu: [
-            { name: 'finance', url: 'finance' },
-            { name: 'expense', url: 'expense' },
-            { name: 'invoices', url: 'invoices' }
+            { name: 'finance', url: `${entity}/finance` },
+            { name: 'expense', url: `${entity}/expense` },
+            { name: 'invoices', url: `${entity}/invoices` }
         ],
         svgImg: AccountingIcon,
         redirect: ''
@@ -39,10 +39,10 @@ const asideMenuItems = [
         name: 'Materials',
         submenu: [
             { name: 'inventory', url: 'inventory' },
-            { name: 'material request', url: 'material-request' },
-            { name: 'finance requests', url: 'finance-request' },
-            { name: 'incharge', url: 'incharge' },
-            { name: 'stock', url: 'inventory-stocks' }
+            { name: 'material request', url: `${entity}/material-request` },
+            { name: 'finance requests', url: `${entity}/finance-request` },
+            { name: 'incharge', url: `${entity}/incharge` },
+            { name: 'stock', url: `${entity}/inventory-stocks` }
         ],
         svgImg: MaterialsIcon,
         redirect: ''
@@ -51,8 +51,8 @@ const asideMenuItems = [
     {
         name: 'Man Power',
         submenu: [
-            { name: 'labour', url: 'labour' },
-            { name: 'contractor', url: 'contractor' }
+            { name: 'labour', url: `${entity}/labour` },
+            { name: 'contractor', url: `${entity}/contractor` }
         ],
         svgImg: LaboursIcon,
         redirect: ''
@@ -61,9 +61,9 @@ const asideMenuItems = [
     {
         name: 'Branches',
         submenu: [
-            { name: 'Branch List', url: 'branch-list' },
-            { name: 'Branch Request', url: 'branch-request' },
-            { name: 'Branch Dashboard', url: 'branch-dashboard' }
+            { name: 'Branch List', url: `${entity}/branch-list` },
+            { name: 'Branch Request', url: `${entity}/branch-request` },
+            { name: 'Branch Dashboard', url: `${entity}/branch-dashboard` }
         ],
         svgImg: BranchIcon,
         redirect: ''
@@ -73,28 +73,21 @@ const asideMenuItems = [
         name: 'User Manager',
         submenu: [],
         svgImg: UserMangerIcon,
-        redirect: '/users'
-    },
-
-    {
-        name: 'Notifications',
-        submenu: [],
-        svgImg: NotificationIcon,
-        redirect: '/'
+        redirect: `/${entity}/users`
     },
 
     {
         name: 'Settings',
         submenu: [],
         svgImg: SettingsIcon,
-        redirect: '/settings'
+        redirect: `/${entity}/settings`
     },
 
     {
         name: 'Logout',
         submenu: [],
         svgImg: LogoutIcon,
-        redirect: '/'
+        redirect: '/admin/login'
     }
 ]
 

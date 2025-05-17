@@ -15,7 +15,7 @@ function AsideNavlink({ name, redirect, submenu, SvgImg }) {
 
     return (
         <li className={active ? 'active' : ''} onClick={()=> openSubmenu(event)}>
-            <a className="flex align-center gap-5">
+            <a className="flex align-center">
                 {SvgImg && <SvgImg />}
                 <span className="text">{name}</span>
                 {

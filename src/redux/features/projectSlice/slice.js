@@ -6,7 +6,9 @@ const initialState = {
     itemList: [],
     loading: false,
     error: null,
-    projectData: []
+    itemData: {
+        contractors: [], phases: [], documents: []
+    }
 }
 
 const projectSlice = createSlice({
@@ -20,7 +22,7 @@ const projectSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(GET_REQUEST.pending, (state) => {
             state.loading = true
-        }).addCase(GET_REQUEST.fulfilled, (state, action) => {        
+        }).addCase(GET_REQUEST.fulfilled, (state, action) => {
             fulfilledStateReducer(state, action, 'project', 'GET')
         }).addCase(GET_REQUEST.rejected, (state, action) => {
             state.loading = false;

@@ -50,178 +50,210 @@ import UsersPage from "@/pages/userManager/users";
 import AddUserForm from "@/forms/addUser/AddUserForm";
 import Protected from "./protected";
 import AdminLoginPage from "@/pages/login/admin";
+import BranchApprovalForm from "@/pages/branch/branchRequest/modules/approval/BranchApprovalForm";
 
-const routePages = [
-  {
-    path: "/",
-    element: <DashboardPage />,
-  },
-  {
-    path: "/admin/login",
-    element: <AdminLoginPage />,
-  },
-  {
-    path: "/projects",
-    element: <ProjectPage />,
-    children: [
-      { path: "add-project", element: <AddProjectForm /> },
-      { path: "create/:id", element: <AddProjectForm /> },
-      {
-        path: ":userId",
-        element: <SecondSlideProject />,
-        children: [
-          { path: "assign", element: <AssignContractorForm /> },
-          { path: "assigned", element: <ContractorAssigned /> },
-          { path: "add-phase", element: <AddNewPhaseForm /> },
-          { path: "add-subphase", element: <AddSubphaseForm /> },
-        ],
-      },
-    ],
-  },
-  {
-    path: "/clients",
-    element: <ClientPage />,
-    children: [
-      { path: ":id", element: <SecondSlide /> },
-      { path: "create", element: <AddClientForm /> },
-      { path: "create/:id", element: <AddClientForm /> },
-    ],
-  },
-  {
-    path: "/vendors",
-    element: <VendorPage />,
-    children: [
-      { path: ":id", element: <SecondSlideVendor /> },
-      { path: "create", element: <AddvendorForm /> },
-      { path: "create/:id", element: <AddvendorForm /> },
-    ],
-  },
-  {
-    path: "/finance",
-    element: <FinancePage />,
-    children: [
-      { path: ":id", element: <SecondSlideFinance /> },
-      { path: "add-installment", element: <InstallmentForm /> },
-      { path: "create/:id", element: <InstallmentForm /> },
-    ],
-  },
-  {
-    path: "/expense",
-    element: <ExpensePage />,
-    children: [
-      { path: ":id", element: <SecondSlideExpense /> },
-      { path: "add-expense", element: <AddExpenseForm /> },
-      { path: "create/:id", element: <AddExpenseForm /> },
-    ],
-  },
-  {
-    path: "/invoices",
-    element: <InvoicePage />,
-    children: [
-      { path: ":id", element: <SecondSlideInvoice /> },
-      { path: "create", element: <AddInvoiceForm /> },
-      { path: "create/:id", element: <AddInvoiceForm /> },
-    ],
-  },
-  {
-    path: "/inventory",
-    element: <InventoryPage />,
-    children: [
-      { path: "inventory-details/:id", element: <SecondSlideInventory /> },
-      { path: "add-inventory", element: <AddInventoryForm /> },
-    ],
-  },
-  {
-    path: "/material-request",
-    element: <MaterialRequestPage />,
-    children: [
-      { path: ":id", element: <SecondSlideMR /> },
-      { path: "add-inventory", element: <AddInventoryForm /> },
-    ],
-  },
-  {
-    path: "/finance-request",
-    element: <FinanceRequestPage />,
-    children: [
-      { path: ":id", element: <SecondSlideFinanceReq /> },
-      { path: "create/:id", element: <AddRequestFinance /> },
-      { path: "add-inventory", element: <AddInventoryForm /> },
-    ],
-  },
-  {
-    path: "/incharge",
-    element: <InchargeReqPage />,
-    children: [
-      { path: ":id", element: <SecondSlideInchargeReq /> },
-      { path: "create", element: <AddRequestForm /> },
-    ],
-  },
-  {
-    path: "/labour",
-    element: <LabourPage />,
-    children: [
-      { path: ":id", element: <SecondSlideMR /> },
-      { path: "create", element: <AddLabourForm /> },
-      { path: "create/:id", element: <AddLabourForm /> },
-    ],
-  },
+function generateRoutePages(params) {
+  const routePages = [
+    {
+      path: "/",
+      element: <DashboardPage />,
+      children: [
+        // Auth Routes -----
+        {
+          path: "admin/login",
+          element: <AdminLoginPage />,
+        },
+        // Super admin routes -----
+        {
+          path: "admin",
+          element: <Protected />,
+          children: [
+            {
+              path: "projects",
+              element: <ProjectPage />,
+              children: [
+                { path: "add-project", element: <AddProjectForm /> },
+                { path: "create/:id", element: <AddProjectForm /> },
+                {
+                  path: ":projectId",
+                  element: <SecondSlideProject />,
+                  children: [
+                    { path: "assign", element: <AssignContractorForm /> },
+                    { path: "assigned", element: <ContractorAssigned /> },
+                    { path: "add-phase", element: <AddNewPhaseForm /> },
+                    { path: "add-subphase", element: <AddSubphaseForm /> },
+                  ],
+                },
+              ],
+            },
+            {
+              path: "clients",
+              element: <ClientPage />,
+              children: [
+                { path: ":id", element: <SecondSlide /> },
+                { path: "create", element: <AddClientForm /> },
+                { path: "create/:id", element: <AddClientForm /> },
+              ],
+            },
 
-  {
-    path: "/contractor",
-    element: <ContractorPage />,
-    children: [
-      { path: ":id", element: <SecondSlideContractor /> },
-      { path: "create", element: <AddContractorForm /> },
-      { path: "create/:id", element: <AddContractorForm /> },
-    ],
-  },
+            {
+              path: "vendors",
+              element: <VendorPage />,
+              children: [
+                { path: ":id", element: <SecondSlideVendor /> },
+                { path: "create", element: <AddvendorForm /> },
+                { path: "create/:id", element: <AddvendorForm /> },
+              ],
+            },
+            {
+              path: "finance",
+              element: <FinancePage />,
+              children: [
+                { path: ":id", element: <SecondSlideFinance /> },
+                { path: "add-installment", element: <InstallmentForm /> },
+                { path: "create/:id", element: <InstallmentForm /> },
+              ],
+            },
+            {
+              path: "expense",
+              element: <ExpensePage />,
+              children: [
+                { path: ":id", element: <SecondSlideExpense /> },
+                { path: "add-expense", element: <AddExpenseForm /> },
+                { path: "create/:id", element: <AddExpenseForm /> },
+              ],
+            },
+            {
+              path: "invoices",
+              element: <InvoicePage />,
+              children: [
+                { path: ":id", element: <SecondSlideInvoice /> },
+                { path: "create", element: <AddInvoiceForm /> },
+                { path: "create/:id", element: <AddInvoiceForm /> },
+              ],
+            },
+            {
+              path: "inventory",
+              element: <InventoryPage />,
+              children: [
+                {
+                  path: "inventory-details/:id",
+                  element: <SecondSlideInventory />,
+                },
+                { path: "add-inventory", element: <AddInventoryForm /> },
+              ],
+            },
+            {
+              path: "material-request",
+              element: <MaterialRequestPage />,
+              children: [
+                { path: ":id", element: <SecondSlideMR /> },
+                { path: "add-inventory", element: <AddInventoryForm /> },
+              ],
+            },
+            {
+              path: "finance-request",
+              element: <FinanceRequestPage />,
+              children: [
+                { path: ":id", element: <SecondSlideFinanceReq /> },
+                { path: "create/:id", element: <AddRequestFinance /> },
+                { path: "add-inventory", element: <AddInventoryForm /> },
+              ],
+            },
+            {
+              path: "incharge",
+              element: <InchargeReqPage />,
+              children: [
+                { path: ":id", element: <SecondSlideInchargeReq /> },
+                { path: "create", element: <AddRequestForm /> },
+              ],
+            },
+            {
+              path: "labour",
+              element: <LabourPage />,
+              children: [
+                { path: ":id", element: <SecondSlideMR /> },
+                { path: "create", element: <AddLabourForm /> },
+                { path: "create/:id", element: <AddLabourForm /> },
+              ],
+            },
 
-  {
-    path: "/branch-dashboard",
-    element: <BranchDashboard />,
-    children: [
-      { path: ":id", element: <SecondSlideBranchDashboard /> },
-      { path: "add-branch-project", element: <AddBranchProjectForm /> },
-    ],
-  },
+            {
+              path: "contractor",
+              element: <ContractorPage />,
+              children: [
+                { path: ":id", element: <SecondSlideContractor /> },
+                { path: "create", element: <AddContractorForm /> },
+                { path: "create/:id", element: <AddContractorForm /> },
+              ],
+            },
 
-  {
-    path: "/branch-request",
-    element: <BranchRequestPage />,
-    children: [
-      { path: ":id", element: <SecondSlideBranchRequest /> },
-      { path: "add-contractor", element: <AddContractorForm /> },
-    ],
-  },
+            {
+              path: "branch-dashboard",
+              element: <BranchDashboard />,
+              children: [
+                { path: ":id", element: <SecondSlideBranchDashboard /> },
+                {
+                  path: "add-branch-project",
+                  element: <AddBranchProjectForm />,
+                },
+              ],
+            },
 
-  {
-    path: "/branch-list",
-    element: <BranchListPage />,
-    children: [
-      { path: ":id", element: <SecondSlideBranchList /> },
-      { path: "add-branch", element: <AddBranchForm /> },
-    ],
-  },
-  {
-    path: "/settings",
-    element: <SettingsPage />,
-    children: [
-      { path: ":id", element: <SecondSlideBranchList /> },
-      { path: "add-branch", element: <AddBranchForm /> },
-    ],
-  },
-  {
-    // path: "/users",
-    element: <Protected />,
-    children: [
-      { path: "users", element: <UsersPage /> },
-      { path: ":id", element: <SecondSlideBranchList /> },
-      {
-        path: "add-user",
-        element: <AddUserForm />,
-      },
-    ],
-  },
-];
+            {
+              path: "branch-request",
+              element: <BranchRequestPage />,
+              children: [
+                {
+                  path: ":id",
+                  element: <SecondSlideBranchRequest />,
+                  children: [
+                    {
+                      path: "approve",
+                      element: <BranchApprovalForm />
+                    }
+                  ]                   
+                },
+                { path: "add-contractor", element: <AddContractorForm /> },
+              ],
+            },
 
-export default routePages;
+            {
+              path: "branch-list",
+              element: <BranchListPage />,
+              children: [
+                {
+                  path: ":id",
+                  element: <SecondSlideBranchList />,
+                },
+                { path: "add-branch", element: <AddBranchForm /> },
+              ],
+            },
+            {
+              path: "settings",
+              element: <SettingsPage />,
+              children: [
+                { path: ":id", element: <SecondSlideBranchList /> },
+                { path: "add-branch", element: <AddBranchForm /> },
+              ],
+            },
+            {
+              path: "users",
+              element: <UsersPage />,
+              children: [
+                { path: ":id", element: <SecondSlideBranchList /> },
+                {
+                  path: "add-user",
+                  element: <AddUserForm />,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  ];
+  return routePages;
+}
+
+export default generateRoutePages;

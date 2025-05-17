@@ -1,17 +1,16 @@
 import coreCrudActions from "@/redux/coreCrudAction";
 import crudActions from "@/redux/crudActions";
-import { buildInitialValues } from "@/utils/builds/buildInitialValue";
 import { buildInitialValuesWithArray } from "@/utils/builds/formArrayBuilder";
 import { validateForm } from "@/utils/validation/formValidation";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
-function useFormSubmit(initialValueObj, validateObj, IdKey, entity) {
+function useFormSubmit(initialValueObj, validateObj, IdKey, entity, urlkey) {
   const { itemList, itemData } = useSelector(
     (state) => state[`${typeof entity == "object" ? entity?.name : entity}`]
   );
   const dispatch = useDispatch();
-  const { id: urlParam } = useParams();
+  const { [urlkey ? urlkey : 'id']: urlParam } = useParams();
   const Actions = typeof entity == "object" ? coreCrudActions : crudActions;
   const { createItem, updateItem } = Actions;
   const initialSchema = buildInitialValuesWithArray(

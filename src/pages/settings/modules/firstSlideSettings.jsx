@@ -8,9 +8,9 @@ function FirstSlideSettings() {
     <FirstSlideLayout Heading="Settings">
       <WorkType />
       <hr />
-      <PaymentType />
+      {/* <PaymentType /> */}
       <hr />
-      <SubTask />
+      {/* <SubTask /> */}
     </FirstSlideLayout>
   );
 }

@@ -11,10 +11,12 @@ function InstallmentFormWithField({ resetFn }) {
     <Form>
       <div className="grid gtc-3 gap-10">
         <SearchInput
-          Name="col_project_id"
+          Name="project_id"
           Label={"project"}
           Entity="project"
           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
+          SetFKey={{col_project_id: "pro_ref_no"}}
+          errorKey={'col_project_id'}
         />
         <div className="field">
           <p className="title">Date</p>
@@ -63,10 +65,10 @@ function InstallmentForm() {
   const [submithandler, initialSchema, validateSchema, isReturn] =
     useFormSubmit(initialValues, validate, "col_id", "collection");
 
-  // function addInstallment(values) {
-  //   console.log(values);
-  //   alert(JSON.stringify(values));
-  // }
+  function addInstallment(values) {
+    console.log(values);
+    alert(JSON.stringify(values));
+  }
 
   return (
     <PopupLayout>

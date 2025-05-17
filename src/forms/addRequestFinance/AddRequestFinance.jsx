@@ -145,7 +145,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
                   </div>
 
                   <div class="field" onClick={() => remove(index)}>
-                    <p class="opacity-0">p</p>
+                    <p class="opacity-0 title">p</p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"

@@ -1,10 +1,9 @@
-import userAccess from "@/hooks/useAuth";
+import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
 const Protected = () => {
-  let isAccess = false;
-
-  return isAccess ? <Outlet /> : <Navigate to="/" />;
+  const isAccess = useSelector((state)=> state['login']);
+  return isAccess.isLoggedIn ? <Outlet /> : <Navigate to="/admin/login" />;
 };
 
 export default Protected;
