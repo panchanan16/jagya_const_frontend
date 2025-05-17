@@ -50,6 +50,7 @@ import UsersPage from "@/pages/userManager/users";
 import AddUserForm from "@/forms/addUser/AddUserForm";
 import Protected from "./protected";
 import AdminLoginPage from "@/pages/login/admin";
+import BranchApprovalForm from "@/pages/branch/branchRequest/modules/approval/BranchApprovalForm";
 
 function generateRoutePages(params) {
   const routePages = [
@@ -203,7 +204,16 @@ function generateRoutePages(params) {
               path: "branch-request",
               element: <BranchRequestPage />,
               children: [
-                { path: ":id", element: <SecondSlideBranchRequest /> },
+                {
+                  path: ":id",
+                  element: <SecondSlideBranchRequest />,
+                  children: [
+                    {
+                      path: "approve",
+                      element: <BranchApprovalForm />
+                    }
+                  ]                   
+                },
                 { path: "add-contractor", element: <AddContractorForm /> },
               ],
             },
@@ -212,7 +222,10 @@ function generateRoutePages(params) {
               path: "branch-list",
               element: <BranchListPage />,
               children: [
-                { path: ":id", element: <SecondSlideBranchList /> },
+                {
+                  path: ":id",
+                  element: <SecondSlideBranchList />,
+                },
                 { path: "add-branch", element: <AddBranchForm /> },
               ],
             },

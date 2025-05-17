@@ -1,6 +1,12 @@
 import SearchBox from "../searchBox/SearchBox";
 
-function SectionHeaderOption({ children, EndBtn, HeadingText, Entity }) {
+function SectionHeaderOption({
+  children,
+  EndBtn,
+  HeadingText,
+  Entity,
+  FilterComponent,
+}) {
   return (
     <div className="top-section flex align-center j-between">
       {children ? (
