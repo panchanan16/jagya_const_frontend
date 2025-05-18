@@ -18,7 +18,7 @@ function SectionHeaderOption({
       )}
 
       <div className="utility-section flex align-center">
-        <SearchBox SearchEntity={Entity} />
+        {Entity && <SearchBox SearchEntity={Entity} />}
         <div className="filter hide">
           <button className="btn-filter flex align-center">
             <svg

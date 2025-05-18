@@ -28,7 +28,7 @@ function ProjectFormWithField({ resetFn }) {
           SetFKey={{pro_client_r_id: 'client_id'}}
           SetDisplayKey={{name: 'client_name', id: 'client_ref_no'}}
         />
-        <div className="field add-field-btn">
+        {/* <div className="field add-field-btn">
           <p className="opacity-0">0</p>
           <button className="btn-primary j-center" type="button">
             <svg
@@ -44,7 +44,7 @@ function ProjectFormWithField({ resetFn }) {
             </svg>
             <span className="text">Add a New Client</span>
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="accordion">
         <div className="accordion-heading flex align-center j-between">
@@ -60,9 +60,7 @@ function ProjectFormWithField({ resetFn }) {
           </svg>
         </div>
         <div
-          className={`accordion-data profile-accordion ${
-            profileAcc ? "" : "hide"
-          }`}
+          className={`accordion-data profile-accordion`}
         >
           <div className="grid gtc-2 gap-10">
             <div className="field">
@@ -141,9 +139,7 @@ function ProjectFormWithField({ resetFn }) {
           </svg>
         </div>
         <div
-          className={`accordion-data profile-accordion ${
-            profileAcc ? "" : "hide"
-          }`}
+          className={`accordion-data profile-accordion`}
         >
           <div className="grid gtc-2 gap-10">
             <div className="field">

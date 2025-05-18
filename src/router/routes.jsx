@@ -52,6 +52,8 @@ import Protected from "./protected";
 import AdminLoginPage from "@/pages/login/admin";
 import BranchApprovalForm from "@/pages/branch/branchRequest/modules/approval/BranchApprovalForm";
 import SecondSlideLabour from "@/pages/manpower/labours/modules/secondSlideLabour";
+import SecondSlideUsers from "@/pages/userManager/users/modules/SecondSlideUsers";
+import AddCredentialForm from "@/forms/addCredentialForm/AddCredentialForm";
 
 function generateRoutePages(params) {
   const routePages = [
@@ -211,9 +213,9 @@ function generateRoutePages(params) {
                   children: [
                     {
                       path: "approve",
-                      element: <BranchApprovalForm />
-                    }
-                  ]                   
+                      element: <BranchApprovalForm />,
+                    },
+                  ],
                 },
                 { path: "add-contractor", element: <AddContractorForm /> },
               ],
@@ -242,7 +244,16 @@ function generateRoutePages(params) {
               path: "users",
               element: <UsersPage />,
               children: [
-                { path: ":id", element: <SecondSlideBranchList /> },
+                {
+                  path: ":id",
+                  element: <SecondSlideUsers />,
+                  children: [
+                    {
+                      path: "add-credentials/:user",
+                      element: <AddCredentialForm />,
+                    },
+                  ],
+                },
                 {
                   path: "add-user",
                   element: <AddUserForm />,

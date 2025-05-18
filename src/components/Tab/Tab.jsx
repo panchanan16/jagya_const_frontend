@@ -1,6 +1,6 @@
 import Table from "../table/Table";
 
-function Tab({ Heading, isTabActive, TabName, TableHeading, TableRows, limit }) {
+function Tab({ Heading, isTabActive, TabName, TableHeading, TableRows, limit, isAction }) {
   return (
     <div className={`${isTabActive == TabName ? "" : "hide"}`}>
       <div className="flex align-start j-between">
@@ -12,7 +12,7 @@ function Tab({ Heading, isTabActive, TabName, TableHeading, TableRows, limit }) 
           Theader={TableHeading}
           Trow={TableRows}
           Limit={limit}
-          Actions={{ editUrl: "/client" }}
+          Actions={isAction}
         />
       </div>
     </div>

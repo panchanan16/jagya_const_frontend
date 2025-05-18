@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 // tail: api core endpoint.
 // action: if we need update redux state then if we pass action then it will be dispatch : optional.
 
-function useRequest(entity, action, tail) {
+function useRequest(entity, action, tail, query) {
   const [requestData, setRequestData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,10 +16,12 @@ function useRequest(entity, action, tail) {
 
   async function makeRequest(body, action, end) {
     try {
-      const endpoint = end ? coreEndpoint.createItem(entity, tail) : entityEndpoint.createItem(entity)
+      const endpoint = end
+        ? coreEndpoint.createItem(entity, tail)
+        : entityEndpoint.createItem(entity);
       const response = await _POST(endpoint, body);
       setRequestData(response.data);
-      action && dispatch(action(response.data))
+      action && dispatch(action(response.data));
       return response.data;
     } catch (err) {
       setError(err);
@@ -31,7 +33,11 @@ function useRequest(entity, action, tail) {
 
   useEffect(() => {
     async function makeRequest() {
-      const endpoint = tail ? coreEndpoint.getAll(entity, tail) : entityEndpoint.getAll(entity)
+      const endpoint = tail
+        ? coreEndpoint.getAll(entity, tail)
+        : query
+        ? entityEndpoint.getAllWithQuery(entity, query)
+        : entityEndpoint.getAll(entity);
       const data = await _GET(endpoint);
       setRequestData(data.data);
       action && dispatch(action(data.data));

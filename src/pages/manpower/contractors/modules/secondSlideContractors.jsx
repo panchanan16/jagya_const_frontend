@@ -1,17 +1,16 @@
+import useRequest from "@/hooks/useRequest";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function SecondSlideContractor() {
-  const tableDataOne = [
-    [1, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1001"],
-    [2, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1003"],
-  ];
-
-  const tableDataTwo = [
-    [1, "10/02/2001", "JG001", "3000", "Cash", "Bought for false ceiling"],
-    [2, "10/02/2001", "JG002", "3000", "Cash", "Bought for false ceiling"],
-  ];
+  const { id } = useParams();
+  const { requestData } = useRequest(
+    "contractorPayment",
+    null,
+    null,
+    `?pay_con_id=${id}`
+  );
 
   return (
     <SecondSlideLayout>
@@ -75,10 +74,24 @@ function SecondSlideContractor() {
             <p className="text">20</p>
           </div>
         </div>
-
         <hr />
 
-     
+        <TabLayout
+          TabList={[
+            {
+              main: "Payments",
+              list: ["No.", "Project", "Amount", "Mode", "Remarks"],
+              limit: [
+                "pay_id",
+                "pay_amount",
+                "pay_mode",
+                "pay_note",
+                "pay_project_id"
+              ],
+              tabData: requestData ? requestData : [],
+            },
+          ]}
+        />
       </main>
     </SecondSlideLayout>
   );

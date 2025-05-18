@@ -1,6 +1,5 @@
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function SecondSlideVendor() {
