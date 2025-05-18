@@ -51,6 +51,7 @@ import AddUserForm from "@/forms/addUser/AddUserForm";
 import Protected from "./protected";
 import AdminLoginPage from "@/pages/login/admin";
 import BranchApprovalForm from "@/pages/branch/branchRequest/modules/approval/BranchApprovalForm";
+import SecondSlideLabour from "@/pages/manpower/labours/modules/secondSlideLabour";
 
 function generateRoutePages(params) {
   const routePages = [
@@ -172,7 +173,7 @@ function generateRoutePages(params) {
               path: "labour",
               element: <LabourPage />,
               children: [
-                { path: ":id", element: <SecondSlideMR /> },
+                { path: ":id", element: <SecondSlideLabour /> },
                 { path: "create", element: <AddLabourForm /> },
                 { path: "create/:id", element: <AddLabourForm /> },
               ],

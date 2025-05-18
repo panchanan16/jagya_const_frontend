@@ -97,7 +97,7 @@ function AddContractorForm() {
       <div className="add-clients-prospects blur">
         <div className="form">
           <h2>Add a Contractor</h2>
-          <Link to={`/contractor`}>
+          <Link to={`/admin/contractor`}>
             <button type="button" className="btn-warning close">
               Close
             </button>

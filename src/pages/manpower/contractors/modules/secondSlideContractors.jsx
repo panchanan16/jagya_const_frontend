@@ -17,7 +17,7 @@ function SecondSlideContractor() {
     <SecondSlideLayout>
       <main>
         <div className="main-btn flex">
-          <Link to="/contractor">
+          <Link to="/admin/contractor">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"
@@ -78,26 +78,7 @@ function SecondSlideContractor() {
 
         <hr />
 
-        <TabLayout
-          tabHeading={{
-            main: "Collections",
-            list: [
-              "No.",
-              "Date",
-              "Amount",
-              "Mode",
-              "Remarks",
-              "Project",
-              "Action",
-            ],
-          }}
-          tabHeadingII={{
-            main: "Expenses",
-            list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
-          }}
-          tabDataOne={tableDataOne}
-          tabDataTwo={tableDataTwo}
-        />
+     
       </main>
     </SecondSlideLayout>
   );

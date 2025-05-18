@@ -288,7 +288,7 @@ function AddProjectForm() {
       <div className="add-project-popup blur">
         <div className="form">
           <h2>Add a Project</h2>
-          <Link to="/projects">
+          <Link to="/admin/projects">
             <button type="button" className="btn-warning close">
               Close
             </button>

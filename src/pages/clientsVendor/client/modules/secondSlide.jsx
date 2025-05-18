@@ -15,7 +15,7 @@ function SecondSlide() {
     <SecondSlideLayout>
       <main>
         <div className="main-btn flex">
-          <Link to={`/clients`}>
+          <Link to={`/admin/clients`}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"

@@ -19,12 +19,12 @@ function SecondSlideExpense() {
         <div className="flex align-start j-between">
           <h2>Expense No: {id}</h2>
           <div className="flex gap-10">
-            <Link to={`/expense/create/${id}`}>
+            <Link to={`/admin/expense/create/${id}`}>
               <button type="button" className="btn-primary">
                 Edit
               </button>
             </Link>
-            <Link to="/expense">
+            <Link to="/admin/expense">
               <button type="button" className="btn-warning close">
                 Close
               </button>

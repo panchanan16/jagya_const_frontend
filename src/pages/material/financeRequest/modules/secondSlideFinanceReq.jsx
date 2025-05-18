@@ -19,7 +19,7 @@ function SecondSlideFinanceReq() {
       <div class="inventory-popup">
         <div class="flex align-start j-between">
           <h2>Request No: {id}</h2>
-          <Link to="/finance-request">
+          <Link to="/admin/finance-request">
             <button type="button" class="btn-warning close">
               Close
             </button>

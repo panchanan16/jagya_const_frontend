@@ -7,7 +7,7 @@ function FirstSlideVendor() {
   const { itemList } = usePageRender('vendor')
 
   return (
-    <FirstSlideLayout Heading='Vendors' Btn={"Add a Vendor"} BtnFn={"/vendors/create"}>
+    <FirstSlideLayout Heading='Vendors' Btn={"Add a Vendor"} BtnFn={"create"}>
         <div className="main-table">
           <Table
             Theader={[

@@ -143,7 +143,7 @@ function AddExpenseForm() {
       <div class="add-expense blur">
         <div class="form">
           <h2>Add an Expense</h2>
-          <Link to="/expense">
+          <Link to="/admin/expense">
             <button type="button" class="btn-warning close">
               Close
             </button>

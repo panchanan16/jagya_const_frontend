@@ -17,7 +17,7 @@ function SecondSlideLabour() {
     <SecondSlideLayout>
       <main>
         <div className="main-btn flex">
-          <Link to="/contractor">
+          <Link to="/admin/labour">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"
@@ -78,7 +78,7 @@ function SecondSlideLabour() {
 
         <hr />
 
-        <TabLayout
+        {/* <TabLayout
           tabHeading={{
             main: "Collections",
             list: [
@@ -97,7 +97,7 @@ function SecondSlideLabour() {
           }}
           tabDataOne={tableDataOne}
           tabDataTwo={tableDataTwo}
-        />
+        /> */}
       </main>
     </SecondSlideLayout>
   );

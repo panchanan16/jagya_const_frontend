@@ -38,8 +38,8 @@ const asideMenuItems = [
     {
         name: 'Materials',
         submenu: [
-            { name: 'Inventory', url: 'inventory' },
-            { name: 'Material request', url: `${entity}/material-request` },
+            // { name: 'Inventory', url: 'inventory' },
+            // { name: 'Material request', url: `${entity}/material-request` },
             { name: 'Finance requests', url: `${entity}/finance-request` },
             { name: 'Incharge', url: `${entity}/incharge` },
             { name: 'Stock', url: `${entity}/inventory-stocks` }

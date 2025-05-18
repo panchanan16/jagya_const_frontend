@@ -7,7 +7,7 @@ function SecondSlideBranchList() {
     <SecondSlideLayout>
       <main>
         <div class="main-btn flex">
-          <Link to='/branch-list'>
+          <Link to='/admin/branch-list'>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"

@@ -136,7 +136,7 @@ function AddRequestForm() {
       <div class="add-collection blur">
         <div class="form">
           <h2>Request Materials</h2>
-          <Link to="/incharge">
+          <Link to="/admin/incharge">
             <button type="button" class="btn-warning close">
               Close
             </button>

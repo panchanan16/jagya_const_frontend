@@ -9,7 +9,7 @@ function FirstSlideProject() {
     <FirstSlideLayout
       Heading={"Projects"}
       Btn="Add a Project"
-      BtnFn="/projects/add-project"
+      BtnFn="add-project"
       Entity={"project"}
     >
       <div className="main-table">

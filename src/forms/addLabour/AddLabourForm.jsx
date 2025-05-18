@@ -74,7 +74,7 @@ function AddLabourForm() {
       <div className="add-clients-prospects blur">
         <div className="form">
           <h2>Add a Labour</h2>
-          <Link to={`/labour`}>
+          <Link to={`/admin/labour`}>
             <button type="button" className="btn-warning close">
               Close
             </button>
