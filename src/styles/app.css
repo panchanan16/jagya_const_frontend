@@ -1612,9 +1612,16 @@ main .sub-task {
 
 .accordion {
     border: 1px solid var(--light-primary-300);
-    padding: var(--px-10);
-    border-radius: var(--radius-6);
+    border-radius: var(--px-6);
     cursor: pointer;
+}
+
+.accordion-heading{
+    padding: var(--px-10);
+}
+.accordion-heading:is(.active, :hover){
+    border-bottom: 1px solid var(--light-primary-300);
+    background: var(--primary-100);
 }
 
 .accordion-heading .arrow {
@@ -1626,7 +1633,7 @@ main .sub-task {
 }
 
 .accordion-data {
-    margin-top: var(--px-15);
+    padding: var(--px-10) var(--px-5);
 }
 
 figure {
@@ -2248,8 +2255,41 @@ button.view:hover {
 }
 
 /* USERS  */
-.switch {}
-
+.roles{
+    position: relative;
+}
+.roles ul{
+    min-width: 130px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--primary-50);
+    width: 100%;
+    border: 1px solid var(--light-primary-300);
+    z-index: 5;
+    padding: 0 var(--px-5) var(--px-5);
+    border-radius: var(--px-5);
+    box-shadow: var(--b-shadow-1);
+    margin-top: var(--px-5);
+}
+.roles button{
+    width: 130px;
+}
+.roles ul li{
+    text-align: center;
+    border-radius: var(--px-5);
+    margin-top: var(--px-6);
+    padding: var(--px-8) var(--px-10);
+    font-size: var(--px-14);
+    font-weight: 500;
+    color: var(--primary-700);
+    background: var(--light-primary-100);
+    transition: var(--transition-1);
+}
+.roles ul li:hover{
+    background: var(--primary-200);
+    color: var(--primary-900);
+}
 /* SETTINGS */
 .settings-grid {
     padding: 0 var(--rem-1);
@@ -2276,9 +2316,16 @@ button.view:hover {
 
 .set-details {
     width: 100%;
+}
+.set-details form{
+    display: flex;
+    align-items: center;
     gap: var(--px-10);
 }
 
+.set-details form div{
+    width: 100%;
+}
 .set-details input {
     width: 100%;
     border: 1px solid var(--btn-color);
@@ -2297,6 +2344,7 @@ button.view:hover {
 .edit-details ul {
     height: 25vh;
     overflow-y: scroll;
+    padding-right: var(--px-5);
 }
 
 .edit-details ul li {

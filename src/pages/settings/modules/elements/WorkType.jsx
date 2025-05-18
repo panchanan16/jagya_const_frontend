@@ -9,13 +9,11 @@ import { useSelector } from "react-redux";
 function InputField() {
   return (
     <Form>
-      <div className="action-btn flex">
-        <div className="field">
+        <div>
           <Field
             type="text"
             name="phase_name"
             id=""
-            placeholder="Type work-type here"
           />
           <ErrorMessage name="phase_name" className="err" component="span" />
         </div>
@@ -33,7 +31,6 @@ function InputField() {
           </svg>
           <span className="text">Add</span>
         </button>
-      </div>
     </Form>
   );
 }
@@ -56,9 +53,12 @@ function WorkType() {
   };
 
   return (
-    <div className="set-details work-type grid-box">
-      <div className="work-type flex align-center j-between">
-        <h1>Work Type {loading && "Loading"}</h1>
+    <div className="work-type grid-box">
+      <div className="title flex align-center">
+        <span className="dot"></span>
+        <span className="text flex-1 uppercase">Work Type {loading && "Loading"}</span>
+      </div>
+      <div className="set-details">
         <FormLayout
           MainForm={InputField}
           isReturn={true}

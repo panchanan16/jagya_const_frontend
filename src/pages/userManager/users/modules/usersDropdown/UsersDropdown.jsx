@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function UsersDropdown() {
   const [openUser, setOpenUser] = useState(false);
   return (
+    <>
     <div className="add-button">
       <button
         className="btn-primary"
@@ -23,22 +24,25 @@ function UsersDropdown() {
         </svg>
         <span className="text">Add Users</span>
       </button>
-
-      <ul className={`${openUser ? "" : "hide"} flex flex-column`}>
-        <li className="btn-secondary">
-          <Link to="add-user">Add Super admin</Link>
+    </div>
+    <div className={`${openUser ? "" : "hide"} roles`}>
+      <button className="btn-secondary">Select a Role</button>
+      <ul className="">
+        <li>
+          <Link to="add-user">Super Admin</Link>
         </li>
-        <li className="btn-secondary">
-          <Link to="">Add Super admin</Link>
+        <li>
+          <Link to="">Incharge</Link>
         </li>
-        <li className="btn-secondary">
-          <Link to="">Add Super admin</Link>
+        <li>
+          <Link to="">Financer</Link>
         </li>
-        <li className="btn-secondary">
-          <Link to="">Add Super admin</Link>
+        <li>
+          <Link to="">Admin</Link>
         </li>
       </ul>
     </div>
+    </>
   );
 }
 

@@ -6,11 +6,11 @@ import SubTask from "./elements/SubTask";
 function FirstSlideSettings() {
   return (
     <FirstSlideLayout Heading="Settings">
+      <div className="settings-grid grid">
       <WorkType />
-      <hr />
       {/* <PaymentType /> */}
-      <hr />
       {/* <SubTask /> */}
+    </div>
     </FirstSlideLayout>
   );
 }
