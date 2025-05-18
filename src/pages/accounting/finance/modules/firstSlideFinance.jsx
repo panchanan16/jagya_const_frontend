@@ -10,7 +10,7 @@ function FirstSlideFinance() {
   const { itemList } = usePageRender("collection");
 
   return (
-    <FirstSlideLayout Heading="Finance" Btn={"add installment"} BtnFn={"add-installment"}>
+    <FirstSlideLayout Heading="Finance" Btn={"Add Installment"} BtnFn={"add-installment"}>
       <div className="main-table">
         <Table
           Theader={[

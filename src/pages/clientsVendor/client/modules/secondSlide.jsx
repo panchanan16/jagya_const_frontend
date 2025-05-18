@@ -30,7 +30,7 @@ function SecondSlide() {
             </svg>
           </Link>
           <button
-            className="btn-primary flex"
+            className="btn-secondary flex hide"
             type="button"
             onclick="editClientsProspects()"
           >
@@ -84,11 +84,10 @@ function SecondSlide() {
             </p>
           </div>
         </div>
-        <hr />
 
-        <div className="client-project-list flex flex-column">
-          <h2>Projects Lists</h2>
-          <div className="flex gap-10">
+        <div className="client-project-list flex align-start">
+          <h3>Projects Lists</h3>
+          <div className="client-project-container flex align-center">
             {itemData.length ? (
               itemData.map((item, key) => (
                 <div
@@ -104,7 +103,7 @@ function SecondSlide() {
                 </div>
               ))
             ) : (
-              <div className="projectName flex flex-wrap align-center">
+              <div className="projectName flex align-center">
                 <p className="text">No Project Found</p>
               </div>
             )}

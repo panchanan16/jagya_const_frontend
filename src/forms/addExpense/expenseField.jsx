@@ -55,7 +55,7 @@ export default function ExpenseField({
 
         {!id && (
           <div className="field" onClick={() => RemoveFn(Ind)}>
-            <p className="opacity-0">p</p>
+            <p className="opacity-0 title">p</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

@@ -4,18 +4,22 @@ import Tab from "@/components/Tab/Tab";
 function TabLayout({ TabList }) {
   const [isTabActive, setTabActive] = useState(TabList[0]?.main);
 
+  console.log(TabList[0].tabData);
+
   return (
     <div className="tabs">
-      <div className="tabs-list flex align-center gap-10">
-        {TabList.length &&
-          TabList.map((item) => (
-            <h3
-              className={isTabActive == item.main ? "active" : ""}
-              onClick={() => setTabActive(item.main)}
-            >
-              {item.main}
-            </h3>
-          ))}
+      <div className="tabs-heading flex align-end j-between">
+        <div className="tabs-list flex align-center">
+          {TabList.length &&
+            TabList.map((item) => (
+              <p
+                className={isTabActive == item.main ? "active" : ""}
+                onClick={() => setTabActive(item.main)}
+              >
+                {item.main}
+              </p>
+            ))}
+        </div>
       </div>
       <div className="tabs-content">
         {/* <!-- TAB RENDERING --> */}
