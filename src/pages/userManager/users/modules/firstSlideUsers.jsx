@@ -75,7 +75,7 @@ function FirstSlideUsers() {
   return (
     <FirstSlideLayout
       Heading={"Users"}
-      Btn={"Add Users"}
+      Btn={"Add User"}
       BtnFn={"add-user"}
       HeaderSection={true}
     >
