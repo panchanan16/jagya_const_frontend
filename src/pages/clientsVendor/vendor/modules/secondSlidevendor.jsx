@@ -1,17 +1,16 @@
+import usePageRender from "@/hooks/usePageRender";
+import useRequest from "@/hooks/useRequest";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function SecondSlideVendor() {
-  const tableDataOne = [
-    [1, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1001"],
-    [2, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1003"],
-  ];
-
-  const tableDataTwo = [
-    [1, "10/02/2001", "3000", "Cash", "Bought for false ceiling"],
-    [2, "10/02/2001", "3000", "Cash", "Bought for false ceiling"],
-  ];
+  const { id } = useParams();
+  const { itemData } = usePageRender(
+    "vendor",
+    `get_vendor_payment_purchase?vendor_id=${id}`,
+    "itemData"
+  );
 
   return (
     <SecondSlideLayout>
@@ -95,7 +94,7 @@ function SecondSlideVendor() {
               //   "col_date",
               //   "col_project_id",
               // ],
-              tabData: tableDataOne,
+              tabData: itemData.payments,
             },
             {
               main: "Purchases",
@@ -118,7 +117,7 @@ function SecondSlideVendor() {
               //   "exp_date",
               //   "exp_project_ref",
               // ],
-              tabData: tableDataTwo,
+              tabData: itemData.purcheses,
             },
           ]}
         />
