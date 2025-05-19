@@ -10,7 +10,8 @@ import useFormSubmit from "@/hooks/useFormSubmit";
 function BranchProjectFormWithField({ resetFn }) {
   const { setFieldValue } = useFormikContext();
   useEffect(() => {
-    setFieldValue('b_r_id', 3)
+    setFieldValue('b_r_id', 3);
+    setFieldValue('b_client_commision', 1)
   }, []);
 
 

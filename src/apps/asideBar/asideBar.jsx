@@ -1,9 +1,9 @@
 import AsideNavlink from "@/components/asideLink/asideNavlink";
+import LogoutBtn from "@/components/logout/LogoutBtn";
 import asideMenuItems from "@/utils/others/asideMenu";
 import React from "react";
 
 function AsideBar() {
-  console.log("I am aside bar rendering");
   return (
     <div className="left">
       <div className="logo flex align-center">
@@ -32,6 +32,7 @@ function AsideBar() {
                 SvgImg={item.svgImg}
               />
             ))}
+            <LogoutBtn />
         </ul>
       </nav>
     </div>

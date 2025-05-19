@@ -17,7 +17,10 @@ function SecondSlideProject() {
     "projectId"
   );
 
-  console.log(viewedItem);
+  function deleteTheFile(e) {
+    e.preventDefault()
+    console.log("File DELETED SUCCESSFULLY!")
+  }
 
   return (
     <SecondSlideLayout>
@@ -142,7 +145,7 @@ function SecondSlideProject() {
                   <div class="file-details" onclick="showFile()">
                     <span class="text">Resume.pdf</span>
                   </div>
-                  <div class="dlt-btn">
+                  <div class="dlt-btn" onClick={deleteTheFile}>
                     <span>X</span>
                   </div>
                 </div>

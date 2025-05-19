@@ -81,13 +81,6 @@ const asideMenuItems = [
         submenu: [],
         svgImg: SettingsIcon,
         redirect: `/${entity}/settings`
-    },
-
-    {
-        name: 'Logout',
-        submenu: [],
-        svgImg: LogoutIcon,
-        redirect: '/admin/login'
     }
 ]
 

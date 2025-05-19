@@ -41,12 +41,8 @@ const loginSlice = createSlice({
     name: 'loginSlice',
     initialState: initialState,
     reducers: {
-        setQuery: (state, action) => {
-            state.searchQuery = action.payload
-        },
-
-        setFilteredItems: (state, action) => {
-            state.itemList = action.payload
+        setLogout: (state, action) => {
+            state.isLoggedIn = false
         }
     },
     extraReducers: (builder) => {
@@ -64,7 +60,7 @@ const loginSlice = createSlice({
     }
 })
 
-export const { setQuery, removeQuery, setFilteredItems } = loginSlice.actions;
+export const { setLogout } = loginSlice.actions;
 
 export default loginSlice.reducer;
 

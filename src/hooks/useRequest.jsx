@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 // tail: api core endpoint.
 // action: if we need update redux state then if we pass action then it will be dispatch : optional.
 
-function useRequest(entity, action, tail, query) {
+function useRequest(entity, action, tail, query, isOnload = true) {
   const [requestData, setRequestData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -42,7 +42,7 @@ function useRequest(entity, action, tail, query) {
       setRequestData(data.data);
       action && dispatch(action(data.data));
     }
-    makeRequest();
+    isOnload && makeRequest();
   }, []);
 
   return { requestData, loading, makeRequest };

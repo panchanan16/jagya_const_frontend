@@ -30,24 +30,7 @@ function SecondSlideVendor() {
                 d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z"
               ></path>
             </svg>
-          </Link>
-          <button
-            className="btn-primary flex"
-            type="button"
-            onclick="editVendorsSuppliers()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              className=""
-            >
-              <path
-                fill=""
-                d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"
-              ></path>
-            </svg>
-            <span>Edit Vendors</span>
-          </button>
+          </Link>         
         </div>
 
         <div className="header-text">
@@ -77,13 +60,7 @@ function SecondSlideVendor() {
           TabList={[
             {
               main: "Payments",
-              list: [
-                "No.",
-                "Project",
-                "Amount",
-                "Mode",
-                "Remarks",
-              ],
+              list: ["No.", "Project", "Amount", "Mode", "Remarks"],
               limit: [
                 "pay_id",
                 "pay_project_id",
@@ -96,24 +73,21 @@ function SecondSlideVendor() {
             {
               main: "Purchases",
               list: [
-                "No.",
-                "Expense Name",
-                "Date",
+                "Vendor",
+                "Project Name",
+                "Item",
+                "Qnt",
                 "Amount",
-                "Mode",
-                "project",
-                "Remarks",
-                "Action",
+                "Date"
               ],
-              // limit: [
-              //   "exp_id",
-              //   "exp_name",
-              //   "exp_amount",
-              //   "exp_mode",
-              //   "exp_remark",
-              //   "exp_date",
-              //   "exp_project_ref",
-              // ],
+              limit: [
+                "vendor_id",
+                "mr_project_r_id",
+                "mr_item_name",
+                "mr_item_quantity",
+                "mr_item_amount",
+                "mr_item_date",
+              ],
               tabData: itemData.purcheses,
             },
           ]}

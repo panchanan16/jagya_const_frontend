@@ -5,7 +5,7 @@ export const initialValues = {
     cpassword: ""
 }
 export const validate = {
-    user_id: "",
-    password: "",
-    cpassword: ""
+    user_id: "name",
+    password: "password",
+    cpassword: "confirmPassword"
 }
