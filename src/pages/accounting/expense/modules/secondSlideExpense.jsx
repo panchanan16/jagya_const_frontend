@@ -13,6 +13,8 @@ function SecondSlideExpense() {
     "exp_id"
   );
 
+  console.log(itemData)
+
   return (
     <PopupLayout>
       <div className="inventory-popup bluff">
@@ -47,16 +49,16 @@ function SecondSlideExpense() {
         <div className="expense-table">
           <h3>Contractor</h3>
           <Table
-            Theader={["ProjectID", "Amount", "Note"]}
+            Theader={["ProjectID", "Amount", "Note", "Contractor", "Project name", "Project ref"]}
             Trow={itemData?.contractor}
-            Limit={["pay_amount", "pay_project_id", "pay_note"]}
+            Limit={["pay_amount", "pay_project_id", "pro_name", "pay_note", "pro_ref_no", "con_name"]}
           />
           <hr />
           <h3>Vendor</h3>
           <Table
-            Theader={["ProjectID", "Amount", "Note"]}
+            Theader={["ProjectID", "Amount", "Note", "Vendor Name", "Project name", "Project ref"]}
             Trow={itemData?.vendor}
-            Limit={["pay_project_id", "pay_amount", "pay_note"]}
+            Limit={["pay_project_id", "pay_amount", "pay_note", "pro_name", "pro_ref_no", "vendor_name"]}
           />
         </div>
       </div>
