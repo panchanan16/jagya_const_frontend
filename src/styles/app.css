@@ -1014,6 +1014,10 @@ main h3 {
     font-weight: 600;
 }
 
+main h3 span{
+    font-size: var(--px-14);
+    font-weight: 500;
+}
 main .main-btn {
     width: 100%;
     justify-content: space-between;
@@ -1563,6 +1567,7 @@ main .sub-task {
 }
 
 .field span.err {
+    margin-left: var(--px-5);
     font-size: 12px;
     color: var(--warning);
 }
@@ -1783,10 +1788,13 @@ figure span {
     border-bottom: 1px solid var(--light-primary-300);
 }
 
-.employee-list .profile-details p:first-child {
+.employee-list .profile-details p {
     font-size: var(--f-size-14);
     font-weight: 500;
     color: var(--primary-900);
+}
+.employee-list .profile-details p span{
+    font-size: var(--f-size-12);
 }
 
 .employee-list .profile-details p:last-child {

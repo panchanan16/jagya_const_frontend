@@ -40,7 +40,7 @@ function AssignFormWithField({ resetFn }) {
 
       <div class="action-btn flex align-center gap-10">
         <button type="submit" class="btn-success flex-1">
-          Update
+          Confirm
         </button>
         <button type="button" class="btn-warning flex-1" onClick={resetFn}>
           Cancel
@@ -64,7 +64,7 @@ function AssignContractorForm() {
     <PopupLayout>
       <div class="add-employee-popup blur">
         <div class="form">
-          <h2>Add an Contractor</h2>
+          <h2>Project Contractor</h2>
           <Link to={`/admin/projects/${projectId}`}>
             <button
               type="button"

@@ -74,7 +74,7 @@ function ContractorFormWithField({ resetFn }) {
       </div>
       <div className="action-btn flex gap-10">
         <button type="submit" className="btn-success flex-1">
-          Add
+          Confirm
         </button>
         <button
           type="button"
@@ -96,7 +96,7 @@ function AddContractorForm() {
     <PopupLayout>
       <div className="add-clients-prospects blur">
         <div className="form">
-          <h2>Add a Contractor</h2>
+          <h2>Contractor</h2>
           <Link to={`/admin/contractor`}>
             <button type="button" className="btn-warning close">
               Close
