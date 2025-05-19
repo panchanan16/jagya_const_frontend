@@ -75,7 +75,7 @@ function FirstSlideUsers() {
   return (
     <FirstSlideLayout
       Heading={"Users"}
-      Btn={"Add Uers"}
+      Btn={"Add User"}
       BtnFn={"add-user"}
       HeaderSection={true}
     >
@@ -89,7 +89,11 @@ function FirstSlideUsers() {
         Theader={tableData.tHeaders}
         Limit={tableData.tLimits}
         Trow={itemList}
-        Actions={{}}
+        Actions={{
+          viewUrl: "su_id",
+          deleteUrl: "users",
+          editUrl: "su_id",
+        }}
       />
     </FirstSlideLayout>
   );

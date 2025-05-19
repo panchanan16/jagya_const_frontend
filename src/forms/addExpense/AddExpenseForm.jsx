@@ -83,12 +83,12 @@ function ExpenseFormWithField({ values, resetFn }) {
         )}
       </FieldArray>
 
-      <div className="flex gap-10">
+      <div className="action-btn flex">
         <FieldArray name="vendor">
           {({ push }) => (
             <button
               type="button"
-              className="btn-success"
+              className="btn-secondary"
               onClick={() =>
                 push({ pay_project_id: "", pay_vendor_id: "", pay_amount: "", pay_note: "" })
               }
@@ -101,7 +101,7 @@ function ExpenseFormWithField({ values, resetFn }) {
           {({ push }) => (
             <button
               type="button"
-              className="btn-success"
+              className="btn-secondary"
               onClick={() =>
                 push({ pay_project_id: "", pay_con_id: "", pay_amount: "", pay_note: "" })
               }
@@ -112,9 +112,9 @@ function ExpenseFormWithField({ values, resetFn }) {
         </FieldArray>
       </div>
 
-      <div class="action-btn flex gap-10">
+      <div class="action-btn flex">
         <button type="submit" className="btn-success flex-1">
-          Add
+          Update
         </button>
         <button
           type="button"
@@ -142,8 +142,8 @@ function AddExpenseForm() {
     <PopupLayout>
       <div class="add-expense blur">
         <div class="form">
-          <h2>Add an Expense</h2>
-          <Link to="/expense">
+          <h2>Expense Update</h2>
+          <Link to="/admin/expense">
             <button type="button" class="btn-warning close">
               Close
             </button>

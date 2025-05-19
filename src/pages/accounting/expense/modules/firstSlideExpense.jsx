@@ -6,7 +6,7 @@ function FirstSlideExpense() {
   const { itemList } = usePageRender("expense");
 
   return (
-    <FirstSlideLayout Heading="Expense" Btn={"Add Expense"} BtnFn={"/expense/add-expense"}>
+    <FirstSlideLayout Heading="Expense" Btn={"Add Expense"} BtnFn={"add-expense"}>
       <div className="main-table">
         <Table
           Theader={[

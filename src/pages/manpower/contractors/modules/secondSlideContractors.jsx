@@ -1,23 +1,23 @@
+import useRequest from "@/hooks/useRequest";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function SecondSlideContractor() {
-  const tableDataOne = [
-    [1, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1001"],
-    [2, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1003"],
-  ];
+  const { id } = useParams();
+  const { requestData } = useRequest(
+    "contractorPayment",
+    null,
+    `readAll?pay_con_id=${id}`
+  );
 
-  const tableDataTwo = [
-    [1, "10/02/2001", "JG001", "3000", "Cash", "Bought for false ceiling"],
-    [2, "10/02/2001", "JG002", "3000", "Cash", "Bought for false ceiling"],
-  ];
+  console.log(requestData);
 
   return (
     <SecondSlideLayout>
       <main>
         <div className="main-btn flex">
-          <Link to="/contractor">
+          <Link to="/admin/contractor">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"
@@ -75,28 +75,31 @@ function SecondSlideContractor() {
             <p className="text">20</p>
           </div>
         </div>
-
         <hr />
 
         <TabLayout
-          tabHeading={{
-            main: "Collections",
-            list: [
-              "No.",
-              "Date",
-              "Amount",
-              "Mode",
-              "Remarks",
-              "Project",
-              "Action",
-            ],
-          }}
-          tabHeadingII={{
-            main: "Expenses",
-            list: ["No.", "Date", "Amount", "Mode", "Remarks", "Action"],
-          }}
-          tabDataOne={tableDataOne}
-          tabDataTwo={tableDataTwo}
+          TabList={[
+            {
+              main: "Payments",
+              list: [
+                "No.",
+                "Amount",
+                "Mode",
+                "Remarks",
+                "Peoject Name",
+                "ProjectRef",
+              ],
+              limit: [
+                "pay_id",
+                "pay_amount",
+                "pay_mode",
+                "pay_note",
+                "pro_name",
+                "pro_ref_no",
+              ],
+              tabData: requestData ? requestData : [],
+            },
+          ]}
         />
       </main>
     </SecondSlideLayout>

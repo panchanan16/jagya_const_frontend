@@ -23,29 +23,14 @@ function ContractorAssigned() {
               .concat(itemData.contractors)
               ?.map((cont) => (
                 <div class="employee-list flex align-center j-between">
-                  <div class="emp-profile flex gap-5">
-                    <img src="/img/admin.jpg" alt="jpg" />
-                    <div class="profile-text">
-                      <p>{cont.con_name}</p>
-                      <p>
-                        <span style={{ fontWeight: "bold", marginRight: 10 }}>
-                          {cont.pro_phase}
-                        </span>
-                        <span>8899007788</span>
-                      </p>
+                  <div class="emp-profile flex">
+                    <img src="/img/user.png" alt="jpg" />
+                    <div class="profile-details">
+                      <p>{cont.con_name}, <span>{cont.pro_phase}</span> </p>
+                      <p>Contractor, No- 8855446699</p>
                     </div>
                   </div>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    onclick="confirmAlert()"
-                    class=""
-                  >
-                    <path
-                      fill=""
-                      d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z"
-                    ></path>
-                  </svg>
+                  <span className="delete btn-warning">Delete</span>
                 </div>
               ))}          
           </div>

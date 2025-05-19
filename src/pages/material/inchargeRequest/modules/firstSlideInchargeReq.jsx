@@ -11,7 +11,7 @@ function FirstSlideInchargeReq() {
     <FirstSlideLayout
       Heading="Material Requests"
       Btn="Create a Request"
-      BtnFn="/incharge/create"
+      BtnFn="create"
     >
       <Table
         Theader={[

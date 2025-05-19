@@ -8,14 +8,16 @@ import { useSelector } from "react-redux";
 function SecondSlideProject() {
   const { projectId } = useParams();
   const { itemList } = useSelector((state) => state["project_phase"]);
-  const { itemData } = usePageRender(
+  const { itemData, viewedItem } = usePageRender(
     "project",
     `get_project_detail/${projectId}`,
     "itemData",
-    null,
+    "pro_id",
     null,
     "projectId"
   );
+
+  console.log(viewedItem);
 
   return (
     <SecondSlideLayout>
@@ -36,7 +38,7 @@ function SecondSlideProject() {
             </svg>
           </Link>
           <button
-            className="btn-secondary"
+            className="btn-secondary hide"
             type="button"
             onclick="editProject(this)"
           >
@@ -55,43 +57,51 @@ function SecondSlideProject() {
         </div>
 
         <div className="header-text">
-          <h2>Residential G+2 Building</h2>
+          <h2>{viewedItem ? viewedItem.pro_housetype : ""}</h2>
         </div>
         {/* <!-- DETAILS  --> */}
         <div className="contents grid gtc-2">
           <div className="description flex align-center">
-            <h3>Client Name:</h3>
-            <p className="text">Kankan Jyoti Nath</p>
+            <h3>Project Refrence ID:</h3>
+            <p className="text">{viewedItem ? viewedItem.pro_ref_no : "N/A"}</p>
           </div>
           <div className="description flex align-center">
-            <h3>Phone / Alternate Number:</h3>
-            <p className="text">6002649802 / 7636896075</p>
+            <h3>Project Name:</h3>
+            <p className="text">{viewedItem ? viewedItem.pro_name : "N/A"}</p>
           </div>
           <div className="description flex align-center">
-            <h3>Email ID:</h3>
-            <p className="text">jyotikankan222@gmail.com</p>
-          </div>
-          <div className="description flex align-center">
-            <h3>Address:</h3>
+            <h3>Total Cost:</h3>
             <p className="text">
-              House No. 60, Ashram Road, Lachitnagar, Guwahati, Assam
+              &#8377; {viewedItem ? viewedItem.pro_totalcost : "N/A"}
             </p>
           </div>
           <div className="description flex align-center">
+            <h3>Advance Payment:</h3>
+            <p className="text">&#8377; {viewedItem ? viewedItem.pro_advancepayment : "N/A"}</p>
+          </div>
+          <div className="description flex align-center">
             <h3>House type:</h3>
-            <p className="text">Assam Type</p>
+            <p className="text">
+              {viewedItem ? viewedItem.pro_housetype : "N/A"}
+            </p>
           </div>
           <div className="description flex align-center">
             <h3>Site Description:</h3>
-            <p className="text">Assam Type of ghor juntu assamese hoi</p>
+            <p className="text">
+              {viewedItem ? viewedItem.pro_sitedesc : "N/A"}
+            </p>
           </div>
           <div className="description flex align-center">
             <h3>Project Initiated:</h3>
-            <p className="text">12-June-2024</p>
+            <p className="text">
+              {viewedItem ? `${new Date(viewedItem?.created_at).toDateString()}` : "N/A"}
+            </p>
           </div>
           <div className="description flex align-center">
             <h3>Project Duration:</h3>
-            <p className="text">1.5 years</p>
+            <p className="text">
+              {viewedItem ? viewedItem.pro_duration : "N/A"}
+            </p>
           </div>
         </div>
 
@@ -113,7 +123,7 @@ function SecondSlideProject() {
         {/* <!-- Attached Files --> */}
         <div className="file-structure">
           <div className="file-header flex align-start j-between">
-            <h3>Attached Files:</h3>
+            <h3>Attached Files <span>(Format: pdf file)</span>:</h3>
             <InputFile Id={projectId} />
           </div>
 

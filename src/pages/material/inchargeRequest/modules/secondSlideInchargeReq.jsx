@@ -16,7 +16,7 @@ function SecondSlideInchargeReq() {
       <div class="inventory-popup">
         <div class="flex align-start j-between">
           <h2>Request No: {id}</h2>
-          <Link to="/incharge">
+          <Link to="/admin/incharge">
             <button
               type="button"
               class="btn-warning close"

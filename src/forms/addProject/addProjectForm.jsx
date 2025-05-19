@@ -28,7 +28,7 @@ function ProjectFormWithField({ resetFn }) {
           SetFKey={{pro_client_r_id: 'client_id'}}
           SetDisplayKey={{name: 'client_name', id: 'client_ref_no'}}
         />
-        <div className="field add-field-btn">
+        {/* <div className="field add-field-btn">
           <p className="opacity-0">0</p>
           <button className="btn-primary j-center" type="button">
             <svg
@@ -44,25 +44,23 @@ function ProjectFormWithField({ resetFn }) {
             </svg>
             <span className="text">Add a New Client</span>
           </button>
-        </div>
+        </div> */}
       </div>
       <div className="accordion">
-        <div className="accordion-heading flex align-center j-between">
+        <div className="accordion-heading flex align-center j-between active">
           <h3>Profile details</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             id="angle-down"
-            className="svg-18 arrow"
+            className="svg-18 arrow hide"
             onClick={() => setprofileAcc(!profileAcc)}
           >
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
         </div>
         <div
-          className={`accordion-data profile-accordion ${
-            profileAcc ? "" : "hide"
-          }`}
+          className={`accordion-data profile-accordion`}
         >
           <div className="grid gtc-2 gap-10">
             <div className="field">
@@ -129,21 +127,19 @@ function ProjectFormWithField({ resetFn }) {
       <hr />
 
       <div className="accordion">
-        <div className="accordion-heading flex align-center j-between">
+        <div className="accordion-heading flex align-center j-between active">
           <h3>Project details</h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             id="angle-down"
-            className="svg-18 arrow"
+            className="svg-18 arrow hide"
           >
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
         </div>
         <div
-          className={`accordion-data profile-accordion ${
-            profileAcc ? "" : "hide"
-          }`}
+          className={`accordion-data profile-accordion`}
         >
           <div className="grid gtc-2 gap-10">
             <div className="field">
@@ -265,7 +261,7 @@ function ProjectFormWithField({ resetFn }) {
 
       <div className="action-btn flex gap-10">
         <button type="submit" className="btn-success flex-1">
-          Add
+          Confirm
         </button>
         <button type="button" className="btn-warning flex-1" onClick={resetFn}>
           Cancel
@@ -287,8 +283,8 @@ function AddProjectForm() {
     <PopupLayout>
       <div className="add-project-popup blur">
         <div className="form">
-          <h2>Add a Project</h2>
-          <Link to="/projects">
+          <h2>Project Details</h2>
+          <Link to="/admin/projects">
             <button type="button" className="btn-warning close">
               Close
             </button>

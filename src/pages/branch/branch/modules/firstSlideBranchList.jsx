@@ -1,5 +1,3 @@
-import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
-import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
@@ -9,13 +7,7 @@ function FirstSlideBranchList() {
   const { itemList } = usePageRender("branch_data");
 
   return (
-    <FirstSlideLayout Heading="Branch">
-      <SectionHeaderOption
-        EndBtn={
-          <SectionHeaderBtn btnName="add new branch" clickFn={"/clients/create"} />
-        }
-      />
-
+    <FirstSlideLayout Heading="Branch" Btn="Add New Branch" BtnFn={'/admin/clients/create'}>
       <div className="main-table">
         <Table
           Theader={[

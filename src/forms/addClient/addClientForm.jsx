@@ -90,7 +90,7 @@ function AddClientForm() {
       <div className="add-clients-prospects blur">
         <div className="form">
           <h2>Add a Client</h2>
-          <Link to={`/clients`}>
+          <Link to={`/admin/clients`}>
             <button type="button" className="btn-warning close">
               Close
             </button>

@@ -80,7 +80,7 @@ function AddvendorForm() {
       <div className="add-clients-prospects blur">
         <div className="form">
           <h2>Add a Vendor</h2>
-          <Link to={`/vendors`}>
+          <Link to={`/admin/vendors`}>
             <button type="button" className="btn-warning close">
               Close
             </button>

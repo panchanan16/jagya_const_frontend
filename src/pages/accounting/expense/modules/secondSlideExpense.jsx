@@ -15,16 +15,16 @@ function SecondSlideExpense() {
 
   return (
     <PopupLayout>
-      <div className="inventory-popup">
+      <div className="inventory-popup bluff">
         <div className="flex align-start j-between">
           <h2>Expense No: {id}</h2>
-          <div className="flex gap-10">
-            <Link to={`/expense/create/${id}`}>
-              <button type="button" className="btn-primary">
+          <div className="popup-btns flex">
+            <Link to={`/admin/expense/create/${id}`}>
+              <button type="button" className="btn-secondary">
                 Edit
               </button>
             </Link>
-            <Link to="/expense">
+            <Link to="/admin/expense">
               <button type="button" className="btn-warning close">
                 Close
               </button>
@@ -44,14 +44,14 @@ function SecondSlideExpense() {
           </div>
         </div>
         {/* <EditReqItemForm closeFormfn={'/'} /> */}
-        <div className="inventory-table">
+        <div className="expense-table">
           <h3>Contractor</h3>
           <Table
             Theader={["ProjectID", "Amount", "Note"]}
             Trow={itemData?.contractor}
             Limit={["pay_amount", "pay_project_id", "pay_note"]}
           />
-
+          <hr />
           <h3>Vendor</h3>
           <Table
             Theader={["ProjectID", "Amount", "Note"]}

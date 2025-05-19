@@ -438,14 +438,14 @@ nav ul li a span.text {
     flex: 1;
 }
 
-nav ul li:is(.active, :hover) a,
+nav ul li:is(.active, :hover) a:not(li .sub-menu a),
 .log-out a:is(:hover, .active) {
     border: 1px solid var(--btn-color);
     background: var(--gradient-3);
     color: var(--btn-color);
 }
 
-ul li a svg,
+li a svg,
 .log-out a svg {
     width: var(--px-22);
     height: var(--px-22);
@@ -482,8 +482,8 @@ li .sub-menu a {
 }
 
 li .sub-menu.active a:is(.active, :hover) {
-    border-left: 4px solid var(--light-primary-900);
     background: var(--light-primary-100);
+    border-left: 4px solid var(--light-primary-900);
     color: var(--primary-900);
     border-radius: 0 var(--radius-6) var(--radius-6) 0;
 }
@@ -722,8 +722,8 @@ main .main-span {
 }
 
 .search svg {
-    width: var(--px-18);
-    height: var(--px-18);
+    width: var(--px-20);
+    height: var(--px-20);
     margin: 0 var(--px-10);
     fill: var(--primary-900);
 }
@@ -732,8 +732,8 @@ main .main-span {
     background: transparent;
     width: 100%;
     padding: var(--px-8) var(--px-10);
-    border-left: 1px solid var(--light-primary-300);
     border-right: 1px solid var(--light-primary-300);
+    border-left: 1px solid var(--light-primary-300);
     font-size: var(--f-size-14);
     font-weight: 500;
     color: var(--primary-900);
@@ -1014,6 +1014,10 @@ main h3 {
     font-weight: 600;
 }
 
+main h3 span{
+    font-size: var(--px-14);
+    font-weight: 500;
+}
 main .main-btn {
     width: 100%;
     justify-content: space-between;
@@ -1133,6 +1137,12 @@ main .p-employees {
     border-bottom: 1px solid var(--light-primary-300);
 }
 
+.file-structure .btn-secondary{
+    padding: var(--px-8) var(--px-10);
+    border-radius: var(--px-5);
+    font-size: var(--px-14);
+    font-weight: 500;
+}
 .files {
     gap: var(--px-10);
 }
@@ -1433,10 +1443,9 @@ main .sub-task {
 
 .main-popup .blur {
     width: 100%;
-    height: 100%;
     max-width: 950px;
     margin: 30px auto;
-    border-radius: var(--radius-5);
+    border-radius: var(--px-5);
     padding: 20px var(--px-15);
     background: var(--primary-50);
     border: 1px solid var(--light-primary-300);
@@ -1558,6 +1567,7 @@ main .sub-task {
 }
 
 .field span.err {
+    margin-left: var(--px-5);
     font-size: 12px;
     color: var(--warning);
 }
@@ -1606,9 +1616,17 @@ main .sub-task {
 
 .accordion {
     border: 1px solid var(--light-primary-300);
-    padding: var(--px-10);
-    border-radius: var(--radius-6);
+    border-radius: var(--px-6);
     cursor: pointer;
+}
+
+.accordion-heading{
+    padding: var(--px-10);
+    border-bottom: 1px solid var(--primary-50);
+}
+.accordion-heading:is(.active, :hover){
+    border-bottom: 1px solid var(--light-primary-300);
+    background: var(--primary-100);
 }
 
 .accordion-heading .arrow {
@@ -1620,7 +1638,7 @@ main .sub-task {
 }
 
 .accordion-data {
-    margin-top: var(--px-15);
+    padding: var(--px-10) var(--px-5);
 }
 
 figure {
@@ -1770,10 +1788,13 @@ figure span {
     border-bottom: 1px solid var(--light-primary-300);
 }
 
-.employee-list .profile-details p:first-child {
+.employee-list .profile-details p {
     font-size: var(--f-size-14);
     font-weight: 500;
     color: var(--primary-900);
+}
+.employee-list .profile-details p span{
+    font-size: var(--f-size-12);
 }
 
 .employee-list .profile-details p:last-child {
@@ -1928,8 +1949,8 @@ figure span {
     margin-top: var(--px-10);
 }
 
-.tabs table {
-    margin-top: var(--px-10);
+.tabs .data-info {
+    padding: 0;
 }
 
 /* Finances */
@@ -2003,7 +2024,12 @@ figure span {
 .action-dropdown-list p:hover {
     color: var(--primary-900);
 }
-
+/* EXPENSES  */
+.expense-table h3{
+    font-size: var(--rem-1);
+    margin-bottom: var(--px-6);
+    color: var(--primary-900);
+}
 /* INVOICE  */
 .invoice-section {
     border: 1px solid var(--primary-300);
@@ -2076,7 +2102,9 @@ figure span {
 .v-inventory table {
     margin: var(--px-10) auto;
 }
-
+.popup-btns{
+    gap: var(--px-10);
+}
 /* REQUEST MATERIALS  */
 .btn-approve {
     display: flex;
@@ -2242,8 +2270,41 @@ button.view:hover {
 }
 
 /* USERS  */
-.switch {}
-
+.roles{
+    position: relative;
+}
+.roles ul{
+    min-width: 130px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--primary-50);
+    width: 100%;
+    border: 1px solid var(--light-primary-300);
+    z-index: 5;
+    padding: 0 var(--px-5) var(--px-5);
+    border-radius: var(--px-5);
+    box-shadow: var(--b-shadow-1);
+    margin-top: var(--px-5);
+}
+.roles button{
+    width: 130px;
+}
+.roles ul li{
+    text-align: center;
+    border-radius: var(--px-5);
+    margin-top: var(--px-6);
+    padding: var(--px-8) var(--px-10);
+    font-size: var(--px-14);
+    font-weight: 500;
+    color: var(--primary-700);
+    background: var(--light-primary-100);
+    transition: var(--transition-1);
+}
+.roles ul li:hover{
+    background: var(--primary-200);
+    color: var(--primary-900);
+}
 /* SETTINGS */
 .settings-grid {
     padding: 0 var(--rem-1);
@@ -2270,9 +2331,16 @@ button.view:hover {
 
 .set-details {
     width: 100%;
+}
+.set-details form{
+    display: flex;
+    align-items: center;
     gap: var(--px-10);
 }
 
+.set-details form div{
+    width: 100%;
+}
 .set-details input {
     width: 100%;
     border: 1px solid var(--btn-color);
@@ -2291,6 +2359,7 @@ button.view:hover {
 .edit-details ul {
     height: 25vh;
     overflow-y: scroll;
+    padding-right: var(--px-5);
 }
 
 .edit-details ul li {

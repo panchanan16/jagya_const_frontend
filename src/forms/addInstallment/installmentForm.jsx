@@ -75,7 +75,7 @@ function InstallmentForm() {
       <div className="add-installment-popup blur">
         <div className="form">
           <h2>Add Installment</h2>
-          <Link to={`/finance`}>
+          <Link to={`/admin/finance`}>
             <button type="button" className="btn-warning close">
               Close
             </button>

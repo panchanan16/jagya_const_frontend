@@ -197,7 +197,7 @@ function AddRequestFinance() {
       <div class="add-collection blur">
         <div class="form">
           <h2>Request Materials</h2>
-          <Link to={`/finance-request/${urlParam}`}>
+          <Link to={`/admin/finance-request/${urlParam}`}>
             <button type="button" class="btn-warning close">
               Close
             </button>

@@ -60,7 +60,7 @@ function AddBranchForm() {
       <div class="add-branch blur">
         <div class="form">
           <h2>Add a Branch</h2>
-          <Link to="/branch-list">
+          <Link to="/admin/branch-list">
             <button type="button" class="btn-warning close">
               Close
             </button>
