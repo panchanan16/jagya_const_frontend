@@ -24,9 +24,6 @@ function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate }) {
       <table>
         <thead>
           <tr>
-            {/* <th>
-              <input type="checkbox" name="checkbox" className="select-all" />
-            </th> */}
             {Theader &&
               Theader.map((item, key) => (
                 <th key={key} className="">

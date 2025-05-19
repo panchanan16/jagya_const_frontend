@@ -1,32 +1,32 @@
 export const initialValues = {
-    name : "",
-    contact: "",
-    altContact: "",
-    email: "",
-    address: "",
-    others: "",
-    projectName: "",
-    deadline: "",
-    totalAmount: "",
-    advanceAmount: "",
-    houseType: "",
-    siteDescription: "",
-    projectDuration: "",
-    projectFile: ""
- }
- 
- export const validate = {
-    name : "name",
-    contact: "phnumber",
-    altContact: "phnumber",
-    email: "email",
-    address: "text",
-    others: "text",
-    projectName: "name",
-    deadline: "name",
-    totalAmount: "number",
-    advanceAmount: "number",
-    houseType: "name",
-    siteDescription: "text",
-    projectDuration: "name"
- }
+  b_r_id: "3",
+  b_client_name: "",
+  b_project_name: "",
+  b_client_contact: "",
+  b_client_alt_contact: "",
+  b_client_address: "",
+  b_client_email: "",
+  b_client_housetype: "",
+  b_client_totalcost: "",
+  b_client_advancepayment: "",
+  b_client_sitedesc: "",
+  b_client_duration: "",
+  b_client_commision: "1",
+  b_admin_approval: "0",
+};
+
+export const validate = {
+  b_client_name: "name",
+  b_project_name: "name",
+  b_client_contact: "phnumber",
+  b_client_alt_contact: "",
+  b_client_address: "text",
+  b_client_email: "email",
+  b_client_housetype: "text",
+  b_client_totalcost: "number",
+  b_client_advancepayment: "number",
+  b_client_sitedesc: "text",
+  b_client_duration: "",
+  b_client_commision: "",
+  b_admin_approval: "",
+};
