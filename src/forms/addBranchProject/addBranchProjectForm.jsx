@@ -1,18 +1,25 @@
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
-import { ErrorMessage, Field, Form } from "formik";
+import { ErrorMessage, Field, Form, useFormikContext } from "formik";
 import { initialValues, validate } from "./fields";
 import { validateForm } from "@/utils/validation/formValidation";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useFormSubmit from "@/hooks/useFormSubmit";
 
-function BranchProjectFormWithField({resetFn}) {
-  const [profileAcc, setprofileAcc] = useState(false);
+function BranchProjectFormWithField({ resetFn }) {
+  const { setFieldValue } = useFormikContext();
+  useEffect(() => {
+    setFieldValue('b_r_id', 3);
+    setFieldValue('b_client_commision', 1)
+  }, []);
+
+
   return (
     <Form>
       <div className="grid gtc-2 gap-10 add-project-header">
         <div className="field add-field-btn">
-          <p className="opacity-0">0</p>         
+          <p className="opacity-0">0</p>
         </div>
       </div>
       <div className="accordion">
@@ -23,34 +30,37 @@ function BranchProjectFormWithField({resetFn}) {
             viewBox="0 0 24 24"
             id="angle-down"
             className="svg-18 arrow"
-            onClick={() => setprofileAcc(!profileAcc)}
           >
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
         </div>
-        <div
-          className={`accordion-data profile-accordion ${
-            profileAcc ? "" : "hide"
-          }`}
-        >
+        <div className={`accordion-data profile-accordion`}>
           <div className="grid gtc-2 gap-10">
             <div className="field">
               <p className="title">Name</p>
-              <Field type="text" name="name" id="" />
-              <ErrorMessage name="name" className="err" component="span" />
+              <Field type="text" name="b_client_name" id="" />
+              <ErrorMessage
+                name="b_client_name"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">Contact Number</p>
-              <Field type="number" name="contact" id="" />
-              <ErrorMessage name="contact" className="err" component="span" />
+              <Field type="number" name="b_client_contact" id="" />
+              <ErrorMessage
+                name="b_client_contact"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
                 Alternate Number<span>(*optional)</span>
               </p>
-              <Field type="number" name="altContact" id="" />
+              <Field type="number" name="b_client_alt_contact" id="" />
               <ErrorMessage
-                name="altContact"
+                name="b_client_alt_contact"
                 className="err"
                 component="span"
               />
@@ -59,15 +69,23 @@ function BranchProjectFormWithField({resetFn}) {
               <p className="title">
                 Email<span>(*optional)</span>
               </p>
-              <Field type="email" name="email" id="" />
-              <ErrorMessage name="email" className="err" component="span" />
+              <Field type="email" name="b_client_email" id="" />
+              <ErrorMessage
+                name="b_client_email"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
                 Address<span>(*optional)</span>
               </p>
-              <Field type="text" name="address" id="" />
-              <ErrorMessage name="address" className="err" component="span" />
+              <Field type="text" name="b_client_address" id="" />
+              <ErrorMessage
+                name="b_client_address"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
@@ -93,17 +111,13 @@ function BranchProjectFormWithField({resetFn}) {
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
         </div>
-        <div
-          className={`accordion-data profile-accordion ${
-            profileAcc ? "" : "hide"
-          }`}
-        >
+        <div className={`accordion-data profile-accordion`}>
           <div className="grid gtc-2 gap-10">
             <div className="field">
               <p className="title">Project Name</p>
-              <Field type="text" name="projectName" id="" />
+              <Field type="text" name="b_project_name" id="" />
               <ErrorMessage
-                name="projectName"
+                name="b_project_name"
                 className="err"
                 component="span"
               />
@@ -117,18 +131,18 @@ function BranchProjectFormWithField({resetFn}) {
             </div>
             <div className="field">
               <p className="title">Total Amount</p>
-              <Field type="text" name="totalAmount" id="" />
+              <Field type="text" name="b_client_totalcost" id="" />
               <ErrorMessage
-                name="totalAmount"
+                name="b_client_totalcost"
                 className="err"
                 component="span"
               />
             </div>
             <div className="field">
               <p className="title">Advance Amount</p>
-              <Field type="text" name="advanceAmount" id="" />
+              <Field type="text" name="b_client_advancepayment" id="" />
               <ErrorMessage
-                name="advanceAmount"
+                name="b_client_advancepayment"
                 className="err"
                 component="span"
               />
@@ -137,25 +151,32 @@ function BranchProjectFormWithField({resetFn}) {
               <p className="title">House Type</p>
               <Field
                 as="select"
-                name="houseType"
-                id="houseType"
+                name="b_client_housetype"
+                id="b_client_housetype"
                 className="house-type"
               >
-                <option value="">Assam Type</option>
+                <option value="" disabled>
+                  Select House Type
+                </option>
+                <option value="ASSAM TYPE">Assam Type</option>
                 <optgroup label="RCC">
                   <option value="G+1">G+1</option>
                   <option value="G+2">G+2</option>
                 </optgroup>
               </Field>
-              <ErrorMessage name="houseType" className="err" component="span" />
+              <ErrorMessage
+                name="b_client_housetype"
+                className="err"
+                component="span"
+              />
             </div>
             <div className="field">
               <p className="title">
                 Site Description<span>(*optional)</span>
               </p>
-              <Field type="text" name="siteDescription" id="" />
+              <Field type="text" name="b_client_sitedesc" id="" />
               <ErrorMessage
-                name="siteDescription"
+                name="b_client_sitedesc"
                 className="err"
                 component="span"
               />
@@ -165,16 +186,16 @@ function BranchProjectFormWithField({resetFn}) {
                 Project Duration <span>in years</span>
                 <span>(*optional)</span>
               </p>
-              <Field type="text" name="projectDuration" id="" />
+              <Field type="text" name="b_client_duration" id="" />
               <ErrorMessage
-                name="projectDuration"
+                name="b_client_duration"
                 className="err"
                 component="span"
               />
             </div>
           </div>
         </div>
-      </div>   
+      </div>
 
       <div className="action-btn flex gap-10">
         <button type="submit" className="btn-success flex-1">
@@ -189,11 +210,12 @@ function BranchProjectFormWithField({resetFn}) {
 }
 
 function AddBranchProjectForm() {
-  const branchProjectSchema = validateForm(validate);
+  const [submithandler, initialSchema, validateSchema, isReturn] =
+    useFormSubmit(initialValues, validate, "b_client_id", "branch_client");
 
-  function addNewBranchProject(values) {
+  function testSubmit(values) {
+    alert(JSON.stringify(values, null));
     console.log(values);
-    alert(JSON.stringify(values));
   }
 
   return (
@@ -209,9 +231,10 @@ function AddBranchProjectForm() {
           <hr />
           <FormLayout
             MainForm={BranchProjectFormWithField}
-            initialValues={initialValues}
-            validationSchema={branchProjectSchema}
-            formHandler={addNewBranchProject}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={submithandler}
+            isReturn={isReturn}
           />
         </div>
       </div>

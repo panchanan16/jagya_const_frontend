@@ -18,14 +18,13 @@ function PhaseFormWithField({ resetFn }) {
 
   return (
     <Form>
-      <div>
+      <div className="grid gtc-3">
         <SelectOption
           Name={"phase_id"}
           Label={"Phase"}
           keyValue={"phase_id"}
           setName={true}
         />
-      </div>
 
       <div class="field">
         <p class="title">Date: </p>
@@ -52,10 +51,11 @@ function PhaseFormWithField({ resetFn }) {
           component="span"
         />
       </div>
+      </div>
 
       <div class="action-btn flex align-center gap-10">
         <button type="submit" class="btn-success flex-1">
-          Add
+          Confirm
         </button>
         <button type="button" onClick={resetFn} class="btn-warning flex-1">
           Cancel
@@ -79,13 +79,13 @@ function AddNewPhaseForm() {
     <PopupLayout>
       <div class="phase-popup blur">
         <div class="form">
-          <h2>Add Phase</h2>
+          <h2>Phase</h2>
           <Link to={`/admin/projects/${projectId}`}>
             <button type="button" class="btn-warning close">
               Close
             </button>
           </Link>
-
+        <hr />
           <FormLayout
             MainForm={PhaseFormWithField}
             initialValues={initialSchema}

@@ -8,9 +8,10 @@ function SecondSlideContractor() {
   const { requestData } = useRequest(
     "contractorPayment",
     null,
-    null,
-    `?pay_con_id=${id}`
+    `readAll?pay_con_id=${id}`
   );
+
+  console.log(requestData);
 
   return (
     <SecondSlideLayout>
@@ -80,13 +81,21 @@ function SecondSlideContractor() {
           TabList={[
             {
               main: "Payments",
-              list: ["No.", "Project", "Amount", "Mode", "Remarks"],
+              list: [
+                "No.",
+                "Amount",
+                "Mode",
+                "Remarks",
+                "Peoject Name",
+                "ProjectRef",
+              ],
               limit: [
                 "pay_id",
                 "pay_amount",
                 "pay_mode",
                 "pay_note",
-                "pay_project_id"
+                "pro_name",
+                "pro_ref_no",
               ],
               tabData: requestData ? requestData : [],
             },

@@ -17,7 +17,10 @@ function SecondSlideProject() {
     "projectId"
   );
 
-  console.log(viewedItem);
+  function deleteTheFile(e) {
+    e.preventDefault()
+    console.log("File DELETED SUCCESSFULLY!")
+  }
 
   return (
     <SecondSlideLayout>
@@ -38,7 +41,7 @@ function SecondSlideProject() {
             </svg>
           </Link>
           <button
-            className="btn-secondary"
+            className="btn-secondary hide"
             type="button"
             onclick="editProject(this)"
           >
@@ -72,12 +75,12 @@ function SecondSlideProject() {
           <div className="description flex align-center">
             <h3>Total Cost:</h3>
             <p className="text">
-              {viewedItem ? viewedItem.pro_totalcost : "N/A"}
+              &#8377; {viewedItem ? viewedItem.pro_totalcost : "N/A"}
             </p>
           </div>
           <div className="description flex align-center">
             <h3>Advance Payment:</h3>
-            <p className="text">{viewedItem ? viewedItem.pro_advancepayment : "N/A"}</p>
+            <p className="text">&#8377; {viewedItem ? viewedItem.pro_advancepayment : "N/A"}</p>
           </div>
           <div className="description flex align-center">
             <h3>House type:</h3>
@@ -123,7 +126,7 @@ function SecondSlideProject() {
         {/* <!-- Attached Files --> */}
         <div className="file-structure">
           <div className="file-header flex align-start j-between">
-            <h3>Attached Files:</h3>
+            <h3>Attached Files <span>(Format: pdf file)</span>:</h3>
             <InputFile Id={projectId} />
           </div>
 
@@ -142,7 +145,7 @@ function SecondSlideProject() {
                   <div class="file-details" onclick="showFile()">
                     <span class="text">Resume.pdf</span>
                   </div>
-                  <div class="dlt-btn">
+                  <div class="dlt-btn" onClick={deleteTheFile}>
                     <span>X</span>
                   </div>
                 </div>

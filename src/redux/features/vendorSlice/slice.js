@@ -5,7 +5,8 @@ import fulfilledStateReducer from "../../customReducer";
 const initialState = {
     itemList: [],
     loading: false,
-    error: null
+    error: null,
+    itemData: { payments: [], purcheses: [] }
 }
 
 export const vendorSlice = createSlice({
@@ -20,14 +21,14 @@ export const vendorSlice = createSlice({
         builder.addCase(GET_REQUEST.pending, (state) => {
             state.loading = true
         }).addCase(GET_REQUEST.fulfilled, (state, action) => {
-             fulfilledStateReducer(state, action, 'vendor', 'GET')
+            fulfilledStateReducer(state, action, 'vendor', 'GET')
         }).addCase(GET_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
         }).addCase(POST_REQUEST.pending, (state, action) => {
             state.loading = true
             state.error = action.payload
-        }).addCase(POST_REQUEST.fulfilled, (state, action) => {         
+        }).addCase(POST_REQUEST.fulfilled, (state, action) => {
             fulfilledStateReducer(state, action, 'vendor', 'POST')
         }).addCase(POST_REQUEST.rejected, (state, action) => {
             state.loading = false
@@ -36,7 +37,7 @@ export const vendorSlice = createSlice({
             state.loading = true
             state.error = action.payload
         }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-            fulfilledStateReducer(state, action, 'vendor', 'DELETE', 'vendor_id')    
+            fulfilledStateReducer(state, action, 'vendor', 'DELETE', 'vendor_id')
         }).addCase(DELETE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload

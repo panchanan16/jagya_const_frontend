@@ -1,7 +1,7 @@
 import authEndpoint from "@/api/authApi";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
-import { LOGIN_REQUEST } from "@/redux/features/loginSlice/slice";
+import { LOGIN_REQUEST, setLogout } from "@/redux/features/loginSlice/slice";
 
 function useLogin(entity, stateKey) {
   const stateItem = useSelector((state) => state["login"]);
@@ -33,7 +33,7 @@ function useLogin(entity, stateKey) {
         Cookies.set("isLoggedIn", true, {
           expires: 7,
         });
-         Cookies.set("role", loginInfo.response?.data.role, {
+        Cookies.set("role", loginInfo.response?.data.role, {
           expires: 7,
         });
       } else {
@@ -44,15 +44,12 @@ function useLogin(entity, stateKey) {
     }
   }
 
-  async function LoginOutUser(credentials) {
-    dispatch(
-      LOGIN_REQUEST({
-        endpoint: authEndpoint.loginUser(entity),
-        body: credentials,
-        entity: "login",
-        stateKey,
-      })
-    );
+  async function LoginOutUser() {
+    Cookies.remove("access");
+    Cookies.remove("isLoggedIn");
+    Cookies.remove("role");
+    Cookies.remove("refresh");
+    dispatch(setLogout());
   }
 
   return { stateItem, LoginUser, LoginOutUser };

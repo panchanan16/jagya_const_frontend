@@ -51,7 +51,7 @@ function Phases({ Name, Status }) {
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               onclick="confirmAlert()"
-              className="svg-18"
+              className="warning"
             >
               <path
                 fill=""

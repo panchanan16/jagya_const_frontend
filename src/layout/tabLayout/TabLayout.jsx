@@ -4,8 +4,6 @@ import Tab from "@/components/Tab/Tab";
 function TabLayout({ TabList }) {
   const [isTabActive, setTabActive] = useState(TabList[0]?.main);
 
-  console.log(TabList[0].tabData);
-
   return (
     <div className="tabs">
       <div className="tabs-heading flex align-end j-between">

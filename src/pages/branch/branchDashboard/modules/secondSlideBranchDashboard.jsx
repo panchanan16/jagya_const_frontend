@@ -7,7 +7,7 @@ function SecondSlideBranchDashboard() {
       <div class="branch-project-popup">
         <div class="flex align-start j-between">
           <h2>Residential</h2>
-          <Link to="/branch-dashboard">
+          <Link to="/admin/branch-dashboard">
             <button type="button" class="btn-warning close">
               Close
             </button>

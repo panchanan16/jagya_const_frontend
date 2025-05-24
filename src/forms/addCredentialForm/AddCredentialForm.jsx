@@ -75,7 +75,7 @@ function AddCredentialForm() {
             MainForm={CredentialsFormWithField}
             initialValues={initialSchema}
             validationSchema={validateSchema}
-            formHandler={testSubmit}
+            formHandler={submithandler}
             isReturn={isReturn}
           />
         </div>
