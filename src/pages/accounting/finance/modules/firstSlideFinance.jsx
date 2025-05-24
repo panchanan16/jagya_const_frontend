@@ -20,14 +20,8 @@ function FirstSlideFinance() {
             "Remarks",
             "Date",
             "Project ID",
-            "Action",
           ]}
-          Trow={itemList}
-          Actions={{
-            viewUrl: "col_id",
-            deleteUrl: "collection",
-            editUrl: "col_id",
-          }}
+          Trow={itemList}          
         />
       </div>
     </FirstSlideLayout>

@@ -128,21 +128,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
                       className="err"
                       component="span"
                     />
-                  </div>
-
-                  <div class="field">
-                    <p class="title">Status</p>
-                    <Field
-                      type="text"
-                      name={`materialItemsData[${index}].fd_approval`}
-                      id=""
-                    />
-                    <ErrorMessage
-                      name={`materialItemsData[${index}].fd_approval`}
-                      className="err"
-                      component="span"
-                    />
-                  </div>
+                  </div>                 
 
                   <div class="field" onClick={() => remove(index)}>
                     <p class="opacity-0 title">p</p>

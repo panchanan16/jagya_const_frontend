@@ -5,8 +5,6 @@ function AsideNavlink({ name, redirect, submenu, SvgImg }) {
     const [active, setactive] = useState(false)
     let navigate = useNavigate();
 
-    console.log('hey I am aside bar on click rendering')
-
     function openSubmenu(e) {
         e.stopPropagation()
         if (redirect) { return navigate(redirect) }
