@@ -33,6 +33,7 @@ function FirstSlideBranchRequest() {
           deleteUrl: "branch_client",
           editUrl: "b_client_id",
         }}
+        Paginate={true}
       />
     </FirstSlideLayout>
   );

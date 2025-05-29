@@ -229,7 +229,7 @@ function generateRoutePages(params) {
                   path: ":id",
                   element: <SecondSlideBranchList />,
                 },
-                { path: "add-branch", element: <AddBranchForm /> },
+                { path: "create", element: <AddBranchForm /> },
               ],
             },
             {

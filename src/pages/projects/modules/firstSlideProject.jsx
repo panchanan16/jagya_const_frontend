@@ -35,6 +35,7 @@ function FirstSlideProject() {
             deleteUrl: "project",
             editUrl: "pro_id",
           }}
+          Paginate={true}
         />
       </div>
     </FirstSlideLayout>

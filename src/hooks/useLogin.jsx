@@ -2,6 +2,7 @@ import authEndpoint from "@/api/authApi";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { LOGIN_REQUEST, setLogout } from "@/redux/features/loginSlice/slice";
+import coreEndpoint from "@/api/coreApi";
 
 function useLogin(entity, stateKey) {
   const stateItem = useSelector((state) => state["login"]);
@@ -10,7 +11,7 @@ function useLogin(entity, stateKey) {
   async function LoginUser(credentials) {
     const result = await dispatch(
       LOGIN_REQUEST({
-        endpoint: authEndpoint.loginUser(entity),
+        endpoint: coreEndpoint.createItem('super-admin', 'login'),
         body: credentials,
         entity: "login",
         stateKey,

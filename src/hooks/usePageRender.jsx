@@ -21,6 +21,8 @@ function usePageRender(entity, tail, key, itemId, loc, urlKey) {
   const { getItemList } = Actions;
   let viewedItem = null;
 
+  console.log(searchParams.get('category'))
+
   if (urlParam && itemId) {
     const Item = itemList.filter((item) => item[itemId] == urlParam);
     viewedItem = Item[0];

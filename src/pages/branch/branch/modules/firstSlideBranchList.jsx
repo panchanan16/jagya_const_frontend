@@ -2,12 +2,15 @@ import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
-
 function FirstSlideBranchList() {
   const { itemList } = usePageRender("branch_data");
 
   return (
-    <FirstSlideLayout Heading="Branch" Btn="Add New Branch" BtnFn={'/admin/clients/create'}>
+    <FirstSlideLayout
+      Heading="Branch"
+      Btn="Add New Branch"
+      BtnFn={"/admin/branch-list/create"}
+    >
       <div className="main-table">
         <Table
           Theader={[
@@ -27,6 +30,7 @@ function FirstSlideBranchList() {
             deleteUrl: "branch_data",
             editUrl: "b_id",
           }}
+          Paginate={true}
         />
       </div>
     </FirstSlideLayout>

@@ -20,6 +20,7 @@ function useFormSubmit(initialValueObj, validateObj, IdKey, entity, urlkey) {
     IdKey,
     itemData
   );
+
   const validateSchema = validateForm(validateObj);
   const isReturn = itemList.length > 0 || !urlParam;
 

@@ -207,6 +207,7 @@ li {
     cursor: pointer;
 }
 
+
 img {
     width: 100%;
     object-fit: cover;
@@ -930,6 +931,11 @@ span.icon {
     transition: var(--transition-1);
     line-height: 1;
     cursor: pointer;
+}
+
+span.pagination-bg {
+    background: rgb(64, 22, 1);
+    color: #FFF;
 }
 
 span.icon svg {

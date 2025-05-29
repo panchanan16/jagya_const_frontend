@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import { useEffect } from "react";
+import useRequest from "@/hooks/useRequest";
 
 function CredentialsFormWithField({ resetFn, isSubmitting }) {
   const { id } = useParams();
@@ -56,8 +57,11 @@ function AddCredentialForm() {
       route: "create/super_admin",
     });
 
-  function testSubmit(values) {
-    alert(JSON.stringify(values, null));
+  const { makeRequest } = useRequest('super-admin', null, null, null, false);
+
+  async function testSubmit(values) {
+    // alert(JSON.stringify(values, null));
+    await makeRequest(values, null, 'create/credentials')
   }
 
   return (
@@ -75,7 +79,7 @@ function AddCredentialForm() {
             MainForm={CredentialsFormWithField}
             initialValues={initialSchema}
             validationSchema={validateSchema}
-            formHandler={submithandler}
+            formHandler={testSubmit}
             isReturn={isReturn}
           />
         </div>

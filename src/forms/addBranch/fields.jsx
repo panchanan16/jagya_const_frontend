@@ -1,13 +1,18 @@
 export const initialValues = {
-    branchName : "",
-    branchOwner: "",
-    branchContact: "",
-    branchAddress: ""
-}
+  b_name: "",
+  b_location: "",
+  b_head: "",
+  b_contact_number: "",
+  b_alt_number: "",
+  b_email: "",
+  b_commision: 1,
+};
 
 export const validate = {
-    branchName : "name",
-    branchOwner: "name",
-    branchContact: "phnumber",
-    branchAddress: "text"
-}
+  b_name: "",
+  b_location: "",
+  b_head: "",
+  b_contact_number: "",
+  b_alt_number: "",
+  b_email: "",
+};
