@@ -113,7 +113,7 @@ function SecondSlide() {
         <TabLayout
           TabList={[
             {
-              main: "Collections",
+              main: "Installments",
               list: [
                 "No.",
                 "Date",
