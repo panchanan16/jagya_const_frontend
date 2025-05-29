@@ -9,9 +9,10 @@ function FirstSlideInchargeReq() {
   const { itemList } = usePageRender("material_req");
   return (
     <FirstSlideLayout
-      Heading="Material Requests"
-      Btn="Create a Request"
+      Heading="Incharge Requests"
+      Btn="Request Materials"
       BtnFn="create"
+      HeadingText="Request List"
     >
       <Table
         Theader={[

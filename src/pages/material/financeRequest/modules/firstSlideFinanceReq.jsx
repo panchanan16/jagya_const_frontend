@@ -5,7 +5,7 @@ import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 function FirstSlideFinanceReq() {
   const { itemList } = usePageRender("material_req");
   return (
-    <FirstSlideLayout Heading={"Finance Material Requests"}>
+    <FirstSlideLayout Heading={"Finance Material Requests"} HeadingText="Request List">
       <Table
         Theader={[
           "Sl no.",

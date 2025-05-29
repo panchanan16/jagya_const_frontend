@@ -6,7 +6,7 @@ function FirstSlide() {
   const { outputItemList } = usePageRender("client");
 
   return (
-    <FirstSlideLayout Heading="Clients" Btn="Add a Client" BtnFn="create">
+    <FirstSlideLayout Heading="Clients" Btn="Add a Client" BtnFn="create" HeadingText="All Clients">
         <div className="main-table">
           <Table
             Theader={[

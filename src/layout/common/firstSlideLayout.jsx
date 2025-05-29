@@ -9,6 +9,7 @@ function FirstSlideLayout({
   BtnFn,
   Entity,
   HeaderSection,
+  HeadingText
 }) {
   return (
     <div className={`first-slide`} id="first-slide">
@@ -17,12 +18,13 @@ function FirstSlideLayout({
         {Heading && (
           <div className="heading">
             <h1>{Heading && Heading}</h1>
-            <p className="title">Find all projects and their details here</p>
+            <p className="title">Find all {`${Heading}`.toLocaleLowerCase()} here</p>
           </div>
         )}
 
         {HeaderSection == undefined && (
-          <SectionHeaderOption
+          <SectionHeaderOption 
+            HeadingText={HeadingText}
             EndBtn={<SectionHeaderBtn btnName={Btn} clickFn={BtnFn} />}
             Entity={Entity}
           />

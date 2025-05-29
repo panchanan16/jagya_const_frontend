@@ -730,7 +730,7 @@ main .main-span {
 }
 
 .search input {
-    background: transparent;
+    background: var(--search-background);
     width: 100%;
     padding: var(--px-8) var(--px-10);
     border-right: 1px solid var(--light-primary-300);
@@ -1436,15 +1436,19 @@ main .sub-task {
 
 /* POPUPS  */
 .main-popup {
-    position: absolute;
+    position: fixed;
     top: 0;
-    left: 0;
+    left: 250px;
     background: var(--light-primary-500);
-    width: 100%;
-    min-height: 150vh;
-    height: 100%;
+    width: calc(100% - 250px);
+    /* min-height: 150vh; */
+    height: 100vh;
     z-index: 20;
+    overflow-y: auto;
     box-shadow: var(--b-shadow-2);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .main-popup .blur {
@@ -1455,6 +1459,7 @@ main .sub-task {
     padding: 20px var(--px-15);
     background: var(--primary-50);
     border: 1px solid var(--light-primary-300);
+    /* min-height: 90vh; */
 }
 
 .main-popup svg {
@@ -1524,7 +1529,7 @@ main .sub-task {
 
 .field select {
     color: var(--primary-900);
-    background: var(--primary-100);
+    background: var(--search-background);
     border-radius: var(--radius-5);
     border: 1px solid var(--light-primary-300);
     font-weight: 500;
@@ -1548,7 +1553,7 @@ main .sub-task {
 }
 
 .field input {
-    background: transparent;
+    background: var(--search-background);
     border: 1px solid var(--light-primary-300);
     border-radius: var(--px-5);
     padding: var(--px-8) var(--px-10);
@@ -1681,15 +1686,16 @@ figure span {
 }
 
 .section-popup {
-    position: absolute;
+    position: fixed;
     top: 0;
-    right: 0;
+    left: 250px;
+    width: calc(100% - 250px);
     background: var(--light-primary-500);
     filter: contrast(100%);
-    width: 100%;
-    min-height: 150vh;
+    height: 100vh;
     border: 1px solid var(--light-primary-300);
-    z-index: 50;
+    z-index: 25;
+    overflow: auto;
 }
 
 .section-popup :is(.notification-popup,
@@ -2069,22 +2075,23 @@ figure span {
 }
 
 /* Incharge */
-.newItem {
-    border: 1px solid var(--light-primary-300);
-    padding: var(--px-5);
-    border-radius: var(--radius-6);
-    margin-top: var(--px-10);
-    margin-bottom: var(--px-10);
-}
-
-.inventoryGrid {
+.inventoryGrid{
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
-    /* height: 50vh; */
-    overflow-y: scroll;
-    margin: var(--px-10) auto;
+    margin: var(--px-15) auto;
+    padding: var(--px-5);
+    background: var(--light-primary-100);
+    border-radius: var(--px-6);
+    border-bottom: 1px solid var(--light-primary-300);
 }
-
+.inchargeGrid{
+    grid-template-columns: repeat(2, 1fr) 2rem;
+    margin: var(--px-15) auto;
+    padding: var(--px-5);
+    background: var(--light-primary-100);
+    border-radius: var(--px-6);
+    border: 1px solid var(--light-primary-300);
+}
 .itemGrid {
     display: grid;
     grid-template-columns: repeat(5, 1fr) 2rem;

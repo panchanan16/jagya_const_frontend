@@ -53,9 +53,9 @@ function RequestFormWithField({ values, resetFn }) {
               </svg>
               <span class="text">Add Item</span>
             </button>
+            <div class="newItem">
             {values.materialItemsData.map((friend, index) => (
-              <div class="newItem">
-                <div class="grid gap-10 inventoryGrid">
+                <div class="grid gap-10 inchargeGrid">
                   <div class="field">
                     <p class="title">Item</p>
                     <Field
@@ -83,7 +83,7 @@ function RequestFormWithField({ values, resetFn }) {
                     />
                   </div>
                   <div class="field" onClick={() => remove(index)}>
-                    <p class="opacity-0">p</p>
+                    <p class="opacity-0 title">p</p>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
@@ -96,8 +96,8 @@ function RequestFormWithField({ values, resetFn }) {
                     </svg>
                   </div>
                 </div>
-              </div>
             ))}
+            </div>
           </div>
         )}
       </FieldArray>

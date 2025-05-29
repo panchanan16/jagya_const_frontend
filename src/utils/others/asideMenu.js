@@ -27,8 +27,8 @@ const asideMenuItems = [
     {
         name: 'Accounting',
         submenu: [
-            { name: 'Finance', url: `${entity}/finance` },
-            { name: 'Expense', url: `${entity}/expense` },
+            { name: 'Installments', url: `${entity}/finance` },
+            { name: 'Expenses', url: `${entity}/expense` },
             { name: 'Invoices', url: `${entity}/invoices` }
         ],
         svgImg: AccountingIcon,
