@@ -10,6 +10,7 @@ function FirstSlideBranchList() {
       Heading="Branch"
       Btn="Add New Branch"
       BtnFn={"/admin/branch-list/create"}
+      HeadingText="Our Branches"
     >
       <div className="main-table">
         <Table

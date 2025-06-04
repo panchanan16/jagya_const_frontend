@@ -1,6 +1,7 @@
 import useRenderProjects from "@/hooks/useRenderProjects";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function SecondSlide() {
@@ -10,6 +11,10 @@ function SecondSlide() {
       { item: "get_clientProject", details: "get_ProjectInfo" },
       { item: "client_id", details: "pro_ref_id" }
     );
+
+  useEffect(() => {
+    itemData.length && changeTabContent(itemData[0].pro_ref_no);
+  }, [itemData]);
 
   return (
     <SecondSlideLayout>

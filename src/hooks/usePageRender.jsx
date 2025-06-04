@@ -1,6 +1,6 @@
 import coreCrudActions from "@/redux/coreCrudAction";
 import crudActions from "@/redux/crudActions";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 
@@ -10,7 +10,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 //itemid: which item need to access from itemList.
 
 function usePageRender(entity, tail, key, itemId, loc, urlKey) {
-  const { itemList, itemData } = useSelector((state) => state[entity]);
+  const { itemList, itemData, pagination } = useSelector((state) => state[entity]);
   const { itemList: filterList, searchQuery } = useSelector(
     (state) => state["search"]
   );
@@ -18,10 +18,11 @@ function usePageRender(entity, tail, key, itemId, loc, urlKey) {
   const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const Actions = tail ? coreCrudActions : crudActions;
-  const { getItemList } = Actions;
+  const { getItemList, getPaginateItems } = Actions;
   let viewedItem = null;
 
-  console.log(searchParams.get('category'))
+  const pageNo = searchParams.get("page");
+  const pageSize = searchParams.get("pageSize");
 
   if (urlParam && itemId) {
     const Item = itemList.filter((item) => item[itemId] == urlParam);
@@ -29,12 +30,16 @@ function usePageRender(entity, tail, key, itemId, loc, urlKey) {
   }
 
   useEffect(() => {
-    getItemList(entity, dispatch, tail, key);
-  }, [loc]);
+    if (pageNo && pageSize) {
+      getPaginateItems(entity, dispatch, pageNo, pageSize);
+    } else {
+      getItemList(entity, dispatch, tail, key);
+    }
+  }, [loc, pageNo]);
 
-  const outputItemList = searchQuery ? filterList : itemList
+  const outputItemList = searchQuery ? filterList : itemList;
 
-  return { outputItemList, itemList, itemData, viewedItem, urlParam };
+  return { outputItemList, itemList, itemData, viewedItem, urlParam, pagination };
 }
 
 export default usePageRender;

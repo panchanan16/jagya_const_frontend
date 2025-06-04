@@ -8,6 +8,7 @@ function FirstSlideLayout({
   Btn,
   BtnFn,
   Entity,
+  searchFields,
   HeaderSection,
   HeadingText
 }) {
@@ -27,6 +28,7 @@ function FirstSlideLayout({
             HeadingText={HeadingText}
             EndBtn={<SectionHeaderBtn btnName={Btn} clickFn={BtnFn} />}
             Entity={Entity}
+            searchFields={searchFields}
           />
         )}
 

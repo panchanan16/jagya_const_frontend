@@ -1,23 +1,22 @@
 import React, { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function TableFooter() {
+function TableFooter({TotalPages}) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [curr, setCurr] = useState(1)
+  const searchParams = new URLSearchParams(location.search);
+  const [curr, setCurr] = useState(searchParams.get("page") || 1);
   const updateFilters = (category) => {
-    const searchParams = new URLSearchParams(location.search);
-    searchParams.set("category", category);
+    searchParams.set("page", category);
+    searchParams.set("pageSize", 5);
     navigate({
       pathname: location.pathname,
       search: searchParams.toString(),
     });
   };
 
-  let lastpage = 10;
-
-  const totalPages = Math.ceil(100 / 10);
-  const pagesToShow = 3;
+  const totalPages = TotalPages || Math.ceil(200 / 10);
+  const pagesToShow = 5;
   const currentPage = curr;
 
   const getVisiblePages = useMemo(() => {
@@ -62,7 +61,7 @@ function TableFooter() {
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
       setCurr(page);
-      updateFilters(page)
+      updateFilters(page);
     }
   };
 
@@ -73,7 +72,6 @@ function TableFooter() {
   const handleNext = () => {
     handlePageChange(currentPage + 1);
   };
-
 
   // Helper function to check if we need ellipsis
   const needsEllipsis = (currentIndex, pages) => {
@@ -86,11 +84,17 @@ function TableFooter() {
   return (
     <tfoot>
       <tr>
-        <td colspan="2">Page 1 of 1</td>
+        <td colspan="2">
+          Page {curr} of {totalPages}
+        </td>
         <td colspan="5"></td>
         <td colspan="3">
           <div class="flex align-center pagination">
-            <span class="icon"  onClick={handlePrevious} disabled={currentPage === 1}>
+            <span
+              class="icon"
+              onClick={handlePrevious}
+              disabled={currentPage === 1}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -104,7 +108,10 @@ function TableFooter() {
             </span>
             {getVisiblePages.map((page, ind) => (
               <>
-                <span class={`icon ${page === curr ? 'pagination-bg' : ''}`} onClick={() => handlePageChange(page)}>
+                <span
+                  class={`icon ${page == curr ? "pagination-bg" : ""}`}
+                  onClick={() => handlePageChange(page)}
+                >
                   {page}
                 </span>
                 {needsEllipsis(ind, getVisiblePages) && (
@@ -113,7 +120,11 @@ function TableFooter() {
               </>
             ))}
 
-            <span class="icon" onClick={handleNext} disabled={currentPage === totalPages}>
+            <span
+              class="icon"
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

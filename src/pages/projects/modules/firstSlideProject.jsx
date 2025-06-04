@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideProject() {
-  const { itemList, outputItemList } = usePageRender("project");
+  const { outputItemList, pagination } = usePageRender("project");
 
   return (
     <FirstSlideLayout
@@ -11,6 +11,7 @@ function FirstSlideProject() {
       Btn="Add a Project"
       BtnFn="add-project"
       Entity={"project"}
+      searchFields={["pro_name", "pro_ref_no"]}
     >
       <div className="main-table">
         <Table
@@ -36,6 +37,7 @@ function FirstSlideProject() {
             editUrl: "pro_id",
           }}
           Paginate={true}
+          totalpage={pagination ? pagination.lastPage : 2}
         />
       </div>
     </FirstSlideLayout>

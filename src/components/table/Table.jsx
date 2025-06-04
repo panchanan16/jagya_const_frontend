@@ -1,10 +1,9 @@
 import React from "react";
 import ItemActionBox from "../itemAction/itemActionBox";
 import StatusSpan from "../statusSpan/StatusSpan";
-import { useLocation, useNavigate } from "react-router-dom";
 import TableFooter from "./TableFooter/TableFooter";
 
-function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate }) {  
+function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate, totalpage }) {  
   return (
     <>
     <div className="data-info">
@@ -87,7 +86,7 @@ function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate }) {
         )}
 
         {Paginate && (
-          <TableFooter />
+          <TableFooter TotalPages={totalpage} />
         )}
       </table>
       </div>

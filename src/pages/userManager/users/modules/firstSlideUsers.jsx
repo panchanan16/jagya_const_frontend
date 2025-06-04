@@ -80,6 +80,7 @@ function FirstSlideUsers() {
       HeaderSection={true}
     >
       <SectionHeaderOption
+        HeadingText="All Users"
         EndBtn={<UsersDropdown />}
         Entity={"aaaa"}
         FilterComponent={<UserFilter SetFilter={setUserFilter} />}
