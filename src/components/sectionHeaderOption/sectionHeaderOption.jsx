@@ -6,6 +6,7 @@ function SectionHeaderOption({
   HeadingText,
   Entity,
   FilterComponent,
+  searchFields
 }) {
   return (
     <div className="top-section flex align-center j-between">
@@ -18,7 +19,7 @@ function SectionHeaderOption({
       )}
 
       <div className="utility-section flex align-center">
-        {Entity && <SearchBox SearchEntity={Entity} />}
+        {Entity && <SearchBox SearchEntity={Entity} searchFields={searchFields} />}
         <div className="filter hide">
           <button className="btn-filter flex align-center">
             <svg

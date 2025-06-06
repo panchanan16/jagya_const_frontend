@@ -1,9 +1,9 @@
 import useSearch from "@/hooks/useSearch";
 import React, { useState } from "react";
 
-function SearchBox({ SearchEntity }) {
+function SearchBox({ SearchEntity, searchFields }) {
   const [searchTerm, setSearchTerm] = useState(null);
-  const { itemList } = useSearch(searchTerm, SearchEntity);
+  const { itemList } = useSearch(searchTerm, SearchEntity, searchFields);
 
   function handleChangeSearchInput(e) {
     setSearchTerm(e.target.value);

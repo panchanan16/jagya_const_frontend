@@ -6,7 +6,7 @@ function FirstSlideLabour() {
   const { itemList } = usePageRender("labour");
 
   return (
-    <FirstSlideLayout Heading="Labour" Btn={"Add Labour"} BtnFn={"create"}>
+    <FirstSlideLayout Heading="Labour" Btn={"Add Labour"} BtnFn={"create"} HeadingText="All Labours">
       <Table
         Theader={[
           "Sl No.",

@@ -1,8 +1,10 @@
 import { setFilteredItems, setQuery } from "@/redux/features/searchSlice/slice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-function useSearch(searchQuery, entity) {
+// searchFields:[] Its type of array which contain all fields of the item where search occur
+
+function useSearch(searchQuery, entity, searchFields) {
   const itemList = useSelector((state) => state[entity]);
   const dispatch = useDispatch();
 
@@ -11,12 +13,13 @@ function useSearch(searchQuery, entity) {
     const filtered =
       itemList &&
       itemList?.itemList?.filter((el) => {
-        return el.pro_name
-          .toLowerCase()
-          .includes(searchQuery?.toLowerCase());
+        return searchFields.some((elem) => {
+          if (el[elem] && el[elem].toLowerCase().includes(searchQuery?.toLowerCase())) {
+            return el;
+          }
+        });
       });
-    // console.log(filtered);
-    dispatch(setFilteredItems(filtered))
+    dispatch(setFilteredItems(filtered));
   }, [searchQuery]);
   return { itemList };
 }
