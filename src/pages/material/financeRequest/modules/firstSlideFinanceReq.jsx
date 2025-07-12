@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideFinanceReq() {
-  const { itemList } = usePageRender("material_req");
+  const { itemList } = usePageRender({entity: "material_req"});
   return (
     <FirstSlideLayout Heading={"Finance Material Requests"} HeadingText="Request List">
       <Table

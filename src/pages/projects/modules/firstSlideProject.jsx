@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideProject() {
-  const { outputItemList, pagination } = usePageRender("project");
+  const { outputItemList, pagination } = usePageRender({entity: "project", isPaginate: true});
 
   return (
     <FirstSlideLayout
@@ -36,6 +36,7 @@ function FirstSlideProject() {
             deleteUrl: "project",
             editUrl: "pro_id",
           }}
+          col={4}
           Paginate={true}
           totalpage={pagination ? pagination.lastPage : 2}
         />

@@ -3,7 +3,7 @@ import ItemActionBox from "../itemAction/itemActionBox";
 import StatusSpan from "../statusSpan/StatusSpan";
 import TableFooter from "./TableFooter/TableFooter";
 
-function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate, totalpage }) {  
+function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate, totalpage, col = 5 }) {  
   return (
     <>
     <div className="data-info">
@@ -86,7 +86,7 @@ function Table({ Select, Theader, Trow, Tfooter, Limit, Actions, Paginate, total
         )}
 
         {Paginate && (
-          <TableFooter TotalPages={totalpage} />
+          <TableFooter TotalPages={totalpage} colspan={col} />
         )}
       </table>
       </div>

@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideBranchRequest() {
-  const { itemList, pagination } = usePageRender("branch_client");
+  const { itemList, pagination } = usePageRender({entity: "branch_client"});
 
   return (
     <FirstSlideLayout Heading={`Branch Requests`} HeadingText="Branch Projects">

@@ -7,7 +7,7 @@ import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 import React, { useState } from "react";
 
 function FirstSlideFinance() {
-  const { itemList } = usePageRender("collection");
+  const { itemList } = usePageRender({entity: "collection"});
 
   return (
     <FirstSlideLayout Heading="Installments" Btn={"Add Installment"} BtnFn={"add-installment"} HeadingText="All Installments">

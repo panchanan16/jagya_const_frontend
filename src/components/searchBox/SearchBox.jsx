@@ -1,5 +1,5 @@
 import useSearch from "@/hooks/useSearch";
-import React, { useState } from "react";
+import { useState } from "react";
 
 function SearchBox({ SearchEntity, searchFields }) {
   const [searchTerm, setSearchTerm] = useState(null);
@@ -13,11 +13,6 @@ function SearchBox({ SearchEntity, searchFields }) {
     setSearchTerm("");
   }
 
-
-  function addNewsearch(params) {
-     const param = params;
-     return param.id == 3
-  }
   return (
     <div className="search flex align-center">
       <svg

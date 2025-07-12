@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideLabour() {
-  const { itemList } = usePageRender("labour");
+  const { itemList } = usePageRender({entity: "labour"});
 
   return (
     <FirstSlideLayout Heading="Labour" Btn={"Add Labour"} BtnFn={"create"} HeadingText="All Labours">

@@ -6,14 +6,14 @@ import { Link, useParams } from "react-router-dom";
 
 function SecondSlideExpense() {
   const { id } = useParams();
-  const { itemData, viewedItem } = usePageRender(
-    "expense",
-    `get_expense_details/${id}`,
-    "itemData",
-    "exp_id"
-  );
+  const { itemData, viewedItem } = usePageRender({
+    entity: "expense",
+    tail: `get_expense_details/${id}`,
+    key: "itemData",
+    itemId: "exp_id",
+  });
 
-  console.log(itemData)
+  console.log(itemData);
 
   return (
     <PopupLayout>
@@ -49,16 +49,44 @@ function SecondSlideExpense() {
         <div className="expense-table">
           <h3>Contractor</h3>
           <Table
-            Theader={["ProjectID", "Amount", "Note", "Contractor", "Project name", "Project ref"]}
+            Theader={[
+              "ProjectID",
+              "Amount",
+              "Note",
+              "Contractor",
+              "Project name",
+              "Project ref",
+            ]}
             Trow={itemData?.contractor}
-            Limit={["pay_amount", "pay_project_id", "pro_name", "pay_note", "pro_ref_no", "con_name"]}
+            Limit={[
+              "pay_amount",
+              "pay_project_id",
+              "pro_name",
+              "pay_note",
+              "pro_ref_no",
+              "con_name",
+            ]}
           />
           <hr />
           <h3>Vendor</h3>
           <Table
-            Theader={["ProjectID", "Amount", "Note", "Vendor Name", "Project name", "Project ref"]}
+            Theader={[
+              "ProjectID",
+              "Amount",
+              "Note",
+              "Vendor Name",
+              "Project name",
+              "Project ref",
+            ]}
             Trow={itemData?.vendor}
-            Limit={["pay_project_id", "pay_amount", "pay_note", "pro_name", "pro_ref_no", "vendor_name"]}
+            Limit={[
+              "pay_project_id",
+              "pay_amount",
+              "pay_note",
+              "pro_name",
+              "pro_ref_no",
+              "vendor_name",
+            ]}
           />
         </div>
       </div>

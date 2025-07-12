@@ -1,6 +1,7 @@
 import coreCrudActions from "@/redux/coreCrudAction";
 import crudActions from "@/redux/crudActions";
-import { useEffect } from "react";
+import { resetData } from "@/redux/features/paginateSlice/slice";
+import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 
@@ -9,28 +10,39 @@ import { useParams, useSearchParams } from "react-router-dom";
 //key: which key need to update on the initial state
 //itemid: which item need to access from itemList.
 
-function usePageRender(entity, tail, key, itemId, loc, urlKey) {
-  const { itemList, itemData, pagination } = useSelector((state) => state[entity]);
+function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = false}) {
+  const { itemList, itemData, pagination } = useSelector(
+    (state) => state[entity]
+  );
   const { itemList: filterList, searchQuery } = useSelector(
     (state) => state["search"]
   );
+
+  const {pageNo, pageSize} = useSelector((state) => state["paginate"]);
   const { [urlKey ? urlKey : "id"]: urlParam } = useParams();
-  const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
   const Actions = tail ? coreCrudActions : crudActions;
   const { getItemList, getPaginateItems } = Actions;
   let viewedItem = null;
 
-  const pageNo = searchParams.get("page");
-  const pageSize = searchParams.get("pageSize");
+  // console.log(paginateNumber)
+
+  // const pageNo = useMemo(() => {
+  //   return searchParams.get("page") || "1";
+  // }, [searchParams]);
+  // const pageSize = searchParams.get("pageSize");
 
   if (urlParam && itemId) {
     const Item = itemList.filter((item) => item[itemId] == urlParam);
     viewedItem = Item[0];
   }
 
+  useEffect(()=> {
+    dispatch(resetData(1))
+  }, [])
+
   useEffect(() => {
-    if (pageNo && pageSize) {
+    if (pageNo && pageSize && isPaginate) {
       getPaginateItems(entity, dispatch, pageNo, pageSize);
     } else {
       getItemList(entity, dispatch, tail, key);
@@ -39,7 +51,14 @@ function usePageRender(entity, tail, key, itemId, loc, urlKey) {
 
   const outputItemList = searchQuery ? filterList : itemList;
 
-  return { outputItemList, itemList, itemData, viewedItem, urlParam, pagination };
+  return {
+    outputItemList,
+    itemList,
+    itemData,
+    viewedItem,
+    urlParam,
+    pagination,
+  };
 }
 
 export default usePageRender;
