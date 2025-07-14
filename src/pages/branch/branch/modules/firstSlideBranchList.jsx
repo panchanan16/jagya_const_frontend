@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideBranchList() {
-  const { itemList } = usePageRender({entity: "branch_data"});
+  const { itemList } = usePageRender({entity: "branch_data", isPaginate: true});
 
   return (
     <FirstSlideLayout
