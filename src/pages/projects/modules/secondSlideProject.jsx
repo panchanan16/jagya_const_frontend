@@ -8,18 +8,17 @@ import { useSelector } from "react-redux";
 function SecondSlideProject() {
   const { projectId } = useParams();
   const { itemList } = useSelector((state) => state["project_phase"]);
-  const { itemData, viewedItem } = usePageRender(
-    "project",
-    `get_project_detail/${projectId}`,
-    "itemData",
-    "pro_id",
-    null,
-    "projectId"
-  );
+  const { itemData, viewedItem } = usePageRender({
+    entity: "project",
+    tail: `get_project_detail/${projectId}`,
+    key: "itemData",
+    itemId: "pro_id",
+    urlKey: "projectId",
+  });
 
   function deleteTheFile(e) {
-    e.preventDefault()
-    console.log("File DELETED SUCCESSFULLY!")
+    e.preventDefault();
+    console.log("File DELETED SUCCESSFULLY!");
   }
 
   return (
@@ -80,7 +79,9 @@ function SecondSlideProject() {
           </div>
           <div className="description flex align-center">
             <h3>Advance Payment:</h3>
-            <p className="text">&#8377; {viewedItem ? viewedItem.pro_advancepayment : "N/A"}</p>
+            <p className="text">
+              &#8377; {viewedItem ? viewedItem.pro_advancepayment : "N/A"}
+            </p>
           </div>
           <div className="description flex align-center">
             <h3>House type:</h3>
@@ -97,7 +98,9 @@ function SecondSlideProject() {
           <div className="description flex align-center">
             <h3>Project Initiated:</h3>
             <p className="text">
-              {viewedItem ? `${new Date(viewedItem?.created_at).toDateString()}` : "N/A"}
+              {viewedItem
+                ? `${new Date(viewedItem?.created_at).toDateString()}`
+                : "N/A"}
             </p>
           </div>
           <div className="description flex align-center">
@@ -126,7 +129,9 @@ function SecondSlideProject() {
         {/* <!-- Attached Files --> */}
         <div className="file-structure">
           <div className="file-header flex align-start j-between">
-            <h3>Attached Files <span>(Format: pdf file)</span>:</h3>
+            <h3>
+              Attached Files <span>(Format: pdf file)</span>:
+            </h3>
             <InputFile Id={projectId} />
           </div>
 

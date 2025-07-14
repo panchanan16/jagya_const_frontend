@@ -1,8 +1,10 @@
+import useSecondSlideData from "@/hooks/useSecondSlideData";
 import PopupLayout from "@/layout/common/popupLayout";
 import { Link, Outlet, useParams } from "react-router-dom";
 
 function SecondSlideUsers() {
   const { id } = useParams();
+  const { viewedItem } = useSecondSlideData("users", "su_id");
   return (
     <PopupLayout>
       <div class="branch-project-popup">
@@ -16,8 +18,8 @@ function SecondSlideUsers() {
         </div>
         <div class="branch-project-content grid gap-5">
           <div class="description flex align-center gap-5">
-            <h3>Client Name:</h3>
-            <p class="text">Kankan Jyoti Nath</p>
+            <h3>Name:</h3>
+            <p class="text">{viewedItem && viewedItem.su_name}</p>
           </div>
           <div class="description flex align-center gap-5">
             <h3>Phone Number:</h3>

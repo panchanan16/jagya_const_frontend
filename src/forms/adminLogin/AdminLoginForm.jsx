@@ -3,9 +3,10 @@ import FormLayout from "@/layout/formLayout/formLayout";
 import { validateForm } from "@/utils/validation/formValidation";
 import { ErrorMessage, Field, Form } from "formik";
 import { useEffect } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
+  login_type: "super-admin",
   user_id: "",
   password: "",
 };
@@ -21,6 +22,20 @@ function AdminLoginFormWithField({ errors, isSubmitting }) {
       <span style={{ color: "red", fontSize: "13px" }}>
         {errors && errors.message}
       </span>
+      <div class="field">
+        <label htmlFor="your_name">Login As</label>
+        <Field
+          as="select"
+          name="login_type"
+          id="login_type"
+          className="house-type"
+        >
+          <option value="super-admin">Superadmin</option>
+          <option value="finance">Finance Department</option>
+          <option value="branch">Branch Login</option>
+        </Field>
+        <ErrorMessage name="user_id" className="err" component="span" />
+      </div>
       <div class="field">
         <label htmlFor="your_name">Email Address</label>
         <Field type="text" name="user_id" id="user_id" />

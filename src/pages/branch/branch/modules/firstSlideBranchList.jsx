@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideBranchList() {
-  const { itemList } = usePageRender("branch_data");
+  const { itemList } = usePageRender({entity: "branch_data", isPaginate: true});
 
   return (
     <FirstSlideLayout
@@ -26,10 +26,11 @@ function FirstSlideBranchList() {
             "Action",
           ]}
           Trow={itemList}
+          col={6}
           Actions={{
-            viewUrl: "b_id",
+            viewUrl: "br_id",
             deleteUrl: "branch_data",
-            editUrl: "b_id",
+            editUrl: "br_id",
           }}
           Paginate={true}
         />

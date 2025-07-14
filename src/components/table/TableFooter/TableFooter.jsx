@@ -1,23 +1,28 @@
 import React, { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import { resetData } from "@/redux/features/paginateSlice/slice";
 
-function TableFooter({TotalPages}) {
-  const navigate = useNavigate();
+function TableFooter({TotalPages, colspan = 5}) {
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const [curr, setCurr] = useState(searchParams.get("page") || 1);
+  const {pageNo, pageSize} = useSelector(state => state.paginate)
+  // const searchParams = new URLSearchParams(location.search);
+  // const [curr, setCurr] = useState(searchParams.get("page") || 1);
   const updateFilters = (category) => {
-    searchParams.set("page", category);
-    searchParams.set("pageSize", 5);
-    navigate({
-      pathname: location.pathname,
-      search: searchParams.toString(),
-    });
+    // searchParams.set("page", category);
+    // searchParams.set("pageSize", 5);
+    dispatch(resetData(category))
+    // navigate({
+    //   pathname: location.pathname,
+    //   search: searchParams.toString(),
+    // }); 
   };
 
   const totalPages = TotalPages || Math.ceil(200 / 10);
   const pagesToShow = 5;
-  const currentPage = curr;
+  const currentPage = pageNo;
 
   const getVisiblePages = useMemo(() => {
     if (totalPages <= pagesToShow * 2 + 1) {
@@ -60,7 +65,7 @@ function TableFooter({TotalPages}) {
 
   const handlePageChange = (page) => {
     if (page >= 1 && page <= totalPages && page !== currentPage) {
-      setCurr(page);
+      dispatch(resetData(page));
       updateFilters(page);
     }
   };
@@ -84,11 +89,11 @@ function TableFooter({TotalPages}) {
   return (
     <tfoot>
       <tr>
-        <td colspan="2">
-          Page {curr} of {totalPages}
+        <td colspan={colspan}>
+          Page {pageNo} of {totalPages}
         </td>
-        <td colspan="5"></td>
-        <td colspan="3">
+        <td></td>
+        <td>
           <div class="flex align-center pagination">
             <span
               class="icon"
@@ -109,7 +114,7 @@ function TableFooter({TotalPages}) {
             {getVisiblePages.map((page, ind) => (
               <>
                 <span
-                  class={`icon ${page == curr ? "pagination-bg" : ""}`}
+                  class={`icon ${page == pageNo ? "pagination-bg" : ""}`}
                   onClick={() => handlePageChange(page)}
                 >
                   {page}

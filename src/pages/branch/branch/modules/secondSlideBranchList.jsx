@@ -1,13 +1,16 @@
 import ItemActionBox from "@/components/itemAction/itemActionBox";
+import useSecondSlideData from "@/hooks/useSecondSlideData";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import { Link } from "react-router-dom";
 
 function SecondSlideBranchList() {
+  const { viewedItem } = useSecondSlideData("branch_data", "br_id");
+
   return (
     <SecondSlideLayout>
       <main>
         <div class="main-btn flex">
-          <Link to='/admin/branch-list'>
+          <Link to="/admin/branch-list">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"
@@ -31,7 +34,7 @@ function SecondSlideBranchList() {
         <div class="contents grid gtc-2 gap-10">
           <div class="description flex align-center gap-5">
             <h3>Branch Name:</h3>
-            <p class="text">Golaghat</p>
+            <p class="text">{viewedItem && viewedItem.b_name}</p>
           </div>
           <div class="description flex align-center gap-5">
             <h3>Phone Number:</h3>

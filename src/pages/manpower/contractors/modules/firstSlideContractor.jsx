@@ -4,7 +4,7 @@ import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 
 function FirstSlideContractor() {
-  const { itemList } = usePageRender("contractor");
+  const { itemList } = usePageRender({entity: "contractor"});
   
   return (
     <FirstSlideLayout Heading="Contractors" Btn={"Add Contractor"} BtnFn={"create"} HeadingText="All Contractors">

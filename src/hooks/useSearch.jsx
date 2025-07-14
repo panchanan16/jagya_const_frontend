@@ -2,7 +2,7 @@ import { setFilteredItems, setQuery } from "@/redux/features/searchSlice/slice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// searchFields:[] Its type of array which contain all fields of the item where search occur
+// searchFields:[] Its type of array of string which contain all fields of the item where search occur
 
 function useSearch(searchQuery, entity, searchFields) {
   const itemList = useSelector((state) => state[entity]);

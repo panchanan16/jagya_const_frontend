@@ -1,16 +1,17 @@
 import usePageRender from "@/hooks/usePageRender";
-import useRequest from "@/hooks/useRequest";
+import useSecondSlideData from "@/hooks/useSecondSlideData";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
 import { Link, useParams } from "react-router-dom";
 
 function SecondSlideVendor() {
   const { id } = useParams();
-  const { itemData } = usePageRender(
-    "vendor",
-    `get_vendor_payment_purchase?vendor_id=${id}`,
-    "itemData"
-  );
+  const { itemData } = usePageRender({
+    entity: "vendor",
+    tail: `get_vendor_payment_purchase?vendor_id=${id}`,
+    key: "itemData",
+  });
+  const { viewedItem } = useSecondSlideData("vendor", "vendor_id");
 
   return (
     <SecondSlideLayout>
@@ -30,27 +31,29 @@ function SecondSlideVendor() {
                 d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z"
               ></path>
             </svg>
-          </Link>         
+          </Link>
         </div>
 
         <div className="header-text">
-          <h2>Mintu Sharma</h2>
+          <h2>{viewedItem && viewedItem.vendor_name}</h2>
         </div>
         {/* <!-- DETAILS  --> */}
         <div className="contents grid gtc-2 gap-10">
           <div className="description flex">
             <h3>Phone Number : </h3>
-            <p className="text"> 6000192289 | 6000192289</p>
+            <p className="text">{viewedItem && viewedItem.vendor_contact}</p>
           </div>
           <div className="description flex">
             <h3>Email ID:</h3>
-            <p className="text">sharmaMintu@gmail.com</p>
+            <p className="text">
+              {viewedItem && viewedItem.vendor_email
+                ? viewedItem.vendor_email
+                : "N/A"}
+            </p>
           </div>
           <div className="description flex">
             <h3>Address:</h3>
-            <p className="text">
-              House No. 60, Ashram Road, Lachitnagar, Guwahati, Assam
-            </p>
+            <p className="text">{viewedItem && viewedItem.vendor_address}</p>
           </div>
         </div>
 
@@ -72,14 +75,7 @@ function SecondSlideVendor() {
             },
             {
               main: "Purchases",
-              list: [
-                "Vendor",
-                "Project Name",
-                "Item",
-                "Qnt",
-                "Amount",
-                "Date"
-              ],
+              list: ["Vendor", "Project Name", "Item", "Qnt", "Amount", "Date"],
               limit: [
                 "vendor_id",
                 "mr_project_r_id",

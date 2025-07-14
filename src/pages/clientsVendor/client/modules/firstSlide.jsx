@@ -3,7 +3,7 @@ import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 
 function FirstSlide() {
-  const { outputItemList, pagination } = usePageRender("client");
+  const { outputItemList, pagination } = usePageRender({entity: "client", isPaginate: true});
 
   return (
     <FirstSlideLayout

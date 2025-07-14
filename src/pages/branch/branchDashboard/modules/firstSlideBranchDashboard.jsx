@@ -5,7 +5,7 @@ import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 import { Link } from "react-router-dom";
 
 function FirstSlideBranchDashboard() {
-  const { itemList } = usePageRender("branch_client");
+  const { itemList } = usePageRender({entity: "branch_client"});
   console.log(itemList);
 
   return (

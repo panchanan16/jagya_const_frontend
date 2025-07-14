@@ -24,15 +24,14 @@ export const LOAD_APP = createAsyncThunk(
     'LOAD_APP',
     async ({ endpoint, body, entity, stateKey }, { rejectWithValue }) => {
         try {
-            // const user = localStorage.getItem('user')
-            const user = {name: 'Panchanan Deka', role: 'super-admin'}
+            const user = JSON.parse(window.localStorage.getItem("user"))
+            // const user = {name: 'Panchanan Deka', role: 'super-admin'}
             // const response = await _POST(endpoint, body)
             if (user) {
                 return { user, source: entity, stateKey }
             }
             throw response
         } catch (error) {
-            console.log(error)
             return rejectWithValue(error)
         }
     },
@@ -41,7 +40,6 @@ export const LOAD_APP = createAsyncThunk(
 
 function getInitialvalues() {
     const isAccsess = Cookies.get("isLoggedIn");
-    console.log(isAccsess)
     return isAccsess
 }
 
@@ -72,7 +70,7 @@ const loginSlice = createSlice({
             state.loading = false;
             state.isLoggedIn = true
             state.error = null;
-            state[action.payload?.stateKey] = action.payload?.response?.data
+            state.userData = {name: "Daniel Deka", role: action.payload?.response?.data.role}
         }).addCase(LOGIN_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload

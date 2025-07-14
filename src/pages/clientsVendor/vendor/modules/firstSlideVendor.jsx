@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideVendor() {
-  const { itemList } = usePageRender("vendor");
+  const { itemList } = usePageRender({entity: "vendor"});
 
   return (
     <FirstSlideLayout

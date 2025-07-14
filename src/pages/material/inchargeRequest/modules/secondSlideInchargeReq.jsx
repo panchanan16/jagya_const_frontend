@@ -6,9 +6,11 @@ import { Link, useParams } from "react-router-dom";
 function SecondSlideInchargeReq() {
   const { id } = useParams();
   const { itemData } = usePageRender(
-    "material_req",
-    `realAll_by_materialId/${id}`,
-    "itemData"
+    {
+      entity: "material_req",
+      tail: `realAll_by_materialId/${id}`,
+      key: "itemData"
+    }
   );
 
   return (
