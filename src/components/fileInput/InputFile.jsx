@@ -1,6 +1,7 @@
 import { uploadFiles } from "@/redux/features/fileSlice/slice";
 import { useDispatch } from "react-redux";
 import coreEndpoint from "@/api/coreApi";
+import { updateDocuments } from "@/redux/features/projectSlice/slice";
 
 function InputFile({ Id }) {
   const dispatch = useDispatch();
@@ -13,7 +14,11 @@ function InputFile({ Id }) {
         endpoint: coreEndpoint.uploadFile("project", Id),
         body: fileData,
       })
-    );
+    ).then((done) => {
+      if (done.payload) {
+        dispatch(updateDocuments(done.payload));
+      }
+    });
   }
   return (
     <>

@@ -55,7 +55,7 @@ function Header() {
           <img src="/img/admin.png" alt="admin" />
           <div className="profile-text">
             <p>{stateItem && stateItem.userData.name}</p>
-            <p>{stateItem && stateItem.userData.role.replace('_', ' ')}</p>
+            <p>{stateItem && stateItem.userData.role?.replace('_', ' ')}</p>
           </div>
         </div>
       </div>
