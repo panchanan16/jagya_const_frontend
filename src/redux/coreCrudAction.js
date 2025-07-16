@@ -1,5 +1,6 @@
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from '@/redux/createThunk';
 import coreEndpoint from '@/api/coreApi';
+import { DELETE_FILE } from './features/projectSlice/slice';
 
 
 const coreCrudActions = {
@@ -17,7 +18,11 @@ const coreCrudActions = {
 
     updateItem: (entity, dispatch, body, end) => {
         dispatch(UPDATE_REQUEST({ endpoint: coreEndpoint.updateItem(entity, end), body, entity}))
-   }
+   },
+
+   deleteFile: (entity, dispatch, body, id) => {
+        dispatch(DELETE_FILE({ endpoint: coreEndpoint.deleteFile(entity, id), body }))
+    }
 }
 
 export default coreCrudActions;

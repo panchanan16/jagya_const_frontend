@@ -1,6 +1,16 @@
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import fulfilledStateReducer from "../../customReducer";
+import { _DELETE } from "@/request/request";
+
+
+export const DELETE_FILE = createAsyncThunk(
+    'upload/deleteFile',
+    async ({ endpoint, body }, thunkAPI) => {
+        const response = await _DELETE(endpoint, body)
+        return response.data
+    },
+)
 
 const initialState = {
     itemList: [],
@@ -15,8 +25,8 @@ const projectSlice = createSlice({
     name: 'projectSlice',
     initialState: initialState,
     reducers: {
-        resetData: (state, action) => {
-            state.itemList = action.payload
+        updateDocuments: (state, action) => {
+            state.itemData.documents.push(action.payload)
         }
     },
     extraReducers: (builder) => {
@@ -47,9 +57,15 @@ const projectSlice = createSlice({
         }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
-        });
+        }).addCase(DELETE_FILE.fulfilled, (state, action) => {
+            state.loading = false
+            console.log(state.itemData.documents)
+            console.log(action.payload)
+            state.itemData.documents = state.itemData.documents.filter((doc) => doc.pro_doc_id !== action.payload.pro_doc_id)
+        })
     }
 })
 
+export const { updateDocuments } = projectSlice.actions
 export default projectSlice.reducer;
 
