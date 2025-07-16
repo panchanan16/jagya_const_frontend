@@ -9,11 +9,11 @@ import { useState } from "react";
 function FirstSlideUsers() {
   const [userFilter, setUserFilter] = useState("super_admin");
   const { itemList } = usePageRender(
-    "users",
-    `readAll/${userFilter}`,
-    null,
-    null,
-    userFilter
+    {
+      entity: "users",
+      tail: `readAll/${userFilter}`,
+      urlKey: userFilter
+    }
   );
 
   let tableData = { tHeaders: [], tLimits: [] };
@@ -80,6 +80,7 @@ function FirstSlideUsers() {
       HeaderSection={true}
     >
       <SectionHeaderOption
+        HeadingText="All Users"
         EndBtn={<UsersDropdown />}
         Entity={"aaaa"}
         FilterComponent={<UserFilter SetFilter={setUserFilter} />}

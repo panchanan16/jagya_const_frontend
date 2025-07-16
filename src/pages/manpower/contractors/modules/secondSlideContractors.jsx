@@ -11,8 +11,6 @@ function SecondSlideContractor() {
     `readAll?pay_con_id=${id}`
   );
 
-  console.log(requestData);
-
   return (
     <SecondSlideLayout>
       <main>

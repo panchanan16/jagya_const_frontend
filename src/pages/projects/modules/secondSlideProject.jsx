@@ -3,23 +3,27 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import Phases from "./phases/Phases";
 import usePageRender from "@/hooks/usePageRender";
 import InputFile from "@/components/fileInput/InputFile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { BASE_URL } from "@/config/api.config";
+import coreCrudActions from "@/redux/coreCrudAction";
 
 function SecondSlideProject() {
   const { projectId } = useParams();
   const { itemList } = useSelector((state) => state["project_phase"]);
-  const { itemData, viewedItem } = usePageRender(
-    "project",
-    `get_project_detail/${projectId}`,
-    "itemData",
-    "pro_id",
-    null,
-    "projectId"
-  );
+  const { deleteFile} = coreCrudActions
+  const { itemData, viewedItem } = usePageRender({
+    entity: "project",
+    tail: `get_project_detail/${projectId}`,
+    key: "itemData",
+    itemId: "pro_id",
+    urlKey: "projectId",
+  });
 
-  function deleteTheFile(e) {
-    e.preventDefault()
-    console.log("File DELETED SUCCESSFULLY!")
+  const dispatch = useDispatch();
+
+  function deleteTheFile(e, docId) {
+    e.preventDefault();
+    deleteFile("project", dispatch, {}, docId);
   }
 
   return (
@@ -80,7 +84,9 @@ function SecondSlideProject() {
           </div>
           <div className="description flex align-center">
             <h3>Advance Payment:</h3>
-            <p className="text">&#8377; {viewedItem ? viewedItem.pro_advancepayment : "N/A"}</p>
+            <p className="text">
+              &#8377; {viewedItem ? viewedItem.pro_advancepayment : "N/A"}
+            </p>
           </div>
           <div className="description flex align-center">
             <h3>House type:</h3>
@@ -97,7 +103,9 @@ function SecondSlideProject() {
           <div className="description flex align-center">
             <h3>Project Initiated:</h3>
             <p className="text">
-              {viewedItem ? `${new Date(viewedItem?.created_at).toDateString()}` : "N/A"}
+              {viewedItem
+                ? `${new Date(viewedItem?.created_at).toDateString()}`
+                : "N/A"}
             </p>
           </div>
           <div className="description flex align-center">
@@ -126,15 +134,18 @@ function SecondSlideProject() {
         {/* <!-- Attached Files --> */}
         <div className="file-structure">
           <div className="file-header flex align-start j-between">
-            <h3>Attached Files <span>(Format: pdf file)</span>:</h3>
+            <h3>
+              Attached Files <span>(Format: pdf file)</span>:
+            </h3>
             <InputFile Id={projectId} />
           </div>
 
           <div className="files flex align-center f-wrap">
             {itemData?.documents.map((doc, key) => (
               <a
+                key={key}
                 style={{ textDecoration: "none", color: "inherit" }}
-                href={`http://localhost:3500/public/project/files/file-441d2c5b-2e89-4954-a4b3-442c83547333-1747119848623.pdf`}
+                href={`${BASE_URL}${doc?.pro_doc_url}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -142,10 +153,10 @@ function SecondSlideProject() {
                   <div class="file-icon">
                     <div class="file-corner"></div>
                   </div>
-                  <div class="file-details" onclick="showFile()">
+                  <div class="file-details">
                     <span class="text">Resume.pdf</span>
                   </div>
-                  <div class="dlt-btn" onClick={deleteTheFile}>
+                  <div class="dlt-btn" onClick={(event)=> deleteTheFile(event, doc?.pro_doc_id)}>
                     <span>X</span>
                   </div>
                 </div>

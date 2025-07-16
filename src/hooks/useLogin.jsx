@@ -2,6 +2,7 @@ import authEndpoint from "@/api/authApi";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
 import { LOGIN_REQUEST, setLogout } from "@/redux/features/loginSlice/slice";
+import coreEndpoint from "@/api/coreApi";
 
 function useLogin(entity, stateKey) {
   const stateItem = useSelector((state) => state["login"]);
@@ -10,7 +11,7 @@ function useLogin(entity, stateKey) {
   async function LoginUser(credentials) {
     const result = await dispatch(
       LOGIN_REQUEST({
-        endpoint: authEndpoint.loginUser(entity),
+        endpoint: coreEndpoint.createItem(credentials.login_type, 'login'),
         body: credentials,
         entity: "login",
         stateKey,
@@ -19,6 +20,7 @@ function useLogin(entity, stateKey) {
 
     if (result && result.payload) {
       const loginInfo = result.payload;
+      // console.log(loginInfo)
       if (
         loginInfo.response &&
         loginInfo.response.status &&
@@ -36,6 +38,7 @@ function useLogin(entity, stateKey) {
         Cookies.set("role", loginInfo.response?.data.role, {
           expires: 7,
         });
+        window.localStorage.setItem("user", JSON.stringify({name: "Panchanan Deka", role: loginInfo.response?.data.role}));
       } else {
         console.log("Incorrect autentication 👎❌");
       }
@@ -49,6 +52,7 @@ function useLogin(entity, stateKey) {
     Cookies.remove("isLoggedIn");
     Cookies.remove("role");
     Cookies.remove("refresh");
+    window.localStorage.removeItem("user");
     dispatch(setLogout());
   }
 

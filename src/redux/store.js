@@ -15,6 +15,8 @@ import projectContractorSlice from './features/projectContractorSlice/slice'
 import searchSlice from './features/searchSlice/slice'
 import loginSlice from './features/loginSlice/slice'
 import usersSlice from './features/usersSlice/slice'
+import invoiceSlice from './features/invoiceSlice/slice'
+import paginateSlice from './features/paginateSlice/slice'
 
 
 export const store = configureStore({
@@ -34,7 +36,9 @@ export const store = configureStore({
     project_contractor: projectContractorSlice,
     search: searchSlice,
     login: loginSlice,
-    users: usersSlice
+    users: usersSlice,
+    invoice: invoiceSlice,
+    paginate: paginateSlice
 
   },
   middleware: (getDefaultMiddleware) =>

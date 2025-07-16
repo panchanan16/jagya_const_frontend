@@ -3,7 +3,6 @@ import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 function SecondSlideInvoice() {
   return (
     <SecondSlideLayout>
-        <main>
           <div class="main-btn flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +141,6 @@ function SecondSlideInvoice() {
               <p class="text">jagyaconstruction@gmail.com</p>
             </div>
           </div>
-        </main>
     </SecondSlideLayout>
   );
 }

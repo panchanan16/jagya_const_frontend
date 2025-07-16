@@ -7,10 +7,12 @@ function SecondSlideFinanceReq() {
   const { id } = useParams();
   const location = useLocation();
   const { itemData } = usePageRender(
-    "material_req",
-    `realAll_by_materialId/${id}`,
-    "itemData",
-    location
+    {
+      entity: "material_req",
+      tail: `realAll_by_materialId/${id}`,
+      key: "itemData",
+      loc: location
+    }
   );
 
 

@@ -17,7 +17,7 @@ function useRequest(entity, action, tail, query, isOnload = true) {
   async function makeRequest(body, action, end) {
     try {
       const endpoint = end
-        ? coreEndpoint.createItem(entity, tail)
+        ? coreEndpoint.createItem(entity, end)
         : entityEndpoint.createItem(entity);
       const response = await _POST(endpoint, body);
       setRequestData(response.data);

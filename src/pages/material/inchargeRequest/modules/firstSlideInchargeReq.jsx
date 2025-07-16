@@ -1,17 +1,15 @@
-import ItemActionBox from "@/components/itemAction/itemActionBox";
-import SectionHeaderOption from "@/components/sectionHeaderOption/sectionHeaderOption";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
-import { Link } from "react-router-dom";
 
 function FirstSlideInchargeReq() {
-  const { itemList } = usePageRender("material_req");
+  const { itemList } = usePageRender({entity: "material_req"});
   return (
     <FirstSlideLayout
-      Heading="Material Requests"
-      Btn="Create a Request"
+      Heading="Incharge Requests"
+      Btn="Request Materials"
       BtnFn="create"
+      HeadingText="Request List"
     >
       <Table
         Theader={[

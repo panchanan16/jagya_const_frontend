@@ -5,6 +5,7 @@ export const uploadFiles = createAsyncThunk(
     'upload/postFiles',
     async ({ endpoint, body }, thunkAPI) => {
         const response = await _POST(endpoint, body)
+        console.log(response)
         return response.data
     },
 )
@@ -32,8 +33,6 @@ const fileSlice = createSlice({
     },
 })
 
-// Later, dispatch the thunk as needed in the app
-// dispatch(uploadFiles(123))
 
 export default fileSlice.reducer;
 

@@ -1,18 +1,23 @@
+import roles from "@/auth/role";
 import { DashboardIcon, ProjectIcon, ClientVendorIcon, AccountingIcon, MaterialsIcon, LaboursIcon, BranchIcon, UserMangerIcon, NotificationIcon, SettingsIcon, LogoutIcon } from "./icons";
+import { ROLES } from "@/config/route.config";
+
 const entity = "admin"
 const asideMenuItems = [
     {
         name: 'Analytics',
         submenu: [],
         svgImg: DashboardIcon,
-        redirect: '/'
+        redirect: '/',
+        role: [ROLES.SUPERADMIN]
     },
 
     {
         name: 'Projects',
         submenu: [],
         svgImg: ProjectIcon,
-        redirect: `/${entity}/projects`
+        redirect: `/${entity}/projects`,
+        role: [ROLES.SUPERADMIN]
     },
     {
         name: 'Clients & Vendors',
@@ -21,18 +26,20 @@ const asideMenuItems = [
             { name: 'Vendors', url: `${entity}/vendors` }
         ],
         svgImg: ClientVendorIcon,
-        redirect: ''
+        redirect: '',
+        role: [ROLES.SUPERADMIN]
     },
 
     {
         name: 'Accounting',
         submenu: [
-            { name: 'Finance', url: `${entity}/finance` },
-            { name: 'Expense', url: `${entity}/expense` },
+            { name: 'Installments', url: `${entity}/finance` },
+            { name: 'Expenses', url: `${entity}/expense` },
             { name: 'Invoices', url: `${entity}/invoices` }
         ],
         svgImg: AccountingIcon,
-        redirect: ''
+        redirect: '',
+        role: [ROLES.SUPERADMIN]
     },
 
     {
@@ -45,7 +52,8 @@ const asideMenuItems = [
             { name: 'Stock', url: `${entity}/inventory-stocks` }
         ],
         svgImg: MaterialsIcon,
-        redirect: ''
+        redirect: '',
+        role: [ROLES.SUPERADMIN]
     },
 
     {
@@ -55,7 +63,8 @@ const asideMenuItems = [
             { name: 'Contractor', url: `${entity}/contractor` }
         ],
         svgImg: LaboursIcon,
-        redirect: ''
+        redirect: '',
+        role: [ROLES.SUPERADMIN]
     },
 
     {
@@ -66,21 +75,25 @@ const asideMenuItems = [
             { name: 'Branch Dashboard', url: `${entity}/branch-dashboard` }
         ],
         svgImg: BranchIcon,
-        redirect: ''
+        redirect: '',
+        role: [ROLES.SUPERADMIN, ROLES.BRANCH]
     },
 
     {
         name: 'User Manager',
         submenu: [],
         svgImg: UserMangerIcon,
-        redirect: `/${entity}/users`
+        redirect: `/${entity}/users`,
+        role: [ROLES.SUPERADMIN]
+
     },
 
     {
         name: 'Settings',
         submenu: [],
         svgImg: SettingsIcon,
-        redirect: `/${entity}/settings`
+        redirect: `/${entity}/settings`,
+        role: [ROLES.SUPERADMIN]
     }
 ]
 

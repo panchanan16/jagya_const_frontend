@@ -2,12 +2,16 @@ import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
-
 function FirstSlideBranchList() {
-  const { itemList } = usePageRender("branch_data");
+  const { itemList } = usePageRender({entity: "branch_data", isPaginate: true});
 
   return (
-    <FirstSlideLayout Heading="Branch" Btn="Add New Branch" BtnFn={'/admin/clients/create'}>
+    <FirstSlideLayout
+      Heading="Branch"
+      Btn="Add New Branch"
+      BtnFn={"/admin/branch-list/create"}
+      HeadingText="Our Branches"
+    >
       <div className="main-table">
         <Table
           Theader={[
@@ -22,11 +26,13 @@ function FirstSlideBranchList() {
             "Action",
           ]}
           Trow={itemList}
+          col={6}
           Actions={{
-            viewUrl: "b_id",
+            viewUrl: "br_id",
             deleteUrl: "branch_data",
-            editUrl: "b_id",
+            editUrl: "br_id",
           }}
+          Paginate={true}
         />
       </div>
     </FirstSlideLayout>

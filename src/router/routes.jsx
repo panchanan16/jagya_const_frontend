@@ -55,7 +55,7 @@ import SecondSlideLabour from "@/pages/manpower/labours/modules/secondSlideLabou
 import SecondSlideUsers from "@/pages/userManager/users/modules/SecondSlideUsers";
 import AddCredentialForm from "@/forms/addCredentialForm/AddCredentialForm";
 
-function generateRoutePages(params) {
+function generateRoutePages() {
   const routePages = [
     {
       path: "/",
@@ -229,7 +229,7 @@ function generateRoutePages(params) {
                   path: ":id",
                   element: <SecondSlideBranchList />,
                 },
-                { path: "add-branch", element: <AddBranchForm /> },
+                { path: "create", element: <AddBranchForm /> },
               ],
             },
             {

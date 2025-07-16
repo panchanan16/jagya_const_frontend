@@ -1,6 +1,8 @@
 import useRenderProjects from "@/hooks/useRenderProjects";
+import useSecondSlideData from "@/hooks/useSecondSlideData";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function SecondSlide() {
@@ -11,11 +13,17 @@ function SecondSlide() {
       { item: "client_id", details: "pro_ref_id" }
     );
 
+  const {viewedItem, goBack } = useSecondSlideData("client", "client_id");
+
+  useEffect(() => {
+    itemData.length && changeTabContent(itemData[0].pro_ref_no);
+  }, [itemData]);
+
   return (
     <SecondSlideLayout>
       <main>
         <div className="main-btn flex">
-          <Link to={`/admin/clients`}>
+          <Link onClick={goBack}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               data-name="Layer 1"
@@ -49,7 +57,7 @@ function SecondSlide() {
         </div>
 
         <div className="header-text">
-          <h2>Panchanan Deka</h2>
+          <h2>{viewedItem && viewedItem.client_name}</h2>
         </div>
         {/* <!-- DETAILS  --> */}
         <div className="contents grid gtc-2 gap-10">
@@ -86,7 +94,7 @@ function SecondSlide() {
         </div>
 
         <div className="client-project-list flex align-start">
-          <h3>Projects Lists</h3>
+          <h3>Projects</h3>
           <div className="client-project-container flex align-center">
             {itemData.length ? (
               itemData.map((item, key) => (
@@ -113,7 +121,7 @@ function SecondSlide() {
         <TabLayout
           TabList={[
             {
-              main: "Collections",
+              main: "Installments",
               list: [
                 "No.",
                 "Date",
