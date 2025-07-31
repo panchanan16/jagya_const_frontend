@@ -30,6 +30,7 @@ function FirstSlideInvoice() {
             deleteUrl: "invoice",
             editUrl: "invoice_id",
           }}
+          col={5}
           Paginate={true}
         />
       </div>

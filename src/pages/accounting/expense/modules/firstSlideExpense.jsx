@@ -29,7 +29,7 @@ function FirstSlideExpense() {
             deleteUrl: "expense",
             editUrl: "exp_id",
           }}
-          col={4}
+          col={3}
           Paginate={true}
           totalpage={pagination ? pagination.lastPage : 2}
         />
