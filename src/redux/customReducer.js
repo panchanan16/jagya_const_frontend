@@ -30,7 +30,7 @@ function fulfilledStateReducer(state, action, src, type, key) {
             break;
         case 'UPDATE':
             if (action.payload?.source == src) {
-                console.log(action.payload)
+                console.log(action.payload.response)
                 state.loading = false
                 state.itemList = state.itemList.filter((item) => item[key] != action.payload.response?.data[key])
                 state.itemList.push(action.payload.response.data)

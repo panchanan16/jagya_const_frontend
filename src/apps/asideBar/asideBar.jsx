@@ -11,7 +11,7 @@ function AsideBar() {
     <div className="left">
       <div className="logo flex align-center">
         {/* <img src="/img/logo.png" alt="Logo" /> */}
-        <h3 className="uppercase">JAGYA CONSTRUCTION</h3>
+        {/* <h3 className="uppercase">JAGYA CONSTRUCTION</h3> */}
       </div>
       <div className="side-menu flex align-center j-center hide">
         <svg

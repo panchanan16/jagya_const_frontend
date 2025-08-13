@@ -63,16 +63,16 @@ function SecondSlide() {
         <div className="contents grid gtc-2 gap-10">
           <div className="description flex">
             <h3>Phone Number:</h3>
-            <p className="text">6000192289 | 6000192289</p>
+            <p className="text">{viewedItem && viewedItem.client_contact} | {viewedItem && viewedItem.client_alt_contact}</p>
           </div>
           <div className="description flex">
             <h3>Email ID:</h3>
-            <p className="text">dekapanchanan16534@gmail.com</p>
+            <p className="text">{viewedItem && viewedItem.client_email}</p>
           </div>
           <div className="description flex">
             <h3>Address:</h3>
             <p className="text">
-              House No. 60, Ashram Road, Lachitnagar, Guwahati, Assam
+             {viewedItem && viewedItem.client_address}
             </p>
           </div>
           <div className="description flex">
