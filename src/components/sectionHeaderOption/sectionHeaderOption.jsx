@@ -14,7 +14,7 @@ function SectionHeaderOption({
         children
       ) : (
         <div className="section-text">
-          <h2>{HeadingText ? HeadingText : "All Projects"}</h2>
+          <h2>{HeadingText ? HeadingText : ""}</h2>
         </div>
       )}
 
