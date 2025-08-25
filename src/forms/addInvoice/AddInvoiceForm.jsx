@@ -7,7 +7,7 @@ function InvoiceFormWithField(params) {
     <div class="add-expense blur">
       <div class="form">
         <h2>Add Invoice</h2>
-        <Link to="/invoices">
+        <Link to="/admin/invoices">
           <button
             type="button"
             class="btn-warning close"

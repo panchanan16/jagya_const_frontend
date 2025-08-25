@@ -8,7 +8,7 @@ const asideMenuItems = [
         name: 'Analytics',
         submenu: [],
         svgImg: DashboardIcon,
-        redirect: '/',
+        redirect: '/admin/dashboard',
         role: [ROLES.SUPERADMIN]
     },
 

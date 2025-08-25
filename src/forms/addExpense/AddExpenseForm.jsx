@@ -142,7 +142,7 @@ function AddExpenseForm() {
     <PopupLayout>
       <div class="add-expense blur">
         <div class="form">
-          <h2>Expense Update</h2>
+          <h2>Expense Update Form</h2>
           <Link to="/admin/expense">
             <button type="button" class="btn-warning close">
               Close

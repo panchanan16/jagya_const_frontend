@@ -6,7 +6,6 @@ import { resetData } from "@/redux/features/paginateSlice/slice";
 function TableFooter({TotalPages, colspan = 5}) {
   // const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation();
   const {pageNo, pageSize} = useSelector(state => state.paginate)
   // const searchParams = new URLSearchParams(location.search);
   // const [curr, setCurr] = useState(searchParams.get("page") || 1);

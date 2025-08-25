@@ -10,7 +10,8 @@ function ItemActionBox({ viewFn, editFn, deleteFn }) {
   const { deleteItem } = crudActions;
 
   function deleteTheItem(id) {
-    deleteItem(deleteFn, dispatch, { id });
+    const isDelete = confirm("Are you sure to delete ??")
+    isDelete && deleteItem(deleteFn, dispatch, { id });
     setShowModel(false);
   }
 

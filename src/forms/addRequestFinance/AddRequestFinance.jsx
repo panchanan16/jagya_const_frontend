@@ -42,7 +42,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
                   mr_item_quantity: "",
                   mr_item_amount: "",
                   fd_approval: 0,
-                  vendor_id: null,     
+                  vendor_id: null,
                 })
               }
             >
@@ -60,13 +60,15 @@ function RequestFinanceFormWithField({ values, resetFn }) {
               <span class="text">Add Item</span>
             </button>
             <div class="newItem">
-            {values.materialItemsData.map((friend, index) => (
-                <div class="grid gap-10 inventoryGrid">
+              {values.materialItemsData.map((friend, index) => (
+                <div class="grid gap-10 inventoryGrid">                 
                   <SearchInput
                     Name={"vendor_id"}
                     Label={"Vendor"}
                     Entity="vendor"
-                    SetFKey={{ [`materialItemsData[${index}].vendor_id`]: "vendor_id" }} // setting client ref key in the form which is not displayed
+                    SetFKey={{
+                      [`materialItemsData[${index}].vendor_id`]: "vendor_id",
+                    }} // setting client ref key in the form which is not displayed
                     SetDisplayKey={{ id: "vendor_id", name: "vendor_name" }}
                     editDisplayInput={friend.mr_item_name}
                     errorKey={"vendor_id"}
@@ -128,14 +130,14 @@ function RequestFinanceFormWithField({ values, resetFn }) {
                       className="err"
                       component="span"
                     />
-                  </div>                 
+                  </div>
 
                   <div class="field" onClick={() => remove(index)}>
                     <p class="opacity-0 title">p</p>
-                    <button className="btn-warning delete">Delete Item</button>
+                    <button type="button" className="btn-warning delete">Delete Item</button>
                   </div>
                 </div>
-            ))}
+              ))}
             </div>
           </div>
         )}

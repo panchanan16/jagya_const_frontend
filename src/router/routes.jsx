@@ -54,13 +54,20 @@ import BranchApprovalForm from "@/pages/branch/branchRequest/modules/approval/Br
 import SecondSlideLabour from "@/pages/manpower/labours/modules/secondSlideLabour";
 import SecondSlideUsers from "@/pages/userManager/users/modules/SecondSlideUsers";
 import AddCredentialForm from "@/forms/addCredentialForm/AddCredentialForm";
+import AnalyticsDashboard from "@/pages/dashboard";
+import { Outlet } from "react-router-dom";
 
 function generateRoutePages() {
   const routePages = [
     {
       path: "/",
-      element: <DashboardPage />,
+      element: <><Outlet /></>,
       children: [
+        // Dashboard ---
+        {
+          path: 'admin/dashboard',
+          element: <AnalyticsDashboard />
+        },
         // Auth Routes -----
         {
           path: "admin/login",
