@@ -10,12 +10,12 @@
   display: block;
   text-decoration: none;
   color: #d1d5db;
-  border-radius: 10px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   background: transparent;
   font-family: inherit;
+  border-radius: 8px;
 }
 
 .navLink::before {
@@ -65,8 +65,9 @@
 .navContent {
   display: flex;
   align-items: center;
-  padding: 14px 16px;
+  padding: 10px 14px;
   position: relative;
+  border-radius: 5px;
   z-index: 1;
   gap: 12px;
 }
@@ -335,6 +336,7 @@
     height: 4px;
   }
 }
+
 
 /* High Contrast Mode */
 @media (prefers-contrast: high) {

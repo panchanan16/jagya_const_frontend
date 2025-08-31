@@ -68,7 +68,7 @@ function AsideNavlink({ name, redirect, submenu, SvgImg }) {
 
   return (
     <li className={styles.navItem}>
-      {submenu ? (
+      {submenu.length > 0 ? (
         <>
           <button
             className={`${styles.navLink} ${styles.navButton} ${isParentActive() ? styles.active : ''} ${isSubmenuOpen ? styles.expanded : ''}`}
@@ -114,7 +114,7 @@ function AsideNavlink({ name, redirect, submenu, SvgImg }) {
             {submenu.map((subItem, index) => (
               <li key={index} className={styles.submenuItem}>
                 <Link
-                  to={subItem.redirect}
+                  to={`/${subItem.url}`}
                   className={`${styles.submenuLink} ${isActive(subItem.redirect) ? styles.submenuActive : ''}`}
                 >
                   <div className={styles.submenuContent}>
@@ -134,7 +134,8 @@ function AsideNavlink({ name, redirect, submenu, SvgImg }) {
           <div className={styles.navContent}>
             <div className={styles.navIcon}>
               {SvgImg ? (
-                <div dangerouslySetInnerHTML={{ __html: SvgImg }} />
+                // <div dangerouslySetInnerHTML={{ __html: SvgImg }} />
+                <SvgImg />
               ) : (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <circle cx="12" cy="12" r="3"/>

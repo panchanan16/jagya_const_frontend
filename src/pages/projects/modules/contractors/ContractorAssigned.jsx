@@ -7,6 +7,12 @@ function ContractorAssigned() {
   const { itemData } = useSelector((state) => state["project"]);
   const { itemList } = useSelector((state) => state["project_contractor"]);
 
+  async function deleteContractor() {
+    if (window.confirm("Are you sure to delete ??")) {
+      console.log("Contracctor removed")
+    }
+  }
+
   return (
     <SectionLayout>
       <div class="pro-emp-popup">
@@ -30,7 +36,7 @@ function ContractorAssigned() {
                       <p>Contractor, No- 8855446699</p>
                     </div>
                   </div>
-                  <span className="delete btn-warning">Delete</span>
+                  <span className="delete btn-warning" onClick={()=> deleteContractor()}>Delete</span>
                 </div>
               ))}          
           </div>

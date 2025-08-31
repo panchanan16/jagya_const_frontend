@@ -70,11 +70,6 @@
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
-.navButton:focus-visible {
-  ring: 2px solid #3b82f6;
-  ring-offset: 2px;
-  border-color: #3b82f6;
-}
 
 .navButton.disabled {
   opacity: 0.4;

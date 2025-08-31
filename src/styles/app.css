@@ -21,7 +21,7 @@
     --light-primary-200: hsla(51, 15%, 89%, 0.5);
     --light-primary-300: hsla(51, 15%, 82%, 0.5);
     --light-primary-400: hsla(51, 15%, 75%, 0.5);
-    --light-primary-500: hsla(51, 15%, 65%, 0.5);
+    --light-primary-500: hsla(237, 18%, 22%, 0.5);
     --light-primary-600: hsla(51, 15%, 50%, 0.5);
     --light-primary-700: hsla(51, 15%, 40%, 0.5);
     --light-primary-800: hsla(51, 15%, 22%, 0.5);
@@ -424,7 +424,7 @@ nav ul li {
     margin-bottom: var(--px-8);
 }
 
-nav ul li>a,
+/* nav ul li>a,
 .log-out a {
     font-size: var(--px-15);
     gap: var(--px-6);
@@ -433,18 +433,18 @@ nav ul li>a,
     color: var(--primary-900);
     transition: var(--transition-1);
     border: 1px solid var(--body-background);
-}
+} */
 
-nav ul li a span.text {
+/* nav ul li a span.text {
     flex: 1;
-}
+} */
 
-nav ul li:is(.active, :hover) a:not(li .sub-menu a),
+/* nav ul li:is(.active, :hover) a:not(li .sub-menu a),
 .log-out a:is(:hover, .active) {
     border: 1px solid var(--btn-color);
     background: var(--gradient-3);
     color: var(--btn-color);
-}
+} */
 
 li a svg,
 .log-out a svg {
@@ -452,14 +452,14 @@ li a svg,
     height: var(--px-22);
 }
 
-nav li a .arrow.active {
+/* nav li a .arrow.active {
     transform: rotate(90deg);
-}
+} */
 
-li:is(.active, :hover) svg,
+/* li:is(.active, :hover) svg,
 .log-out a:is(.active, :hover) svg {
     fill: var(--btn-color);
-}
+} */
 
 li .sub-menu {
     display: none;
@@ -2725,3 +2725,5 @@ canvas {
         width: 100%;
     }
 }
+
+

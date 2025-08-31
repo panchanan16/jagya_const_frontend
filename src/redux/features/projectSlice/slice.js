@@ -12,6 +12,14 @@ export const DELETE_FILE = createAsyncThunk(
     },
 )
 
+export const DELETE_CONTRACTOR = createAsyncThunk(
+    'upload/deleteContractor',
+    async ({ endpoint, body }, thunkAPI) => {
+        const response = await _DELETE(endpoint, body)
+        return response.data
+    },
+)
+
 const initialState = {
     itemList: [],
     loading: false,
@@ -62,6 +70,11 @@ const projectSlice = createSlice({
             console.log(state.itemData.documents)
             console.log(action.payload)
             state.itemData.documents = state.itemData.documents.filter((doc) => doc.pro_doc_id !== action.payload.pro_doc_id)
+        }).addCase(DELETE_CONTRACTOR.fulfilled, (state, action) => {
+            state.loading = false
+            state.itemData.contractors = state.itemData.documents.filter((doc) => doc.pro_doc_id !== action.payload.pro_doc_id)
+        }).addCase(DELETE_CONTRACTOR.rejected, (state, action) => {
+            state.loading = false           
         })
     }
 })
