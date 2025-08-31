@@ -17,7 +17,7 @@
     --primary-900: hsl(51, 15%, 12%);
 
     --light-primary-50: hsla(51, 15%, 97%, 0.3);
-    --light-primary-100: hsla(51, 15%, 92%, 0.5);
+    --light-primary-100: hsla(50, 15%, 92%, 0.3);
     --light-primary-200: hsla(51, 15%, 89%, 0.5);
     --light-primary-300: hsla(51, 15%, 82%, 0.5);
     --light-primary-400: hsla(51, 15%, 75%, 0.5);
@@ -539,7 +539,7 @@ li .sub-menu.active a:is(.active, :hover) {
 }
 
 .right {
-    width: calc(100% - 250px);
+    width: calc(100% - 270px);
     position: absolute;
     right: 0;
     display: flex;

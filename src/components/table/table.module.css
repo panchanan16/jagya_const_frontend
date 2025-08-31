@@ -1,0 +1,328 @@
+/* Clean Modern HTML Table Component Styles */
+
+.tableContainer {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background: #ffffff;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tableWrapper::-webkit-scrollbar {
+  height: 4px;
+}
+
+.tableWrapper::-webkit-scrollbar-track {
+  background: #f3f4f6;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Table Base */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: #ffffff;
+}
+
+/* Table Header */
+.thead {
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.headerRow {
+  border: none;
+}
+
+.headerCell {
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  text-align: left;
+  border-right: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.headerCell:last-child {
+  border-right: none;
+}
+
+/* Table Body */
+.tbody {
+  background: #ffffff;
+}
+
+.tableRow {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableCell {
+  padding: 14px 20px;
+  border-right: 1px solid #f3f4f6;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 400;
+  vertical-align: middle;
+  background: #ffffff;
+}
+
+.tableCell:last-child {
+  border-right: none;
+}
+
+.cellContent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.cellText {
+  color: #374151;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Checkbox Styling */
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rowCheckbox {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  position: relative;
+}
+
+.rowCheckbox:checked {
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.rowCheckbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.rowCheckbox:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 1px;
+}
+
+.checkboxLabel {
+  cursor: pointer;
+  position: absolute;
+  inset: 0;
+}
+
+/* Actions Wrapper */
+.actionsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Table Footer */
+.tfoot {
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footerRow {
+  border: none;
+}
+
+.footerCell {
+  padding: 16px 20px;
+  border-right: 1px solid #e5e7eb;
+  color: #374151;
+  font-weight: 600;
+  background: #f9fafb;
+  vertical-align: middle;
+}
+
+.footerCell:last-child {
+  border-right: none;
+  text-align: right;
+}
+
+.footerLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.footerAmount {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.footerValue {
+  font-weight: 700;
+  color: #059669;
+}
+
+/* No Data Styling */
+.noDataCell {
+  padding: 0;
+  border: none;
+  background: #ffffff;
+}
+
+.noDataWrapper {
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 160px;
+}
+
+.noDataContent {
+  text-align: center;
+  max-width: 320px;
+}
+
+.noDataIcon {
+  margin: 0 auto 16px;
+  width: 40px;
+  height: 40px;
+  color: #9ca3af;
+}
+
+.noDataTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 8px;
+}
+
+.noDataDescription {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .tableCell,
+  .headerCell,
+  .footerCell {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+  
+  .cellText {
+    font-size: 13px;
+  }
+  
+  .rowCheckbox {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .rowCheckbox:checked::after {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tableWrapper {
+    overflow-x: scroll;
+  }
+  
+  .table {
+    min-width: 600px;
+  }
+  
+  .tableCell,
+  .headerCell,
+  .footerCell {
+    padding: 10px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  .noDataWrapper {
+    padding: 40px 16px;
+  }
+  
+  .noDataTitle {
+    font-size: 16px;
+  }
+  
+  .noDataDescription {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tableContainer {
+    border-radius: 6px;
+    margin: 0 -4px;
+  }
+  
+  .tableCell,
+  .headerCell,
+  .footerCell {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+  
+  .rowCheckbox {
+    width: 12px;
+    height: 12px;
+  }
+  
+  .rowCheckbox:checked::after {
+    font-size: 8px;
+  }
+  
+  .noDataWrapper {
+    padding: 30px 10px;
+  }
+  
+  .noDataIcon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 12px;
+  }
+  
+  .noDataTitle {
+    font-size: 14px;
+  }
+}

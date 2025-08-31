@@ -1,22 +1,167 @@
-import React, { useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
-import { resetData } from "@/redux/features/paginateSlice/slice";
+// import React, { useMemo, useState } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { resetData } from "@/redux/features/paginateSlice/slice";
 
-function TableFooter({TotalPages, colspan = 5}) {
-  // const navigate = useNavigate();
+// function TableFooter({TotalPages, colspan = 5}) {
+//   // const navigate = useNavigate();
+//   const dispatch = useDispatch();
+//   const {pageNo, pageSize} = useSelector(state => state.paginate)
+//   // const searchParams = new URLSearchParams(location.search);
+//   // const [curr, setCurr] = useState(searchParams.get("page") || 1);
+//   const updateFilters = (category) => {
+//     // searchParams.set("page", category);
+//     // searchParams.set("pageSize", 5);
+//     dispatch(resetData(category))
+//     // navigate({
+//     //   pathname: location.pathname,
+//     //   search: searchParams.toString(),
+//     // }); 
+//   };
+
+//   const totalPages = TotalPages || Math.ceil(200 / 10);
+//   const pagesToShow = 5;
+//   const currentPage = pageNo;
+
+//   const getVisiblePages = useMemo(() => {
+//     if (totalPages <= pagesToShow * 2 + 1) {
+//       // If total pages is small --- show all pages
+//       return Array.from({ length: totalPages }, (_, i) => i + 1);
+//     }
+
+//     const pages = new Set();
+
+//     // Always show page 1
+//     pages.add(1);
+
+//     // Show pages around current page
+//     const start = Math.max(1, currentPage - Math.floor(pagesToShow / 2));
+//     const end = Math.min(totalPages, start + pagesToShow - 1);
+
+//     // Adjust start if we're near the end
+//     const adjustedStart = Math.max(
+//       1,
+//       Math.min(start, totalPages - pagesToShow + 1)
+//     );
+
+//     for (
+//       let i = adjustedStart;
+//       i <= Math.min(adjustedStart + pagesToShow - 1, totalPages);
+//       i++
+//     ) {
+//       pages.add(i);
+//     }
+
+//     // Always show last page if not already included
+//     if (totalPages > 1) {
+//       pages.add(totalPages);
+//     }
+
+//     return Array.from(pages).sort((a, b) => a - b);
+//   }, [currentPage, totalPages, pagesToShow]);
+
+//   // Page changes handling --------
+
+//   const handlePageChange = (page) => {
+//     if (page >= 1 && page <= totalPages && page !== currentPage) {
+//       dispatch(resetData(page));
+//       updateFilters(page);
+//     }
+//   };
+
+//   const handlePrevious = () => {
+//     handlePageChange(currentPage - 1);
+//   };
+
+//   const handleNext = () => {
+//     handlePageChange(currentPage + 1);
+//   };
+
+//   // Helper function to check if we need ellipsis
+//   const needsEllipsis = (currentIndex, pages) => {
+//     if (currentIndex === pages.length - 1) return false;
+//     return pages[currentIndex + 1] - pages[currentIndex] > 1;
+//   };
+
+//   if (totalPages <= 1) return null;
+
+//   return (
+//     <tfoot>
+//       <tr>
+//         <td colspan={colspan}>
+//           Page {pageNo} of {totalPages}
+//         </td>
+//         <td></td>
+//         <td>
+//           <div class="flex align-center pagination">
+//             <span
+//               class="icon"
+//               onClick={handlePrevious}
+//               disabled={currentPage === 1}
+//             >
+//               <svg
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 viewBox="0 0 24 24"
+//                 id="left-arrow-to-left"
+//               >
+//                 <path
+//                   fill=""
+//                   d="M21,11H9.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H21a1,1,0,0,0,0-2ZM3,3A1,1,0,0,0,2,4V20a1,1,0,0,0,2,0V4A1,1,0,0,0,3,3Z"
+//                 ></path>
+//               </svg>
+//             </span>
+//             {getVisiblePages.map((page, ind) => (
+//               <>
+//                 <span
+//                   class={`icon ${page == pageNo ? "pagination-bg" : ""}`}
+//                   onClick={() => handlePageChange(page)}
+//                 >
+//                   {page}
+//                 </span>
+//                 {needsEllipsis(ind, getVisiblePages) && (
+//                   <span class="">....</span>
+//                 )}
+//               </>
+//             ))}
+
+//             <span
+//               class="icon"
+//               onClick={handleNext}
+//               disabled={currentPage === totalPages}
+//             >
+//               <svg
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 viewBox="0 0 24 24"
+//                 id="arrow-to-right"
+//               >
+//                 <path
+//                   fill=""
+//                   d="M17.71,11.29l-4-4a1,1,0,1,0-1.42,1.42L14.59,11H3a1,1,0,0,0,0,2H14.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76A1,1,0,0,0,17.71,11.29ZM21,4a1,1,0,0,0-1,1V19a1,1,0,0,0,2,0V5A1,1,0,0,0,21,4Z"
+//                 ></path>
+//               </svg>
+//             </span>
+//           </div>
+//         </td>
+//       </tr>
+//     </tfoot>
+//   );
+// }
+
+// export default TableFooter;
+
+
+
+import React, { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { resetData } from "@/redux/features/paginateSlice/slice";
+import styles from './paginate.module.css';
+
+function TableFooter({ TotalPages }) {
   const dispatch = useDispatch();
-  const {pageNo, pageSize} = useSelector(state => state.paginate)
-  // const searchParams = new URLSearchParams(location.search);
-  // const [curr, setCurr] = useState(searchParams.get("page") || 1);
+  const { pageNo, pageSize } = useSelector(state => state.paginate);
+
   const updateFilters = (category) => {
-    // searchParams.set("page", category);
-    // searchParams.set("pageSize", 5);
-    dispatch(resetData(category))
-    // navigate({
-    //   pathname: location.pathname,
-    //   search: searchParams.toString(),
-    // }); 
+    dispatch(resetData(category));
   };
 
   const totalPages = TotalPages || Math.ceil(200 / 10);
@@ -86,64 +231,71 @@ function TableFooter({TotalPages, colspan = 5}) {
   if (totalPages <= 1) return null;
 
   return (
-    <tfoot>
-      <tr>
-        <td colspan={colspan}>
+    <div className={styles.paginationContainer}>
+      <div className={styles.pageInfo}>
+        <span className={styles.pageText}>
           Page {pageNo} of {totalPages}
-        </td>
-        <td></td>
-        <td>
-          <div class="flex align-center pagination">
-            <span
-              class="icon"
-              onClick={handlePrevious}
-              disabled={currentPage === 1}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                id="left-arrow-to-left"
-              >
-                <path
-                  fill=""
-                  d="M21,11H9.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H21a1,1,0,0,0,0-2ZM3,3A1,1,0,0,0,2,4V20a1,1,0,0,0,2,0V4A1,1,0,0,0,3,3Z"
-                ></path>
-              </svg>
-            </span>
-            {getVisiblePages.map((page, ind) => (
-              <>
-                <span
-                  class={`icon ${page == pageNo ? "pagination-bg" : ""}`}
-                  onClick={() => handlePageChange(page)}
-                >
-                  {page}
-                </span>
-                {needsEllipsis(ind, getVisiblePages) && (
-                  <span class="">....</span>
-                )}
-              </>
-            ))}
+        </span>
+      </div>
+      
+      <div className={styles.paginationControls}>
+        <button
+          className={`${styles.navButton} ${styles.prevButton} ${currentPage === 1 ? styles.disabled : ''}`}
+          onClick={handlePrevious}
+          disabled={currentPage === 1}
+          aria-label="Previous page"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className={styles.navIcon}
+          >
+            <path
+              fill="currentColor"
+              d="M21,11H9.41l2.3-2.29a1,1,0,1,0-1.42-1.42l-4,4a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l4,4a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H21a1,1,0,0,0,0-2ZM3,3A1,1,0,0,0,2,4V20a1,1,0,0,0,2,0V4A1,1,0,0,0,3,3Z"
+            />
+          </svg>
+        </button>
 
-            <span
-              class="icon"
-              onClick={handleNext}
-              disabled={currentPage === totalPages}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                id="arrow-to-right"
+        <div className={styles.pageNumbers}>
+          {getVisiblePages.map((page, ind) => (
+            <React.Fragment key={page}>
+              <button
+                className={`${styles.pageButton} ${page === pageNo ? styles.active : ''}`}
+                onClick={() => handlePageChange(page)}
+                aria-label={`Go to page ${page}`}
+                aria-current={page === pageNo ? 'page' : undefined}
               >
-                <path
-                  fill=""
-                  d="M17.71,11.29l-4-4a1,1,0,1,0-1.42,1.42L14.59,11H3a1,1,0,0,0,0,2H14.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76A1,1,0,0,0,17.71,11.29ZM21,4a1,1,0,0,0-1,1V19a1,1,0,0,0,2,0V5A1,1,0,0,0,21,4Z"
-                ></path>
-              </svg>
-            </span>
-          </div>
-        </td>
-      </tr>
-    </tfoot>
+                {page}
+              </button>
+              {needsEllipsis(ind, getVisiblePages) && (
+                <span className={styles.ellipsis} aria-hidden="true">
+                  ...
+                </span>
+              )}
+            </React.Fragment>
+          ))}
+        </div>
+
+        <button
+          className={`${styles.navButton} ${styles.nextButton} ${currentPage === totalPages ? styles.disabled : ''}`}
+          onClick={handleNext}
+          disabled={currentPage === totalPages}
+          aria-label="Next page"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className={styles.navIcon}
+          >
+            <path
+              fill="currentColor"
+              d="M17.71,11.29l-4-4a1,1,0,1,0-1.42,1.42L14.59,11H3a1,1,0,0,0,0,2H14.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76A1,1,0,0,0,17.71,11.29ZM21,4a1,1,0,0,0-1,1V19a1,1,0,0,0,2,0V5A1,1,0,0,0,21,4Z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
   );
 }
 

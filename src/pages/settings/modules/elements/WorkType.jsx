@@ -1,6 +1,6 @@
 import useRequest from "@/hooks/useRequest";
 import FormLayout from "@/layout/formLayout/formLayout";
-import { addPhase, insertPhase } from "@/redux/features/settingsSlice/slice";
+import { addPhase, deletePhase, insertPhase } from "@/redux/features/settingsSlice/slice";
 import { _GET, _POST } from "@/request/request";
 import { validateForm } from "@/utils/validation/formValidation";
 import { ErrorMessage, Field, Form } from "formik";
@@ -46,11 +46,15 @@ const validate = {
 function WorkType() {
   const validationSchema = validateForm(validate);
   const { phaseList } = useSelector((state) => state.settings);
-  const { makeRequest, loading } = useRequest("phase", addPhase);
+  const { makeRequest, deleteRequest, loading } = useRequest("phase", addPhase);
 
   const addAPhase = async (values) => {
     makeRequest(values, insertPhase);
   };
+
+  async function deleteNewPhase(id) {
+    await deleteRequest({id}, deletePhase)
+  }
 
   return (
     <div className="work-type grid-box">
@@ -78,7 +82,7 @@ function WorkType() {
                 <button class="btn-secondary" onclick="editWorkType(this)">
                   Edit
                 </button>
-                <span class="flex align-center j-center icon">
+                <span class="flex align-center j-center icon" onClick={()=> deleteNewPhase(item.phase_id)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
