@@ -33,6 +33,7 @@ function AdminLoginFormWithField({ errors, isSubmitting }) {
           <option value="super-admin">Superadmin</option>
           <option value="finance">Finance Department</option>
           <option value="branch">Branch Login</option>
+          <option value="superviser">Superviser</option>
         </Field>
         <ErrorMessage name="user_id" className="err" component="span" />
       </div>

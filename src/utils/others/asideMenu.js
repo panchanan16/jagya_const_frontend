@@ -1,7 +1,7 @@
 import roles from "@/auth/role";
 import { DashboardIcon, ProjectIcon, ClientVendorIcon, AccountingIcon, MaterialsIcon, LaboursIcon, BranchIcon, UserMangerIcon, NotificationIcon, SettingsIcon, LogoutIcon } from "./icons";
 import { ROLES } from "@/config/route.config";
-import { BadgeDollarSignIcon, BookUserIcon, CirclePoundSterling, HatGlassesIcon, LayoutDashboard, PencilRulerIcon, PickaxeIcon, Settings2Icon, Users2 } from "lucide-react";
+import { BadgeDollarSignIcon, BanknoteArrowUpIcon, BookUserIcon, CirclePoundSterling, FileCheckIcon, HandCoins, HatGlassesIcon, LandmarkIcon, LayoutDashboard, PencilRulerIcon, PickaxeIcon, Settings2Icon, Users2 } from "lucide-react";
 
 const entity = "admin"
 const asideMenuItems = [
@@ -55,6 +55,37 @@ const asideMenuItems = [
         svgImg: PencilRulerIcon,
         redirect: '',
         role: [ROLES.SUPERADMIN]
+    },
+
+    // Fiance dashboard
+
+    {
+        name: 'Materials Finance',
+        submenu: [],
+        svgImg: LandmarkIcon,
+        redirect: `/${entity}/finance-request`,
+        role: [ROLES.FINANCEDEPARTMENT]
+    },
+    {
+        name: 'Installments',
+        submenu: [],
+        svgImg: HandCoins,
+        redirect: `/${entity}/finance`,
+        role: [ROLES.FINANCEDEPARTMENT]
+    },
+    {
+        name: 'Expenses',
+        submenu: [],
+        svgImg: BanknoteArrowUpIcon,
+        redirect: `/${entity}/expense`,
+        role: [ROLES.FINANCEDEPARTMENT]
+    },
+    {
+        name: 'Invoices',
+        submenu: [],
+        svgImg: FileCheckIcon,
+        redirect: `/${entity}/invoices`,
+        role: [ROLES.FINANCEDEPARTMENT]
     },
 
     {

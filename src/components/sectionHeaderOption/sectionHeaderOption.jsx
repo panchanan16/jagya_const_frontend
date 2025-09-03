@@ -6,20 +6,31 @@ function SectionHeaderOption({
   HeadingText,
   Entity,
   FilterComponent,
-  searchFields
+  searchFields,
+  Heading = "Data"
 }) {
   return (
     <div className="top-section flex align-center j-between">
-      {children ? (
+      {/* {children ? (
         children
       ) : (
         <div className="section-text">
           <h2>{HeadingText ? HeadingText : ""}</h2>
         </div>
+      )} */}
+      {Heading && (
+        <div className="heading">
+          <h1>{Heading && Heading}</h1>
+          <p className="title">
+            Find all {`${Heading}`.toLocaleLowerCase()} here
+          </p>
+        </div>
       )}
 
       <div className="utility-section flex align-center">
-        {Entity && <SearchBox SearchEntity={Entity} searchFields={searchFields} />}
+        {Entity && (
+          <SearchBox SearchEntity={Entity} searchFields={searchFields} />
+        )}
         <div className="filter hide">
           <button className="btn-filter flex align-center">
             <svg

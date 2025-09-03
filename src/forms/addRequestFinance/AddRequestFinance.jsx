@@ -2,11 +2,12 @@ import SearchInput from "@/components/searchInput/searchInput";
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, FieldArray, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import SelectOption from "@/components/SelectOption/SelectOption";
 import { addPhase } from "@/redux/features/settingsSlice/slice";
+import usePageRender from "@/hooks/usePageRender";
 
 function RequestFinanceFormWithField({ values, resetFn }) {
   console.log(values);
@@ -61,7 +62,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
             </button>
             <div class="newItem">
               {values.materialItemsData.map((friend, index) => (
-                <div class="grid gap-10 inventoryGrid">                 
+                <div class="grid gap-10 inventoryGrid">
                   <SearchInput
                     Name={"vendor_id"}
                     Label={"Vendor"}
@@ -70,7 +71,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
                       [`materialItemsData[${index}].vendor_id`]: "vendor_id",
                     }} // setting client ref key in the form which is not displayed
                     SetDisplayKey={{ id: "vendor_id", name: "vendor_name" }}
-                    editDisplayInput={friend.mr_item_name}
+                    editDisplayInput={friend.vendor_name}
                     errorKey={"vendor_id"}
                   />
                   <div class="field">
@@ -134,7 +135,9 @@ function RequestFinanceFormWithField({ values, resetFn }) {
 
                   <div class="field" onClick={() => remove(index)}>
                     <p class="opacity-0 title">p</p>
-                    <button type="button" className="btn-warning delete">Delete Item</button>
+                    <button type="button" className="btn-warning delete">
+                      Delete Item
+                    </button>
                   </div>
                 </div>
               ))}
@@ -165,6 +168,14 @@ function AddRequestFinance() {
       name: "material_req",
       route: "create",
     });
+  const { id } = useParams();
+  const { itemData } = usePageRender({
+    entity: "material_req",
+    tail: `realAll_by_materialId/${id}`,
+    key: "itemData",
+    loc: location,
+  });
+
 
   function addRequest(values) {
     console.log(values);

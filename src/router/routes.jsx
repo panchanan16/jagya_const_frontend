@@ -138,7 +138,7 @@ function generateRoutePages() {
               element: <InvoicePage />,
               children: [
                 { path: ":id", element: <SecondSlideInvoice /> },
-                { path: "create", element: <AddInvoiceForm /> },
+                { path: "create", element: <SecondSlideInvoice /> },
                 { path: "create/:id", element: <AddInvoiceForm /> },
               ],
             },

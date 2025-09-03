@@ -37,6 +37,11 @@
   min-height: 80px;
 }
 
+.logoimg {
+  width: 2rem;
+  border-radius: 50%;
+}
+
 .logo::after {
   content: '';
   position: absolute;
@@ -50,11 +55,12 @@
 
 .uppercase {
   text-transform: uppercase;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   color: #f9fafb;
   letter-spacing: 0.1em;
   margin: 0;
+  margin-left: 5px;
 }
 
 /* Side Menu Toggle */

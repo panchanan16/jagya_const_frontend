@@ -1,4 +1,7 @@
+import entityEndpoint from "@/api/api";
+import { useAction } from "@/hooks/useAction";
 import SectionLayout from "@/layout/common/sectionLayout";
+import { DELETE_CONTRACTOR } from "@/redux/features/projectSlice/slice";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 
@@ -6,10 +9,11 @@ function ContractorAssigned() {
   const { projectId } = useParams();
   const { itemData } = useSelector((state) => state["project"]);
   const { itemList } = useSelector((state) => state["project_contractor"]);
+  const deleteContractorReq = useAction(DELETE_CONTRACTOR)
 
-  async function deleteContractor() {
+  async function deleteContractor(pro_con_id) {
     if (window.confirm("Are you sure to delete ??")) {
-      console.log("Contracctor removed")
+      await deleteContractorReq({endpoint: entityEndpoint.deleteItem("project_contractor"), body: {pro_con_id}})
     }
   }
 
@@ -36,7 +40,7 @@ function ContractorAssigned() {
                       <p>Contractor, No- 8855446699</p>
                     </div>
                   </div>
-                  <span className="delete btn-warning" onClick={()=> deleteContractor()}>Delete</span>
+                  <span className="delete btn-warning" onClick={()=> deleteContractor(cont.pro_con_id)}>Delete</span>
                 </div>
               ))}          
           </div>

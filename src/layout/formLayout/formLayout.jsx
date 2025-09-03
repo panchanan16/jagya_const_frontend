@@ -1,4 +1,5 @@
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 
 function FormLayout({
   MainForm,
@@ -7,17 +8,24 @@ function FormLayout({
   formHandler,
   isReturn,
   loading,
-  isError
+  isError,
+  goBack = true
 }) {
+  const navigate = useNavigate()
+  function goBackFn() {
+    navigate(-1)
+  }
   return (
     isReturn && (
       <Formik
+        enableReinitialize={true}
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={(values, actions) => {
           formHandler(values).then(() => {
             actions.resetForm();
             actions.setSubmitting(false);
+            goBack && goBackFn()
           });
         }}
       >

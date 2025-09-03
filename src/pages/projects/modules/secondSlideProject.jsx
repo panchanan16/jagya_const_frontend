@@ -6,12 +6,16 @@ import InputFile from "@/components/fileInput/InputFile";
 import { useDispatch, useSelector } from "react-redux";
 import { BASE_URL } from "@/config/api.config";
 import coreCrudActions from "@/redux/coreCrudAction";
+import { FileUp, PaperclipIcon } from "lucide-react";
+import FileUploadPopup from "./fileUpload/FileUploadBoard";
+import { useState } from "react";
 
 function SecondSlideProject() {
   const { projectId } = useParams();
+  const [uploadPopupOpen, setUploadPopupOpen] = useState(false);
   const { itemList } = useSelector((state) => state["project_phase"]);
-  const { deleteFile} = coreCrudActions
-  const { itemData, viewedItem } = usePageRender({
+  const { deleteFile } = coreCrudActions;
+  const { itemData } = usePageRender({
     entity: "project",
     tail: `get_project_detail/${projectId}`,
     key: "itemData",
@@ -19,11 +23,18 @@ function SecondSlideProject() {
     urlKey: "projectId",
   });
 
+  console.log(itemData);
   const dispatch = useDispatch();
+
+  function openFileBoard(params) {
+    setUploadPopupOpen(true);
+  }
 
   function deleteTheFile(e, docId) {
     e.preventDefault();
-    deleteFile("project", dispatch, {}, docId);
+    if (window.confirm("Are you sure to delete the file ?")) {
+      deleteFile("project", dispatch, {}, docId);
+    }
   }
 
   return (
@@ -64,54 +75,58 @@ function SecondSlideProject() {
         </div>
 
         <div className="header-text">
-          <h2>{viewedItem ? viewedItem.pro_housetype : ""}</h2>
+          <h2>{itemData ? itemData.project?.pro_housetype : ""}</h2>
         </div>
         {/* <!-- DETAILS  --> */}
         <div className="contents grid gtc-2">
           <div className="description flex align-center">
             <h3>Project Refrence ID:</h3>
-            <p className="text">{viewedItem ? viewedItem.pro_ref_no : "N/A"}</p>
+            <p className="text">
+              {itemData ? itemData.project?.pro_ref_no : "N/A"}
+            </p>
           </div>
           <div className="description flex align-center">
             <h3>Project Name:</h3>
-            <p className="text">{viewedItem ? viewedItem.pro_name : "N/A"}</p>
+            <p className="text">
+              {itemData ? itemData.project?.pro_name : "N/A"}
+            </p>
           </div>
           <div className="description flex align-center">
             <h3>Total Cost:</h3>
             <p className="text">
-              &#8377; {viewedItem ? viewedItem.pro_totalcost : "N/A"}
+              &#8377; {itemData ? itemData.project?.pro_totalcost : "N/A"}
             </p>
           </div>
           <div className="description flex align-center">
             <h3>Advance Payment:</h3>
             <p className="text">
-              &#8377; {viewedItem ? viewedItem.pro_advancepayment : "N/A"}
+              &#8377; {itemData ? itemData.project?.pro_advancepayment : "N/A"}
             </p>
           </div>
           <div className="description flex align-center">
             <h3>House type:</h3>
             <p className="text">
-              {viewedItem ? viewedItem.pro_housetype : "N/A"}
+              {itemData ? itemData.project?.pro_housetype : "N/A"}
             </p>
           </div>
           <div className="description flex align-center">
             <h3>Site Description:</h3>
             <p className="text">
-              {viewedItem ? viewedItem.pro_sitedesc : "N/A"}
+              {itemData ? itemData.project?.pro_sitedesc : "N/A"}
             </p>
           </div>
-          <div className="description flex align-center">
+          {/* <div className="description flex align-center">
             <h3>Project Initiated:</h3>
             <p className="text">
-              {viewedItem
-                ? `${new Date(viewedItem?.created_at).toDateString()}`
+              {itemData
+                ? `${new Date(itemData?.created_at).toDateString()}`
                 : "N/A"}
             </p>
-          </div>
+          </div> */}
           <div className="description flex align-center">
             <h3>Project Duration:</h3>
             <p className="text">
-              {viewedItem ? viewedItem.pro_duration : "N/A"}
+              {itemData ? itemData.project?.pro_duration : "N/A"}
             </p>
           </div>
         </div>
@@ -137,7 +152,21 @@ function SecondSlideProject() {
             <h3>
               Attached Files <span>(Format: pdf file)</span>:
             </h3>
-            <InputFile Id={projectId} />
+            {/* <InputFile Id={projectId} /> */}
+            <button onClick={openFileBoard} className="btn-secondary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                id="plus-circle"
+                className=""
+              >
+                <path
+                  fill=""
+                  d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z"
+                ></path>
+              </svg>
+              <span className="text">Add File</span>
+            </button>
           </div>
 
           <div className="files flex align-center f-wrap">
@@ -153,10 +182,19 @@ function SecondSlideProject() {
                   <div class="file-icon">
                     <div class="file-corner"></div>
                   </div>
-                  <div class="file-details">
-                    <span class="text">Resume.pdf</span>
+                  
+                  <div>
+                    <div class="file-details">
+                      <span class="text">{doc?.pro_doc_name}</span>
+                    </div>
+                    <div class="file-details" style={{fontSize: 10, color: '#555'}}>
+                      <span class="text">{doc?.pro_doc_type}</span>
+                    </div>
                   </div>
-                  <div class="dlt-btn" onClick={(event)=> deleteTheFile(event, doc?.pro_doc_id)}>
+                  <div
+                    class="dlt-btn"
+                    onClick={(event) => deleteTheFile(event, doc?.pro_doc_id)}
+                  >
                     <span>X</span>
                   </div>
                 </div>
@@ -195,12 +233,17 @@ function SecondSlideProject() {
           <div className="task-grid grid">
             {itemList
               .filter((ph) => ph.pro_id == projectId)
-              .concat(itemData.phases)
+              .concat(itemData?.phases)
               ?.map((ph) => (
                 <Phases Name={ph.phase_name} Status={ph.pro_phase_status} />
               ))}
           </div>
         </div>
+        <FileUploadPopup
+          isOpen={uploadPopupOpen}
+          onClose={setUploadPopupOpen}
+          projectID={projectId}
+        />
       </main>
       <Outlet />
     </SecondSlideLayout>
