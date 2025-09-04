@@ -35,10 +35,14 @@ function SecondSlideVendor() {
         </div>
 
         <div className="header-text">
-          <h2>{viewedItem && viewedItem.vendor_name}</h2>
+          <h2>Vendor Details</h2>
         </div>
         {/* <!-- DETAILS  --> */}
         <div className="contents grid gtc-2 gap-10">
+          <div className="description flex">
+            <h3>Vendor Name : </h3>
+            <p className="text">{viewedItem && viewedItem.vendor_name}</p>
+          </div>
           <div className="description flex">
             <h3>Phone Number : </h3>
             <p className="text">{viewedItem && viewedItem.vendor_contact}</p>
@@ -54,6 +58,14 @@ function SecondSlideVendor() {
           <div className="description flex">
             <h3>Address:</h3>
             <p className="text">{viewedItem && viewedItem.vendor_address}</p>
+          </div>
+          <div className="description flex">
+            <h3>Amount Paid:</h3>
+            <p className="text">₹ 200000</p>
+          </div>
+          <div className="description flex">
+            <h3>Amount Purchases:</h3>
+            <p className="text">₹ 320000</p>
           </div>
         </div>
 

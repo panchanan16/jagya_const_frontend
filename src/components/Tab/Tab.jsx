@@ -8,6 +8,8 @@ function Tab({ Heading, isTabActive, TabName, TableHeading, TableRows, limit, is
           Trow={TableRows}
           Limit={limit}
           Actions={isAction}
+          // Paginate={true}
+          // totalpage={5}
         />
     </div>
   );

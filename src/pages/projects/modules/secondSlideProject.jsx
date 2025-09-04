@@ -75,9 +75,40 @@ function SecondSlideProject() {
         </div>
 
         <div className="header-text">
-          <h2>{itemData ? itemData.project?.pro_housetype : ""}</h2>
+          <h2>Client Details</h2>
         </div>
-        {/* <!-- DETAILS  --> */}
+        {/* <!-- CLIENT DETAILS  --> */}
+        <div className="contents grid gtc-2">
+          <div className="description flex align-center">
+            <h3>Client ID:</h3>
+            <p className="text">
+              {itemData && itemData.client?.length > 0
+                ? itemData.client[0]?.client_ref_no
+                : "N/A"}
+            </p>
+          </div>
+          <div className="description flex align-center">
+            <h3>Client Name:</h3>
+            <p className="text">
+              {itemData && itemData.client?.length > 0
+                ? itemData.client[0]?.client_name
+                : "N/A"}
+            </p>
+          </div>
+          <div className="description flex align-center">
+            <h3>Contact:</h3>
+            <p className="text">
+              {itemData && itemData.client?.length > 0
+                ? `${itemData.client[0]?.client_contact} ${itemData.client[0]?.client_alt_contact ? `| ${itemData.client[0]?.client_alt_contact}` : ""}`
+                : "N/A"}
+            </p>
+          </div>
+        </div>
+
+        <div className="header-text">
+          <h2>Project Details</h2>
+        </div>
+        {/* <!--PROJECT DETAILS  --> */}
         <div className="contents grid gtc-2">
           <div className="description flex align-center">
             <h3>Project Refrence ID:</h3>
@@ -182,12 +213,15 @@ function SecondSlideProject() {
                   <div class="file-icon">
                     <div class="file-corner"></div>
                   </div>
-                  
+
                   <div>
                     <div class="file-details">
                       <span class="text">{doc?.pro_doc_name}</span>
                     </div>
-                    <div class="file-details" style={{fontSize: 10, color: '#555'}}>
+                    <div
+                      class="file-details"
+                      style={{ fontSize: 10, color: "#555" }}
+                    >
                       <span class="text">{doc?.pro_doc_type}</span>
                     </div>
                   </div>

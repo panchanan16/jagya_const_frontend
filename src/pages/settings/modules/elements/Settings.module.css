@@ -1,0 +1,329 @@
+/* Settings Component Module CSS */
+
+.settingsContainer {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.settingsHeader {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.settingsTitle {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.settingsSubtitle {
+  font-size: 16px;
+  color: rgba(44, 62, 80, 0.7);
+  margin: 0;
+  font-weight: 400;
+}
+
+.settingsIcon {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 16px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(52, 152, 219, 0.3);
+}
+
+.settingsIcon svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+.settingsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 32px;
+}
+
+.settingsCard {
+  background: white;
+  border-radius: 16px;
+  padding: 28px 24px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.settingsCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--card-color, linear-gradient(90deg, #3498db, #2980b9));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.settingsCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  border-color: rgba(52, 152, 219, 0.2);
+}
+
+.settingsCard:hover::before {
+  transform: scaleX(1);
+}
+
+.settingsCard:active {
+  transform: translateY(-4px);
+}
+
+/* Individual card colors */
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.cardIconContainer {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.phasesCard .cardIconContainer {
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.15));
+  border: 2px solid rgba(52, 152, 219, 0.2);
+}
+
+.appInfoCard .cardIconContainer {
+  background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), rgba(39, 174, 96, 0.15));
+  border: 2px solid rgba(46, 204, 113, 0.2);
+}
+
+.invoiceCard .cardIconContainer {
+  background: linear-gradient(135deg, rgba(243, 156, 18, 0.1), rgba(230, 126, 34, 0.15));
+  border: 2px solid rgba(243, 156, 18, 0.2);
+}
+
+.paymentCard .cardIconContainer {
+  background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(192, 57, 43, 0.15));
+  border: 2px solid rgba(231, 76, 60, 0.2);
+}
+
+.settingsCard:hover .cardIconContainer {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.cardIcon {
+  width: 28px;
+  height: 28px;
+  transition: all 0.3s ease;
+}
+
+.phasesCard .cardIcon {
+  fill: #3498db;
+}
+
+.appInfoCard .cardIcon {
+  fill: #2ecc71;
+}
+
+.invoiceCard .cardIcon {
+  fill: #f39c12;
+}
+
+.paymentCard .cardIcon {
+  fill: #e74c3c;
+}
+
+.cardContent {
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  font-size: 14px;
+  color: rgba(44, 62, 80, 0.7);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.cardFooter {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cardStats {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(44, 62, 80, 0.6);
+  font-weight: 500;
+}
+
+.cardArrow {
+  width: 20px;
+  height: 20px;
+  fill: rgba(44, 62, 80, 0.4);
+  transition: all 0.3s ease;
+}
+
+.settingsCard:hover .cardArrow {
+  fill: rgba(44, 62, 80, 0.8);
+  transform: translateX(4px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settingsContainer {
+    padding: 24px 16px;
+  }
+  
+  .settingsGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  
+  .settingsTitle {
+    font-size: 28px;
+  }
+  
+  .settingsCard {
+    padding: 20px;
+  }
+  
+  .cardHeader {
+    gap: 12px;
+  }
+  
+  .cardIconContainer {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .cardIcon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .cardTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .settingsContainer {
+    padding: 20px 12px;
+  }
+  
+  .settingsTitle {
+    font-size: 24px;
+  }
+  
+  .cardHeader {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  
+  .cardContent {
+    text-align: center;
+  }
+}
+
+/* Animation for cards appearing */
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.settingsCard {
+  animation: cardAppear 0.5s ease-out;
+}
+
+.settingsCard:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.settingsCard:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.settingsCard:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+/* Loading state */
+.loading .settingsCard {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.loading .settingsCard::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border: 2px solid transparent;
+  border-top: 2px solid rgba(52, 152, 219, 0.6);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

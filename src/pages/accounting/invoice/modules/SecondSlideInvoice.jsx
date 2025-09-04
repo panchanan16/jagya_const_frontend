@@ -1,260 +1,122 @@
-// import SecondSlideLayout from "@/layout/common/secondSlideLayout";
-
-// function SecondSlideInvoice() {
-//   return (
-//     <SecondSlideLayout>
-//           <div class="main-btn flex">
-//             <svg
-//               xmlns="http://www.w3.org/2000/svg"
-//               data-name="Layer 1"
-//               viewBox="0 0 24 24"
-//               id="arrow-left"
-//               class="main-svg"
-//               onclick="openProjectDetails('first-slide', this)"
-//             >
-//               <path
-//                 fill=""
-//                 d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z"
-//               ></path>
-//             </svg>
-//           </div>
-
-//           <div class="invoice-section">
-//             <div class="invoice-header flex j-between align-center">
-//               <div class="company-logo">
-//                 <img src="/img/logo.png" alt="logo" loading="lazy" />
-//               </div>
-//               <div class="invoice-name">
-//                 <h1>Invoice</h1>
-//               </div>
-//             </div>
-//             <div class="invoice-title flex align-center j-between">
-//               <div class="company-address">
-//                 <h3>Jagya Construction</h3>
-//                 <h3>Six Mile, Guwahati, Assam</h3>
-//                 <h3>PIN-782001</h3>
-//               </div>
-//               <div class="invoice-details">
-//                 <div class="line-1 flex align-center">
-//                   <h3>Invoice No.</h3>
-//                   <p class="text">
-//                     JAG-<span>001</span>
-//                   </p>
-//                 </div>
-//                 <div class="line-1 flex align-center">
-//                   <h3>Invoice Date</h3>
-//                   <p class="text">19-03-2025</p>
-//                 </div>
-//               </div>
-//             </div>
-
-//             <div class="invoice-address">
-//               <h2>Billed to</h2>
-//               <p class="text">Panchanan Deka</p>
-//               <p class="text">Nagaon, Assam</p>
-//               <p class="text">+91 6000192289</p>
-//             </div>
-
-//             <div class="invoice-table">
-//               <table>
-//                 <thead>
-//                   <th>Item</th>
-//                   <th>Quantity</th>
-//                   <th>Rate</th>
-//                   <th>GST Rate</th>
-//                   <th>Amount</th>
-//                   <th>Total</th>
-//                 </thead>
-//                 <tbody>
-//                   <tr>
-//                     <td>Bricks</td>
-//                     <td>10</td>
-//                     <td>1000</td>
-//                     <td>18%</td>
-//                     <td>180</td>
-//                     <td>&#8377; 1180</td>
-//                   </tr>
-//                   <tr>
-//                     <td>Cement</td>
-//                     <td>10</td>
-//                     <td>1000</td>
-//                     <td>18%</td>
-//                     <td>180</td>
-//                     <td>&#8377; 1180</td>
-//                   </tr>
-//                   <tr>
-//                     <td colspan="4"></td>
-//                     <td colspan="2">
-//                       <table>
-//                         <tbody>
-//                           <tr>
-//                             <td>Subtotal</td>
-//                             <td>&#8377; 2360</td>
-//                           </tr>
-//                           <tr>
-//                             <td>
-//                               GST <span>(18%)</span>
-//                             </td>
-//                             <td>&#8377; 360</td>
-//                           </tr>
-//                           <tr>
-//                             <td>Discount</td>
-//                             <td>&#8377; 0</td>
-//                           </tr>
-//                           <tr>
-//                             <td>Total</td>
-//                             <td>&#8377; 2360</td>
-//                           </tr>
-//                         </tbody>
-//                       </table>
-//                     </td>
-//                   </tr>
-//                 </tbody>
-//               </table>
-//             </div>
-
-//             <div class="invoice-terms flex j-between">
-//               <div class="terms-text">
-//                 <h2>Terms & Conditions</h2>
-//                 <div class="terms">
-//                   <p class="text">Payment is due within 15 days</p>
-//                 </div>
-//               </div>
-//               <div class="authorized-signature">
-//                 <div class="authorized-img">
-//                   <img
-//                     src="/img/signature.jpg"
-//                     alt="signature"
-//                     loading="lazy"
-//                   />
-//                 </div>
-//                 <h2>Authorized Signature</h2>
-//                 <p class="text">Thank You for doing business with us</p>
-//               </div>
-//             </div>
-
-//             <div class="invoice-footer flex align-center">
-//               <p class="text">Jagya Construction</p>
-//               <p>|</p>
-//               <p class="text">+91 6000192289</p>
-//               <p>|</p>
-//               <p class="text">jagyaconstruction@gmail.com</p>
-//             </div>
-//           </div>
-//     </SecondSlideLayout>
-//   );
-// }
-
-// export default SecondSlideInvoice;
-
-import { useState } from "react";
+import React, { useEffect } from "react";
+import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
+import * as Yup from 'yup';
 import { Download, Plus, Trash2 } from "lucide-react";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 
-const SecondSlideInvoice = () => {
-  const [invoiceData, setInvoiceData] = useState({
-    invoiceNumber: "INV-001",
-    date: new Date().toISOString().split("T")[0],
-    dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
-      .toISOString()
-      .split("T")[0],
-    company: {
-      name: "Jagya Contruction Pvt. ltd",
-      address: "Panjabari, Guwahati",
-      city: "City, State 12345",
-      email: "info@jagyacontruction.com",
-      phone: "98765543322",
-    },
-    client: {
-      name: "Client Name",
-      address: "456 Client Ave",
-      city: "City, State 67890",
-      email: "client@email.com",
-    },
-    items: [
-      { description: "Service 1", quantity: 1, rate: 100, amount: 100 },
-      { description: "Service 2", quantity: 2, rate: 75, amount: 150 },
-    ],
-    notes: "Thank you for your business!",
-  });
+// Validation Schema
+const invoiceValidationSchema = Yup.object().shape({
+  invoiceData: Yup.object().shape({
+    invoice_no: Yup.string().required('Invoice number is required'),
+    invoice_date: Yup.date().required('Invoice date is required'),
+    payment_status: Yup.string().required('Payment status is required'),
+    client_contact: Yup.string().required('Client contact is required'),
+    client_address: Yup.string().required('Client address is required'),
+    client_id: Yup.number().required('Client ID is required'),
+    amount: Yup.number().min(0, 'Amount must be positive'),
+    gst_rate: Yup.number().min(0, 'GST rate must be positive'),
+    discount: Yup.number().min(0, 'Discount must be positive'),
+    total: Yup.number().min(0, 'Total must be positive')
+  }),
+  invoice_items: Yup.array().of(
+    Yup.object().shape({
+      inv_item_name: Yup.string().required('Item name is required'),
+      inv_item_quantity: Yup.number().required('Quantity is required').min(1, 'Quantity must be at least 1'),
+      inv_item_rate: Yup.number().required('Rate is required').min(0, 'Rate must be positive'),
+      inv_item_amount: Yup.number().required('Amount is required').min(0, 'Amount must be positive')
+    })
+  ).min(1, 'At least one item is required'),
+  // Company info for PDF generation
+  company: Yup.object().shape({
+    name: Yup.string().required('Company name is required'),
+    address: Yup.string().required('Company address is required'),
+    city: Yup.string().required('Company city is required'),
+    email: Yup.string().email('Invalid email').required('Company email is required'),
+    phone: Yup.string().required('Company phone is required')
+  }),
+  client: Yup.object().shape({
+    name: Yup.string().required('Client name is required'),
+    email: Yup.string().email('Invalid email')
+  }),
+  notes: Yup.string()
+});
 
-  const updateInvoiceData = (field, value) => {
-    setInvoiceData((prev) => ({ ...prev, [field]: value }));
+// Initial Values matching your required format
+const initialValues = {
+  invoiceData: {
+    invoice_no: "INV-2024-001",
+    invoice_date: new Date().toISOString().split("T")[0],
+    payment_status: "unpaid",
+    amount: "0",
+    gst_rate: "18",
+    discount: "0",
+    total: "0",
+    client_contact: "",
+    client_address: "",
+    client_id: ""
+  },
+  invoice_items: [
+    {
+      inv_item_name: "",
+      inv_item_quantity: "1",
+      inv_item_rate: "0",
+      inv_item_amount: "0"
+    }
+  ],
+  // Additional fields for PDF generation and form completeness
+  company: {
+    name: "Jagya Construction Pvt. Ltd",
+    address: "Panjabari, Guwahati",
+    city: "Guwahati, Assam 781037",
+    email: "info@jagyaconstruction.com",
+    phone: "98765543322",
+  },
+  client: {
+    name: "",
+    email: "",
+  },
+  notes: "Thank you for your business!",
+  due_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
+};
+
+const SecondSlideInvoice = ({ onSubmit, onClose }) => {
+  // Calculate item amount when quantity or rate changes
+  const calculateItemAmount = (quantity, rate) => {
+    const qty = parseFloat(quantity) || 0;
+    const rt = parseFloat(rate) || 0;
+    return (qty * rt).toString();
   };
 
-  const updateCompany = (field, value) => {
-    setInvoiceData((prev) => ({
-      ...prev,
-      company: { ...prev.company, [field]: value },
-    }));
-  };
+  // Calculate totals
+  const calculateTotals = (items, gstRate, discount) => {
+    const subtotal = items.reduce((sum, item) => {
+      return sum + (parseFloat(item.inv_item_amount) || 0);
+    }, 0);
 
-  const updateClient = (field, value) => {
-    setInvoiceData((prev) => ({
-      ...prev,
-      client: { ...prev.client, [field]: value },
-    }));
-  };
+    const gst = (subtotal * (parseFloat(gstRate) || 0)) / 100;
+    const discountAmount = parseFloat(discount) || 0;
+    const total = subtotal + gst - discountAmount;
 
-  const updateItem = (index, field, value) => {
-    setInvoiceData((prev) => ({
-      ...prev,
-      items: prev.items.map((item, i) => {
-        if (i === index) {
-          const updatedItem = { ...item, [field]: value };
-          if (field === "quantity" || field === "rate") {
-            updatedItem.amount = updatedItem.quantity * updatedItem.rate;
-          }
-          return updatedItem;
-        }
-        return item;
-      }),
-    }));
-  };
-
-  const addItem = () => {
-    setInvoiceData((prev) => ({
-      ...prev,
-      items: [
-        ...prev.items,
-        { description: "", quantity: 1, rate: 0, amount: 0 },
-      ],
-    }));
-  };
-
-  const removeItem = (index) => {
-    setInvoiceData((prev) => ({
-      ...prev,
-      items: prev.items.filter((_, i) => i !== index),
-    }));
-  };
-
-  const calculateSubtotal = () => {
-    return invoiceData.items.reduce((sum, item) => sum + item.amount, 0);
-  };
-
-  const calculateTax = () => {
-    return calculateSubtotal() * 0.1; // 10% tax rate
-  };
-
-  const calculateTotal = () => {
-    return calculateSubtotal() + calculateTax();
+    return {
+      amount: subtotal.toString(),
+      total: total.toString()
+    };
   };
 
   // PDF Generation Function
-  const generateInvoicePDF = () => {
-    const subtotal = calculateSubtotal();
-    const tax = calculateTax();
-    const total = calculateTotal();
+  const generateInvoicePDF = (values) => {
+    const subtotal = parseFloat(values.invoiceData.amount);
+    const gstAmount = (subtotal * parseFloat(values.invoiceData.gst_rate)) / 100;
+    const discount = parseFloat(values.invoiceData.discount);
+    const total = parseFloat(values.invoiceData.total);
 
-    // Create a new window for the PDF
     const printWindow = window.open("", "_blank");
 
     const htmlContent = `
       <!DOCTYPE html>
       <html>
       <head>
-        <title>Invoice ${invoiceData.invoiceNumber}</title>
+        <title>Invoice ${values.invoiceData.invoice_no}</title>
         <style>
           * { margin: 0; padding: 0; box-sizing: border-box; }
           body { font-family: Arial, sans-serif; font-size: 12px; line-height: 1.4; color: #333; }
@@ -284,31 +146,28 @@ const SecondSlideInvoice = () => {
         <div class="container">
           <div class="header">
             <div class="company-info">
-              <h1>${invoiceData.company.name}</h1>
-              <p>${invoiceData.company.address}</p>
-              <p>${invoiceData.company.city}</p>
-              <p>Email: ${invoiceData.company.email}</p>
-              <p>Phone: ${invoiceData.company.phone}</p>
+              <h1>${values.company.name}</h1>
+              <p>${values.company.address}</p>
+              <p>${values.company.city}</p>
+              <p>Email: ${values.company.email}</p>
+              <p>Phone: ${values.company.phone}</p>
             </div>
             <div class="invoice-info">
               <h2>INVOICE</h2>
-              <p><strong>Invoice #:</strong> ${invoiceData.invoiceNumber}</p>
-              <p><strong>Date:</strong> ${new Date(
-                invoiceData.date
-              ).toLocaleDateString()}</p>
-              <p><strong>Due Date:</strong> ${new Date(
-                invoiceData.dueDate
-              ).toLocaleDateString()}</p>
+              <p><strong>Invoice #:</strong> ${values.invoiceData.invoice_no}</p>
+              <p><strong>Date:</strong> ${new Date(values.invoiceData.invoice_date).toLocaleDateString()}</p>
+              <p><strong>Due Date:</strong> ${new Date(values.due_date).toLocaleDateString()}</p>
+              <p><strong>Status:</strong> ${values.invoiceData.payment_status.toUpperCase()}</p>
             </div>
           </div>
 
           <div class="billing-section">
             <div class="bill-to">
               <h3>Bill To:</h3>
-              <p><strong>${invoiceData.client.name}</strong></p>
-              <p>${invoiceData.client.address}</p>
-              <p>${invoiceData.client.city}</p>
-              <p>${invoiceData.client.email}</p>
+              <p><strong>${values.client.name}</strong></p>
+              <p>${values.invoiceData.client_address}</p>
+              <p>Contact: ${values.invoiceData.client_contact}</p>
+              ${values.client.email ? `<p>Email: ${values.client.email}</p>` : ''}
             </div>
           </div>
 
@@ -322,14 +181,14 @@ const SecondSlideInvoice = () => {
               </tr>
             </thead>
             <tbody>
-              ${invoiceData.items
+              ${values.invoice_items
                 .map(
                   (item) => `
                 <tr>
-                  <td>${item.description}</td>
-                  <td class="text-right">${item.quantity}</td>
-                  <td class="text-right">$${item.rate.toFixed(2)}</td>
-                  <td class="text-right">$${item.amount.toFixed(2)}</td>
+                  <td>${item.inv_item_name}</td>
+                  <td class="text-right">${item.inv_item_quantity}</td>
+                  <td class="text-right">₹${parseFloat(item.inv_item_rate).toFixed(2)}</td>
+                  <td class="text-right">₹${parseFloat(item.inv_item_amount).toFixed(2)}</td>
                 </tr>
               `
                 )
@@ -340,24 +199,28 @@ const SecondSlideInvoice = () => {
           <div class="totals-section">
             <div class="total-row">
               <span>Subtotal:</span>
-              <span>$${subtotal.toFixed(2)}</span>
+              <span>₹${subtotal.toFixed(2)}</span>
             </div>
             <div class="total-row">
-              <span>Tax (10%):</span>
-              <span>$${tax.toFixed(2)}</span>
+              <span>GST (${values.invoiceData.gst_rate}%):</span>
+              <span>₹${gstAmount.toFixed(2)}</span>
+            </div>
+            <div class="total-row">
+              <span>Discount:</span>
+              <span>₹${discount.toFixed(2)}</span>
             </div>
             <div class="total-row final">
               <span>Total:</span>
-              <span>$${total.toFixed(2)}</span>
+              <span>₹${total.toFixed(2)}</span>
             </div>
           </div>
 
           ${
-            invoiceData.notes
+            values.notes
               ? `
             <div class="notes">
               <h4>Notes:</h4>
-              <p>${invoiceData.notes}</p>
+              <p>${values.notes}</p>
             </div>
           `
               : ""
@@ -370,10 +233,34 @@ const SecondSlideInvoice = () => {
     printWindow.document.write(htmlContent);
     printWindow.document.close();
 
-    // Wait for content to load, then trigger print
     printWindow.onload = () => {
       printWindow.print();
     };
+  };
+
+  const handleSubmit = (values, { setSubmitting }) => {
+    // Calculate final totals before submission
+    const totals = calculateTotals(
+      values.invoice_items,
+      values.invoiceData.gst_rate,
+      values.invoiceData.discount
+    );
+
+    const finalValues = {
+      invoiceData: {
+        ...values.invoiceData,
+        ...totals
+      },
+      invoice_items: values.invoice_items
+    };
+
+    console.log('Invoice form submitted:', finalValues);
+
+    if (onSubmit) {
+      onSubmit(finalValues);
+    }
+
+    setSubmitting(false);
   };
 
   return (
@@ -398,12 +285,6 @@ const SecondSlideInvoice = () => {
           display: flex;
           align-items: center;
           gap: 8px;
-        }
-
-        .invoice-title-icon {
-          height: 32px;
-          width: 32px;
-          color: #1b1b1b;
         }
 
         .invoice-subtitle {
@@ -456,14 +337,8 @@ const SecondSlideInvoice = () => {
 
         .invoice-details-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(2, 1fr);
           gap: 16px;
-        }
-
-        @media (max-width: 768px) {
-          .invoice-details-grid {
-            grid-template-columns: 1fr;
-          }
         }
 
         .invoice-form-group {
@@ -485,8 +360,7 @@ const SecondSlideInvoice = () => {
           border: 1px solid #d1d5db;
           border-radius: 4px;
           font-size: 14px;
-          transition: border-color 0.15s ease-in-out,
-            box-shadow 0.15s ease-in-out;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
         .invoice-input:focus {
@@ -507,29 +381,6 @@ const SecondSlideInvoice = () => {
           gap: 12px;
         }
 
-        .invoice-add-button {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          padding: 6px 12px;
-          background-color: #1b1b1b;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          font-size: 14px;
-          cursor: pointer;
-          transition: background-color 0.15s ease-in-out;
-        }
-
-        .invoice-add-button:hover {
-          background-color: #1d4ed8;
-        }
-
-        .invoice-button-icon {
-          height: 16px;
-          width: 16px;
-        }
-
         .invoice-items-list {
           display: flex;
           flex-direction: column;
@@ -538,7 +389,7 @@ const SecondSlideInvoice = () => {
 
         .invoice-item-row {
           display: grid;
-          grid-template-columns: 5fr 2fr 2fr 2fr 1fr;
+          grid-template-columns: 3fr 1fr 1fr 1fr 40px;
           gap: 8px;
           align-items: center;
         }
@@ -548,6 +399,9 @@ const SecondSlideInvoice = () => {
           font-size: 14px;
           font-weight: 500;
           color: #374151;
+          background: #f3f4f6;
+          border-radius: 4px;
+          text-align: center;
         }
 
         .invoice-remove-button {
@@ -594,8 +448,7 @@ const SecondSlideInvoice = () => {
           height: 80px;
           resize: none;
           font-family: inherit;
-          transition: border-color 0.15s ease-in-out,
-            box-shadow 0.15s ease-in-out;
+          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
         }
 
         .invoice-textarea:focus {
@@ -604,25 +457,10 @@ const SecondSlideInvoice = () => {
           box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
         }
 
-        .invoice-generate-button {
-          width: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          padding: 12px 24px;
-          background-color: #1b1b1b;
-          color: white;
-          border: none;
-          border-radius: 8px;
-          font-size: 16px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: background-color 0.15s ease-in-out;
-        }
-
-        .invoice-generate-button:hover {
-          background-color: #373737ff;
+        .err {
+          color: #dc2626;
+          font-size: 12px;
+          margin-top: 4px;
         }
 
         @media (max-width: 768px) {
@@ -639,9 +477,8 @@ const SecondSlideInvoice = () => {
             gap: 8px;
           }
 
-          .invoice-item-amount {
-            text-align: right;
-            font-weight: bold;
+          .invoice-details-grid {
+            grid-template-columns: 1fr;
           }
 
           .invoice-two-column-grid {
@@ -649,249 +486,353 @@ const SecondSlideInvoice = () => {
           }
         }
       `}</style>
+
       <div className="invoice-container">
         <div className="invoice-header">
-          <h1 className="invoice-title">          
-            Generate Invoice
-          </h1>
+          <h1 className="invoice-title">Generate Invoice</h1>
           <p className="invoice-subtitle">Create and generate PDF invoices</p>
         </div>
 
-        <div className="invoice-main-grid">
-          {/* Form Section */}
-          <div className="invoice-form-section">
-            {/* Invoice Details */}
-            <div className="invoice-section">
-              <h2 className="invoice-section-title">Invoice Details</h2>
-              <div className="invoice-details-grid">
-                <div className="invoice-form-group">
-                  <label className="invoice-label">Invoice Number</label>
-                  <input
-                    type="text"
-                    value={invoiceData.invoiceNumber}
-                    onChange={(e) =>
-                      updateInvoiceData("invoiceNumber", e.target.value)
-                    }
-                    className="invoice-input"
-                  />
-                </div>
-                <div className="invoice-form-group">
-                  <label className="invoice-label">Date</label>
-                  <input
-                    type="date"
-                    value={invoiceData.date}
-                    onChange={(e) => updateInvoiceData("date", e.target.value)}
-                    className="invoice-input"
-                  />
-                </div>
-                <div className="invoice-form-group">
-                  <label className="invoice-label">Due Date</label>
-                  <input
-                    type="date"
-                    value={invoiceData.dueDate}
-                    onChange={(e) =>
-                      updateInvoiceData("dueDate", e.target.value)
-                    }
-                    className="invoice-input"
-                  />
-                </div>
-                <div className="invoice-form-group">
-                  <label className="invoice-label">Invoice status</label>
-                  <select className="invoice-input">
-                    <option value="Paid">Paid</option>
-                    <option value="Paid">Unpaid</option>
-                    <option value="Paid">Partial</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={invoiceValidationSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ values, setFieldValue, isSubmitting }) => {
+            // Auto-calculate totals when values change
+            useEffect(() => {
+              const totals = calculateTotals(
+                values.invoice_items,
+                values.invoiceData.gst_rate,
+                values.invoiceData.discount
+              );
+              setFieldValue('invoiceData.amount', totals.amount);
+              setFieldValue('invoiceData.total', totals.total);
+            }, [values.invoice_items, values.invoiceData.gst_rate, values.invoiceData.discount, setFieldValue]);
 
-            {/* Company Info */}
-            <div className="invoice-section">
-              <h2 className="invoice-section-title">Your Company</h2>
-              <div className="invoice-form-fields">
-                <input
-                  type="text"
-                  placeholder="Company Name"
-                  value={invoiceData.company.name}
-                  onChange={(e) => updateCompany("name", e.target.value)}
-                  className="invoice-input"
-                />
-                <input
-                  type="text"
-                  placeholder="Address"
-                  value={invoiceData.company.address}
-                  onChange={(e) => updateCompany("address", e.target.value)}
-                  className="invoice-input"
-                />
-                <input
-                  type="text"
-                  placeholder="City, State ZIP"
-                  value={invoiceData.company.city}
-                  onChange={(e) => updateCompany("city", e.target.value)}
-                  className="invoice-input"
-                />
-                <div className="invoice-two-column-grid">
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    value={invoiceData.company.email}
-                    onChange={(e) => updateCompany("email", e.target.value)}
-                    className="invoice-input"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Phone"
-                    value={invoiceData.company.phone}
-                    onChange={(e) => updateCompany("phone", e.target.value)}
-                    className="invoice-input"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* Client Info */}
-            <div className="invoice-section">
-              <h2 className="invoice-section-title">Bill To</h2>
-              <div className="invoice-form-fields">
-                <input
-                  type="text"
-                  placeholder="Client Name"
-                  value={invoiceData.client.name}
-                  onChange={(e) => updateClient("name", e.target.value)}
-                  className="invoice-input"
-                />
-                <input
-                  type="text"
-                  placeholder="Address"
-                  value={invoiceData.client.address}
-                  onChange={(e) => updateClient("address", e.target.value)}
-                  className="invoice-input"
-                />
-                <input
-                  type="text"
-                  placeholder="City, State ZIP"
-                  value={invoiceData.client.city}
-                  onChange={(e) => updateClient("city", e.target.value)}
-                  className="invoice-input"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  value={invoiceData.client.email}
-                  onChange={(e) => updateClient("email", e.target.value)}
-                  className="invoice-input"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Items and Preview Section */}
-          <div className="invoice-right-section">
-            {/* Items */}
-            <div className="invoice-section">
-              <div className="invoice-section-header">
-                <h2 className="invoice-section-title">Items</h2>
-                <button onClick={addItem} className="invoice-add-button">
-                  <Plus className="invoice-button-icon" />
-                  Add Item
-                </button>
-              </div>
-              <div className="invoice-items-list">
-                {invoiceData.items.map((item, index) => (
-                  <div key={index} className="invoice-item-row">
-                    <input
-                      type="text"
-                      placeholder="Description"
-                      value={item.description}
-                      onChange={(e) =>
-                        updateItem(index, "description", e.target.value)
-                      }
-                      className="invoice-input"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Qty"
-                      value={item.quantity}
-                      onChange={(e) =>
-                        updateItem(
-                          index,
-                          "quantity",
-                          parseFloat(e.target.value) || 0
-                        )
-                      }
-                      className="invoice-input"
-                    />
-                    <input
-                      type="number"
-                      placeholder="Rate"
-                      value={item.rate}
-                      onChange={(e) =>
-                        updateItem(
-                          index,
-                          "rate",
-                          parseFloat(e.target.value) || 0
-                        )
-                      }
-                      className="invoice-input"
-                    />
-                    <div className="invoice-item-amount">
-                      ${item.amount.toFixed(2)}
+            return (
+              <Form>
+                <div className="invoice-main-grid">
+                  {/* Form Section */}
+                  <div className="invoice-form-section">
+                    {/* Invoice Details */}
+                    <div className="invoice-section">
+                      <h2 className="invoice-section-title">Invoice Details</h2>
+                      <div className="invoice-details-grid">
+                        <div className="invoice-form-group">
+                          <label className="invoice-label">Invoice Number</label>
+                          <Field
+                            name="invoiceData.invoice_no"
+                            className="invoice-input"
+                          />
+                          <ErrorMessage name="invoiceData.invoice_no" component="div" className="err" />
+                        </div>
+                        <div className="invoice-form-group">
+                          <label className="invoice-label">Date</label>
+                          <Field
+                            type="date"
+                            name="invoiceData.invoice_date"
+                            className="invoice-input"
+                          />
+                          <ErrorMessage name="invoiceData.invoice_date" component="div" className="err" />
+                        </div>
+                        <div className="invoice-form-group">
+                          <label className="invoice-label">Due Date</label>
+                          <Field
+                            type="date"
+                            name="due_date"
+                            className="invoice-input"
+                          />
+                        </div>
+                        <div className="invoice-form-group">
+                          <label className="invoice-label">Payment Status</label>
+                          <Field as="select" name="invoiceData.payment_status" className="invoice-input">
+                            <option value="paid">Paid</option>
+                            <option value="unpaid">Unpaid</option>
+                            <option value="partial">Partial</option>
+                            <option value="overdue">Overdue</option>
+                          </Field>
+                          <ErrorMessage name="invoiceData.payment_status" component="div" className="err" />
+                        </div>
+                        <div className="invoice-form-group">
+                          <label className="invoice-label">Client ID</label>
+                          <Field
+                            type="number"
+                            name="invoiceData.client_id"
+                            className="invoice-input"
+                          />
+                          <ErrorMessage name="invoiceData.client_id" component="div" className="err" />
+                        </div>
+                        <div className="invoice-form-group">
+                          <label className="invoice-label">GST Rate (%)</label>
+                          <Field
+                            type="number"
+                            name="invoiceData.gst_rate"
+                            className="invoice-input"
+                          />
+                          <ErrorMessage name="invoiceData.gst_rate" component="div" className="err" />
+                        </div>
+                      </div>
                     </div>
-                    <button
-                      onClick={() => removeItem(index)}
-                      className="invoice-remove-button"
-                    >
-                      <Trash2 className="invoice-button-icon" />
-                    </button>
+
+                    {/* Company Info */}
+                    <div className="invoice-section">
+                      <h2 className="invoice-section-title">Your Company</h2>
+                      <div className="invoice-form-fields">
+                        <Field
+                          name="company.name"
+                          placeholder="Company Name"
+                          className="invoice-input"
+                        />
+                        <ErrorMessage name="company.name" component="div" className="err" />
+                        
+                        <Field
+                          name="company.address"
+                          placeholder="Address"
+                          className="invoice-input"
+                        />
+                        <ErrorMessage name="company.address" component="div" className="err" />
+                        
+                        <Field
+                          name="company.city"
+                          placeholder="City, State ZIP"
+                          className="invoice-input"
+                        />
+                        <ErrorMessage name="company.city" component="div" className="err" />
+                        
+                        <div className="invoice-two-column-grid">
+                          <div>
+                            <Field
+                              type="email"
+                              name="company.email"
+                              placeholder="Email"
+                              className="invoice-input"
+                            />
+                            <ErrorMessage name="company.email" component="div" className="err" />
+                          </div>
+                          <div>
+                            <Field
+                              type="tel"
+                              name="company.phone"
+                              placeholder="Phone"
+                              className="invoice-input"
+                            />
+                            <ErrorMessage name="company.phone" component="div" className="err" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Client Info */}
+                    <div className="invoice-section">
+                      <h2 className="invoice-section-title">Bill To</h2>
+                      <div className="invoice-form-fields">
+                        <Field
+                          name="client.name"
+                          placeholder="Client Name"
+                          className="invoice-input"
+                        />
+                        <ErrorMessage name="client.name" component="div" className="err" />
+                        
+                        <Field
+                          name="invoiceData.client_address"
+                          placeholder="Client Address"
+                          className="invoice-input"
+                        />
+                        <ErrorMessage name="invoiceData.client_address" component="div" className="err" />
+                        
+                        <div className="invoice-two-column-grid">
+                          <div>
+                            <Field
+                              name="invoiceData.client_contact"
+                              placeholder="Client Contact"
+                              className="invoice-input"
+                            />
+                            <ErrorMessage name="invoiceData.client_contact" component="div" className="err" />
+                          </div>
+                          <div>
+                            <Field
+                              type="email"
+                              name="client.email"
+                              placeholder="Client Email"
+                              className="invoice-input"
+                            />
+                            <ErrorMessage name="client.email" component="div" className="err" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
-            {/* Totals */}
-            <div className="invoice-section">
-              <h2 className="invoice-section-title">Totals</h2>
-              <div className="invoice-totals-container">
-                <div className="invoice-total-row">
-                  <span>Subtotal:</span>
-                  <span>${calculateSubtotal().toFixed(2)}</span>
-                </div>
-                <div className="invoice-total-row">
-                  <span>Tax (10%):</span>
-                  <span>${calculateTax().toFixed(2)}</span>
-                </div>
-                <div className="invoice-total-row invoice-final-total">
-                  <span>Total:</span>
-                  <span>${calculateTotal().toFixed(2)}</span>
-                </div>
-              </div>
-            </div>
+                  {/* Items and Preview Section */}
+                  <div className="invoice-right-section">
+                    {/* Items */}
+                    <div className="invoice-section">
+                      <div className="invoice-section-header">
+                        <h2 className="invoice-section-title">Items</h2>
+                      </div>
+                      <FieldArray name="invoice_items">
+                        {({ push, remove }) => (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() => push({
+                                inv_item_name: "",
+                                inv_item_quantity: "1",
+                                inv_item_rate: "0",
+                                inv_item_amount: "0"
+                              })}
+                              className="btn-primary"
+                              style={{ marginBottom: "16px" }}
+                            >
+                              <Plus style={{ width: "16px", height: "16px" }} />
+                              Add Item
+                            </button>
+                            <div className="invoice-items-list">
+                              {values.invoice_items.map((item, index) => (
+                                <div key={index} className="invoice-item-row">
+                                  <div>
+                                    <label>Item / Installments</label>
+                                    <Field
+                                      name={`invoice_items.${index}.inv_item_name`}
+                                      placeholder="Description"
+                                      className="invoice-input"
+                                    />
+                                    <ErrorMessage name={`invoice_items.${index}.inv_item_name`} component="div" className="err" />
+                                  </div>
+                                  
+                                  <div>
+                                    <label>Quantity</label>
+                                    <Field
+                                      type="number"
+                                      name={`invoice_items.${index}.inv_item_quantity`}
+                                      placeholder="Qty"
+                                      className="invoice-input"
+                                      onChange={(e) => {
+                                        const quantity = e.target.value;
+                                        setFieldValue(`invoice_items.${index}.inv_item_quantity`, quantity);
+                                        const amount = calculateItemAmount(quantity, item.inv_item_rate);
+                                        setFieldValue(`invoice_items.${index}.inv_item_amount`, amount);
+                                      }}
+                                    />
+                                    <ErrorMessage name={`invoice_items.${index}.inv_item_quantity`} component="div" className="err" />
+                                  </div>
+                                  
+                                  <div>
+                                    <label>Rate</label>
+                                    <Field
+                                      type="number"
+                                      name={`invoice_items.${index}.inv_item_rate`}
+                                      placeholder="Rate"
+                                      className="invoice-input"
+                                      onChange={(e) => {
+                                        const rate = e.target.value;
+                                        setFieldValue(`invoice_items.${index}.inv_item_rate`, rate);
+                                        const amount = calculateItemAmount(item.inv_item_quantity, rate);
+                                        setFieldValue(`invoice_items.${index}.inv_item_amount`, amount);
+                                      }}
+                                    />
+                                    <ErrorMessage name={`invoice_items.${index}.inv_item_rate`} component="div" className="err" />
+                                  </div>
+                                  
+                                  <div className="invoice-item-amount">
+                                    ₹{parseFloat(item.inv_item_amount || 0).toFixed(2)}
+                                  </div>
+                                  
+                                  {values.invoice_items.length > 1 && (
+                                    <button
+                                      type="button"
+                                      onClick={() => remove(index)}
+                                      className="invoice-remove-button"
+                                    >
+                                      <Trash2 style={{ width: "16px", height: "16px" }} />
+                                    </button>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </>
+                        )}
+                      </FieldArray>
+                    </div>
 
-            {/* Notes */}
-            <div className="invoice-section">
-              <h2 className="invoice-section-title">Notes</h2>
-              <textarea
-                placeholder="Additional notes or payment terms..."
-                value={invoiceData.notes}
-                onChange={(e) => updateInvoiceData("notes", e.target.value)}
-                className="invoice-textarea"
-              />
-            </div>
+                    {/* Discount and Totals */}
+                    <div className="invoice-section">
+                      <h2 className="invoice-section-title">Pricing</h2>
+                      <div className="invoice-form-group" style={{ marginBottom: "16px" }}>
+                        <label className="invoice-label">Discount (₹)</label>
+                        <Field
+                          type="number"
+                          name="invoiceData.discount"
+                          className="invoice-input"
+                        />
+                      </div>
+                      
+                      <div className="invoice-totals-container">
+                        <div className="invoice-total-row">
+                          <span>Subtotal:</span>
+                          <span>₹{parseFloat(values.invoiceData.amount || 0).toFixed(2)}</span>
+                        </div>
+                        <div className="invoice-total-row">
+                          <span>GST ({values.invoiceData.gst_rate}%):</span>
+                          <span>₹{((parseFloat(values.invoiceData.amount || 0) * parseFloat(values.invoiceData.gst_rate || 0)) / 100).toFixed(2)}</span>
+                        </div>
+                        <div className="invoice-total-row">
+                          <span>Discount:</span>
+                          <span>₹{parseFloat(values.invoiceData.discount || 0).toFixed(2)}</span>
+                        </div>
+                        <div className="invoice-total-row invoice-final-total">
+                          <span>Total:</span>
+                          <span>₹{parseFloat(values.invoiceData.total || 0).toFixed(2)}</span>
+                        </div>
+                      </div>
+                    </div>
 
-            {/* Generate PDF Button */}
-            <button
-              onClick={generateInvoicePDF}
-              className="invoice-generate-button"
-            >
-              <Download className="invoice-button-icon" />
-              Generate Invoice
-            </button>
-          </div>
-        </div>
+                    {/* Notes */}
+                    <div className="invoice-section">
+                      <h2 className="invoice-section-title">Notes</h2>
+                      <Field
+                        as="textarea"
+                        name="notes"
+                        placeholder="Additional notes or payment terms..."
+                        className="invoice-textarea"
+                      />
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div style={{ display: "flex", gap: "12px" }}>
+                      <button
+                        type="button"
+                        onClick={() => generateInvoicePDF(values)}
+                        className="btn-primary"
+                        style={{ flex: 1 }}
+                      >
+                        <Download style={{ width: "16px", height: "16px" }} />
+                        Generate PDF
+                      </button>
+                      
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="btn-primary"
+                        style={{ flex: 1 }}
+                      >
+                        {isSubmitting ? "Saving..." : "Save Invoice"}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
       </div>
     </SecondSlideLayout>
   );
 };
 
 export default SecondSlideInvoice;
+
+
+
+

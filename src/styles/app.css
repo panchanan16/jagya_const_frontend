@@ -150,7 +150,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    user-select: none;
 }
 
 *::before,
@@ -2726,6 +2725,15 @@ canvas {
     .right-login{
         width: 100%;
     }
+}
+
+
+
+/* New CSS */
+
+.hoverr:hover {
+    color: blue;
+    font-weight: 600;
 }
 
 
