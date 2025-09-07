@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import styles from "./FileUploadBoard.module.css";
+import styles from "./fileUploadBoard.module.css";
 import { uploadFiles } from "@/redux/features/fileSlice/slice";
 import coreEndpoint from "@/api/coreApi";
 

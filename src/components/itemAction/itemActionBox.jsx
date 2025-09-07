@@ -109,9 +109,11 @@ function ItemActionBox({ viewFn, editFn, deleteFn }) {
         </Link>
       </div> */}
 
-      <Link to={viewFn}>
-        <FaEye style={{ marginRight: "8px" }} />
-      </Link>
+      {viewFn && (
+        <Link to={viewFn}>
+          <FaEye style={{ marginRight: "8px" }} />
+        </Link>
+      )}
       {editFn && (
         <Link to={editFn}>
           <SquarePenIcon style={{ marginRight: "8px" }} />

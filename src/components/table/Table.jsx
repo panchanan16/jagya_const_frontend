@@ -256,6 +256,7 @@ function Table({
   totalpage,
   col = 5,
 }) {
+  console.log(Actions)
   // Function to check if element is a function that returns JSX
   const isRenderFunction = (element) => {
     return typeof element === "function";
@@ -455,9 +456,7 @@ function Table({
                     <td className={styles.tableCell}>
                       <div className={styles.actionsWrapper}>
                         <ItemActionBox
-                          viewFn={`${
-                            Actions?.viewUrl && columns[Actions.viewUrl]
-                          }`}
+                          viewFn={Actions?.viewUrl && `${columns[Actions.viewUrl]}`}
                           editFn={`create/${
                             Actions?.editUrl && columns[Actions.editUrl]
                           }`}

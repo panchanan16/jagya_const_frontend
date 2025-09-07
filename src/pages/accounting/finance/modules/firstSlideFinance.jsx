@@ -21,7 +21,22 @@ function FirstSlideFinance() {
             "Date",
             "Project ID",
           ]}
-          Trow={itemList}          
+          Trow={itemList}  
+          Limit={[
+            "col_id",
+            {
+              key: "col_amount",
+              type: "amount"
+            },
+            "col_mode",
+            "col_remark",
+            "col_date",
+            "col_project_id"
+          ]} 
+          Actions={{      
+            deleteUrl: "contractor",
+            editUrl: "con_id",
+          }}       
         />
       </div>
     </FirstSlideLayout>
