@@ -1,0 +1,612 @@
+/* UniversalForm.module.css - Reusable Form Styles */
+
+/* ===== FORM CONTAINERS ===== */
+.formContainer {
+  max-width: 900px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+.formContainerSmall {
+  max-width: 600px;
+}
+
+.formContainerLarge {
+  max-width: 1200px;
+}
+
+.formContainerFullWidth {
+  max-width: 100%;
+}
+
+/* ===== FORM HEADERS ===== */
+.formHeader {
+  padding: 24px 32px;
+  background: linear-gradient(135deg, #0b1853 0%, #401569 100%);
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+  border-radius: 10px;
+}
+
+.formHeaderGreen {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.formHeaderBlue {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.formHeaderPurple {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.formHeaderOrange {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.formTitle {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.formTitleSmall {
+  font-size: 20px;
+}
+
+.formTitleLarge {
+  font-size: 28px;
+}
+
+.formSubtitle {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 4px 0 0 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ===== FORM BODY ===== */
+.formBody {
+  padding: 12px;
+  margin-top: 1rem;
+}
+
+.formBodyCompact {
+  padding: 24px;
+}
+
+.formBodySpacious {
+  padding: 40px;
+}
+
+/* ===== FORM GRIDS ===== */
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.formGridTwoColumns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.formGridThreeColumns {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.formGridFourColumns {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.formGridSingleColumn {
+  grid-template-columns: 1fr;
+}
+
+.formGridCompact {
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.formGridSpacious {
+  gap: 32px;
+  margin-bottom: 40px;
+}
+
+/* ===== FIELD GROUPS ===== */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.fieldGroupRow {
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.fieldGroupInline {
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+/* ===== LABELS ===== */
+.fieldLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.fieldLabelSmall {
+  font-size: 12px;
+}
+
+.fieldLabelLarge {
+  font-size: 16px;
+}
+
+.fieldLabel.required::after {
+  content: ' *';
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.fieldLabelOptional::after {
+  content: ' (optional)';
+  color: #6b7280;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+/* ===== FORM INPUTS ===== */
+.formInput {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 5px;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  color: #1f2937;
+  transition: all 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.formInputSmall {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.formInputLarge {
+  padding: 16px 20px;
+  font-size: 16px;
+}
+
+.formInput::placeholder {
+  color: #9ca3af;
+}
+
+.formInput:hover {
+  border-color: #d1d5db;
+}
+
+.formInput:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.formInput:invalid {
+  border-color: #dc2626;
+}
+
+.formInput.error {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.formInput.success {
+  border-color: #10b981;
+  background: #f0fdf4;
+}
+
+/* ===== TEXTAREAS ===== */
+.formTextarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  color: #1f2937;
+  transition: all 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  resize: vertical;
+}
+
+.formTextarea:hover {
+  border-color: #d1d5db;
+}
+
+.formTextarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* ===== SELECT DROPDOWNS ===== */
+.formSelect {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 5px;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: 400;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  padding-right: 40px;
+}
+
+.formSelect:hover {
+  border-color: #d1d5db;
+}
+
+.formSelect:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.formSelect option {
+  padding: 8px;
+  background: #ffffff;
+  color: #1f2937;
+}
+
+/* ===== CHECKBOXES & RADIOS ===== */
+.checkboxGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkboxGroupRow {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.checkboxItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.formCheckbox {
+  width: 18px;
+  height: 18px;
+  accent-color: #3b82f6;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== ERROR MESSAGES ===== */
+.errorMessage {
+  font-size: 12px;
+  color: #dc2626;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.errorMessage::before {
+  content: '⚠';
+  font-size: 12px;
+}
+
+.successMessage {
+  font-size: 12px;
+  color: #10b981;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.successMessage::before {
+  content: '✓';
+  font-size: 12px;
+}
+
+/* ===== FORM BUTTONS ===== */
+.formActions {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  padding-top: 24px;
+  border-top: 1px solid #f3f4f6;
+  margin-top: 8px;
+}
+
+.formActionsLeft {
+  justify-content: flex-start;
+}
+
+.formActionsCenter {
+  justify-content: center;
+}
+
+.formActionsSpaced {
+  justify-content: space-between;
+}
+
+.formActionsColumn {
+  flex-direction: column;
+}
+
+.primaryButton {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: max-content;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.primaryButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+}
+
+.primaryButtonBlue {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.primaryButtonBlue:hover {
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.primaryButtonPurple {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.primaryButtonPurple:hover {
+  box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
+}
+
+.primaryButtonRed {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.primaryButtonRed:hover {
+  box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+}
+
+.secondaryButton {
+  background: #ffffff;
+  color: #374151;
+  border: 2px solid #e5e7eb;
+  padding: 12px 32px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+  max-width: max-content;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.secondaryButton:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+}
+
+.buttonFullWidth {
+  max-width: none;
+  width: 100%;
+}
+
+.buttonCompact {
+  padding: 8px 24px;
+  font-size: 14px;
+}
+
+.buttonLarge {
+  padding: 16px 40px;
+  font-size: 16px;
+}
+
+/* ===== FORM SECTIONS ===== */
+.formSection {
+  background: #fbfbfb;
+  border: 1px solid #f3f4f6;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.sectionTitleLarge {
+  font-size: 18px;
+}
+
+.sectionSubtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ===== DIVIDERS ===== */
+.divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+  margin: 24px 0;
+}
+
+.dividerSolid {
+  background: #e5e7eb;
+}
+
+/* ===== FIELD ICONS ===== */
+.fieldGroup.hasIcon {
+  position: relative;
+}
+
+.fieldIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #9ca3af;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fieldGroup.hasIcon .formInput {
+  padding-left: 44px;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .formContainer {
+    border-radius: 0;
+    max-width: 100%;
+  }
+  
+  .formHeader {
+    padding: 20px 24px;
+  }
+  
+  .formTitle {
+    font-size: 20px;
+  }
+  
+  .closeButton {
+    top: 16px;
+    right: 20px;
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .formBody {
+    padding: 24px 20px;
+  }
+  
+  .formGrid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+  
+  .formActions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .primaryButton,
+  .secondaryButton {
+    max-width: none;
+    width: 100%;
+  }
+  
+  .fieldGroupInline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .formHeader {
+    padding: 16px 20px;
+  }
+  
+  .formBody {
+    padding: 20px 16px;
+  }
+  
+  .formInput,
+  .formSelect,
+  .formTextarea {
+    padding: 10px 14px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .fieldGroup.hasIcon .formInput {
+    padding-left: 40px;
+  }
+}

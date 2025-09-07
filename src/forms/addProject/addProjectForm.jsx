@@ -1,3 +1,312 @@
+// import SearchInput from "@/components/searchInput/searchInput";
+// import PopupLayout from "@/layout/common/popupLayout";
+// import FormLayout from "@/layout/formLayout/formLayout";
+// import { ErrorMessage, Field, Form } from "formik";
+// import React, { useState } from "react";
+// import { initialValues, validate } from "./fields";
+// import useFormSubmit from "@/hooks/useFormSubmit";
+// import { Link } from "react-router-dom";
+
+// function ProjectFormWithField({ resetFn }) {
+//   const [profileAcc, setprofileAcc] = useState(false);
+//   const setFieldItem = [
+//     "client_name",
+//     "client_email",
+//     "client_contact",
+//     "client_alt_contact",
+//     "client_address",
+//   ];
+
+//   return (
+//     <Form>
+//       <div className="grid gtc-2 gap-10 add-project-header">
+//         <SearchInput
+//           Name="name"
+//           Label="Client"
+//           Entity="client"
+//           SetOptinalList={setFieldItem}
+//           SetFKey={{pro_client_r_id: 'client_id'}}
+//           SetDisplayKey={{name: 'client_name', id: 'client_ref_no'}}
+//         />
+//         {/* <div className="field add-field-btn">
+//           <p className="opacity-0">0</p>
+//           <button className="btn-primary j-center" type="button">
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               viewBox="0 0 24 24"
+//               id="plus-circle"
+//               className=""
+//             >
+//               <path
+//                 fill=""
+//                 d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z"
+//               ></path>
+//             </svg>
+//             <span className="text">Add a New Client</span>
+//           </button>
+//         </div> */}
+//       </div>
+//       <div className="accordion">
+//         <div className="accordion-heading flex align-center j-between active">
+//           <h3>Profile details</h3>
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             viewBox="0 0 24 24"
+//             id="angle-down"
+//             className="svg-18 arrow hide"
+//             onClick={() => setprofileAcc(!profileAcc)}
+//           >
+//             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
+//           </svg>
+//         </div>
+//         <div
+//           className={`accordion-data profile-accordion`}
+//         >
+//           <div className="grid gtc-2 gap-10">
+//             <div className="field">
+//               <p className="title">Name</p>
+//               <Field type="text" name="client_name" id="" />
+//               <ErrorMessage
+//                 name="client_name"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">Contact Number</p>
+//               <Field type="number" name="client_contact" id="" />
+//               <ErrorMessage
+//                 name="client_contact"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">
+//                 Alternate Number<span>(*optional)</span>
+//               </p>
+//               <Field type="number" name="client_alt_contact" id="" />
+//               <ErrorMessage
+//                 name="client_alt_contact"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">
+//                 Email<span>(*optional)</span>
+//               </p>
+//               <Field type="email" name="client_email" id="" />
+//               <ErrorMessage
+//                 name="client_email"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">
+//                 Address<span>(*optional)</span>
+//               </p>
+//               <Field type="text" name="client_address" id="" />
+//               <ErrorMessage
+//                 name="client_address"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">
+//                 Other Details<span>(*optional)</span>
+//               </p>
+//               <Field type="text" name="others" id="" />
+//               <ErrorMessage name="others" className="err" component="span" />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//       <hr />
+
+//       <div className="accordion">
+//         <div className="accordion-heading flex align-center j-between active">
+//           <h3>Project details</h3>
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             viewBox="0 0 24 24"
+//             id="angle-down"
+//             className="svg-18 arrow hide"
+//           >
+//             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
+//           </svg>
+//         </div>
+//         <div
+//           className={`accordion-data profile-accordion`}
+//         >
+//           <div className="grid gtc-2 gap-10">
+//             <div className="field">
+//               <p className="title">Project Name</p>
+//               <Field type="text" name="pro_name" id="" />
+//               <ErrorMessage
+//                 name="pro_name"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">
+//                 Deadline<span>(*optional)</span>
+//               </p>
+//               <Field type="text" name="deadline" id="" />
+//               <ErrorMessage name="deadline" className="err" component="span" />
+//             </div>
+//             <div className="field">
+//               <p className="title">Total Amount</p>
+//               <Field type="text" name="pro_totalcost" id="" />
+//               <ErrorMessage
+//                 name="pro_totalcost"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">Advance Amount</p>
+//               <Field type="text" name="pro_advancepayment" id="" />
+//               <ErrorMessage
+//                 name="pro_advancepayment"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">House Type</p>
+//               <Field
+//                 as="select"
+//                 name="pro_housetype"
+//                 id="houseType"
+//                 className="house-type"
+//               >
+//                 <option value="ASSAMTYPE">Assam Type</option>
+//                 <optgroup label="RCC">
+//                   <option value="G+1">G+1</option>
+//                   <option value="G+2">G+2</option>
+//                 </optgroup>
+//               </Field>
+//               <ErrorMessage name="pro_housetype" className="err" component="span" />
+//             </div>
+//             <div className="field">
+//               <p className="title">
+//                 Site Description<span>(*optional)</span>
+//               </p>
+//               <Field type="text" name="pro_sitedesc" id="" />
+//               <ErrorMessage
+//                 name="pro_sitedesc"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//             <div className="field">
+//               <p className="title">
+//                 Project Duration <span>in years</span>
+//                 <span>(*optional)</span>
+//               </p>
+//               <Field type="text" name="pro_duration" id="" />
+//               <ErrorMessage
+//                 name="pro_duration"
+//                 className="err"
+//                 component="span"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+
+//       <hr />
+//       {/* <div className="accordion">
+//         <div className="accordion-heading flex align-center j-between">
+//           <h3>Attached files</h3>
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             viewBox="0 0 24 24"
+//             id="angle-down"
+//             className="svg-18 arrow"
+//           >
+//             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
+//           </svg>
+//         </div>
+//         <div
+//           className={`accordion-data profile-accordion ${
+//             profileAcc ? "" : "hide"
+//           }`}
+//         >
+//           <div className="field">
+//             <button className="btn-secondary" type="button" onclick="">
+//               <svg
+//                 xmlns="http://www.w3.org/2000/svg"
+//                 viewBox="0 0 24 24"
+//                 id="image-plus"
+//               >
+//                 <path d="M19,10a1,1,0,0,0-1,1v3.38L16.52,12.9a2.79,2.79,0,0,0-3.93,0l-.7.71L9.41,11.12a2.79,2.79,0,0,0-3.93,0L4,12.61V7A1,1,0,0,1,5,6h8a1,1,0,0,0,0-2H5A3,3,0,0,0,2,7V19.22A2.79,2.79,0,0,0,4.78,22H17.22a2.88,2.88,0,0,0,.8-.12h0a2.74,2.74,0,0,0,2-2.65V11A1,1,0,0,0,19,10ZM5,20a1,1,0,0,1-1-1V15.43l2.89-2.89a.78.78,0,0,1,1.1,0L15.46,20Zm13-1a1,1,0,0,1-.18.54L13.3,15l.71-.7a.77.77,0,0,1,1.1,0L18,17.21ZM21,4H20V3a1,1,0,0,0-2,0V4H17a1,1,0,0,0,0,2h1V7a1,1,0,0,0,2,0V6h1a1,1,0,0,0,0-2Z"></path>
+//               </svg>
+//               <span className="text">Upload</span>
+//             </button>
+//           </div>
+//           <div className="uploaded-files flex align-center gap-10 f-wrap">
+//             <figure className="hide">
+//               <img src="/img/admin.jpg" alt="file" />
+//               <figcaption>Admin.jpg</figcaption>
+//               <span>&times</span>
+//             </figure>
+//           </div>
+//         </div>
+//       </div> */}
+
+//       <div className="action-btn flex gap-10">
+//         <button type="submit" className="btn-success flex-1">
+//           Confirm
+//         </button>
+//         <button type="button" className="btn-warning flex-1" onClick={resetFn}>
+//           Cancel
+//         </button>
+//       </div>
+//     </Form>
+//   );
+// }
+
+// function AddProjectForm() {
+//   const [submithandler, initialSchema, validateSchema, isReturn] =
+//     useFormSubmit(initialValues, validate, "pro_id", "project");
+
+//   function testSubmit(values) {
+//     alert(JSON.stringify(values, null));
+//   }
+
+//   return (
+//     <PopupLayout>
+//       <div className="add-project-popup blur">
+//         <div className="form">
+//           <h2>Project Details</h2>
+//           <Link to="/admin/projects">
+//             <button type="button" className="btn-warning close">
+//               Close
+//             </button>
+//           </Link>
+//           <hr />
+//           <FormLayout
+//             MainForm={ProjectFormWithField}
+//             initialValues={initialSchema}
+//             validationSchema={validateSchema}
+//             formHandler={submithandler}
+//             isReturn={isReturn}
+//           />
+//         </div>
+//       </div>
+//     </PopupLayout>
+//   );
+// }
+
+// export default AddProjectForm;
+
+
+
 import SearchInput from "@/components/searchInput/searchInput";
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
@@ -6,9 +315,12 @@ import React, { useState } from "react";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import { Link } from "react-router-dom";
+import styles from "@/forms/form.module.css";
 
 function ProjectFormWithField({ resetFn }) {
-  const [profileAcc, setprofileAcc] = useState(false);
+  const [profileAcc, setprofileAcc] = useState(true); // Keep accordion functionality
+  const [projectAcc, setprojectAcc] = useState(true); // Add state for project accordion
+  
   const setFieldItem = [
     "client_name",
     "client_email",
@@ -19,170 +331,297 @@ function ProjectFormWithField({ resetFn }) {
 
   return (
     <Form>
-      <div className="grid gtc-2 gap-10 add-project-header">
-        <SearchInput
-          Name="name"
-          Label="Client"
-          Entity="client"
-          SetOptinalList={setFieldItem}
-          SetFKey={{pro_client_r_id: 'client_id'}}
-          SetDisplayKey={{name: 'client_name', id: 'client_ref_no'}}
-        />
-        {/* <div className="field add-field-btn">
-          <p className="opacity-0">0</p>
-          <button className="btn-primary j-center" type="button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              id="plus-circle"
-              className=""
-            >
-              <path
-                fill=""
-                d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z"
-              ></path>
-            </svg>
-            <span className="text">Add a New Client</span>
-          </button>
-        </div> */}
+      {/* Client Selection Section */}
+      <div className={`${styles.formSection}`}>
+        <h3 className={styles.sectionTitle}>Client Information</h3>
+        <div className={`grid gtc-2 gap-10 add-project-header ${styles.formGrid} ${styles.formGridSingleColumn}`}>
+          <div className={styles.fieldGroup}>
+            <SearchInput
+              Name="name"
+              Label="Client"
+              Entity="client"
+              SetOptinalList={setFieldItem}
+              SetFKey={{pro_client_r_id: 'client_id'}}
+              SetDisplayKey={{name: 'client_name', id: 'client_ref_no'}}
+            />
+          </div>
+        </div>
       </div>
-      <div className="accordion">
-        <div className="accordion-heading flex align-center j-between active">
-          <h3>Profile details</h3>
+
+      {/* Profile Details Accordion */}
+      <div className={`accordion ${styles.formSection}`}>
+        <div 
+          className={`accordion-heading flex align-center j-between active ${styles.sectionTitle}`}
+          style={{ 
+            cursor: 'pointer', 
+            padding: '12px 0',
+            borderBottom: '1px solid #e5e7eb',
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+          onClick={() => setprofileAcc(!profileAcc)}
+        >
+          <h3 style={{ margin: 0, color: '#374151', fontSize: '16px', fontWeight: '600' }}>
+            Profile Details
+          </h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             id="angle-down"
-            className="svg-18 arrow hide"
-            onClick={() => setprofileAcc(!profileAcc)}
+            className="svg-18 arrow"
+            style={{ 
+              width: '18px', 
+              height: '18px', 
+              fill: '#6b7280',
+              transform: profileAcc ? 'rotate(0deg)' : 'rotate(-90deg)',
+              transition: 'transform 0.2s ease'
+            }}
           >
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
         </div>
+        
         <div
-          className={`accordion-data profile-accordion`}
+          className={`accordion-data profile-accordion ${!profileAcc ? 'hide' : ''}`}
+          style={{ display: profileAcc ? 'block' : 'none' }}
         >
-          <div className="grid gtc-2 gap-10">
-            <div className="field">
-              <p className="title">Name</p>
-              <Field type="text" name="client_name" id="" />
+          <div className={`grid gtc-2 gap-10 ${styles.formGrid} ${styles.formGridTwoColumns}`}>
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.required}`} htmlFor="client_name">
+                Name
+              </label>
+              <Field 
+                type="text" 
+                name="client_name" 
+                id="client_name"
+                className={styles.formInput}
+                placeholder="Enter client name"
+              />
               <ErrorMessage
                 name="client_name"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
-            <div className="field">
-              <p className="title">Contact Number</p>
-              <Field type="number" name="client_contact" id="" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.required}`} htmlFor="client_contact">
+                Contact Number
+              </label>
+              <Field 
+                type="number" 
+                name="client_contact" 
+                id="client_contact"
+                className={styles.formInput}
+                placeholder="Enter contact number"
+              />
               <ErrorMessage
                 name="client_contact"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
-            <div className="field">
-              <p className="title">
-                Alternate Number<span>(*optional)</span>
-              </p>
-              <Field type="number" name="client_alt_contact" id="" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.fieldLabelOptional}`} htmlFor="client_alt_contact">
+                Alternate Number
+              </label>
+              <Field 
+                type="number" 
+                name="client_alt_contact" 
+                id="client_alt_contact"
+                className={styles.formInput}
+                placeholder="Enter alternate number"
+              />
               <ErrorMessage
                 name="client_alt_contact"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
-            <div className="field">
-              <p className="title">
-                Email<span>(*optional)</span>
-              </p>
-              <Field type="email" name="client_email" id="" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.fieldLabelOptional}`} htmlFor="client_email">
+                Email
+              </label>
+              <Field 
+                type="email" 
+                name="client_email" 
+                id="client_email"
+                className={styles.formInput}
+                placeholder="Enter email address"
+              />
               <ErrorMessage
                 name="client_email"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
-            <div className="field">
-              <p className="title">
-                Address<span>(*optional)</span>
-              </p>
-              <Field type="text" name="client_address" id="" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.fieldLabelOptional}`} htmlFor="client_address">
+                Address
+              </label>
+              <Field 
+                type="text" 
+                name="client_address" 
+                id="client_address"
+                className={styles.formInput}
+                placeholder="Enter client address"
+              />
               <ErrorMessage
                 name="client_address"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
-            <div className="field">
-              <p className="title">
-                Other Details<span>(*optional)</span>
-              </p>
-              <Field type="text" name="others" id="" />
-              <ErrorMessage name="others" className="err" component="span" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.fieldLabelOptional}`} htmlFor="others">
+                Other Details
+              </label>
+              <Field 
+                type="text" 
+                name="others" 
+                id="others"
+                className={styles.formInput}
+                placeholder="Any other details"
+              />
+              <ErrorMessage 
+                name="others" 
+                className={`err ${styles.errorMessage}`} 
+                component="div" 
+              />
             </div>
           </div>
         </div>
       </div>
-      <hr />
 
-      <div className="accordion">
-        <div className="accordion-heading flex align-center j-between active">
-          <h3>Project details</h3>
+      <div className={styles.divider}></div>
+
+      {/* Project Details Accordion */}
+      <div className={`accordion ${styles.formSection}`}>
+        <div 
+          className={`accordion-heading flex align-center j-between active ${styles.sectionTitle}`}
+          style={{ 
+            cursor: 'pointer', 
+            padding: '12px 0',
+            borderBottom: '1px solid #e5e7eb',
+            marginBottom: '16px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+          onClick={() => setprojectAcc(!projectAcc)}
+        >
+          <h3 style={{ margin: 0, color: '#374151', fontSize: '16px', fontWeight: '600' }}>
+            Project Details
+          </h3>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             id="angle-down"
-            className="svg-18 arrow hide"
+            className="svg-18 arrow"
+            style={{ 
+              width: '18px', 
+              height: '18px', 
+              fill: '#6b7280',
+              transform: projectAcc ? 'rotate(0deg)' : 'rotate(-90deg)',
+              transition: 'transform 0.2s ease'
+            }}
           >
             <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
           </svg>
         </div>
+        
         <div
-          className={`accordion-data profile-accordion`}
+          className={`accordion-data profile-accordion ${!projectAcc ? 'hide' : ''}`}
+          style={{ display: projectAcc ? 'block' : 'none' }}
         >
-          <div className="grid gtc-2 gap-10">
-            <div className="field">
-              <p className="title">Project Name</p>
-              <Field type="text" name="pro_name" id="" />
+          <div className={`grid gtc-2 gap-10 ${styles.formGrid} ${styles.formGridTwoColumns}`}>
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.required}`} htmlFor="pro_name">
+                Project Name
+              </label>
+              <Field 
+                type="text" 
+                name="pro_name" 
+                id="pro_name"
+                className={styles.formInput}
+                placeholder="Enter project name"
+              />
               <ErrorMessage
                 name="pro_name"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
-            <div className="field">
-              <p className="title">
-                Deadline<span>(*optional)</span>
-              </p>
-              <Field type="text" name="deadline" id="" />
-              <ErrorMessage name="deadline" className="err" component="span" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.fieldLabelOptional}`} htmlFor="deadline">
+                Deadline
+              </label>
+              <Field 
+                type="text" 
+                name="deadline" 
+                id="deadline"
+                className={styles.formInput}
+                placeholder="Enter project deadline"
+              />
+              <ErrorMessage 
+                name="deadline" 
+                className={`err ${styles.errorMessage}`} 
+                component="div" 
+              />
             </div>
-            <div className="field">
-              <p className="title">Total Amount</p>
-              <Field type="text" name="pro_totalcost" id="" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.required}`} htmlFor="pro_totalcost">
+                Total Amount
+              </label>
+              <Field 
+                type="text" 
+                name="pro_totalcost" 
+                id="pro_totalcost"
+                className={styles.formInput}
+                placeholder="Enter total project cost"
+              />
               <ErrorMessage
                 name="pro_totalcost"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
-            <div className="field">
-              <p className="title">Advance Amount</p>
-              <Field type="text" name="pro_advancepayment" id="" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.required}`} htmlFor="pro_advancepayment">
+                Advance Amount
+              </label>
+              <Field 
+                type="text" 
+                name="pro_advancepayment" 
+                id="pro_advancepayment"
+                className={styles.formInput}
+                placeholder="Enter advance payment"
+              />
               <ErrorMessage
                 name="pro_advancepayment"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
-            <div className="field">
-              <p className="title">House Type</p>
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.required}`} htmlFor="houseType">
+                House Type
+              </label>
               <Field
                 as="select"
                 name="pro_housetype"
                 id="houseType"
-                className="house-type"
+                className={`house-type ${styles.formSelect}`}
               >
                 <option value="ASSAMTYPE">Assam Type</option>
                 <optgroup label="RCC">
@@ -190,80 +629,66 @@ function ProjectFormWithField({ resetFn }) {
                   <option value="G+2">G+2</option>
                 </optgroup>
               </Field>
-              <ErrorMessage name="pro_housetype" className="err" component="span" />
-            </div>
-            <div className="field">
-              <p className="title">
-                Site Description<span>(*optional)</span>
-              </p>
-              <Field type="text" name="pro_sitedesc" id="" />
-              <ErrorMessage
-                name="pro_sitedesc"
-                className="err"
-                component="span"
+              <ErrorMessage 
+                name="pro_housetype" 
+                className={`err ${styles.errorMessage}`} 
+                component="div" 
               />
             </div>
-            <div className="field">
-              <p className="title">
-                Project Duration <span>in years</span>
-                <span>(*optional)</span>
-              </p>
-              <Field type="text" name="pro_duration" id="" />
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.fieldLabelOptional}`} htmlFor="pro_sitedesc">
+                Site Description
+              </label>
+              <Field 
+                type="text" 
+                name="pro_sitedesc" 
+                id="pro_sitedesc"
+                className={styles.formInput}
+                placeholder="Describe the site details"
+              />
+              <ErrorMessage
+                name="pro_sitedesc"
+                className={`err ${styles.errorMessage}`}
+                component="div"
+              />
+            </div>
+
+            <div className={`field ${styles.fieldGroup}`}>
+              <label className={`title ${styles.fieldLabel} ${styles.fieldLabelOptional}`} htmlFor="pro_duration">
+                Project Duration (in years)
+              </label>
+              <Field 
+                type="text" 
+                name="pro_duration" 
+                id="pro_duration"
+                className={styles.formInput}
+                placeholder="Enter duration in years"
+              />
               <ErrorMessage
                 name="pro_duration"
-                className="err"
-                component="span"
+                className={`err ${styles.errorMessage}`}
+                component="div"
               />
             </div>
           </div>
         </div>
       </div>
 
-      <hr />
-      {/* <div className="accordion">
-        <div className="accordion-heading flex align-center j-between">
-          <h3>Attached files</h3>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            id="angle-down"
-            className="svg-18 arrow"
-          >
-            <path d="M17,9.17a1,1,0,0,0-1.41,0L12,12.71,8.46,9.17a1,1,0,0,0-1.41,0,1,1,0,0,0,0,1.42l4.24,4.24a1,1,0,0,0,1.42,0L17,10.59A1,1,0,0,0,17,9.17Z"></path>
-          </svg>
-        </div>
-        <div
-          className={`accordion-data profile-accordion ${
-            profileAcc ? "" : "hide"
-          }`}
+      {/* Action Buttons */}
+      <div className={`action-btn flex gap-10 ${styles.formActions}`}>
+        <button 
+          type="submit" 
+          className={`btn-success flex-1 ${styles.primaryButton} ${styles.primaryButtonGreen}`}
         >
-          <div className="field">
-            <button className="btn-secondary" type="button" onclick="">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                id="image-plus"
-              >
-                <path d="M19,10a1,1,0,0,0-1,1v3.38L16.52,12.9a2.79,2.79,0,0,0-3.93,0l-.7.71L9.41,11.12a2.79,2.79,0,0,0-3.93,0L4,12.61V7A1,1,0,0,1,5,6h8a1,1,0,0,0,0-2H5A3,3,0,0,0,2,7V19.22A2.79,2.79,0,0,0,4.78,22H17.22a2.88,2.88,0,0,0,.8-.12h0a2.74,2.74,0,0,0,2-2.65V11A1,1,0,0,0,19,10ZM5,20a1,1,0,0,1-1-1V15.43l2.89-2.89a.78.78,0,0,1,1.1,0L15.46,20Zm13-1a1,1,0,0,1-.18.54L13.3,15l.71-.7a.77.77,0,0,1,1.1,0L18,17.21ZM21,4H20V3a1,1,0,0,0-2,0V4H17a1,1,0,0,0,0,2h1V7a1,1,0,0,0,2,0V6h1a1,1,0,0,0,0-2Z"></path>
-              </svg>
-              <span className="text">Upload</span>
-            </button>
-          </div>
-          <div className="uploaded-files flex align-center gap-10 f-wrap">
-            <figure className="hide">
-              <img src="/img/admin.jpg" alt="file" />
-              <figcaption>Admin.jpg</figcaption>
-              <span>&times</span>
-            </figure>
-          </div>
-        </div>
-      </div> */}
-
-      <div className="action-btn flex gap-10">
-        <button type="submit" className="btn-success flex-1">
-          Confirm
+          <span>✓</span>
+          Confirm Project
         </button>
-        <button type="button" className="btn-warning flex-1" onClick={resetFn}>
+        <button 
+          type="button" 
+          className={`btn-warning flex-1 ${styles.secondaryButton}`} 
+          onClick={resetFn}
+        >
           Cancel
         </button>
       </div>
@@ -281,15 +706,18 @@ function AddProjectForm() {
 
   return (
     <PopupLayout>
-      <div className="add-project-popup blur">
-        <div className="form">
-          <h2>Project Details</h2>
-          <Link to="/admin/projects">
-            <button type="button" className="btn-warning close">
-              Close
-            </button>
+      <div className={`add-project-popup blur ${styles.formContainer} ${styles.formContainerLarge}`}>
+        {/* Modern Header */}
+        <div className={`${styles.formHeader} ${styles.formHeaderGreen}`}>
+          <h2 className={styles.formTitle}>New Project Details</h2>
+          <p className={styles.formSubtitle}>Create a new construction project with client and project information</p>
+          <Link to="/admin/projects" className={styles.closeButton}>
+            ✕ Close
           </Link>
-          <hr />
+        </div>
+
+        {/* Form Body */}
+        <div className={`form ${styles.formBody}`}>
           <FormLayout
             MainForm={ProjectFormWithField}
             initialValues={initialSchema}
