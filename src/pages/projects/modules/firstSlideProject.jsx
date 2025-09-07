@@ -21,7 +21,6 @@ function FirstSlideProject() {
             "Ref No.",
             "House type",
             "Duration",
-            "Action",
           ]}
           Limit={[
             "pro_id",

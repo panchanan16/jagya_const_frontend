@@ -1,7 +1,7 @@
 import SearchInput from "@/components/searchInput/searchInput";
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
-import { Field, Form } from "formik";
+import { ErrorMessage, Field, Form } from "formik";
 import { Link } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
@@ -16,11 +16,15 @@ function InstallmentFormWithField({ resetFn }) {
           Label={"project"}
           Entity="project"
           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
-          SetFKey={{col_project_id: "pro_ref_no"}}
-          errorKey={'col_project_id'}
+          SetFKey={{ col_project_id: "pro_ref_no" }}
+          errorKey={"col_project_id"}
         />
         <div className="field">
-          <SelectOption Name="Phase" />
+          <SelectOption
+            Name="col_project_phase"
+            Label={"Phase"}
+            keyValue={"phase_name"}
+          />
         </div>
         <div className="field">
           <p className="title">Date</p>
@@ -29,26 +33,25 @@ function InstallmentFormWithField({ resetFn }) {
         <div className="field">
           <p className="title">Amount</p>
           <Field type="number" name="col_amount" id="" />
+          <ErrorMessage name={"col_amount"} className="err" component="span" />
         </div>
         <div className="field">
           <p className="title">Remarks</p>
           <Field type="text" name="col_remark" id="" />
         </div>
         <div className="field">
-          <p className="title">Mode</p>
+          <p className="title">Mode of Payment</p>
           <div className="flex f-wrap gap-10">
-            <div className="flex gap-2">
-              <Field type="radio" name="col_mode" value="cash" id="" />
-              <p className="text">Cash</p>
-            </div>
-            <div className="flex gap-2">
-              <Field type="radio" name="col_mode" value="upi" id="" />
-              <p className="text">UPI</p>
-            </div>
-            <div className="flex gap-2">
-              <Field type="radio" name="col_mode" value="cheque" id="" />
-              <p className="text">Cheque</p>
-            </div>
+            <Field as="select" name="col_mode">
+              <option value="" disabled>
+                --- Select method ---
+              </option>
+              <option value="UPI">UPI</option>
+              <option value="Cash">Cash</option>
+              <option value="Bank Transfer">Bank Transfer</option>
+              <option value="Net banking">Net banking</option>
+            </Field>
+            <ErrorMessage name={"col_mode"} className="err" component="span" />
           </div>
         </div>
       </div>
