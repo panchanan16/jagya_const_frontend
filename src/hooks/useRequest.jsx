@@ -55,6 +55,7 @@ function useRequest(entity, action, tail, query, isOnload = true) {
         ? entityEndpoint.getAllWithQuery(entity, query)
         : entityEndpoint.getAll(entity);
       const data = await _GET(endpoint);
+      console.log(data)
       setRequestData(data.data);
       action && dispatch(action(data.data));
     }

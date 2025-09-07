@@ -240,6 +240,11 @@
   line-height: 1.5;
 }
 
+.linkCell:hover {
+  text-decoration: underline;
+  color: rgb(1, 1, 189)
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
   .tableCell,

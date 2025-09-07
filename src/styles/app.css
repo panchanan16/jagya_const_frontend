@@ -216,7 +216,6 @@ img {
 }
 
 button,
-svg,
 img,
 input,
 select {
@@ -225,9 +224,9 @@ select {
     outline: none;
 }
 
-svg {
+/* svg {
     fill: var(--primary-900);
-}
+} */
 
 select {
     appearance: none;
@@ -2735,5 +2734,6 @@ canvas {
     color: blue;
     font-weight: 600;
 }
+
 
 

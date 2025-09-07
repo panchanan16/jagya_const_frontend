@@ -1,13 +1,19 @@
+import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
-
 function FirstSlideContractor() {
-  const { itemList } = usePageRender({entity: "contractor"});
-  
+  const { itemList } = usePageRender({ entity: "contractor" });
+
   return (
-    <FirstSlideLayout Heading="Contractors" Btn={"Add Contractor"} BtnFn={"create"} HeadingText="All Contractors">
+    <FirstSlideLayout
+      Heading="Contractors"
+      Btn={"Add Contractor"}
+      BtnFn={"create"}
+      HeadingText="All Contractors"
+      Endbtn2={<SectionHeaderBtn btnName={'Add Expense'} clickFn={'/admin/expense/add-expense'} />}
+    >
       <div className="main-table">
         <Table
           Theader={[
@@ -17,7 +23,6 @@ function FirstSlideContractor() {
             "Alt Contact",
             "Address",
             "Email",
-            "Action",
           ]}
           Trow={itemList}
           Actions={{

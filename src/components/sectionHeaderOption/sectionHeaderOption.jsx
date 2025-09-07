@@ -5,9 +5,9 @@ function SectionHeaderOption({
   EndBtn,
   HeadingText,
   Entity,
-  FilterComponent,
+  EndBtn2,
   searchFields,
-  Heading = "Data"
+  Heading = "Data",
 }) {
   return (
     <div className="top-section flex align-center j-between">
@@ -44,6 +44,7 @@ function SectionHeaderOption({
             <span className="text">Filter</span>
           </button>
         </div>
+        {EndBtn2}
         {EndBtn}
       </div>
     </div>

@@ -10,7 +10,8 @@ function FirstSlideLayout({
   Entity,
   searchFields,
   HeaderSection,
-  HeadingText
+  HeadingText,
+  Endbtn2 = false
 }) {
   return (
     <div className={`first-slide`} id="first-slide">
@@ -23,6 +24,7 @@ function FirstSlideLayout({
             Entity={Entity}
             searchFields={searchFields}
             Heading={Heading}
+            EndBtn2={Endbtn2}
           />
         )}
 

@@ -50,20 +50,32 @@ function SecondSlideExpense() {
           <h3>Contractor</h3>
           <Table
             Theader={[
-              "ProjectID",
               "Amount",
-              "Note",
+              // "ProjectID",
+              "Project Name",
               "Contractor",
-              "Project name",
-              "Project ref",
+              "Project Ref",
+              "Contractor",
             ]}
             Trow={itemData?.contractor}
             Limit={[
-              "pay_amount",
-              "pay_project_id",
+              {
+                key: "pay_amount",
+                type: "amount"
+              },
+              // "pay_project_id",
               "pro_name",
               "pay_note",
-              "pro_ref_no",
+              (rowData) => (
+                <td className="linkCell">
+                  <Link
+                    to={`/admin/projects/${rowData.pay_project_id}`}
+                    className="linkCell"
+                  >
+                    {rowData.pro_ref_no}
+                  </Link>
+                </td>
+              ),
               "con_name",
             ]}
           />
