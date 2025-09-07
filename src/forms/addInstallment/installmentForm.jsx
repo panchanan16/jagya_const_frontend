@@ -5,6 +5,7 @@ import { Field, Form } from "formik";
 import { Link } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
+import SelectOption from "@/components/SelectOption/SelectOption";
 
 function InstallmentFormWithField({ resetFn }) {
   return (
@@ -18,6 +19,9 @@ function InstallmentFormWithField({ resetFn }) {
           SetFKey={{col_project_id: "pro_ref_no"}}
           errorKey={'col_project_id'}
         />
+        <div className="field">
+          <SelectOption Name="Phase" />
+        </div>
         <div className="field">
           <p className="title">Date</p>
           <Field type="date" name="col_date" id="" />
