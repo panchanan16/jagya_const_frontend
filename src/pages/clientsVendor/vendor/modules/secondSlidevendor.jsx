@@ -11,7 +11,7 @@ function SecondSlideVendor() {
     tail: `get_vendor_payment_purchase?vendor_id=${id}`,
     key: "itemData",
   });
-  const { viewedItem } = useSecondSlideData("vendor", "vendor_id");
+  console.log(itemData);
 
   return (
     <SecondSlideLayout>
@@ -32,28 +32,82 @@ function SecondSlideVendor() {
               ></path>
             </svg>
           </Link>
+
+           <div className="flex" style={{ gap: 10 }}>
+            <Link to={`/admin/expense/add-expense`} className="btn-primary flex">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className=""
+              >
+                <path
+                  fill=""
+                  d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"
+                ></path>
+              </svg>
+              <span>Add Payments</span>
+            </Link>
+
+            <Link to={`/admin/vendors/create/${id}`} className="btn-primary flex">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                className=""
+              >
+                <path
+                  fill=""
+                  d="M21,12a1,1,0,0,0-1,1v6a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V5A1,1,0,0,1,5,4h6a1,1,0,0,0,0-2H5A3,3,0,0,0,2,5V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V13A1,1,0,0,0,21,12ZM6,12.76V17a1,1,0,0,0,1,1h4.24a1,1,0,0,0,.71-.29l6.92-6.93h0L21.71,8a1,1,0,0,0,0-1.42L17.47,2.29a1,1,0,0,0-1.42,0L13.23,5.12h0L6.29,12.05A1,1,0,0,0,6,12.76ZM16.76,4.41l2.83,2.83L18.17,8.66,15.34,5.83ZM8,13.17l5.93-5.93,2.83,2.83L10.83,16H8Z"
+                ></path>
+              </svg>
+              <span>Edit Vendor</span>
+            </Link>
+          </div>
         </div>
 
         <div className="header-text">
-          <h2>{viewedItem && viewedItem.vendor_name}</h2>
+          <h2>Vendor Details</h2>
         </div>
         {/* <!-- DETAILS  --> */}
         <div className="contents grid gtc-2 gap-10">
           <div className="description flex">
+            <h3>Vendor Reff No. : </h3>
+            <p className="text">{itemData && itemData.vendor?.vendor_ref_no}</p>
+          </div>
+          <div className="description flex">
+            <h3>Vendor Name : </h3>
+            <p className="text">{itemData && itemData.vendor?.vendor_name}</p>
+          </div>
+          <div className="description flex">
             <h3>Phone Number : </h3>
-            <p className="text">{viewedItem && viewedItem.vendor_contact}</p>
+            <p className="text">
+              {itemData && itemData.vendor?.vendor_contact}
+            </p>
           </div>
           <div className="description flex">
             <h3>Email ID:</h3>
             <p className="text">
-              {viewedItem && viewedItem.vendor_email
-                ? viewedItem.vendor_email
+              {itemData && itemData.vendor?.vendor_email
+                ? itemData.vendor?.vendor_email
                 : "N/A"}
             </p>
           </div>
           <div className="description flex">
             <h3>Address:</h3>
-            <p className="text">{viewedItem && viewedItem.vendor_address}</p>
+            <p className="text">
+              {itemData && itemData.vendor?.vendor_address}
+            </p>
+          </div>
+          <div className="description flex">
+            <h3>Amount Paid:</h3>
+            <p className="text">
+              ₹ {itemData && itemData.total_amount?.total_payments}
+            </p>
+          </div>
+          <div className="description flex">
+            <h3>Amount Purchases:</h3>
+            <p className="text">
+              ₹ {itemData && itemData.total_amount.total_materials}
+            </p>
           </div>
         </div>
 
@@ -63,11 +117,22 @@ function SecondSlideVendor() {
           TabList={[
             {
               main: "Payments",
-              list: ["No.", "Project", "Amount", "Mode", "Remarks"],
+              list: ["Project", "Amount", "Mode", "Remarks"],
               limit: [
-                "pay_id",
-                "pay_project_id",
-                "pay_amount",
+                (rowData) => (
+                  <td className="linkCell">
+                    <Link
+                      to={`/admin/projects/${rowData.pay_project_id}`}
+                      className="linkCell"
+                    >
+                     Project ID {rowData.pay_project_id}
+                    </Link>
+                  </td>
+                ),
+                {
+                  key: "pay_amount",
+                  type: "amount"
+                },
                 "pay_mode",
                 "pay_note",
               ],
@@ -75,13 +140,24 @@ function SecondSlideVendor() {
             },
             {
               main: "Purchases",
-              list: ["Vendor", "Project Name", "Item", "Qnt", "Amount", "Date"],
+              list: ["Project Name", "Item", "Qnt", "Amount", "Date"],
               limit: [
-                "vendor_id",
-                "mr_project_r_id",
+                (rowData) => (
+                  <td className="linkCell">
+                    <Link
+                      to={`/admin/projects/${rowData.mr_project_r_id}`}
+                      className="linkCell"
+                    >
+                     Project ID {rowData.mr_project_r_id}
+                    </Link>
+                  </td>
+                ),
                 "mr_item_name",
                 "mr_item_quantity",
-                "mr_item_amount",
+                {
+                  key: "mr_item_amount",
+                  type: "amount"
+                },
                 "mr_item_date",
               ],
               tabData: itemData.purcheses,

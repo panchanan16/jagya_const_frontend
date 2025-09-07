@@ -6,7 +6,7 @@ const initialState = {
     itemList: [],
     loading: false,
     error: null,
-    itemData: { payments: [], purcheses: [] }
+    itemData: { payments: [], purcheses: [], total_amount: {}, vendor: {} }
 }
 
 export const vendorSlice = createSlice({

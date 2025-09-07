@@ -12,16 +12,16 @@
     --primary-400: hsl(51, 15%, 75%);
     --primary-500: hsl(51, 15%, 65%);
     --primary-600: hsl(51, 15%, 50%);
-    --primary-700: hsl(51, 15%, 40%);
+    --primary-700: hsl(217, 50%, 30%);
     --primary-800: hsl(51, 15%, 22%);
-    --primary-900: hsl(51, 15%, 12%);
+    --primary-900: hsl(219, 40%, 16%);
 
     --light-primary-50: hsla(51, 15%, 97%, 0.3);
-    --light-primary-100: hsla(51, 15%, 92%, 0.5);
+    --light-primary-100: hsla(50, 15%, 92%, 0.3);
     --light-primary-200: hsla(51, 15%, 89%, 0.5);
     --light-primary-300: hsla(51, 15%, 82%, 0.5);
     --light-primary-400: hsla(51, 15%, 75%, 0.5);
-    --light-primary-500: hsla(51, 15%, 65%, 0.5);
+    --light-primary-500: hsla(237, 18%, 22%, 0.5);
     --light-primary-600: hsla(51, 15%, 50%, 0.5);
     --light-primary-700: hsla(51, 15%, 40%, 0.5);
     --light-primary-800: hsla(51, 15%, 22%, 0.5);
@@ -150,7 +150,6 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    user-select: none;
 }
 
 *::before,
@@ -217,7 +216,6 @@ img {
 }
 
 button,
-svg,
 img,
 input,
 select {
@@ -226,9 +224,9 @@ select {
     outline: none;
 }
 
-svg {
+/* svg {
     fill: var(--primary-900);
-}
+} */
 
 select {
     appearance: none;
@@ -424,7 +422,7 @@ nav ul li {
     margin-bottom: var(--px-8);
 }
 
-nav ul li>a,
+/* nav ul li>a,
 .log-out a {
     font-size: var(--px-15);
     gap: var(--px-6);
@@ -433,18 +431,18 @@ nav ul li>a,
     color: var(--primary-900);
     transition: var(--transition-1);
     border: 1px solid var(--body-background);
-}
+} */
 
-nav ul li a span.text {
+/* nav ul li a span.text {
     flex: 1;
-}
+} */
 
-nav ul li:is(.active, :hover) a:not(li .sub-menu a),
+/* nav ul li:is(.active, :hover) a:not(li .sub-menu a),
 .log-out a:is(:hover, .active) {
     border: 1px solid var(--btn-color);
     background: var(--gradient-3);
     color: var(--btn-color);
-}
+} */
 
 li a svg,
 .log-out a svg {
@@ -452,14 +450,14 @@ li a svg,
     height: var(--px-22);
 }
 
-nav li a .arrow.active {
+/* nav li a .arrow.active {
     transform: rotate(90deg);
-}
+} */
 
-li:is(.active, :hover) svg,
+/* li:is(.active, :hover) svg,
 .log-out a:is(.active, :hover) svg {
     fill: var(--btn-color);
-}
+} */
 
 li .sub-menu {
     display: none;
@@ -524,6 +522,8 @@ li .sub-menu.active a:is(.active, :hover) {
     justify-content: center;
     gap: var(--px-5);
     border: 1px solid var(--btn-color);
+    border-radius: 24px;
+    padding: 15px;
     /* box-shadow: var(--b-shadow-1); */
 }
 
@@ -539,7 +539,7 @@ li .sub-menu.active a:is(.active, :hover) {
 }
 
 .right {
-    width: calc(100% - 250px);
+    width: calc(100% - 270px);
     position: absolute;
     right: 0;
     display: flex;
@@ -1848,7 +1848,7 @@ figure span {
 .branch-project-popup {
     width: 100%;
     height: 96%;
-    max-width: 650px !important;
+    max-width: 850px !important;
     padding: 10px;
     position: absolute;
     right: 0;
@@ -2725,3 +2725,15 @@ canvas {
         width: 100%;
     }
 }
+
+
+
+/* New CSS */
+
+.hoverr:hover {
+    color: blue;
+    font-weight: 600;
+}
+
+
+

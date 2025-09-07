@@ -1,11 +1,15 @@
 import PopupLayout from "@/layout/common/popupLayout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ExpenseField from "./expenseField";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, FieldArray, Form } from "formik";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import ExpenseSchema from "@/utils/validation/expenseSchema";
+import { useAction } from "@/hooks/useAction";
+import { GET_ONE_EXPENSE } from "@/redux/features/expenseSlice/slice";
+import { useEffect } from "react";
+import usePageRender from "@/hooks/usePageRender";
 
 function ExpenseFormWithField({ values, resetFn }) {
   return (
@@ -52,7 +56,7 @@ function ExpenseFormWithField({ values, resetFn }) {
                 RemoveFn={remove}
                 Ind={index}
                 Type={"vendor"}
-                typeDisplay = {{id: 'vendor_id', name: 'vendor_name'}}
+                typeDisplay={{ id: "vendor_id", name: "vendor_name" }}
               />
             ))}
           </div>
@@ -76,7 +80,7 @@ function ExpenseFormWithField({ values, resetFn }) {
                 RemoveFn={remove}
                 Ind={index}
                 Type={"contractor"}
-                typeDisplay = {{id: 'con_id', name: 'con_name'}}
+                typeDisplay={{ id: "con_id", name: "con_name" }}
               />
             ))}
           </div>
@@ -90,7 +94,12 @@ function ExpenseFormWithField({ values, resetFn }) {
               type="button"
               className="btn-secondary"
               onClick={() =>
-                push({ pay_project_id: "", pay_vendor_id: "", pay_amount: "", pay_note: "" })
+                push({
+                  pay_project_id: "",
+                  pay_vendor_id: "",
+                  pay_amount: "",
+                  pay_note: "",
+                })
               }
             >
               Add Vendor Expense
@@ -103,7 +112,12 @@ function ExpenseFormWithField({ values, resetFn }) {
               type="button"
               className="btn-secondary"
               onClick={() =>
-                push({ pay_project_id: "", pay_con_id: "", pay_amount: "", pay_note: "" })
+                push({
+                  pay_project_id: "",
+                  pay_con_id: "",
+                  pay_amount: "",
+                  pay_note: "",
+                })
               }
             >
               Add Contractor Expense
@@ -129,13 +143,29 @@ function ExpenseFormWithField({ values, resetFn }) {
 }
 
 function AddExpenseForm() {
-  const [submithandler, initialSchema, isReturn] =
-  useFormSubmit(initialValues, validate, "exp_id", {name: "expense", route: 'create'});
+  const navigate = useNavigate()
+  const [submithandler, initialSchema, isReturn] = useFormSubmit(
+    initialValues,
+    validate,
+    "exp_id",
+    { name: "expense", route: "create" }
+  );
+   const { id } = useParams();
+   const { itemData } = usePageRender({
+     entity: "expense",
+     tail: `get_expense_details/${id}`,
+     key: "itemData",
+     itemId: "exp_id",
+   });
 
+  const expenseEditData = {
+    ...initialSchema,
+    ...itemData
+  }
 
   const addExpense = (values) => {
     alert(JSON.stringify(values, null, 2));
-    console.log(values)
+    console.log(values);
   };
 
   return (
@@ -148,11 +178,12 @@ function AddExpenseForm() {
               Close
             </button>
           </Link>
+          
           <hr />
 
           <FormLayout
             MainForm={ExpenseFormWithField}
-            initialValues={initialSchema}
+            initialValues={expenseEditData}
             validationSchema={ExpenseSchema}
             formHandler={submithandler}
             isReturn={isReturn}

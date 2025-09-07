@@ -17,6 +17,11 @@ const settingSlice = createSlice({
         insertPhase: (state, action) => {
             state.phaseList.push(action.payload)
         },
+        deletePhase: (state, action) => {
+            state.phaseList = state.phaseList.filter(
+                (phase) => phase.phase_id !== action.payload.phase_id
+            );
+        },
         addSubPhase: (state, action) => {
             state.subPhaseList = action.payload
         },
@@ -27,7 +32,7 @@ const settingSlice = createSlice({
     }
 })
 
-export const { addPhase, insertPhase, addSubPhase, insertSubPhase } = settingSlice.actions;
+export const { addPhase, insertPhase, deletePhase, addSubPhase, insertSubPhase } = settingSlice.actions;
 
 export default settingSlice.reducer;
 

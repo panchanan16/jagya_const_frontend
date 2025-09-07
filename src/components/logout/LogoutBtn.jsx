@@ -2,7 +2,9 @@ import useLogin from "@/hooks/useLogin";
 import { LogoutIcon } from "@/utils/others/icons";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import styles from "../asideLink/asideNavlink.module.css";
+import { LogOutIcon } from "lucide-react";
 
 function LogoutBtn() {
   const navigate = useNavigate();
@@ -16,11 +18,15 @@ function LogoutBtn() {
     LoginOutUser();
   }
   return (
-    <li onClick={() => logoutUser()}>
-      <a className="flex align-center">
-        <LogoutIcon />
-        <span className="text">LogOut</span>
-      </a>
+    <li className={styles.navItem} onClick={()=> logoutUser()}>
+      <Link className={`${styles.navLink}`}>
+        <div className={styles.navContent}>
+          <div className={styles.navIcon}>
+            <span style={{color: '#fff'}}><LogOutIcon /></span>
+          </div>
+          <span className={styles.navText}>LogOut</span>
+        </div>
+      </Link>
     </li>
   );
 }

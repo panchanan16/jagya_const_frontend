@@ -20,7 +20,6 @@ function FirstSlideExpense() {
             "Amount",
             "Mode of pay",
             "Date",
-            "Action",
           ]}
           Limit={["exp_id", "exp_name", "exp_amount", "exp_mode", "exp_date"]}
           Trow={itemList}

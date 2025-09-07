@@ -1,3 +1,4 @@
+import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
@@ -13,6 +14,7 @@ function FirstSlideVendor() {
       HeadingText="All Vendors"
       Entity={"vendor"}
       searchFields={["vendor_name", "vendor_ref_no", "vendor_address"]}
+      Endbtn2={<SectionHeaderBtn btnName={'Add Expense'} clickFn={'/admin/expense/add-expense'} />}
     >
       <div className="main-table">
         <Table
@@ -25,7 +27,6 @@ function FirstSlideVendor() {
             "Address",
             "Email",
             "Status",
-            "Action",
           ]}
           Trow={itemList}
           Actions={{

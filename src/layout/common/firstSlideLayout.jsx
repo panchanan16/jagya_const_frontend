@@ -10,25 +10,21 @@ function FirstSlideLayout({
   Entity,
   searchFields,
   HeaderSection,
-  HeadingText
+  HeadingText,
+  Endbtn2 = false
 }) {
   return (
     <div className={`first-slide`} id="first-slide">
       <Header />
-      <main>
-        {Heading && (
-          <div className="heading">
-            <h1>{Heading && Heading}</h1>
-            <p className="title">Find all {`${Heading}`.toLocaleLowerCase()} here</p>
-          </div>
-        )}
-
+      <main>       
         {HeaderSection == undefined && (
           <SectionHeaderOption 
             HeadingText={HeadingText}
             EndBtn={<SectionHeaderBtn btnName={Btn} clickFn={BtnFn} />}
             Entity={Entity}
             searchFields={searchFields}
+            Heading={Heading}
+            EndBtn2={Endbtn2}
           />
         )}
 

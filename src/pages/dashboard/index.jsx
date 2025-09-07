@@ -116,7 +116,7 @@ const AnalyticsDashboard = () => {
   ];
 
   const filterContainerStyle = {
-    background: "linear-gradient(135deg, #363428 0%, #4A4A3A 100%)",
+    background: "linear-gradient(135deg, hsl(219, 40%, 16%) 0%, hsl(217, 50%, 30%) 100%)",
     borderRadius: "6px",
     padding: "24px",
     marginBottom: "32px",
@@ -166,7 +166,7 @@ const AnalyticsDashboard = () => {
   return (
     <PageLayout>
       <DynamicLayout>
-        <FirstSlideLayout>
+        <FirstSlideLayout Heading={"Analytics"}>
           <div
             style={{
               padding: "32px",

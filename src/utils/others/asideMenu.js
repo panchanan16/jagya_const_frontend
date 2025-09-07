@@ -1,13 +1,14 @@
 import roles from "@/auth/role";
 import { DashboardIcon, ProjectIcon, ClientVendorIcon, AccountingIcon, MaterialsIcon, LaboursIcon, BranchIcon, UserMangerIcon, NotificationIcon, SettingsIcon, LogoutIcon } from "./icons";
 import { ROLES } from "@/config/route.config";
+import { BadgeDollarSignIcon, BanknoteArrowUpIcon, BookUserIcon, CirclePoundSterling, FileCheckIcon, HandCoins, HatGlassesIcon, LandmarkIcon, LayoutDashboard, PencilRulerIcon, PickaxeIcon, Settings2Icon, Users2 } from "lucide-react";
 
 const entity = "admin"
 const asideMenuItems = [
     {
         name: 'Analytics',
         submenu: [],
-        svgImg: DashboardIcon,
+        svgImg: LayoutDashboard,
         redirect: '/admin/dashboard',
         role: [ROLES.SUPERADMIN]
     },
@@ -15,7 +16,7 @@ const asideMenuItems = [
     {
         name: 'Projects',
         submenu: [],
-        svgImg: ProjectIcon,
+        svgImg: PickaxeIcon,
         redirect: `/${entity}/projects`,
         role: [ROLES.SUPERADMIN]
     },
@@ -25,7 +26,7 @@ const asideMenuItems = [
             { name: 'Clients', url: `${entity}/clients` },
             { name: 'Vendors', url: `${entity}/vendors` }
         ],
-        svgImg: ClientVendorIcon,
+        svgImg: BookUserIcon,
         redirect: '',
         role: [ROLES.SUPERADMIN]
     },
@@ -37,7 +38,7 @@ const asideMenuItems = [
             { name: 'Expenses', url: `${entity}/expense` },
             { name: 'Invoices', url: `${entity}/invoices` }
         ],
-        svgImg: AccountingIcon,
+        svgImg: BadgeDollarSignIcon,
         redirect: '',
         role: [ROLES.SUPERADMIN]
     },
@@ -51,9 +52,40 @@ const asideMenuItems = [
             { name: 'Incharge', url: `${entity}/incharge` },
             { name: 'Stock', url: `${entity}/inventory-stocks` }
         ],
-        svgImg: MaterialsIcon,
+        svgImg: PencilRulerIcon,
         redirect: '',
         role: [ROLES.SUPERADMIN]
+    },
+
+    // Fiance dashboard
+
+    {
+        name: 'Materials Finance',
+        submenu: [],
+        svgImg: LandmarkIcon,
+        redirect: `/${entity}/finance-request`,
+        role: [ROLES.FINANCEDEPARTMENT]
+    },
+    {
+        name: 'Installments',
+        submenu: [],
+        svgImg: HandCoins,
+        redirect: `/${entity}/finance`,
+        role: [ROLES.FINANCEDEPARTMENT]
+    },
+    {
+        name: 'Expenses',
+        submenu: [],
+        svgImg: BanknoteArrowUpIcon,
+        redirect: `/${entity}/expense`,
+        role: [ROLES.FINANCEDEPARTMENT]
+    },
+    {
+        name: 'Invoices',
+        submenu: [],
+        svgImg: FileCheckIcon,
+        redirect: `/${entity}/invoices`,
+        role: [ROLES.FINANCEDEPARTMENT]
     },
 
     {
@@ -62,7 +94,7 @@ const asideMenuItems = [
             { name: 'Labour', url: `${entity}/labour` },
             { name: 'Contractor', url: `${entity}/contractor` }
         ],
-        svgImg: LaboursIcon,
+        svgImg: HatGlassesIcon,
         redirect: '',
         role: [ROLES.SUPERADMIN]
     },
@@ -74,7 +106,7 @@ const asideMenuItems = [
             { name: 'Branch Request', url: `${entity}/branch-request` },
             { name: 'Branch Dashboard', url: `${entity}/branch-dashboard` }
         ],
-        svgImg: BranchIcon,
+        // svgImg: BranchIcon,
         redirect: '',
         role: [ROLES.SUPERADMIN, ROLES.BRANCH]
     },
@@ -82,7 +114,7 @@ const asideMenuItems = [
     {
         name: 'User Manager',
         submenu: [],
-        svgImg: UserMangerIcon,
+        svgImg: Users2,
         redirect: `/${entity}/users`,
         role: [ROLES.SUPERADMIN]
 
@@ -91,7 +123,7 @@ const asideMenuItems = [
     {
         name: 'Settings',
         submenu: [],
-        svgImg: SettingsIcon,
+        svgImg: Settings2Icon,
         redirect: `/${entity}/settings`,
         role: [ROLES.SUPERADMIN]
     }

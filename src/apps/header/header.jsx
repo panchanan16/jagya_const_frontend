@@ -4,7 +4,6 @@ import { useLocation } from "react-router-dom";
 function Header() {
   let location = useLocation();
   const { stateItem } = useLogin();
-  console.log(stateItem)
 
   return (
     <header className="flex align-center j-between">

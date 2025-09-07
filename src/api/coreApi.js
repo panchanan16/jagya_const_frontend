@@ -4,9 +4,9 @@ const coreEndpoint = {
     getAll: (entity, endpoint) => `${API_CORE}${entity}/${endpoint}`,
     getOneWithId: (entity, id) => `${API_CORE}${entity}/readOne/${id}`,
     createItem: (entity, endpoint) => `${API_CORE}${entity}/${endpoint}`,
-    deleteItem: (entity) => `${API_CORE}${entity}/remove`,
+    deleteItem: (entity, endpoint) => `${API_CORE}${entity}/${endpoint}`,
     updateItem: (entity) => `${API_CORE}${entity}/update`,
-    uploadFile: (entity, id) => `${API_CORE}${entity}/upload/file/${id}`,
+    uploadFile: (entity, id, type) => `${API_CORE}${entity}/upload/${type}/${id}`,
     deleteFile: (entity, id) => `${API_CORE}${entity}/file/delete/${id}`
 }
 

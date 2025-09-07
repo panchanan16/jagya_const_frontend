@@ -1,5 +1,5 @@
 export const ROLES = {
-  SUPERVISER: 'employee',
+  SUPERVISER: 'superviser',
   FINANCEDEPARTMENT: 'finance',
   SUPERADMIN: 'super_admin',
   BRANCH: 'Branch',

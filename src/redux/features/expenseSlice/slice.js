@@ -1,6 +1,19 @@
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import fulfilledStateReducer from "../../customReducer";
+
+export const GET_ONE_EXPENSE = createAsyncThunk(
+  'GET/findOneExpense',
+  async ({endpoint}, { rejectWithValue }) => {
+    try {
+      const response = await _GET(endpoint)
+      return {response}
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
 
 const initialState = {
     itemList: [],
@@ -43,6 +56,12 @@ const expenseSlice = createSlice({
         }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
             fulfilledStateReducer(state, action, 'expense', 'UPDATE', 'exp_id')
         }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+        }).addCase(GET_ONE_EXPENSE.fulfilled, (state, action) => {
+            state.loading = false
+            console.log(action.payload)
+        }).addCase(GET_ONE_EXPENSE.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
         });
