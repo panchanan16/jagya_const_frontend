@@ -135,8 +135,7 @@ function InstallmentFormWithField({ values, resetFn }) {
         </div>
 
         {/* Phase Selection */}
-        <div className={`field ${styles.fieldGroup}`}>
-          <label className={styles.fieldLabel}>Phase</label>
+        <div className={`field ${styles.fieldGroup}`}>         
           <SelectOption
             Name="col_project_phase"
             Label={"Phase"}

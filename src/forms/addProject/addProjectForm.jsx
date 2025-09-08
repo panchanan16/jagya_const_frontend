@@ -708,7 +708,7 @@ function AddProjectForm() {
     <PopupLayout>
       <div className={`add-project-popup blur ${styles.formContainer} ${styles.formContainerLarge}`}>
         {/* Modern Header */}
-        <div className={`${styles.formHeader} ${styles.formHeaderGreen}`}>
+        <div className={`${styles.formHeader}`}>
           <h2 className={styles.formTitle}>New Project Details</h2>
           <p className={styles.formSubtitle}>Create a new construction project with client and project information</p>
           <Link to="/admin/projects" className={styles.closeButton}>

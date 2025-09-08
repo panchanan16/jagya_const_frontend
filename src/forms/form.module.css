@@ -2,7 +2,7 @@
 
 /* ===== FORM CONTAINERS ===== */
 .formContainer {
-  max-width: 900px;
+  /* max-width: 900px; */
   width: 100%;
   background: #ffffff;
   border-radius: 12px;
@@ -486,7 +486,7 @@
   background: #fbfbfb;
   border: 1px solid #f3f4f6;
   border-radius: 8px;
-  padding: 20px;
+  padding: 13px;
   margin-bottom: 24px;
 }
 
@@ -514,7 +514,7 @@
   border: none;
   height: 1px;
   background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
-  margin: 24px 0;
+  /* margin: 24px 0; */
 }
 
 .dividerSolid {

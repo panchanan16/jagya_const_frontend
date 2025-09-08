@@ -17,8 +17,8 @@ function SelectOption({ Name, Label, action, keyValue, setName }) {
   }
   // class="v-selector"
   return (
-    <div class="field">
-      {/* <p class="title v-selector">Select a {Label}</p> */}
+    <div class={styles.fieldGroup}>
+      <label className={styles.fieldLabel}>Select from here</label>
       <Field
         as="select"
         name={Name}
