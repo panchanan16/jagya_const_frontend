@@ -3,15 +3,7 @@ import TabLayout from "@/layout/tabLayout/TabLayout";
 import { Link } from "react-router-dom";
 
 function SecondSlideLabour() {
-  const tableDataOne = [
-    [1, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1001"],
-    [2, "10/02/2001", "3000", "Cash", "Bought for false ceiling", "1003"],
-  ];
 
-  const tableDataTwo = [
-    [1, "10/02/2001", "JG001", "3000", "Cash", "Bought for false ceiling"],
-    [2, "10/02/2001", "JG002", "3000", "Cash", "Bought for false ceiling"],
-  ];
 
   return (
     <SecondSlideLayout>

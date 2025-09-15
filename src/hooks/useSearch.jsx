@@ -1,4 +1,5 @@
 import { setFilteredItems, setQuery } from "@/redux/features/searchSlice/slice";
+import { _GET } from "@/request/request";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -19,7 +20,10 @@ function useSearch(searchQuery, entity, searchFields) {
           }
         });
       });
-    dispatch(setFilteredItems(filtered));
+    if (filtered.length === 0 && searchQuery) {
+      // const searchResult = await _GET()
+      dispatch(setFilteredItems(filtered));
+    }
   }, [searchQuery]);
   return { itemList };
 }

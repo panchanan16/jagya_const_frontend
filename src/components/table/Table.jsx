@@ -256,7 +256,6 @@ function Table({
   totalpage,
   col = 5,
 }) {
-  console.log(Actions)
   // Function to check if element is a function that returns JSX
   const isRenderFunction = (element) => {
     return typeof element === "function";

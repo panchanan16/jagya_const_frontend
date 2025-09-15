@@ -23,7 +23,6 @@ function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = fal
   const dispatch = useDispatch();
   const Actions = tail ? coreCrudActions : crudActions;
   const { getItemList, getPaginateItems } = Actions;
-  let viewedItem = null;
 
   // console.log(paginateNumber)
 
@@ -31,11 +30,6 @@ function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = fal
   //   return searchParams.get("page") || "1";
   // }, [searchParams]);
   // const pageSize = searchParams.get("pageSize");
-
-  if (urlParam && itemId) {
-    const Item = itemList.filter((item) => item[itemId] == urlParam);
-    viewedItem = Item[0];
-  }
 
   useEffect(()=> {
     dispatch(resetData(1))
@@ -55,7 +49,6 @@ function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = fal
     outputItemList,
     itemList,
     itemData,
-    viewedItem,
     urlParam,
     pagination,
   };
