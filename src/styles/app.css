@@ -1,11 +1,11 @@
 :root {
     /* Colors  */
-    --search-background: rgb(255, 255, 254);
+    --search-background: rgb(239, 239, 237);
     --search-outline: rgb(238, 237, 232);
     --body-background: rgb(248, 248, 248);
     --btn-color: hsl(0, 0%, 100%);
 
-    --primary-50: hsl(51, 15%, 97%);
+    --primary-50: hsl(0, 0%, 100%);
     --primary-100: hsl(51, 15%, 92%);
     --primary-200: hsl(51, 15%, 89%);
     --primary-300: hsl(51, 15%, 82%);
@@ -1453,7 +1453,7 @@ main .sub-task {
 
 .main-popup .blur {
     width: 100%;
-    max-width: 950px;
+    max-width: 90%;
     margin: 30px auto;
     border-radius: var(--px-5);
     padding: 20px var(--px-15);
@@ -1468,7 +1468,7 @@ main .sub-task {
     /* fill: var(--primary-900); */
 }
 
-.main-popup .form {
+/* .main-popup .form {
     width: 100%;
     position: relative;
 }
@@ -1489,21 +1489,20 @@ main .sub-task {
 
 .form .flex {
     flex-direction: row;
-}
+} */
 
-.field {
+/* .field {
     display: flex;
     flex-direction: column;
-    /* width: 100%; */
     gap: 5px;
-}
+} */
 
 /* SEARCH BOX WITH SELECT  */
-.selectBox {
+/* .selectBox {
     position: relative;
-}
+} */
 
-.selectBox ul.list-options {
+/* .selectBox ul.list-options {
     position: absolute;
     width: 100%;
     background: var(--primary-50);
@@ -1514,9 +1513,9 @@ main .sub-task {
     overflow-y: scroll;
     height: 35vh;
     z-index: 100;
-}
+} */
 
-.selectBox ul li {
+/* .selectBox ul li {
     padding: var(--px-8) var(--px-10);
     background: var(--primary-50);
     border-bottom: 1px solid var(--light-primary-300);
@@ -1525,9 +1524,9 @@ main .sub-task {
 
 .selectBox ul li:hover {
     background: var(--primary-100);
-}
+} */
 
-.field select {
+/* .field select {
     color: var(--primary-900);
     background: var(--search-background);
     border-radius: var(--radius-5);
@@ -1546,9 +1545,9 @@ main .sub-task {
     font-weight: 500;
     font-size: var(--px-12);
     margin-left: var(--px-6);
-}
+} */
 
-.field p.title span {
+/* .field p.title span {
     font-size: var(--px-10);
 }
 
@@ -1561,9 +1560,9 @@ main .sub-task {
     font-weight: 500;
     color: var(--primary-900);
     transition: var(--transition-1);
-}
+} */
 
-.field input[type="number"]::-webkit-outer-spin-button,
+/* .field input[type="number"]::-webkit-outer-spin-button,
 .field input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
@@ -1581,14 +1580,14 @@ main .sub-task {
     margin-left: var(--px-5);
     font-size: 12px;
     color: var(--warning);
-}
+} */
 
 .form ul {
     height: 40vh;
     overflow-y: scroll;
 }
 
-.form ul li {
+/* .form ul li {
     margin: var(--px-5) auto;
     font-size: var(--f-size-14);
     font-weight: 500;
@@ -1598,7 +1597,7 @@ main .sub-task {
     border-radius: var(--px-5);
     color: var(--primary-900);
     gap: var(--px-5);
-}
+} */
 
 /* .addGrid{
     display: grid;

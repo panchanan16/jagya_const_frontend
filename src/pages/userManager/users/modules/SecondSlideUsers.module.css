@@ -1,0 +1,172 @@
+/* Container (popup) */
+.branchProjectPopup {
+  position: fixed;
+  top: 0%;
+  right: 0px;
+  width: 90%;
+  max-width: 600px;
+  height: 100vh;
+  background: #fff;
+  border-radius: 16px 0px 0px 16px ;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Header (title + close) */
+.branchProjectPopupHeader {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.branchProjectPopupTitle {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Close button */
+.btnWarningClose {
+  background: #f02121;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.btnWarningClose:hover {
+  background: #d97706;
+}
+
+/* Content area */
+.branchProjectContent {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
+}
+
+/* Each field */
+.description {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.descriptionTitle {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #374151;
+  min-width: 120px;
+}
+
+.descriptionText {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #1f2937;
+}
+
+/* Buttons container */
+.approveButton {
+  padding: 1.5rem;
+  background: #f3f4f6;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px solid #e5e7eb;
+}
+
+.approveButtonLink {
+  flex: 1;
+  min-width: 200px;
+  text-decoration: none;
+}
+
+/* Primary action buttons */
+.btnPrimary {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btnPrimary svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.btnPrimaryText {
+  display: inline-block;
+}
+
+/* Utility classes */
+.flex {
+  display: flex;
+}
+.alignStart {
+  align-items: flex-start;
+}
+.alignCenter {
+  align-items: center;
+}
+.jBetween {
+  justify-content: space-between;
+}
+.grid {
+  display: grid;
+}
+.gap5 {
+  gap: 1rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .branchProjectPopup {
+    width: 95%;
+    max-height: 95vh;
+  }
+  .branchProjectPopupHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .approveButton {
+    flex-direction: column;
+  }
+  .approveButtonLink {
+    min-width: unset;
+  }
+}

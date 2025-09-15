@@ -1,6 +1,6 @@
-import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import PopupLayout from "@/layout/common/popupLayout";
+import TabLayout from "@/layout/tabLayout/TabLayout";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -46,61 +46,64 @@ function SecondSlideExpense() {
           </div>
         </div>
         {/* <EditReqItemForm closeFormfn={'/'} /> */}
-        <div className="expense-table">
-          <h3>Contractor</h3>
-          <Table
-            Theader={[
-              "Amount",
-              // "ProjectID",
-              "Project Name",
-              "Contractor",
-              "Project Ref",
-              "Contractor",
-            ]}
-            Trow={itemData?.contractor}
-            Limit={[
-              {
-                key: "pay_amount",
-                type: "amount"
-              },
-              // "pay_project_id",
-              "pro_name",
-              "pay_note",
-              (rowData) => (
-                <td className="linkCell">
-                  <Link
-                    to={`/admin/projects/${rowData.pay_project_id}`}
-                    className="linkCell"
-                  >
-                    {rowData.pro_ref_no}
-                  </Link>
-                </td>
-              ),
-              "con_name",
-            ]}
-          />
-          <hr />
-          <h3>Vendor</h3>
-          <Table
-            Theader={[
-              "ProjectID",
+       
+        <TabLayout
+          TabList={[
+            {
+              main: "Contractors",
+              list: [
+                "Amount",
+                // "ProjectID",
+                "Project Name",
+                "Remarks",
+                "Project Ref",
+                "Contractor",
+              ],
+              limit: [
+                {
+                  key: "pay_amount",
+                  type: "amount",
+                },
+                // "pay_project_id",
+                "pro_name",
+                "pay_note",
+                (rowData) => (
+                  <td className="linkCell">
+                    <Link
+                      to={`/admin/projects/${rowData.pay_project_id}`}
+                      className="linkCell"
+                    >
+                      {rowData.pro_ref_no}
+                    </Link>
+                  </td>
+                ),
+                "con_name",
+              ],
+              tabData: itemData?.contractor,
+            },
+            {
+              main: "Vendors",
+              list: [   
               "Amount",
               "Note",
-              "Vendor Name",
-              "Project name",
-              "Project ref",
-            ]}
-            Trow={itemData?.vendor}
-            Limit={[
-              "pay_project_id",
-              "pay_amount",
+              "Peoject Name",
+              "Project Ref",
+              "Vendor",
+            ],
+              limit: [    
+              {
+                key: "pay_amount",
+                type: "amount",
+              },
               "pay_note",
               "pro_name",
               "pro_ref_no",
               "vendor_name",
-            ]}
-          />
-        </div>
+            ],
+              tabData: itemData?.vendor,
+            },
+          ]}
+        />
       </div>
     </PopupLayout>
   );

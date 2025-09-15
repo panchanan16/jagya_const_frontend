@@ -24,7 +24,6 @@ function FirstSlide() {
             "Alt Contact",
             "Address",
             "Email",
-            "Action",
           ]}
           Trow={outputItemList}
           Actions={{
