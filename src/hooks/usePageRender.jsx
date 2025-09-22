@@ -14,9 +14,10 @@ function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = fal
   const { itemList, itemData, pagination } = useSelector(
     (state) => state[entity]
   );
-  const { itemList: filterList, searchQuery } = useSelector(
+  const { itemList: filterList, searchQuery, searchLoading } = useSelector(
     (state) => state["search"]
   );
+
 
   const {pageNo, pageSize} = useSelector((state) => state["paginate"]);
   const { [urlKey ? urlKey : "id"]: urlParam } = useParams();
@@ -51,6 +52,7 @@ function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = fal
     itemData,
     urlParam,
     pagination,
+    searchLoading
   };
 }
 

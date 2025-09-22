@@ -71,6 +71,7 @@ function SearchBox({ SearchEntity, searchFields, placeholder = "Search..." }) {
   const handleKeyPress = useCallback((e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
+      console.log("Seearching kla wait ...")
       // Could trigger additional search logic here if needed
     }
   }, []);
@@ -95,7 +96,7 @@ function SearchBox({ SearchEntity, searchFields, placeholder = "Search..." }) {
         type="text"
         value={searchTerm}
         onChange={handleChangeSearchInput}
-        onKeyPress={handleKeyPress}
+        onKeyUp={handleKeyPress}
         placeholder={placeholder}
         className={styles.searchInput}
         aria-label="Search input"

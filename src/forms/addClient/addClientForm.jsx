@@ -276,7 +276,7 @@ function AddClientForm() {
     <PopupLayout>
       <div className={`add-clients-prospects blur ${styles.formContainer}`}>
         {/* Modern Header */}
-        <div className={`${styles.formHeader} ${styles.formHeaderGreen}`}>
+        <div className={`${styles.formHeader}`}>
           <h2 className={styles.formTitle}>Add New Client</h2>
           <p className={styles.formSubtitle}>Register a new client with contact and personal information</p>
           <Link to={`/admin/clients`} className={styles.closeButton}>

@@ -1634,10 +1634,10 @@ main .sub-task {
     padding: var(--px-10);
     border-bottom: 1px solid var(--primary-50);
 }
-.accordion-heading:is(.active, :hover){
+/* .accordion-heading:is(.active, :hover){
     border-bottom: 1px solid var(--light-primary-300);
     background: var(--primary-100);
-}
+} */
 
 .accordion-heading .arrow {
     transform: rotate(-90deg);
