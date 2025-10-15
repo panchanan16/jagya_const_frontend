@@ -1,5 +1,5 @@
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, original } from "@reduxjs/toolkit";
 import fulfilledStateReducer from "../../customReducer";
 import { _DELETE } from "@/request/request";
 
@@ -26,7 +26,7 @@ const initialState = {
     error: null,
     itemData: {
         contractors: [], phases: [], documents: [], project: {}
-    }
+    },
 }
 
 const projectSlice = createSlice({

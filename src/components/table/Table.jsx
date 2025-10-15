@@ -101,7 +101,6 @@
 // import TableFooter from "./TableFooter/TableFooter";
 // import styles from "./table.module.css";
 
-
 // function Table({
 //   Select,
 //   Theader,
@@ -131,7 +130,7 @@
 //           <tbody className={styles.tbody}>
 //             {Trow.length ? (
 //               Trow.map((columns, ind) => (
-//                 <tr key={ind} className={styles.tableRow}>                  
+//                 <tr key={ind} className={styles.tableRow}>
 //                   {Object.entries(columns).map(([key, value]) =>
 //                     Limit ? (
 //                       Limit.map((col, colIndex) => {
@@ -236,14 +235,13 @@
 
 // export default Table;
 
-
-
 import React from "react";
 import ItemActionBox from "../itemAction/itemActionBox";
 import StatusSpan from "../statusSpan/StatusSpan";
 import TableFooter from "./TableFooter/TableFooter";
 import styles from "./table.module.css";
 import { Link } from "react-router-dom";
+import TableSearchLoading from "../loader/LoaderTable";
 
 function Table({
   Select,
@@ -255,8 +253,8 @@ function Table({
   Paginate,
   totalpage,
   col = 5,
+  isLoading,
 }) {
-  console.log(Actions)
   // Function to check if element is a function that returns JSX
   const isRenderFunction = (element) => {
     return typeof element === "function";
@@ -284,7 +282,7 @@ function Table({
       switch (col.type) {
         case "status":
           return <StatusSpan status={value} />;
-        
+
         case "amount":
           return (
             <span className={styles.amountCell}>
@@ -296,12 +294,12 @@ function Table({
               </span>
             </span>
           );
-        
+
         case "link":
           const href = col.href ? rowData[col.href] : value;
           return (
-            <Link 
-              to={href} 
+            <Link
+              to={href}
               className={styles.linkCell}
               target={col.target || "_self"}
               rel={col.target === "_blank" ? "noopener noreferrer" : undefined}
@@ -309,25 +307,29 @@ function Table({
               {col.linkText || value}
             </Link>
           );
-        
+
         case "custom":
           // For fully custom rendering
           return col.render ? col.render(value, rowData) : value;
-        
+
         case "badge":
           return (
-            <span className={`${styles.badge} ${styles[`badge-${col.variant || 'default'}`]}`}>
+            <span
+              className={`${styles.badge} ${
+                styles[`badge-${col.variant || "default"}`]
+              }`}
+            >
               {value}
             </span>
           );
-        
+
         case "date":
           const dateValue = new Date(value);
-          const formattedDate = col.format 
+          const formattedDate = col.format
             ? dateValue.toLocaleDateString(undefined, col.format)
             : dateValue.toLocaleDateString();
           return <span className={styles.dateCell}>{formattedDate}</span>;
-        
+
         default:
           // Fallback for backward compatibility (existing status logic)
           return <StatusSpan status={value} />;
@@ -342,21 +344,21 @@ function Table({
     // If col is a function that returns JSX, call it
     if (isRenderFunction(col)) {
       const result = col(columns);
-      
+
       // If the function returns a complete TD element, use it directly
-      if (React.isValidElement(result) && result.type === 'td') {
-        return React.cloneElement(result, { 
+      if (React.isValidElement(result) && result.type === "td") {
+        return React.cloneElement(result, {
           key: `fn-${colIndex}`,
-          className: `${result.props.className || ''} ${styles.tableCell}`.trim()
+          className: `${result.props.className || ""} ${
+            styles.tableCell
+          }`.trim(),
         });
       }
-      
+
       // Otherwise wrap the result in a TD
       return (
         <td key={`fn-${colIndex}`} className={styles.tableCell}>
-          <div className={styles.cellContent}>
-            {result}
-          </div>
+          <div className={styles.cellContent}>{result}</div>
         </td>
       );
     }
@@ -364,38 +366,36 @@ function Table({
     // If col is a JSX element, handle it
     if (React.isValidElement(col)) {
       // If it's already a TD element, use it directly
-      if (col.type === 'td') {
-        return React.cloneElement(col, { 
+      if (col.type === "td") {
+        return React.cloneElement(col, {
           key: `jsx-${colIndex}`,
-          className: `${col.props.className || ''} ${styles.tableCell}`.trim()
+          className: `${col.props.className || ""} ${styles.tableCell}`.trim(),
         });
       }
-      
+
       // Otherwise wrap it in a TD
       return (
         <td key={`jsx-${colIndex}`} className={styles.tableCell}>
-          <div className={styles.cellContent}>
-            {col}
-          </div>
+          <div className={styles.cellContent}>{col}</div>
         </td>
       );
     }
 
     // Handle object and string configurations
     const columnKey = typeof col === "string" ? col : col?.key;
-    
+
     // Find matching column value
-    const matchingEntry = Object.entries(columns).find(([key]) => key === columnKey);
-    
+    const matchingEntry = Object.entries(columns).find(
+      ([key]) => key === columnKey
+    );
+
     if (matchingEntry) {
       const [key, value] = matchingEntry;
       return (
         <td
           key={`${key}-${colIndex}`}
           className={`${styles.tableCell} ${
-            typeof col === "object" && col?.className 
-              ? col.className 
-              : ""
+            typeof col === "object" && col?.className ? col.className : ""
           }`}
           style={typeof col === "object" ? col?.style : undefined}
         >
@@ -430,33 +430,54 @@ function Table({
                     {item}
                   </th>
                 ))}
-              {Actions && (
-                <th className={styles.headerCell}>Actions</th>
-              )}
+              {Actions && <th className={styles.headerCell}>Actions</th>}
             </tr>
           </thead>
 
           <tbody className={styles.tbody}>
-            {Trow && Trow.length ? (
+            {isLoading ? (
+              <tr>
+                <td
+                  colSpan={
+                    (Theader ? Theader.length : col) +
+                    (Select ? 1 : 0) +
+                    (Actions ? 1 : 0)
+                  }
+                  style={{
+                    padding: "0",
+                    textAlign: "center",
+                    verticalAlign: "middle",
+                    border: "none",
+                  }}
+                >
+                  <TableSearchLoading
+                    message="Searching for results..."
+                    iconSize={28}
+                  />
+                </td>
+              </tr>
+            ) : Trow && Trow.length ? (
               Trow.map((columns, ind) => (
-                <tr key={ind} className={styles.tableRow}>                  
-                  {Limit ? (
-                    Limit.map((col, colIndex) => renderTableCell(col, colIndex, columns))
-                  ) : (
-                    Object.entries(columns).map(([key, value]) => (
-                      <td key={key} className={styles.tableCell}>
-                        <div className={styles.cellContent}>
-                          <span className={styles.cellText}>{value}</span>
-                        </div>
-                      </td>
-                    ))
-                  )}
+                <tr key={ind} className={styles.tableRow}>
+                  {Limit
+                    ? Limit.map((col, colIndex) =>
+                        renderTableCell(col, colIndex, columns)
+                      )
+                    : Object.entries(columns).map(([key, value]) => (
+                        <td key={key} className={styles.tableCell}>
+                          <div className={styles.cellContent}>
+                            <span className={styles.cellText}>{value}</span>
+                          </div>
+                        </td>
+                      ))}
 
                   {Actions && (
                     <td className={styles.tableCell}>
                       <div className={styles.actionsWrapper}>
                         <ItemActionBox
-                          viewFn={Actions?.viewUrl && `${columns[Actions.viewUrl]}`}
+                          viewFn={
+                            Actions?.viewUrl && `${columns[Actions.viewUrl]}`
+                          }
                           editFn={`create/${
                             Actions?.editUrl && columns[Actions.editUrl]
                           }`}
@@ -471,8 +492,8 @@ function Table({
               <tr>
                 <td
                   colSpan={
-                    (Theader ? Theader.length : col) + 
-                    (Select ? 1 : 0) + 
+                    (Theader ? Theader.length : col) +
+                    (Select ? 1 : 0) +
                     (Actions ? 1 : 0)
                   }
                   className={styles.noDataCell}

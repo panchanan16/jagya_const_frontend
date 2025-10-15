@@ -150,7 +150,7 @@
 // export default TableFooter;
 
 
-
+/// New with stylesss --
 import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetData } from "@/redux/features/paginateSlice/slice";
@@ -159,6 +159,8 @@ import styles from './paginate.module.css';
 function TableFooter({ TotalPages }) {
   const dispatch = useDispatch();
   const { pageNo, pageSize } = useSelector(state => state.paginate);
+
+  console.log(pageNo)
 
   const updateFilters = (category) => {
     dispatch(resetData(category));
@@ -173,6 +175,7 @@ function TableFooter({ TotalPages }) {
       // If total pages is small --- show all pages
       return Array.from({ length: totalPages }, (_, i) => i + 1);
     }
+
 
     const pages = new Set();
 

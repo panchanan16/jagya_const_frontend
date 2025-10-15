@@ -3,7 +3,7 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideProject() {
-  const { outputItemList, pagination } = usePageRender({entity: "project", isPaginate: true});
+  const { outputItemList, pagination, searchLoading } = usePageRender({entity: "project", isPaginate: true});
 
   return (
     <FirstSlideLayout
@@ -22,6 +22,7 @@ function FirstSlideProject() {
             "House type",
             "Duration",
           ]}
+          isLoading={searchLoading}
           Limit={[
             "pro_id",
             "pro_ref_no",
