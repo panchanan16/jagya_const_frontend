@@ -75,7 +75,7 @@ import useRequest from "@/hooks/useRequest";
 
 function Phases({ Name, Status, phaseId }) {
   const [currentStatus, setCurrentStatus] = useState(Status);
-  const { makeRequest } = useRequest("project_phase");
+  const { makeRequest } = useRequest("project_phase", null, null, null, false);
 
   const getStatusColor = (status) => {
     switch (status) {

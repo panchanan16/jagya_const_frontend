@@ -14,6 +14,7 @@ function SecondSlideProject() {
   const { projectId } = useParams();
   const [uploadPopupOpen, setUploadPopupOpen] = useState(false);
   const { itemList } = useSelector((state) => state["project_phase"]);
+
   const { deleteFile } = coreCrudActions;
   const { itemData } = usePageRender({
     entity: "project",
@@ -23,7 +24,6 @@ function SecondSlideProject() {
     urlKey: "projectId",
   });
 
-  console.log(itemData);
   const dispatch = useDispatch();
 
   function openFileBoard(params) {
