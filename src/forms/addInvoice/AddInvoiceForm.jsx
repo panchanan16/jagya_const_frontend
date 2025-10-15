@@ -181,6 +181,9 @@ import PopupLayout from "@/layout/common/popupLayout";
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from 'yup';
+import { useDispatch } from 'react-redux';
+import { create } from 'lodash';
+import { createInvoice } from '@/redux/features/invoiceSlice/slice';
 
 // Validation Schema
 const invoiceValidationSchema = Yup.object().shape({
@@ -270,7 +273,7 @@ function InvoiceFormWithField({ onSubmit, onClose }) {
     };
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     // Calculate final totals before submission
     const totals = calculateTotals(
       values.invoice_items, 
@@ -287,10 +290,8 @@ function InvoiceFormWithField({ onSubmit, onClose }) {
     };
 
     console.log('Form submitted with values:', finalValues);
-    
-    // Call parent component's submit handler
     if (onSubmit) {
-      onSubmit(finalValues);
+      await onSubmit(finalValues);
     }
     
     setSubmitting(false);
@@ -634,9 +635,15 @@ function InvoiceFormWithField({ onSubmit, onClose }) {
 }
 
 function AddInvoiceForm({ onSubmit, onClose }) {
+
+    const dispatch = useDispatch();
+
+    async function handleOnSubmit(formValues) {
+      dispatch(createInvoice(formValues));
+    }
   return (
     <PopupLayout>
-      <InvoiceFormWithField onSubmit={onSubmit} onClose={onClose} />
+      <InvoiceFormWithField onSubmit={handleOnSubmit} onClose={onClose} />
     </PopupLayout>
   );
 }

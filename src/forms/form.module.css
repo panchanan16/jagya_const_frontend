@@ -486,8 +486,8 @@
   background: #fbfbfb;
   border: 1px solid #f3f4f6;
   border-radius: 8px;
-  padding: 13px;
-  margin-bottom: 24px;
+  padding-inline: 13px;
+  margin-bottom: 20px;
 }
 
 .sectionTitle {

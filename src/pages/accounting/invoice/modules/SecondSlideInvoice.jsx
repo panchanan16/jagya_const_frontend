@@ -1,44 +1,56 @@
 import React, { useEffect } from "react";
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 import { Download, Plus, Trash2 } from "lucide-react";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
+import { useDispatch } from "react-redux";
+import { createInvoice } from "@/redux/features/invoiceSlice/slice";
 
 // Validation Schema
 const invoiceValidationSchema = Yup.object().shape({
   invoiceData: Yup.object().shape({
-    invoice_no: Yup.string().required('Invoice number is required'),
-    invoice_date: Yup.date().required('Invoice date is required'),
-    payment_status: Yup.string().required('Payment status is required'),
-    client_contact: Yup.string().required('Client contact is required'),
-    client_address: Yup.string().required('Client address is required'),
-    client_id: Yup.number().required('Client ID is required'),
-    amount: Yup.number().min(0, 'Amount must be positive'),
-    gst_rate: Yup.number().min(0, 'GST rate must be positive'),
-    discount: Yup.number().min(0, 'Discount must be positive'),
-    total: Yup.number().min(0, 'Total must be positive')
+    invoice_no: Yup.string().required("Invoice number is required"),
+    invoice_date: Yup.date().required("Invoice date is required"),
+    payment_status: Yup.string().required("Payment status is required"),
+    client_contact: Yup.string().required("Client contact is required"),
+    client_address: Yup.string().required("Client address is required"),
+    client_id: Yup.number().required("Client ID is required"),
+    amount: Yup.number().min(0, "Amount must be positive"),
+    gst_rate: Yup.number().min(0, "GST rate must be positive"),
+    discount: Yup.number().min(0, "Discount must be positive"),
+    total: Yup.number().min(0, "Total must be positive"),
   }),
-  invoice_items: Yup.array().of(
-    Yup.object().shape({
-      inv_item_name: Yup.string().required('Item name is required'),
-      inv_item_quantity: Yup.number().required('Quantity is required').min(1, 'Quantity must be at least 1'),
-      inv_item_rate: Yup.number().required('Rate is required').min(0, 'Rate must be positive'),
-      inv_item_amount: Yup.number().required('Amount is required').min(0, 'Amount must be positive')
-    })
-  ).min(1, 'At least one item is required'),
+  invoice_items: Yup.array()
+    .of(
+      Yup.object().shape({
+        inv_item_name: Yup.string().required("Item name is required"),
+        inv_item_quantity: Yup.number()
+          .required("Quantity is required")
+          .min(1, "Quantity must be at least 1"),
+        inv_item_rate: Yup.number()
+          .required("Rate is required")
+          .min(0, "Rate must be positive"),
+        inv_item_amount: Yup.number()
+          .required("Amount is required")
+          .min(0, "Amount must be positive"),
+      })
+    )
+    .min(1, "At least one item is required"),
   // Company info for PDF generation
   company: Yup.object().shape({
-    name: Yup.string().required('Company name is required'),
-    address: Yup.string().required('Company address is required'),
-    city: Yup.string().required('Company city is required'),
-    email: Yup.string().email('Invalid email').required('Company email is required'),
-    phone: Yup.string().required('Company phone is required')
+    name: Yup.string().required("Company name is required"),
+    address: Yup.string().required("Company address is required"),
+    city: Yup.string().required("Company city is required"),
+    email: Yup.string()
+      .email("Invalid email")
+      .required("Company email is required"),
+    phone: Yup.string().required("Company phone is required"),
   }),
   client: Yup.object().shape({
-    name: Yup.string().required('Client name is required'),
-    email: Yup.string().email('Invalid email')
+    name: Yup.string().required("Client name is required"),
+    email: Yup.string().email("Invalid email"),
   }),
-  notes: Yup.string()
+  notes: Yup.string(),
 });
 
 // Initial Values matching your required format
@@ -53,15 +65,15 @@ const initialValues = {
     total: "0",
     client_contact: "",
     client_address: "",
-    client_id: ""
+    client_id: "",
   },
   invoice_items: [
     {
       inv_item_name: "",
       inv_item_quantity: "1",
       inv_item_rate: "0",
-      inv_item_amount: "0"
-    }
+      inv_item_amount: "0",
+    },
   ],
   // Additional fields for PDF generation and form completeness
   company: {
@@ -76,7 +88,9 @@ const initialValues = {
     email: "",
   },
   notes: "Thank you for your business!",
-  due_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]
+  due_date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000)
+    .toISOString()
+    .split("T")[0],
 };
 
 const SecondSlideInvoice = ({ onSubmit, onClose }) => {
@@ -86,6 +100,8 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
     const rt = parseFloat(rate) || 0;
     return (qty * rt).toString();
   };
+
+  const dispatch = useDispatch();
 
   // Calculate totals
   const calculateTotals = (items, gstRate, discount) => {
@@ -99,14 +115,15 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
 
     return {
       amount: subtotal.toString(),
-      total: total.toString()
+      total: total.toString(),
     };
   };
 
   // PDF Generation Function
   const generateInvoicePDF = (values) => {
     const subtotal = parseFloat(values.invoiceData.amount);
-    const gstAmount = (subtotal * parseFloat(values.invoiceData.gst_rate)) / 100;
+    const gstAmount =
+      (subtotal * parseFloat(values.invoiceData.gst_rate)) / 100;
     const discount = parseFloat(values.invoiceData.discount);
     const total = parseFloat(values.invoiceData.total);
 
@@ -154,9 +171,15 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
             </div>
             <div class="invoice-info">
               <h2>INVOICE</h2>
-              <p><strong>Invoice #:</strong> ${values.invoiceData.invoice_no}</p>
-              <p><strong>Date:</strong> ${new Date(values.invoiceData.invoice_date).toLocaleDateString()}</p>
-              <p><strong>Due Date:</strong> ${new Date(values.due_date).toLocaleDateString()}</p>
+              <p><strong>Invoice #:</strong> ${
+                values.invoiceData.invoice_no
+              }</p>
+              <p><strong>Date:</strong> ${new Date(
+                values.invoiceData.invoice_date
+              ).toLocaleDateString()}</p>
+              <p><strong>Due Date:</strong> ${new Date(
+                values.due_date
+              ).toLocaleDateString()}</p>
               <p><strong>Status:</strong> ${values.invoiceData.payment_status.toUpperCase()}</p>
             </div>
           </div>
@@ -167,7 +190,11 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
               <p><strong>${values.client.name}</strong></p>
               <p>${values.invoiceData.client_address}</p>
               <p>Contact: ${values.invoiceData.client_contact}</p>
-              ${values.client.email ? `<p>Email: ${values.client.email}</p>` : ''}
+              ${
+                values.client.email
+                  ? `<p>Email: ${values.client.email}</p>`
+                  : ""
+              }
             </div>
           </div>
 
@@ -187,8 +214,12 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                 <tr>
                   <td>${item.inv_item_name}</td>
                   <td class="text-right">${item.inv_item_quantity}</td>
-                  <td class="text-right">₹${parseFloat(item.inv_item_rate).toFixed(2)}</td>
-                  <td class="text-right">₹${parseFloat(item.inv_item_amount).toFixed(2)}</td>
+                  <td class="text-right">₹${parseFloat(
+                    item.inv_item_rate
+                  ).toFixed(2)}</td>
+                  <td class="text-right">₹${parseFloat(
+                    item.inv_item_amount
+                  ).toFixed(2)}</td>
                 </tr>
               `
                 )
@@ -238,7 +269,7 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
     };
   };
 
-  const handleSubmit = (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }) => {
     // Calculate final totals before submission
     const totals = calculateTotals(
       values.invoice_items,
@@ -249,17 +280,14 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
     const finalValues = {
       invoiceData: {
         ...values.invoiceData,
-        ...totals
+        ...totals,
       },
-      invoice_items: values.invoice_items
+      invoice_items: values.invoice_items,
     };
 
-    console.log('Invoice form submitted:', finalValues);
+    console.log("Invoice form:", finalValues);
 
-    if (onSubmit) {
-      onSubmit(finalValues);
-    }
-
+    dispatch(createInvoice(finalValues));
     setSubmitting(false);
   };
 
@@ -360,7 +388,8 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
           border: 1px solid #d1d5db;
           border-radius: 4px;
           font-size: 14px;
-          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          transition: border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
         }
 
         .invoice-input:focus {
@@ -448,7 +477,8 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
           height: 80px;
           resize: none;
           font-family: inherit;
-          transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          transition: border-color 0.15s ease-in-out,
+            box-shadow 0.15s ease-in-out;
         }
 
         .invoice-textarea:focus {
@@ -506,9 +536,14 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                 values.invoiceData.gst_rate,
                 values.invoiceData.discount
               );
-              setFieldValue('invoiceData.amount', totals.amount);
-              setFieldValue('invoiceData.total', totals.total);
-            }, [values.invoice_items, values.invoiceData.gst_rate, values.invoiceData.discount, setFieldValue]);
+              setFieldValue("invoiceData.amount", totals.amount);
+              setFieldValue("invoiceData.total", totals.total);
+            }, [
+              values.invoice_items,
+              values.invoiceData.gst_rate,
+              values.invoiceData.discount,
+              setFieldValue,
+            ]);
 
             return (
               <Form>
@@ -520,12 +555,18 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                       <h2 className="invoice-section-title">Invoice Details</h2>
                       <div className="invoice-details-grid">
                         <div className="invoice-form-group">
-                          <label className="invoice-label">Invoice Number</label>
+                          <label className="invoice-label">
+                            Invoice Number
+                          </label>
                           <Field
                             name="invoiceData.invoice_no"
                             className="invoice-input"
                           />
-                          <ErrorMessage name="invoiceData.invoice_no" component="div" className="err" />
+                          <ErrorMessage
+                            name="invoiceData.invoice_no"
+                            component="div"
+                            className="err"
+                          />
                         </div>
                         <div className="invoice-form-group">
                           <label className="invoice-label">Date</label>
@@ -534,7 +575,11 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                             name="invoiceData.invoice_date"
                             className="invoice-input"
                           />
-                          <ErrorMessage name="invoiceData.invoice_date" component="div" className="err" />
+                          <ErrorMessage
+                            name="invoiceData.invoice_date"
+                            component="div"
+                            className="err"
+                          />
                         </div>
                         <div className="invoice-form-group">
                           <label className="invoice-label">Due Date</label>
@@ -545,14 +590,24 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                           />
                         </div>
                         <div className="invoice-form-group">
-                          <label className="invoice-label">Payment Status</label>
-                          <Field as="select" name="invoiceData.payment_status" className="invoice-input">
+                          <label className="invoice-label">
+                            Payment Status
+                          </label>
+                          <Field
+                            as="select"
+                            name="invoiceData.payment_status"
+                            className="invoice-input"
+                          >
                             <option value="paid">Paid</option>
                             <option value="unpaid">Unpaid</option>
                             <option value="partial">Partial</option>
                             <option value="overdue">Overdue</option>
                           </Field>
-                          <ErrorMessage name="invoiceData.payment_status" component="div" className="err" />
+                          <ErrorMessage
+                            name="invoiceData.payment_status"
+                            component="div"
+                            className="err"
+                          />
                         </div>
                         <div className="invoice-form-group">
                           <label className="invoice-label">Client ID</label>
@@ -561,7 +616,11 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                             name="invoiceData.client_id"
                             className="invoice-input"
                           />
-                          <ErrorMessage name="invoiceData.client_id" component="div" className="err" />
+                          <ErrorMessage
+                            name="invoiceData.client_id"
+                            component="div"
+                            className="err"
+                          />
                         </div>
                         <div className="invoice-form-group">
                           <label className="invoice-label">GST Rate (%)</label>
@@ -570,7 +629,11 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                             name="invoiceData.gst_rate"
                             className="invoice-input"
                           />
-                          <ErrorMessage name="invoiceData.gst_rate" component="div" className="err" />
+                          <ErrorMessage
+                            name="invoiceData.gst_rate"
+                            component="div"
+                            className="err"
+                          />
                         </div>
                       </div>
                     </div>
@@ -584,22 +647,34 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                           placeholder="Company Name"
                           className="invoice-input"
                         />
-                        <ErrorMessage name="company.name" component="div" className="err" />
-                        
+                        <ErrorMessage
+                          name="company.name"
+                          component="div"
+                          className="err"
+                        />
+
                         <Field
                           name="company.address"
                           placeholder="Address"
                           className="invoice-input"
                         />
-                        <ErrorMessage name="company.address" component="div" className="err" />
-                        
+                        <ErrorMessage
+                          name="company.address"
+                          component="div"
+                          className="err"
+                        />
+
                         <Field
                           name="company.city"
                           placeholder="City, State ZIP"
                           className="invoice-input"
                         />
-                        <ErrorMessage name="company.city" component="div" className="err" />
-                        
+                        <ErrorMessage
+                          name="company.city"
+                          component="div"
+                          className="err"
+                        />
+
                         <div className="invoice-two-column-grid">
                           <div>
                             <Field
@@ -608,7 +683,11 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                               placeholder="Email"
                               className="invoice-input"
                             />
-                            <ErrorMessage name="company.email" component="div" className="err" />
+                            <ErrorMessage
+                              name="company.email"
+                              component="div"
+                              className="err"
+                            />
                           </div>
                           <div>
                             <Field
@@ -617,7 +696,11 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                               placeholder="Phone"
                               className="invoice-input"
                             />
-                            <ErrorMessage name="company.phone" component="div" className="err" />
+                            <ErrorMessage
+                              name="company.phone"
+                              component="div"
+                              className="err"
+                            />
                           </div>
                         </div>
                       </div>
@@ -632,15 +715,23 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                           placeholder="Client Name"
                           className="invoice-input"
                         />
-                        <ErrorMessage name="client.name" component="div" className="err" />
-                        
+                        <ErrorMessage
+                          name="client.name"
+                          component="div"
+                          className="err"
+                        />
+
                         <Field
                           name="invoiceData.client_address"
                           placeholder="Client Address"
                           className="invoice-input"
                         />
-                        <ErrorMessage name="invoiceData.client_address" component="div" className="err" />
-                        
+                        <ErrorMessage
+                          name="invoiceData.client_address"
+                          component="div"
+                          className="err"
+                        />
+
                         <div className="invoice-two-column-grid">
                           <div>
                             <Field
@@ -648,7 +739,11 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                               placeholder="Client Contact"
                               className="invoice-input"
                             />
-                            <ErrorMessage name="invoiceData.client_contact" component="div" className="err" />
+                            <ErrorMessage
+                              name="invoiceData.client_contact"
+                              component="div"
+                              className="err"
+                            />
                           </div>
                           <div>
                             <Field
@@ -657,7 +752,11 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                               placeholder="Client Email"
                               className="invoice-input"
                             />
-                            <ErrorMessage name="client.email" component="div" className="err" />
+                            <ErrorMessage
+                              name="client.email"
+                              component="div"
+                              className="err"
+                            />
                           </div>
                         </div>
                       </div>
@@ -676,12 +775,14 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                           <>
                             <button
                               type="button"
-                              onClick={() => push({
-                                inv_item_name: "",
-                                inv_item_quantity: "1",
-                                inv_item_rate: "0",
-                                inv_item_amount: "0"
-                              })}
+                              onClick={() =>
+                                push({
+                                  inv_item_name: "",
+                                  inv_item_quantity: "1",
+                                  inv_item_rate: "0",
+                                  inv_item_amount: "0",
+                                })
+                              }
                               className="btn-primary"
                               style={{ marginBottom: "16px" }}
                             >
@@ -698,9 +799,13 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                                       placeholder="Description"
                                       className="invoice-input"
                                     />
-                                    <ErrorMessage name={`invoice_items.${index}.inv_item_name`} component="div" className="err" />
+                                    <ErrorMessage
+                                      name={`invoice_items.${index}.inv_item_name`}
+                                      component="div"
+                                      className="err"
+                                    />
                                   </div>
-                                  
+
                                   <div>
                                     <label>Quantity</label>
                                     <Field
@@ -710,14 +815,27 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                                       className="invoice-input"
                                       onChange={(e) => {
                                         const quantity = e.target.value;
-                                        setFieldValue(`invoice_items.${index}.inv_item_quantity`, quantity);
-                                        const amount = calculateItemAmount(quantity, item.inv_item_rate);
-                                        setFieldValue(`invoice_items.${index}.inv_item_amount`, amount);
+                                        setFieldValue(
+                                          `invoice_items.${index}.inv_item_quantity`,
+                                          quantity
+                                        );
+                                        const amount = calculateItemAmount(
+                                          quantity,
+                                          item.inv_item_rate
+                                        );
+                                        setFieldValue(
+                                          `invoice_items.${index}.inv_item_amount`,
+                                          amount
+                                        );
                                       }}
                                     />
-                                    <ErrorMessage name={`invoice_items.${index}.inv_item_quantity`} component="div" className="err" />
+                                    <ErrorMessage
+                                      name={`invoice_items.${index}.inv_item_quantity`}
+                                      component="div"
+                                      className="err"
+                                    />
                                   </div>
-                                  
+
                                   <div>
                                     <label>Rate</label>
                                     <Field
@@ -727,25 +845,46 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                                       className="invoice-input"
                                       onChange={(e) => {
                                         const rate = e.target.value;
-                                        setFieldValue(`invoice_items.${index}.inv_item_rate`, rate);
-                                        const amount = calculateItemAmount(item.inv_item_quantity, rate);
-                                        setFieldValue(`invoice_items.${index}.inv_item_amount`, amount);
+                                        setFieldValue(
+                                          `invoice_items.${index}.inv_item_rate`,
+                                          rate
+                                        );
+                                        const amount = calculateItemAmount(
+                                          item.inv_item_quantity,
+                                          rate
+                                        );
+                                        setFieldValue(
+                                          `invoice_items.${index}.inv_item_amount`,
+                                          amount
+                                        );
                                       }}
                                     />
-                                    <ErrorMessage name={`invoice_items.${index}.inv_item_rate`} component="div" className="err" />
+                                    <ErrorMessage
+                                      name={`invoice_items.${index}.inv_item_rate`}
+                                      component="div"
+                                      className="err"
+                                    />
                                   </div>
-                                  
+
                                   <div className="invoice-item-amount">
-                                    ₹{parseFloat(item.inv_item_amount || 0).toFixed(2)}
+                                    ₹
+                                    {parseFloat(
+                                      item.inv_item_amount || 0
+                                    ).toFixed(2)}
                                   </div>
-                                  
+
                                   {values.invoice_items.length > 1 && (
                                     <button
                                       type="button"
                                       onClick={() => remove(index)}
                                       className="invoice-remove-button"
                                     >
-                                      <Trash2 style={{ width: "16px", height: "16px" }} />
+                                      <Trash2
+                                        style={{
+                                          width: "16px",
+                                          height: "16px",
+                                        }}
+                                      />
                                     </button>
                                   )}
                                 </div>
@@ -759,7 +898,10 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                     {/* Discount and Totals */}
                     <div className="invoice-section">
                       <h2 className="invoice-section-title">Pricing</h2>
-                      <div className="invoice-form-group" style={{ marginBottom: "16px" }}>
+                      <div
+                        className="invoice-form-group"
+                        style={{ marginBottom: "16px" }}
+                      >
                         <label className="invoice-label">Discount (₹)</label>
                         <Field
                           type="number"
@@ -767,23 +909,45 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                           className="invoice-input"
                         />
                       </div>
-                      
+
                       <div className="invoice-totals-container">
                         <div className="invoice-total-row">
                           <span>Subtotal:</span>
-                          <span>₹{parseFloat(values.invoiceData.amount || 0).toFixed(2)}</span>
+                          <span>
+                            ₹
+                            {parseFloat(values.invoiceData.amount || 0).toFixed(
+                              2
+                            )}
+                          </span>
                         </div>
                         <div className="invoice-total-row">
                           <span>GST ({values.invoiceData.gst_rate}%):</span>
-                          <span>₹{((parseFloat(values.invoiceData.amount || 0) * parseFloat(values.invoiceData.gst_rate || 0)) / 100).toFixed(2)}</span>
+                          <span>
+                            ₹
+                            {(
+                              (parseFloat(values.invoiceData.amount || 0) *
+                                parseFloat(values.invoiceData.gst_rate || 0)) /
+                              100
+                            ).toFixed(2)}
+                          </span>
                         </div>
                         <div className="invoice-total-row">
                           <span>Discount:</span>
-                          <span>₹{parseFloat(values.invoiceData.discount || 0).toFixed(2)}</span>
+                          <span>
+                            ₹
+                            {parseFloat(
+                              values.invoiceData.discount || 0
+                            ).toFixed(2)}
+                          </span>
                         </div>
                         <div className="invoice-total-row invoice-final-total">
                           <span>Total:</span>
-                          <span>₹{parseFloat(values.invoiceData.total || 0).toFixed(2)}</span>
+                          <span>
+                            ₹
+                            {parseFloat(values.invoiceData.total || 0).toFixed(
+                              2
+                            )}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -810,7 +974,7 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
                         <Download style={{ width: "16px", height: "16px" }} />
                         Generate PDF
                       </button>
-                      
+
                       <button
                         type="submit"
                         disabled={isSubmitting}
@@ -832,7 +996,3 @@ const SecondSlideInvoice = ({ onSubmit, onClose }) => {
 };
 
 export default SecondSlideInvoice;
-
-
-
-

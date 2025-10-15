@@ -1,9 +1,13 @@
+import DateRange from "@/components/DateRange/DateRange";
 import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideExpense() {
-  const { itemList, pagination } = usePageRender({entity: "expense", isPaginate: true});
+  const { itemList, pagination } = usePageRender({
+    entity: "expense",
+    isPaginate: true,
+  });
 
   return (
     <FirstSlideLayout
@@ -12,15 +16,10 @@ function FirstSlideExpense() {
       BtnFn={"add-expense"}
       HeadingText="All Expenses"
     >
+      <DateRange />
       <div className="main-table">
         <Table
-          Theader={[
-            "Sl No.",
-            "Name",
-            "Amount",
-            "Mode of pay",
-            "Date",
-          ]}
+          Theader={["Sl No.", "Name", "Amount", "Mode of pay", "Date"]}
           Limit={["exp_id", "exp_name", "exp_amount", "exp_mode", "exp_date"]}
           Trow={itemList}
           Actions={{

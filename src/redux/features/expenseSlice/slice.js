@@ -19,7 +19,7 @@ const initialState = {
     itemList: [],
     loading: false,
     error: null,
-    itemData: {contractor: [], vendor: []}
+    itemData: {contractor: [], vendor: []} 
 }
 
 const expenseSlice = createSlice({

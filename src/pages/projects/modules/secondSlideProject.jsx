@@ -269,7 +269,7 @@ function SecondSlideProject() {
               .filter((ph) => ph.pro_id == projectId)
               .concat(itemData?.phases)
               ?.map((ph) => (
-                <Phases Name={ph.phase_name} Status={ph.pro_phase_status} />
+                <Phases Name={ph.phase_name} Status={ph.pro_phase_status} phaseId={ph.pro_phase_id} />
               ))}
           </div>
         </div>

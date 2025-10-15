@@ -54,6 +54,8 @@
 // export default invoiceSlice.reducer;
 
 
+import entityEndpoint from "@/api/api";
+import { _GET, _POST } from "@/request/request";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -63,32 +65,15 @@ const initialState = {
     itemData: {}
 }
 
-// Base API URL - adjust according to your backend
-const API_BASE_URL = '/api/invoices'; // Update this to match your API endpoint
-
-// Async Thunks for Invoice Operations
+const API_BASE_URL = '/api/invoices'; 
 
 // Create Invoice
 export const createInvoice = createAsyncThunk(
     'invoice/createInvoice',
     async (invoiceData, { rejectWithValue }) => {
         try {
-            const response = await fetch(`${API_BASE_URL}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Add authorization headers if needed
-                    // 'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify(invoiceData)
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to create invoice');
-            }
-
-            const data = await response.json();
+            const data = await _POST(entityEndpoint.createItem("invoice"), invoiceData)
+            console.log(data)
             return data;
         } catch (error) {
             return rejectWithValue(error.message);
@@ -109,26 +94,9 @@ export const getAllInvoices = createAsyncThunk(
             if (params.client_id) queryParams.append('client_id', params.client_id);
             if (params.search) queryParams.append('search', params.search);
 
-            const url = queryParams.toString() 
-                ? `${API_BASE_URL}?${queryParams.toString()}` 
-                : API_BASE_URL;
-
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Add authorization headers if needed
-                    // 'Authorization': `Bearer ${token}`
-                }
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to fetch invoices');
-            }
-
-            const data = await response.json();
-            return data;
+            const response = await _GET(entityEndpoint.getAll("invoice"))
+            console.log(response)
+            return response
         } catch (error) {
             return rejectWithValue(error.message);
         }
@@ -291,6 +259,7 @@ const invoiceSlice = createSlice({
                 state.loading = false;
                 state.error = null;
                 // Handle different response formats
+                console.log(action.payload)
                 if (action.payload.data) {
                     state.itemList = action.payload.data;
                 } else if (Array.isArray(action.payload)) {

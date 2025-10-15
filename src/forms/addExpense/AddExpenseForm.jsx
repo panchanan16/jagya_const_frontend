@@ -326,7 +326,7 @@ function ExpenseFormWithField({ values, resetFn }) {
           {({ remove, push }) => (
             <div>
               {values.vendor.map((friend, index) => (
-                <div key={index} style={{ marginBottom: "16px" }}>
+                <div key={index}>
                   <ExpenseField
                     FieldNameList={{
                       cname: friend.pro_name, // to be display to the user
