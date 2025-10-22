@@ -1241,7 +1241,7 @@ main p.text {
     padding: var(--px-8) var(--px-10);
 }
 
-:is(.task-grid) .title {
+/* :is(.task-grid) .title {
     background: var(--gradient-4);
     gap: var(--px-5);
     border-radius: var(--px-6) var(--px-6) 0 0;
@@ -1261,7 +1261,6 @@ main p.text {
     border-radius: var(--px-6);
     font-weight: 500;
     transition: var(--transition-1);
-    padding: var(--px-6);
     font-size: var(--px-12);
 }
 
@@ -1317,7 +1316,7 @@ div.completed span.dot {
 
 .task-box svg.warning:hover {
     fill: var(--warning);
-}
+} */
 
 .btn-warning {
     display: flex;

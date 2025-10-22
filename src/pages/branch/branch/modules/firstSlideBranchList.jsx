@@ -3,7 +3,10 @@ import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 
 function FirstSlideBranchList() {
-  const { itemList } = usePageRender({entity: "branch_data", isPaginate: true});
+  const { itemList } = usePageRender({
+    entity: "branch_data",
+    isPaginate: true,
+  });
 
   return (
     <FirstSlideLayout
@@ -17,13 +20,12 @@ function FirstSlideBranchList() {
           Theader={[
             "Sl No.",
             "Name",
-            "Ref No.",
+            "Address",
+            "Owner Name",
             "Contact",
             "Alt Contact",
-            "Address",
             "Email",
-            "Comission",
-            "Action",
+            "Comission %",
           ]}
           Trow={itemList}
           col={6}

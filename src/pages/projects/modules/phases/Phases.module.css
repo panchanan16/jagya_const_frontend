@@ -1,0 +1,163 @@
+.card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.titleSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease;
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.linkButton {
+  text-decoration: none;
+}
+
+.contractorBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contractorBtn:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.statusSelect {
+  padding: 8px 12px;
+  border: 2px solid;
+  border-radius: 8px;
+  background: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.statusSelect:hover {
+  opacity: 0.8;
+}
+
+.statusSelect:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.taskSection {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.task {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskText {
+  font-size: 14px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.deleteBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.deleteBtn:hover {
+  background: #fee2e2;
+}
+
+.deleteIcon {
+  width: 18px;
+  height: 18px;
+  fill: #ef4444;
+  transition: fill 0.2s ease;
+}
+
+.deleteBtn:hover .deleteIcon {
+  fill: #dc2626;
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  
+  .statusSelect {
+    flex: 1;
+    min-width: 140px;
+  }
+}

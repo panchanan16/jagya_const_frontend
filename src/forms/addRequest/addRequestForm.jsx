@@ -323,10 +323,6 @@ function AddRequestForm() {
     alert(JSON.stringify(values));
   }
 
-  function addnewproject(params) {
-    
-  }
-
   return (
     <PopupLayout>
       <div className="add-collection blur">

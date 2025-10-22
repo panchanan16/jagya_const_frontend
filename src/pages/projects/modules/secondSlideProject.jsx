@@ -14,6 +14,7 @@ function SecondSlideProject() {
   const { projectId } = useParams();
   const [uploadPopupOpen, setUploadPopupOpen] = useState(false);
   const { itemList } = useSelector((state) => state["project_phase"]);
+
   const { deleteFile } = coreCrudActions;
   const { itemData } = usePageRender({
     entity: "project",
@@ -23,7 +24,6 @@ function SecondSlideProject() {
     urlKey: "projectId",
   });
 
-  console.log(itemData);
   const dispatch = useDispatch();
 
   function openFileBoard(params) {
@@ -269,7 +269,7 @@ function SecondSlideProject() {
               .filter((ph) => ph.pro_id == projectId)
               .concat(itemData?.phases)
               ?.map((ph) => (
-                <Phases Name={ph.phase_name} Status={ph.pro_phase_status} />
+                <Phases Name={ph.phase_name} Status={ph.pro_phase_status} phaseId={ph.pro_phase_id} />
               ))}
           </div>
         </div>

@@ -229,7 +229,7 @@ function SearchInput({
         return searchFields.some((elem) => {
           if (
             el[elem] &&
-            el[elem].toLowerCase().includes(sValue?.toLowerCase())
+            el[elem]?.toString().toLowerCase().includes(sValue?.toLowerCase())
           ) {
             return el;
           }
