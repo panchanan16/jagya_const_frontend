@@ -8,13 +8,14 @@ import { useState } from "react";
 
 function FirstSlideUsers() {
   const [userFilter, setUserFilter] = useState("super_admin");
-  const { itemList } = usePageRender(
-    {
-      entity: "users",
-      tail: `readAll/${userFilter}`,
-      urlKey: userFilter
-    }
-  );
+  const { itemList } = usePageRender({
+    entity: "users",
+    tail: `readAll/${userFilter}`,
+    urlKey: userFilter,
+  });
+
+
+  console.log(itemList)
 
   let tableData = { tHeaders: [], tLimits: [] };
 
@@ -51,7 +52,6 @@ function FirstSlideUsers() {
           "Alt Contact",
           "Location",
           "Commssion",
-          "Action",
         ],
         tLimits: [
           "br_id",
@@ -62,6 +62,26 @@ function FirstSlideUsers() {
           "b_email",
           "b_location",
           "b_commision",
+        ],
+      };
+      break;
+    case "finance":
+      tableData = {
+        tHeaders: [
+          "ID",
+          "Name",
+          "Email",
+          "Contact",
+          "Alt Contact",
+          "Address"
+        ],
+        tLimits: [
+          "fd_a_id",
+          "fd_name",
+          "fd_contact",
+          "fd_alt_contact",
+          "fd_address",
+          "fd_email"
         ],
       };
       break;
@@ -80,7 +100,7 @@ function FirstSlideUsers() {
       HeaderSection={true}
     >
       <SectionHeaderOption
-        HeadingText="All Users"
+        Heading="All Users"
         EndBtn={<UsersDropdown />}
         // Entity={"aaaa"}
         FilterComponent={<UserFilter SetFilter={setUserFilter} />}

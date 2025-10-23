@@ -2,6 +2,7 @@ import {
   modifySearchLoading,
   SEARCH_ITEM,
   setFilteredItems,
+  setSearchEntity,
   setQuery,
 } from "@/redux/features/searchSlice/slice";
 import { _GET } from "@/request/request";
@@ -10,12 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 // searchFields:[] Its type of array of string which contain all fields of the item where search occur
 
-function useSearch(searchQuery, entity, searchFields) {
+function useSearch(searchQuery, entity) {
   const itemList = useSelector((state) => state[entity]);
   const dispatch = useDispatch();
   // console.log(searchFields)
   useEffect(() => {
     dispatch(setQuery(searchQuery));
+    dispatch(setSearchEntity(entity));
     searchQuery
       ? dispatch(modifySearchLoading(true))
       : dispatch(modifySearchLoading(false));

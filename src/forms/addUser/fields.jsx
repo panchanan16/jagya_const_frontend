@@ -13,3 +13,12 @@ export const validate = {
   su_alt_contact: "phnumber",
   su_address: "text",
 };
+
+
+export const financeUserInitialValues = {
+  fd_name: "",
+  fd_email: " ",
+  fd_contact: "",
+  fd_alt_contact: "",
+  fd_address: "",
+};

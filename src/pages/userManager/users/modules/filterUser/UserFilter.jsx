@@ -3,10 +3,10 @@ function UserFilter({ SetFilter }) {
   return (
     <div className="filter" onChange={(e)=> SetFilter(e.target.value)}>
       <select>
-        <option value="super_admin">Admin User</option>
-        <option value="branch">Branch User</option>
-        <option value="finance_user">Finance User</option>
-        <option value="incharge_user">Incharge User</option>
+        <option value="super_admin">Super Admin Users</option>
+        <option value="branch">Branch Users</option>
+        <option value="finance">Finance Users</option>
+        <option value="incharge_user">Incharge Users</option>
       </select>
     </div>
   );

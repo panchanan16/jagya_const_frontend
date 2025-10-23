@@ -3,7 +3,7 @@ import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 
 function FirstSlide() {
-  const { outputItemList, pagination } = usePageRender({entity: "client", isPaginate: true});
+  const { outputItemList, pagination, searchLoading } = usePageRender({entity: "client", isPaginate: true});
 
   return (
     <FirstSlideLayout
@@ -25,6 +25,7 @@ function FirstSlide() {
             "Address",
             "Email",
           ]}
+          isLoading={searchLoading}
           Trow={outputItemList}
           Actions={{
             viewUrl: "client_id",

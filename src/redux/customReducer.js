@@ -4,7 +4,7 @@ function fulfilledStateReducer(state, action, src, type, key) {
         case 'POST':
             if (action.payload?.source == src) {
                 state.loading = false
-                state[action.payload?.stateKey ? action.payload?.stateKey : 'itemList'].push(action.payload.response.data)
+                state[action.payload?.stateKey ? action.payload?.stateKey : 'itemList'].unshift(action.payload.response.data)
                 state.error = null
             }
 
