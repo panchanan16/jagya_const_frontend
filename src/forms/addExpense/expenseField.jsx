@@ -88,6 +88,7 @@ export default function ExpenseField({
   Type,
   typeDisplay,
   defaultInput,
+  projectId
 }) {
   const { id } = useParams();
 
@@ -109,6 +110,7 @@ export default function ExpenseField({
             SetFKey={{ [FieldNameList.client]: "pro_id" }} // setting client ref key in the form which is not displayed
             SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
             editDisplayInput={FieldNameList?.cname}
+            projectSearchParam={projectId}
           />
         </div>
 

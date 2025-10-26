@@ -23,7 +23,7 @@ function useSearch(searchQuery, entity) {
       : dispatch(modifySearchLoading(false));
     // searchQuery !== "" && dispatch(SEARCH_ITEM({ query: searchQuery, entity }));
     const handler = setTimeout(() => {
-      searchQuery !== "" &&
+      searchQuery && searchQuery !== "" &&
         dispatch(SEARCH_ITEM({ query: searchQuery, entity }));
     }, 2000);
     return () => clearTimeout(handler);

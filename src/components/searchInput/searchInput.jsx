@@ -139,6 +139,7 @@ import { ErrorMessage, Field, useFormikContext } from "formik";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SearchInput.module.css";
+import { useSearchParams } from "react-router-dom";
 
 // Name: Name of the searchinput
 // Label: Display Label of the input field
@@ -158,6 +159,7 @@ function SearchInput({
   SetDisplayKey,
   editDisplayInput,
   errorKey,
+  projectSearchParam = null,
 }) {
   const [showList, setShowList] = useState(false);
   const dispatch = useDispatch();
@@ -171,6 +173,15 @@ function SearchInput({
   const [searchedItemList, setSearchedItemList] = useState([]);
 
   const { loading, error } = useSearch(findInput?.value, Entity);
+
+  console.log(projectSearchParam);
+
+  useEffect(() => {
+    if (projectSearchParam) {
+      setFindInput({ value: projectSearchParam });
+      setShowList(true);
+    }
+  }, [projectSearchParam]);
 
   const {
     itemList: filterList,
@@ -230,7 +241,6 @@ function SearchInput({
       setSearchedItemList(itemList);
     }
   }, [itemList, filterList, searchEntity]);
-
 
   function SearchInputData(sValue, searchFieldsParam) {
     const searchFields = [searchFieldsParam.id, searchFieldsParam.name];

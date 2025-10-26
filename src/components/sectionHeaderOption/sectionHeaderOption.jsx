@@ -1,5 +1,6 @@
 import DateRange from "../DateRange/DateRange";
 import SearchBox from "../searchBox/SearchBox";
+import styles from "@/styles/common.module.css"
 
 function SectionHeaderOption({
   children,

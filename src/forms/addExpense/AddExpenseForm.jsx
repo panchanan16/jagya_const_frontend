@@ -192,7 +192,12 @@
 // export default AddExpenseForm;
 
 import PopupLayout from "@/layout/common/popupLayout";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import ExpenseField from "./expenseField";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, FieldArray, Form } from "formik";
@@ -206,6 +211,7 @@ import BackButtton from "@/components/BackButton/BackButtton";
 import styles from "@/forms/form.module.css";
 
 function ExpenseFormWithField({ values, resetFn }) {
+  const [searchParam] = useSearchParams();
   return (
     <Form>
       {/* Basic Expense Information */}
@@ -340,6 +346,7 @@ function ExpenseFormWithField({ values, resetFn }) {
                     Ind={index}
                     Type={"vendor"}
                     typeDisplay={{ id: "vendor_id", name: "vendor_name" }}
+                    projectId={searchParam.get("formProject")}
                   />
                 </div>
               ))}
@@ -404,6 +411,7 @@ function ExpenseFormWithField({ values, resetFn }) {
                     Ind={index}
                     Type={"contractor"}
                     typeDisplay={{ id: "con_id", name: "con_name" }}
+                    projectId={searchParam.get("formProject")}
                   />
                 </div>
               ))}
@@ -491,7 +499,7 @@ function AddExpenseForm() {
           <p className={styles.formSubtitle}>
             Update expense details including vendor and contractor payments
           </p>
-          <BackButtton />          
+          <BackButtton />
         </div>
 
         {/* Form Body */}

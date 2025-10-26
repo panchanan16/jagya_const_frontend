@@ -105,19 +105,19 @@
 
 // export default InstallmentForm;
 
-
-
 import SearchInput from "@/components/searchInput/searchInput";
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, Form } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import SelectOption from "@/components/SelectOption/SelectOption";
 import styles from "@/forms/form.module.css";
+import BackButtton from "@/components/BackButton/BackButtton";
 
 function InstallmentFormWithField({ values, resetFn }) {
+  const [searchParam] = useSearchParams();
 
   return (
     <Form>
@@ -131,11 +131,12 @@ function InstallmentFormWithField({ values, resetFn }) {
             SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
             SetFKey={{ col_project_id: "pro_ref_no" }}
             errorKey={"col_project_id"}
+            projectSearchParam={searchParam.get('formProject')}
           />
         </div>
 
         {/* Phase Selection */}
-        <div className={`field ${styles.fieldGroup}`}>         
+        <div className={`field ${styles.fieldGroup}`}>
           <SelectOption
             Name="col_project_phase"
             Label={"Phase"}
@@ -145,12 +146,15 @@ function InstallmentFormWithField({ values, resetFn }) {
 
         {/* Date Field */}
         <div className={`field ${styles.fieldGroup}`}>
-          <label className={`${styles.fieldLabel} ${styles.required}`} htmlFor="col_date">
+          <label
+            className={`${styles.fieldLabel} ${styles.required}`}
+            htmlFor="col_date"
+          >
             Date
           </label>
-          <Field 
-            type="date" 
-            name="col_date" 
+          <Field
+            type="date"
+            name="col_date"
             id="col_date"
             className={styles.formInput}
           />
@@ -158,21 +162,24 @@ function InstallmentFormWithField({ values, resetFn }) {
 
         {/* Amount Field */}
         <div className={`field ${styles.fieldGroup}`}>
-          <label className={`${styles.fieldLabel} ${styles.required}`} htmlFor="col_amount">
+          <label
+            className={`${styles.fieldLabel} ${styles.required}`}
+            htmlFor="col_amount"
+          >
             Amount
           </label>
           <div className={styles.fieldGroup}>
-            <Field 
-              type="number" 
-              name="col_amount" 
+            <Field
+              type="number"
+              name="col_amount"
               id="col_amount"
               className={styles.formInput}
               placeholder="Enter amount..."
             />
-            <ErrorMessage 
-              name={"col_amount"} 
-              className={`err ${styles.errorMessage}`} 
-              component="div" 
+            <ErrorMessage
+              name={"col_amount"}
+              className={`err ${styles.errorMessage}`}
+              component="div"
             />
           </div>
         </div>
@@ -182,9 +189,9 @@ function InstallmentFormWithField({ values, resetFn }) {
           <label className={styles.fieldLabel} htmlFor="col_remark">
             Remarks
           </label>
-          <Field 
-            type="text" 
-            name="col_remark" 
+          <Field
+            type="text"
+            name="col_remark"
             id="col_remark"
             className={styles.formInput}
             placeholder="Add remarks (optional)..."
@@ -193,12 +200,15 @@ function InstallmentFormWithField({ values, resetFn }) {
 
         {/* Mode of Payment */}
         <div className={`field ${styles.fieldGroup}`}>
-          <label className={`${styles.fieldLabel} ${styles.required}`} htmlFor="col_mode">
+          <label
+            className={`${styles.fieldLabel} ${styles.required}`}
+            htmlFor="col_mode"
+          >
             Mode of Payment
           </label>
           <div className={styles.paymentMethodGroup}>
-            <Field 
-              as="select" 
+            <Field
+              as="select"
               name="col_mode"
               id="col_mode"
               className={styles.formSelect}
@@ -211,22 +221,22 @@ function InstallmentFormWithField({ values, resetFn }) {
               <option value="Bank Transfer">Bank Transfer</option>
               <option value="Net banking">Net Banking</option>
             </Field>
-            <ErrorMessage 
-              name={"col_mode"} 
-              className={`err ${styles.errorMessage}`} 
-              component="div" 
+            <ErrorMessage
+              name={"col_mode"}
+              className={`err ${styles.errorMessage}`}
+              component="div"
             />
           </div>
         </div>
       </div>
 
       <div className={`action-btn ${styles.formActions}`}>
-        <button type="submit" className={`btn-success ${styles.primaryButton}`}>         
+        <button type="submit" className={`btn-success ${styles.primaryButton}`}>
           Update Installment
         </button>
-        <button 
-          type="button" 
-          className={`btn-warning ${styles.secondaryButton}`} 
+        <button
+          type="button"
+          className={`btn-warning ${styles.secondaryButton}`}
           onClick={resetFn}
         >
           Cancel
@@ -251,10 +261,10 @@ function InstallmentForm() {
         {/* Modern Header */}
         <div className={styles.formHeader}>
           <h2 className={styles.formTitle}>Add New Installment</h2>
-          <p className={styles.formSubtitle}>Record a new payment installment for the project</p>
-          <Link to={`/admin/finance`} className={styles.closeButton}>
-            ✕ Close
-          </Link>
+          <p className={styles.formSubtitle}>
+            Record a new payment installment for the project
+          </p>
+          <BackButtton />
         </div>
 
         {/* Form Body */}
