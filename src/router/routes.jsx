@@ -59,6 +59,7 @@ import { Outlet } from "react-router-dom";
 import SecondSlideSettings from "@/pages/settings/modules/SecondSlideSettings";
 import WorkType from "@/pages/settings/modules/elements/WorkType";
 import PaymentType from "@/pages/settings/modules/elements/PaymentType";
+import AddFinanceUserForm from "@/forms/addUser/AddFinancleUserForm";
 
 function generateRoutePages() {
   const routePages = [
@@ -271,6 +272,10 @@ function generateRoutePages() {
                 {
                   path: "add-user",
                   element: <AddUserForm />,
+                },
+                {
+                  path: "add-finance",
+                  element: <AddFinanceUserForm />,
                 },
               ],
             },

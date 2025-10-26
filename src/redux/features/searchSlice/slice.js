@@ -8,16 +8,16 @@ const initialState = {
     error: null,
     itemData: [],
     searchQuery: "",
+    searchEntity: "client",
     searchLoading: false
 };
 
 export const SEARCH_ITEM = createAsyncThunk(
     "SEARCH_ITEM",
-    async ({ query, entity}, { rejectWithValue }) => {
+    async ({ query, entity }, { rejectWithValue }) => {
         try {
-            const response = await _GET(coreEndpoint.searchItem(`query=${query}&type=projects&pageSize=30`))
-            console.log(response)
-            return { response, source: entity} // action.payload.response.data
+            const response = await _GET(coreEndpoint.searchItem(`query=${query}&type=${entity}&pageSize=50`))
+            return { response, source: entity } // action.payload.response.data
         } catch (error) {
             return rejectWithValue(error.message)
         }
@@ -28,6 +28,10 @@ const searchSlice = createSlice({
     name: "searchSlice",
     initialState: initialState,
     reducers: {
+        setSearchEntity: (state, action) => {
+            state.searchEntity = action.payload;
+        }
+        ,
         setQuery: (state, action) => {
             state.searchQuery = action.payload;
         },
@@ -57,7 +61,7 @@ const searchSlice = createSlice({
             })
             .addCase(SEARCH_ITEM.fulfilled, (state, action) => {
                 state.loading = false;
-                 state.searchLoading = false
+                state.searchLoading = false
                 state.itemList = action.payload.response.data;
             })
             .addCase(SEARCH_ITEM.rejected, (state, action) => {
@@ -68,6 +72,5 @@ const searchSlice = createSlice({
     },
 });
 
-export const { setQuery, setFilteredItems, resetSearchItems, removeQuery, modifySearchLoading } = searchSlice.actions;
-
+export const { setQuery, setFilteredItems, resetSearchItems, removeQuery, modifySearchLoading, setSearchEntity } = searchSlice.actions;
 export default searchSlice.reducer;

@@ -20,7 +20,8 @@ function TabLayout({ TabList }) {
         </div>
       </div>
       <div className="tabs-content">
-        {/* <!-- TAB RENDERING --> */}
+        {/* Top Section components */}        
+        {/* <!-- TAB RENDERING --> */}        
         {TabList.length &&
           TabList.map((tabDetails) => (
             <Tab
@@ -30,6 +31,7 @@ function TabLayout({ TabList }) {
               TableHeading={tabDetails.list}
               TableRows={tabDetails.tabData}
               limit={tabDetails.limit}
+              TopSection={tabDetails.Topsection && tabDetails.Topsection}
             />
           ))}
       </div>

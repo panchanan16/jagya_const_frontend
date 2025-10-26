@@ -39,13 +39,34 @@ function UsersDropdown() {
             </Link>
           </li>
           <li>
-            <Link to="">Incharge</Link>
+            <Link
+              to={{
+                pathname: "add-user",
+                search: "?user=super_admin",
+              }}
+            >
+              Incharge
+            </Link>
           </li>
           <li>
-            <Link to="">Financer</Link>
+            <Link
+              to={{
+                pathname: "add-finance",
+                search: "?user=finance",
+              }}
+            >
+              Financer
+            </Link>
           </li>
           <li>
-            <Link to="">Admin</Link>
+            <Link
+              to={{
+                pathname: "add-user",
+                search: "?user=super_admin",
+              }}
+            >
+              Admin
+            </Link>
           </li>
         </ul>
       </div>

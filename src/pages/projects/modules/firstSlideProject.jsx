@@ -5,6 +5,9 @@ import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 function FirstSlideProject() {
   const { outputItemList, pagination, searchLoading } = usePageRender({entity: "project", isPaginate: true});
 
+
+  console.log(outputItemList)
+
   return (
     <FirstSlideLayout
       Heading={"Projects"}

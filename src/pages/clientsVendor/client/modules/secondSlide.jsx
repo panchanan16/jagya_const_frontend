@@ -4,8 +4,11 @@ import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styles from "@/styles/common.module.css";
+import { PlusCircle } from "lucide-react";
 
 function SecondSlide() {
+  const [currentProject, setCurrentProject] = useState()
   const { changeTabContent, isHighlight, itemData, itemDetails } =
     useRenderProjects(
       "client",
@@ -13,10 +16,11 @@ function SecondSlide() {
       { item: "client_id", details: "pro_ref_id" }
     );
 
-  const {viewedItem, goBack } = useSecondSlideData("client", "client_id");
+  const { viewedItem, goBack } = useSecondSlideData("client", "client_id");
 
   useEffect(() => {
     itemData.length && changeTabContent(itemData[0].pro_ref_no);
+    itemData.length && setCurrentProject(itemData[0].pro_ref_no)
   }, [itemData]);
 
   return (
@@ -63,7 +67,10 @@ function SecondSlide() {
         <div className="contents grid gtc-2 gap-10">
           <div className="description flex">
             <h3>Phone Number:</h3>
-            <p className="text">{viewedItem && viewedItem.client_contact} | {viewedItem && viewedItem.client_alt_contact}</p>
+            <p className="text">
+              {viewedItem && viewedItem.client_contact} |{" "}
+              {viewedItem && viewedItem.client_alt_contact}
+            </p>
           </div>
           <div className="description flex">
             <h3>Email ID:</h3>
@@ -71,9 +78,7 @@ function SecondSlide() {
           </div>
           <div className="description flex">
             <h3>Address:</h3>
-            <p className="text">
-             {viewedItem && viewedItem.client_address}
-            </p>
+            <p className="text">{viewedItem && viewedItem.client_address}</p>
           </div>
           <div className="description flex">
             <h3>On Going Project:</h3>
@@ -103,11 +108,23 @@ function SecondSlide() {
                   className={`projectName flex align-center ${
                     isHighlight == item.pro_ref_no ? "active" : ""
                   }`}
-                  onClick={() => changeTabContent(item.pro_ref_no)}
+                  onClick={() => {changeTabContent(item.pro_ref_no); setCurrentProject(item.pro_ref_no)}}
                 >
                   <p className="text">
                     {item.pro_ref_no} || {item.pro_name}
                   </p>
+                  <Link
+                    to={`../../projects/${item.pro_id}`}
+                    style={{
+                      marginLeft: "15px",
+                      padding: "5px",
+                      backgroundColor: "white",
+                      borderRadius: "5px",
+                      fontSize: "12px",
+                    }}
+                  >
+                    View Details
+                  </Link>
                 </div>
               ))
             ) : (
@@ -122,6 +139,7 @@ function SecondSlide() {
           TabList={[
             {
               main: "Installments",
+              Topsection: () => <RedirectToAddInstallment formId={currentProject} />,
               list: [
                 "No.",
                 "Amount",
@@ -143,6 +161,30 @@ function SecondSlide() {
             },
             {
               main: "Expenses",
+              Topsection: ()=> <RedirectToAddExpense formId={currentProject} />,
+              list: [
+                "No.",
+                "Expense Name",
+                "Amount",
+                "Mode",
+                "Remarks",
+                "Date",
+                "project",
+                "Action",
+              ],
+              limit: [
+                "exp_id",
+                "exp_name",
+                { key: "exp_amount", type: "amount" },
+                "exp_mode",
+                "exp_remark",
+                "exp_date",
+                "exp_project_ref",
+              ],
+              tabData: itemDetails.expenses,
+            },
+            {
+              main: "Materials Request",
               list: [
                 "No.",
                 "Expense Name",
@@ -168,6 +210,24 @@ function SecondSlide() {
         />
       </main>
     </SecondSlideLayout>
+  );
+}
+
+function RedirectToAddInstallment({ formId }) {
+  return (
+    <Link to={`../../finance/add-installment?formProject=${formId}`} className={styles.linkButton}>
+      <PlusCircle className={styles.icon} />
+      <span>Add New Installment</span>
+    </Link>
+  );
+}
+
+function RedirectToAddExpense({ formId }) {
+  return (
+    <Link to={`../../expense/add-expense?formProject=${formId}`} className={styles.linkButton}>
+      <PlusCircle className={styles.icon} />
+      <span>Add Expense</span>
+    </Link>
   );
 }
 

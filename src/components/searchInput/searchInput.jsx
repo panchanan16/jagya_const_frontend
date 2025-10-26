@@ -133,17 +133,13 @@
 //   );
 // }
 
-// export default SearchInput;
-
-
-
-import useDebounce from "@/hooks/useDebounce";
 import useSearch from "@/hooks/useSearch";
 import crudActions from "@/redux/crudActions";
 import { ErrorMessage, Field, useFormikContext } from "formik";
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./SearchInput.module.css";
+import { useSearchParams } from "react-router-dom";
 
 // Name: Name of the searchinput
 // Label: Display Label of the input field
@@ -163,19 +159,39 @@ function SearchInput({
   SetDisplayKey,
   editDisplayInput,
   errorKey,
+  projectSearchParam = null,
 }) {
   const [showList, setShowList] = useState(false);
   const dispatch = useDispatch();
   const [inputDisplay, setInputDisplay] = useState(
     editDisplayInput ? editDisplayInput : ""
   );
-  const [findInput, setFindInput] = useState({ value: "", delay: 500 });
+  const [findInput, setFindInput] = useState(""); // { value: "", delay: 500 }
   const { setFieldValue } = useFormikContext();
   const { getItemList } = crudActions;
   const { itemList } = useSelector((state) => state[Entity]);
   const [searchedItemList, setSearchedItemList] = useState([]);
-  const { debouncedValue, isLoading } = useDebounce(itemList, findInput);
-  
+
+  const { loading, error } = useSearch(findInput?.value, Entity);
+
+  console.log(projectSearchParam);
+
+  useEffect(() => {
+    if (projectSearchParam) {
+      setFindInput({ value: projectSearchParam });
+      setShowList(true);
+    }
+  }, [projectSearchParam]);
+
+  const {
+    itemList: filterList,
+    searchQuery,
+    searchEntity,
+    searchLoading,
+  } = useSelector((state) => state["search"]);
+
+  // console.log(filterList, searchLoading)
+
   // Ref for click outside detection
   const containerRef = useRef(null);
 
@@ -186,27 +202,30 @@ function SearchInput({
   // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
         closeDropdown();
       }
     };
 
     const handleEscapeKey = (event) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         closeDropdown();
       }
     };
 
     // Add event listeners
-    document.addEventListener('mousedown', handleClickOutside, true);
-    document.addEventListener('touchstart', handleClickOutside, true);
-    document.addEventListener('keydown', handleEscapeKey);
+    document.addEventListener("mousedown", handleClickOutside, true);
+    document.addEventListener("touchstart", handleClickOutside, true);
+    document.addEventListener("keydown", handleEscapeKey);
 
     // Cleanup
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside, true);
-      document.removeEventListener('touchstart', handleClickOutside, true);
-      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("touchstart", handleClickOutside, true);
+      document.removeEventListener("keydown", handleEscapeKey);
     };
   }, [closeDropdown]);
 
@@ -216,10 +235,12 @@ function SearchInput({
   }
 
   useEffect(() => {
-    if (itemList.length) {
+    if (searchQuery && searchEntity === Entity) {
+      setSearchedItemList(filterList);
+    } else {
       setSearchedItemList(itemList);
     }
-  }, [itemList]);
+  }, [itemList, filterList, searchEntity]);
 
   function SearchInputData(sValue, searchFieldsParam) {
     const searchFields = [searchFieldsParam.id, searchFieldsParam.name];
@@ -235,10 +256,10 @@ function SearchInput({
           }
         });
       });
-    setSearchedItemList(filtered);
-    if (filtered && !filtered.length) {
-      setFindInput({ value: sValue, delay: 3000 });
-    }
+    // setSearchedItemList(filtered);
+    // if (filtered && !filtered.length) {
+    setFindInput({ value: sValue, delay: 3000 });
+    // }
   }
 
   function setInput(ItemEntity, name, value) {
@@ -274,8 +295,8 @@ function SearchInput({
       <label className={`title client-selector ${styles.searchLabel}`}>
         {Label}
       </label>
-      
-      <div className={styles.inputWrapper}>              
+
+      <div className={styles.inputWrapper}>
         <Field
           name={Name}
           value={inputDisplay}
@@ -287,8 +308,12 @@ function SearchInput({
           readOnly="true"
         />
       </div>
-      
-      <div className={`${styles.dropdown} ${showList ? styles.show : ''} list-options`}>
+
+      <div
+        className={`${styles.dropdown} ${
+          showList ? styles.show : ""
+        } list-options`}
+      >
         <div className={styles.searchContainer}>
           <div className={styles.searchInputWrapper}>
             <svg
@@ -316,10 +341,8 @@ function SearchInput({
         </div>
 
         <ul className={styles.optionsList}>
-          {isLoading ? (
-            <li className={styles.loadingState}>
-              Loading...
-            </li>
+          {searchLoading ? (
+            <li className={styles.loadingState}>Loading...</li>
           ) : searchedItemList && searchedItemList.length > 0 ? (
             searchedItemList.map((item, ind) => (
               <li
@@ -337,9 +360,7 @@ function SearchInput({
               </li>
             ))
           ) : (
-            <li className={styles.emptyState}>
-              No results found
-            </li>
+            <li className={styles.emptyState}>No results found</li>
           )}
         </ul>
       </div>

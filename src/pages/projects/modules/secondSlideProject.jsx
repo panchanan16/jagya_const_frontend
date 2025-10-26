@@ -9,6 +9,7 @@ import coreCrudActions from "@/redux/coreCrudAction";
 import { FileUp, PaperclipIcon } from "lucide-react";
 import FileUploadPopup from "./fileUpload/FileUploadBoard";
 import { useState } from "react";
+import { LinkBackButton } from "@/components/BackButton/BackButtton";
 
 function SecondSlideProject() {
   const { projectId } = useParams();
@@ -41,20 +42,7 @@ function SecondSlideProject() {
     <SecondSlideLayout>
       <main>
         <div className="main-btn flex">
-          <Link to={`/admin/projects`}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              data-name="Layer 1"
-              viewBox="0 0 24 24"
-              id="arrow-left"
-              className="main-svg"
-            >
-              <path
-                fill=""
-                d="M17,11H9.41l3.3-3.29a1,1,0,1,0-1.42-1.42l-5,5a1,1,0,0,0-.21.33,1,1,0,0,0,0,.76,1,1,0,0,0,.21.33l5,5a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42L9.41,13H17a1,1,0,0,0,0-2Z"
-              ></path>
-            </svg>
-          </Link>
+          <LinkBackButton />
           <button
             className="btn-secondary hide"
             type="button"

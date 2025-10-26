@@ -26,8 +26,8 @@ function useRenderProjects(entity, endpoint, query, detail) {
   }, [id]);
 
   useEffect(() => {
-    console.log("Useeffect executing twice")
-    getItemList(
+    console.log("Useeffect executing twice", detailQuery)
+    detailQuery && getItemList(
       entity,
       dispatch,
       `${endpoint.details}?${query.details}=${detailQuery}`,

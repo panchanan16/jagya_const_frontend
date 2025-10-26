@@ -1,5 +1,6 @@
 import DateRange from "../DateRange/DateRange";
 import SearchBox from "../searchBox/SearchBox";
+import styles from "@/styles/common.module.css"
 
 function SectionHeaderOption({
   children,
@@ -9,6 +10,7 @@ function SectionHeaderOption({
   EndBtn2,
   searchFields,
   Heading = "Data",
+  FilterComponent = null
 }) {
   return (
     <div className="top-section flex align-center j-between">
@@ -32,6 +34,10 @@ function SectionHeaderOption({
         {Entity && (
           <SearchBox SearchEntity={Entity} searchFields={searchFields} />
         )}
+
+        {
+          FilterComponent && FilterComponent
+        }
         <div className="filter hide">
           <button className="btn-filter flex align-center">
             <svg
