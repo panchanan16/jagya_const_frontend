@@ -18,7 +18,6 @@ function FirstSlideInchargeReq() {
           "Project Ref",
           "Phase",
           "Date",
-          "Action",
         ]}
         Limit={[
           "mr_r_id",

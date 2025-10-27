@@ -3,9 +3,10 @@ import useSecondSlideData from "@/hooks/useSecondSlideData";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styles from "@/styles/common.module.css";
 import { PlusCircle } from "lucide-react";
+import { isAction } from "@reduxjs/toolkit";
 
 function SecondSlide() {
   const [currentProject, setCurrentProject] = useState()
@@ -15,6 +16,9 @@ function SecondSlide() {
       { item: "get_clientProject", details: "get_ProjectInfo" },
       { item: "client_id", details: "pro_ref_id" }
     );
+
+
+    console.log(itemDetails)
 
   const { viewedItem, goBack } = useSecondSlideData("client", "client_id");
 
@@ -147,7 +151,6 @@ function SecondSlide() {
                 "Remarks",
                 "Date",
                 "Project",
-                "Action",
               ],
               limit: [
                 "col_id",
@@ -170,7 +173,6 @@ function SecondSlide() {
                 "Remarks",
                 "Date",
                 "project",
-                "Action",
               ],
               limit: [
                 "exp_id",
@@ -186,29 +188,24 @@ function SecondSlide() {
             {
               main: "Materials Request",
               list: [
-                "No.",
-                "Expense Name",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Date",
-                "project",
-                "Action",
+                "Ref No",
+                "Phase",
+                "Date of Request",
+                "Client Name",                
               ],
               limit: [
-                "exp_id",
-                "exp_name",
-                { key: "exp_amount", type: "amount" },
-                "exp_mode",
-                "exp_remark",
-                "exp_date",
-                "exp_project_ref",
+                "material_ref_no",
+                "mr_phase",
+                "mr_date",
+                "client_name",                
               ],
-              tabData: itemDetails.expenses,
+              isAction: {viewUrl: "mr_r_id"},
+              tabData: itemDetails.requests,
             },
           ]}
         />
       </main>
+      <Outlet />
     </SecondSlideLayout>
   );
 }

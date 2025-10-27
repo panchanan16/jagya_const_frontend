@@ -7,7 +7,52 @@ const initialState = {
   itemData: [],
   loading: null,
   error: null,
-  itemDetails: {collections: [], expenses: []}
+  itemDetails: {
+    collections: [], expenses: [], requests: [{
+      "mr_r_id": 19,
+      "material_ref_no": "JGCMRQ0008",
+      "mr_project_id": 30,
+      "mr_phase": "Phase 33",
+      "mr_date": "2025-10-26",
+      "created_at": "2025-10-26T14:33:43.000Z",
+      "pro_name": "2 BHK house",
+      "pro_ref_no": "ACME-202374",
+      "client_name": "Ravi  Das"
+    },
+    {
+      "mr_r_id": 17,
+      "material_ref_no": "JGCMRQ0007",
+      "mr_project_id": 11,
+      "mr_phase": "Phase 1",
+      "mr_date": "2025-04-03",
+      "created_at": "2025-07-12T15:15:15.000Z",
+      "pro_name": "Lakeview Resort",
+      "pro_ref_no": "JGCP0004",
+      "client_name": "tata industry  motor"
+    },
+    {
+      "mr_r_id": 15,
+      "material_ref_no": "JGCMRQ0006",
+      "mr_project_id": 11,
+      "mr_phase": "Phase 1",
+      "mr_date": "2025-04-03",
+      "created_at": "2025-07-12T14:50:18.000Z",
+      "pro_name": "Lakeview Resort",
+      "pro_ref_no": "JGCP0004",
+      "client_name": "tata industry  motor"
+    },
+    {
+      "mr_r_id": 14,
+      "material_ref_no": "JGCMRQ0005",
+      "mr_project_id": 11,
+      "mr_phase": "Phase 1",
+      "mr_date": "2025-04-03",
+      "created_at": "2025-05-11T08:06:53.000Z",
+      "pro_name": "Lakeview Resort",
+      "pro_ref_no": "JGCP0004",
+      "client_name": "tata industry  motor"
+    }]
+  }
 }
 
 
@@ -39,7 +84,7 @@ export const clientSlice = createSlice({
       state.loading = true
       state.error = action.payload
     }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-       fulfilledStateReducer(state, action, 'client', 'DELETE')
+      fulfilledStateReducer(state, action, 'client', 'DELETE')
     }).addCase(DELETE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload

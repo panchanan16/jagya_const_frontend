@@ -11,6 +11,8 @@ function ItemActionBox({ viewFn, editFn, deleteFn }) {
   const dispatch = useDispatch();
   const { deleteItem } = crudActions;
 
+  console.log(viewFn)
+
   function deleteTheItem(id) {
     const isDelete = confirm("Are you sure to delete ??");
     isDelete && deleteItem(deleteFn, dispatch, { id });

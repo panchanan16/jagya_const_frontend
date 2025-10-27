@@ -2,16 +2,15 @@ import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import PopupLayout from "@/layout/common/popupLayout";
 import { Link, useParams } from "react-router-dom";
+import styles from '@/styles/common.module.css';
 
 function SecondSlideInchargeReq() {
   const { id } = useParams();
-  const { itemData } = usePageRender(
-    {
-      entity: "material_req",
-      tail: `realAll_by_materialId/${id}`,
-      key: "itemData"
-    }
-  );
+  const { itemData } = usePageRender({
+    entity: "material_req",
+    tail: `realAll_by_materialId/${id}`,
+    key: "itemData",
+  });
 
   return (
     <PopupLayout>
@@ -106,8 +105,27 @@ function SecondSlideInchargeReq() {
         </div>
         <div class="inventory-table">
           <Table
-            Theader={["ProjectID", "Item", "Quantity", "Amount"]}
-            Limit={["mr_project_r_id", "mr_item_name", "mr_item_quantity", "mr_item_amount"]}
+            Theader={[
+              "ProjectID",
+              "Item",
+              "Quantity",
+              "Amount",
+              "Arrival Status",
+            ]}
+            Limit={[
+              "mr_project_r_id",
+              "mr_item_name",
+              "mr_item_quantity",
+              { key: "mr_item_amount", type: "amount" },
+              (rowData) => (
+                <td>
+                  <select className={`${styles.select} ${styles.arrived}`}>
+                    <option value="arrived">Arrived</option>
+                    <option value="not_arrived">Not Arrived</option>
+                  </select>
+                </td>
+              ),
+            ]}
             Trow={itemData?.materialItemsData ? itemData.materialItemsData : []}
           />
         </div>

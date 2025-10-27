@@ -136,7 +136,7 @@ function Phases({ Name, Status, phaseId }) {
         </div>
       </div>
 
-      <div className={styles.taskSection}>
+      {/* <div className={styles.taskSection}>
         <div className={styles.task}>
           <span className={styles.taskText}>Slab Casting</span>
           <button
@@ -152,7 +152,7 @@ function Phases({ Name, Status, phaseId }) {
             </svg>
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -108,7 +108,7 @@ function generateRoutePages() {
               path: "clients",
               element: <ClientPage />,
               children: [
-                { path: ":id", element: <SecondSlide /> },
+                { path: ":id", element: <SecondSlide />, children: [{ path: ":reqId", element: <SecondSlideFinanceReq /> }]},
                 { path: "create", element: <AddClientForm /> },
                 { path: "create/:id", element: <AddClientForm /> },
               ],
@@ -173,7 +173,7 @@ function generateRoutePages() {
               path: "finance-request",
               element: <FinanceRequestPage />,
               children: [
-                { path: ":id", element: <SecondSlideFinanceReq /> },
+                { path: ":reqId", element: <SecondSlideFinanceReq /> },
                 { path: "create/:id", element: <AddRequestFinance /> },
                 { path: "add-inventory", element: <AddInventoryForm /> },
               ],

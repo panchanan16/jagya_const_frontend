@@ -31,6 +31,7 @@ function TabLayout({ TabList }) {
               TableHeading={tabDetails.list}
               TableRows={tabDetails.tabData}
               limit={tabDetails.limit}
+              isAction={tabDetails.isAction}
               TopSection={tabDetails.Topsection && tabDetails.Topsection}
             />
           ))}
