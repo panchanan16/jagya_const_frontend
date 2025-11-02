@@ -9,7 +9,7 @@ import { PlusCircle } from "lucide-react";
 import { isAction } from "@reduxjs/toolkit";
 
 function SecondSlide() {
-  const [currentProject, setCurrentProject] = useState()
+  const [currentProject, setCurrentProject] = useState();
   const { changeTabContent, isHighlight, itemData, itemDetails } =
     useRenderProjects(
       "client",
@@ -17,14 +17,13 @@ function SecondSlide() {
       { item: "client_id", details: "pro_ref_id" }
     );
 
-
-    console.log(itemDetails)
+  console.log(itemDetails);
 
   const { viewedItem, goBack } = useSecondSlideData("client", "client_id");
 
   useEffect(() => {
     itemData.length && changeTabContent(itemData[0].pro_ref_no);
-    itemData.length && setCurrentProject(itemData[0].pro_ref_no)
+    itemData.length && setCurrentProject(itemData[0].pro_ref_no);
   }, [itemData]);
 
   return (
@@ -112,7 +111,10 @@ function SecondSlide() {
                   className={`projectName flex align-center ${
                     isHighlight == item.pro_ref_no ? "active" : ""
                   }`}
-                  onClick={() => {changeTabContent(item.pro_ref_no); setCurrentProject(item.pro_ref_no)}}
+                  onClick={() => {
+                    changeTabContent(item.pro_ref_no);
+                    setCurrentProject(item.pro_ref_no);
+                  }}
                 >
                   <p className="text">
                     {item.pro_ref_no} || {item.pro_name}
@@ -143,15 +145,10 @@ function SecondSlide() {
           TabList={[
             {
               main: "Installments",
-              Topsection: () => <RedirectToAddInstallment formId={currentProject} />,
-              list: [
-                "No.",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Date",
-                "Project",
-              ],
+              Topsection: () => (
+                <RedirectToAddInstallment formId={currentProject} />
+              ),
+              list: ["No.", "Amount", "Mode", "Remarks", "Date", "Project"],
               limit: [
                 "col_id",
                 { key: "col_amount", type: "amount" },
@@ -164,7 +161,9 @@ function SecondSlide() {
             },
             {
               main: "Expenses",
-              Topsection: ()=> <RedirectToAddExpense formId={currentProject} />,
+              Topsection: () => (
+                <RedirectToAddExpense formId={currentProject} />
+              ),
               list: [
                 "No.",
                 "Expense Name",
@@ -186,20 +185,24 @@ function SecondSlide() {
               tabData: itemDetails.expenses,
             },
             {
+              main: "Vendor Payments",
+              list: ["Ref No", "Phase", "Date of Request", "Client Name"],
+              limit: ["material_ref_no", "mr_phase", "mr_date", "client_name"],
+              isAction: { viewUrl: "mr_r_id" },
+              tabData: itemDetails.requests,
+            },
+            {
+              main: "Contractor Payments",
+              list: ["Ref No", "Phase", "Date of Request", "Client Name"],
+              limit: ["material_ref_no", "mr_phase", "mr_date", "client_name"],
+              isAction: { viewUrl: "mr_r_id" },
+              tabData: itemDetails.requests,
+            },
+            {
               main: "Materials Request",
-              list: [
-                "Ref No",
-                "Phase",
-                "Date of Request",
-                "Client Name",                
-              ],
-              limit: [
-                "material_ref_no",
-                "mr_phase",
-                "mr_date",
-                "client_name",                
-              ],
-              isAction: {viewUrl: "mr_r_id"},
+              list: ["Ref No", "Phase", "Date of Request", "Client Name"],
+              limit: ["material_ref_no", "mr_phase", "mr_date", "client_name"],
+              isAction: { viewUrl: "mr_r_id" },
               tabData: itemDetails.requests,
             },
           ]}
@@ -212,7 +215,10 @@ function SecondSlide() {
 
 function RedirectToAddInstallment({ formId }) {
   return (
-    <Link to={`../../finance/add-installment?formProject=${formId}`} className={styles.linkButton}>
+    <Link
+      to={`../../finance/add-installment?formProject=${formId}`}
+      className={styles.linkButton}
+    >
       <PlusCircle className={styles.icon} />
       <span>Add New Installment</span>
     </Link>
@@ -221,7 +227,10 @@ function RedirectToAddInstallment({ formId }) {
 
 function RedirectToAddExpense({ formId }) {
   return (
-    <Link to={`../../expense/add-expense?formProject=${formId}`} className={styles.linkButton}>
+    <Link
+      to={`../../expense/add-expense?formProject=${formId}`}
+      className={styles.linkButton}
+    >
       <PlusCircle className={styles.icon} />
       <span>Add Expense</span>
     </Link>

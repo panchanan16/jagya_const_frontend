@@ -46,7 +46,8 @@ function FirstSlideFinance() {
             "col_project_phase",
           ]}
           Actions={{
-            deleteUrl: "col_id",
+            viewUrl: "col_id",
+            deleteUrl: "collection",
             editUrl: "con_id",
           }}
         />

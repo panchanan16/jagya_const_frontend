@@ -12,10 +12,8 @@ function FirstSlideUsers() {
     entity: "users",
     tail: `readAll/${userFilter}`,
     urlKey: userFilter,
+    loc: userFilter
   });
-
-
-  console.log(itemList)
 
   let tableData = { tHeaders: [], tLimits: [] };
 
@@ -29,7 +27,6 @@ function FirstSlideUsers() {
           "Contact",
           "Alt Contact",
           "Address",
-          "Action",
         ],
         tLimits: [
           "su_id",
@@ -100,7 +97,7 @@ function FirstSlideUsers() {
       HeaderSection={true}
     >
       <SectionHeaderOption
-        Heading="All Users"
+        Heading={`All ${userFilter.replace('_', ' ')} Users`}
         EndBtn={<UsersDropdown />}
         // Entity={"aaaa"}
         FilterComponent={<UserFilter SetFilter={setUserFilter} />}
@@ -111,7 +108,7 @@ function FirstSlideUsers() {
         Limit={tableData.tLimits}
         Trow={itemList}
         Actions={{
-          viewUrl: "su_id",
+          viewUrl: tableData?.tLimits[0] ? tableData?.tLimits[0] : 'su_id',
           deleteUrl: "users",
           editUrl: "su_id",
         }}

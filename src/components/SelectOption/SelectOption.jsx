@@ -1,10 +1,14 @@
 import useRequest from "@/hooks/useRequest";
 import { ErrorMessage, Field, useFormikContext } from "formik";
 import styles from "@/forms/form.module.css";
+import { useEffect } from "react";
 
-function SelectOption({ Name, Label, action, keyValue, setName }) {
-  const { requestData } = useRequest("phase", action);
+function SelectOption({ Name, Label, action, keyValue, setName, byProjectId = null }) {
+  const { requestData } = useRequest("phase", action, byProjectId ? byProjectId : null);
   const { setFieldValue } = useFormikContext();
+
+
+  // useEffect(()=> {}, [])
 
   function SetPhaseName(e) {
     setFieldValue(Name, e.target.value);

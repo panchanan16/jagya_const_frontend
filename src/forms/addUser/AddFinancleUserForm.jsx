@@ -2,7 +2,7 @@ import PopupLayout from "@/layout/common/popupLayout";
 import { Form, Field, ErrorMessage } from "formik";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { Link } from "react-router-dom";
-import { initialValues, financeUserInitialValues, validate } from "./fields";
+import { initialValues, financeUserInitialValues, validate, financeUserValidate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import styles from "@/forms/form.module.css";
 
@@ -120,7 +120,7 @@ function FinanceUserFormWithField({ resetFn, isSubmitting }) {
 
 function AddFinanceUserForm() {
   const [submithandler, initialSchema, validateSchema, isReturn] =
-    useFormSubmit(financeUserInitialValues, {}, "", {
+    useFormSubmit(financeUserInitialValues, financeUserValidate, "", {
       name: "users",
       route: "create/finance",
     });
@@ -145,7 +145,7 @@ function AddFinanceUserForm() {
           MainForm={FinanceUserFormWithField}
           initialValues={initialSchema}
           validationSchema={validateSchema}
-          formHandler={testSubmit}
+          formHandler={submithandler}
           isReturn={isReturn}
         />
       </div>

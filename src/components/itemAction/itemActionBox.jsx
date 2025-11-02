@@ -5,13 +5,11 @@ import { FaEye } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-function ItemActionBox({ viewFn, editFn, deleteFn }) {
+function ItemActionBox({ viewFn, editFn, deleteFn, showDelete = true }) {
   const [showModel, setShowModel] = useState(false);
   const itemMenuRef = useRef();
   const dispatch = useDispatch();
   const { deleteItem } = crudActions;
-
-  console.log(viewFn)
 
   function deleteTheItem(id) {
     const isDelete = confirm("Are you sure to delete ??");
@@ -121,10 +119,12 @@ function ItemActionBox({ viewFn, editFn, deleteFn }) {
           <SquarePenIcon style={{ marginRight: "8px" }} />
         </Link>
       )}
-      <Trash2Icon
+      {
+        showDelete && <Trash2Icon
         onClick={() => deleteTheItem(viewFn)}
         style={{ marginRight: "8px" }}
       />
+      }
     </div>
   );
 }

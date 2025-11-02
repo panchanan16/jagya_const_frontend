@@ -6,6 +6,7 @@ import usePageRender from "@/hooks/usePageRender";
 import PopupLayout from "@/layout/common/popupLayout";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import styles from "@/styles/common.module.css";
+import StatusSpan, { StatusSpanAll } from "@/components/statusSpan/StatusSpan";
 
 function SecondSlideFinanceReq() {
   const { reqId } = useParams();
@@ -17,7 +18,7 @@ function SecondSlideFinanceReq() {
     loc: location,
   });
 
-  const user = { username: "Panchanan deka", role: "admin" };
+  const user = { username: "Panchanan deka", role: "admi" };
 
   return (
     <PopupLayout>
@@ -28,7 +29,7 @@ function SecondSlideFinanceReq() {
         </div>
         <div class="contents grid gap-10">
           <div class="description flex align-center gap-5">
-            <h3>Date:</h3>
+            <h3>Project Name:</h3>
             <p class="text">{itemData?.pro_name}</p>
           </div>
           <div class="description flex align-center gap-5">
@@ -36,7 +37,7 @@ function SecondSlideFinanceReq() {
             <p class="text">{itemData?.client_name}</p>
           </div>
           <div class="description flex align-center gap-5">
-            <h3>Phone Number:</h3>
+            <h3>Project Refrence:</h3>
             <p class="text">{itemData?.pro_ref_no}</p>
           </div>
         </div>
@@ -93,7 +94,7 @@ function SecondSlideFinanceReq() {
               "Finance Approval",
               "Vendor",
               "Payment Status",
-              "Arrival Status"
+              "Arrival Status",
             ]}
             Limit={[
               "mr_project_r_id",
@@ -103,14 +104,23 @@ function SecondSlideFinanceReq() {
               { key: "fd_approval" },
               "vendor_name",
               (rowData) => {
-                return (
-                  <td>
-                    <select className={`${styles.select} ${styles.arrived}`}>
-                      <option value="arrived">Done</option>
-                      <option value="not_arrived">Not Done</option>
-                    </select>
-                  </td>
-                );
+                if (user.role === "admin") {
+                  return (
+                    <td>
+                      <select className={`${styles.select} ${styles.arrived}`}>
+                        <option value="arrived">Done</option>
+                        <option value="not_arrived">Not Done</option>
+                      </select>
+                    </td>
+                  );
+                } else {
+                  return (
+                    <>
+                     <StatusSpanAll status={'Not Done'} green={`Done`} />
+                     <span style={{fontSize: '11px', marginLeft: '5px'}}>23/05/2025</span>
+                    </>
+                  );
+                }
               },
               (rowData) => {
                 return (
