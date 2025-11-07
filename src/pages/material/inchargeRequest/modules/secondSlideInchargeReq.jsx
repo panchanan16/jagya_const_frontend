@@ -12,6 +12,9 @@ function SecondSlideInchargeReq() {
     key: "itemData",
   });
 
+
+  console.log(itemData)
+
   return (
     <PopupLayout>
       <div class="inventory-popup">
@@ -30,11 +33,15 @@ function SecondSlideInchargeReq() {
         <div class="contents grid gtc-2 gap-10">
           <div class="description flex align-center gap-5">
             <h3>Client Name:</h3>
-            <p class="text">Kankan Jyoti Nath</p>
+            <p class="text">{itemData?.client_name}</p>
           </div>
           <div class="description flex align-center gap-5">
-            <h3>Phone :</h3>
-            <p class="text">6002649802 | 7636896075</p>
+            <h3>Project Name:</h3>
+            <p class="text">{itemData?.pro_name}</p>
+          </div>
+          <div class="description flex align-center gap-5">
+            <h3>Project Ref :</h3>
+            <p class="text">{itemData?.pro_ref_no}</p>
           </div>
         </div>
 

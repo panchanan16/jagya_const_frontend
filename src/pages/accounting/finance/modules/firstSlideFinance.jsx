@@ -28,6 +28,8 @@ function FirstSlideFinance() {
             "Date",
             "Project ID",
             "Phase",
+            "Project Name",
+            "Client Name",
           ]}
           Trow={itemList}
           Limit={[
@@ -44,6 +46,8 @@ function FirstSlideFinance() {
             },
             "col_project_id",
             "col_project_phase",
+            "pro_name",
+            "client_name",
           ]}
           Actions={{
             viewUrl: "col_id",

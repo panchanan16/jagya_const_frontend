@@ -5,8 +5,10 @@ import TabLayout from "@/layout/tabLayout/TabLayout";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import styles from "@/styles/common.module.css";
-import { PlusCircle } from "lucide-react";
+import { BrickWallFire, Component, PlusCircle } from "lucide-react";
 import { isAction } from "@reduxjs/toolkit";
+import MaterialRequestPanel from "./requestPanel/RequestPanel";
+import SidePanel from "./requestPanel/Sidepanel";
 
 function SecondSlide() {
   const [currentProject, setCurrentProject] = useState();
@@ -16,6 +18,16 @@ function SecondSlide() {
       { item: "get_clientProject", details: "get_ProjectInfo" },
       { item: "client_id", details: "pro_ref_id" }
     );
+
+  const [isPanelOpen, setIsPanelOpen] = useState(true);
+
+  function openRequestPanel() {
+    setIsPanelOpen(true);
+  }
+
+  function closePanel() {
+    setIsPanelOpen(false);
+  }
 
   console.log(itemDetails);
 
@@ -141,6 +153,16 @@ function SecondSlide() {
           </div>
         </div>
 
+        <div style={{ marginBottom: "30px" }}>
+          <Link
+            onClick={() => openRequestPanel()}
+            className={styles.linkButton}
+          >
+            <BrickWallFire className={styles.icon} />
+            <span>Material Requests</span>
+          </Link>
+        </div>
+
         <TabLayout
           TabList={[
             {
@@ -192,13 +214,6 @@ function SecondSlide() {
               tabData: itemDetails.requests,
             },
             {
-              main: "Contractor Payments",
-              list: ["Ref No", "Phase", "Date of Request", "Client Name"],
-              limit: ["material_ref_no", "mr_phase", "mr_date", "client_name"],
-              isAction: { viewUrl: "mr_r_id" },
-              tabData: itemDetails.requests,
-            },
-            {
               main: "Materials Request",
               list: ["Ref No", "Phase", "Date of Request", "Client Name"],
               limit: ["material_ref_no", "mr_phase", "mr_date", "client_name"],
@@ -207,6 +222,9 @@ function SecondSlide() {
             },
           ]}
         />
+        <SidePanel isOpen={isPanelOpen} onClose={closePanel}>
+          <MaterialRequestPanel />
+        </SidePanel>
       </main>
       <Outlet />
     </SecondSlideLayout>
