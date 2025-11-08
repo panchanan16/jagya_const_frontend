@@ -19,7 +19,7 @@ function SecondSlide() {
       { item: "client_id", details: "pro_ref_id" }
     );
 
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   function openRequestPanel() {
     setIsPanelOpen(true);

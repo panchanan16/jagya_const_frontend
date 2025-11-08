@@ -270,3 +270,91 @@
     flex: 1;
   }
 }
+/* Balance Amount Tab Styles */
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.statusUpdateContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+}
+
+.statusSelect {
+  padding: 6px 12px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  background-color: #ffffff;
+  font-size: 13px;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.statusSelect:hover {
+  border-color: #192230;
+}
+
+.statusSelect:focus {
+  outline: none;
+  border-color: #192230;
+  box-shadow: 0 0 0 2px rgba(25, 34, 48, 0.1);
+}
+
+.remainingAmount {
+  font-weight: 600;
+  color: #d9534f;
+}
+
+/* Table Footer for Totals */
+.table tfoot {
+  background-color: #f8f9fa;
+  border-top: 2px solid #192230;
+}
+
+.totalRow {
+  font-weight: 600;
+  background-color: #f0f0f0;
+}
+
+.totalRow td {
+  padding: 15px;
+  border-bottom: none;
+}
+
+.totalLabel {
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+}
+
+.totalValue {
+  font-size: 14px;
+  color: #192230;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .headerLeft {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .statusUpdateContainer {
+    width: 100%;
+  }
+
+  .statusSelect {
+    flex: 1;
+  }
+}
