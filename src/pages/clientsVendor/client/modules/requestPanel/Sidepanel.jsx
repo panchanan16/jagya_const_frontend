@@ -16,7 +16,7 @@ const SidePanel = ({ isOpen, onClose, children }) => {
           </button>
         </div> */}
         <div className={styles.content}>
-          {children}
+          {isOpen && children}
         </div>
       </div>
     </>

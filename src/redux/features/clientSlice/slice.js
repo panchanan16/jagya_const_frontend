@@ -1,12 +1,41 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
 import fulfilledStateReducer from "../../customReducer";
+import { _GET } from "@/request/request";
+
+
+export const GET_ALL_MATERIAL_REQUESTs = createAsyncThunk(
+  'GET/Material-Requests',
+  async ({endpoint}, { rejectWithValue }) => {
+    try {
+      const response = await _GET(endpoint)
+      return {response}
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
+
+export const GET_REMAINING_PAYMENTS = createAsyncThunk(
+  'GET/Remaining-Payments',
+  async ({endpoint}, { rejectWithValue }) => {
+    try {
+      const response = await _GET(endpoint)
+      return {response}
+    } catch (error) {
+      return rejectWithValue(error.message)
+    } 
+  },
+)
 
 const initialState = {
   itemList: [],
   itemData: [],
   loading: null,
   error: null,
+  materialRequests: {},
+  remainingPayments: [],
   itemDetails: {
     collections: [], expenses: [], requests: [{
       "mr_r_id": 19,
@@ -93,7 +122,21 @@ export const clientSlice = createSlice({
     }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
-    });
+    }).addCase(GET_ALL_MATERIAL_REQUESTs.fulfilled, (state, action) => {
+      state.loading = false;
+      state.materialRequests = action.payload.response.data;
+      state.error = null
+    }).addCase(GET_ALL_MATERIAL_REQUESTs.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload
+    }).addCase(GET_REMAINING_PAYMENTS.fulfilled, (state, action) => {
+      state.loading = false;
+      state.remainingPayments = action.payload.response.data;
+      state.error = null
+    }).addCase(GET_REMAINING_PAYMENTS.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload
+    })
   }
 })
 

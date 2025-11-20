@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import styles from "@/styles/common.module.css";
 import { BrickWallFire, Component, PlusCircle } from "lucide-react";
-import { isAction } from "@reduxjs/toolkit";
 import MaterialRequestPanel from "./requestPanel/RequestPanel";
 import SidePanel from "./requestPanel/Sidepanel";
 
 function SecondSlide() {
   const [currentProject, setCurrentProject] = useState();
+  const [currentProjectId, setCurrentProjectId] = useState(null);
   const { changeTabContent, isHighlight, itemData, itemDetails } =
     useRenderProjects(
       "client",
@@ -29,13 +29,12 @@ function SecondSlide() {
     setIsPanelOpen(false);
   }
 
-  console.log(itemDetails);
-
   const { viewedItem, goBack } = useSecondSlideData("client", "client_id");
 
   useEffect(() => {
     itemData.length && changeTabContent(itemData[0].pro_ref_no);
     itemData.length && setCurrentProject(itemData[0].pro_ref_no);
+        itemData.length && setCurrentProjectId(itemData[0].pro_id);
   }, [itemData]);
 
   return (
@@ -126,6 +125,7 @@ function SecondSlide() {
                   onClick={() => {
                     changeTabContent(item.pro_ref_no);
                     setCurrentProject(item.pro_ref_no);
+                    setCurrentProjectId(item.pro_id);
                   }}
                 >
                   <p className="text">
@@ -223,7 +223,7 @@ function SecondSlide() {
           ]}
         />
         <SidePanel isOpen={isPanelOpen} onClose={closePanel}>
-          <MaterialRequestPanel />
+          <MaterialRequestPanel projectID={currentProjectId} />
         </SidePanel>
       </main>
       <Outlet />
