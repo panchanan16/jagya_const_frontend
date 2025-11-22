@@ -115,7 +115,7 @@ function SecondSlide() {
         <div className="client-project-list flex align-start">
           <h3>Projects</h3>
           <div className="client-project-container flex align-center">
-            {itemData.length ? (
+            {itemData.length > 0 ? (
               itemData.map((item, key) => (
                 <div
                   key={key}
@@ -147,7 +147,7 @@ function SecondSlide() {
               ))
             ) : (
               <div className="projectName flex align-center">
-                <p className="text">No Project Found</p>
+                <p className="text">No Project Added</p>
               </div>
             )}
           </div>

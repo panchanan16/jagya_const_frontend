@@ -92,7 +92,7 @@
 
 .selectAllBtn {
   padding: 8px 16px;
-  background-color: #2196f3;
+  background-color: #f32821;
   color: white;
   border: none;
   border-radius: 4px;
@@ -454,6 +454,139 @@
 
   .cancelBtn,
   .submitBtn {
+    width: 100%;
+  }
+}
+
+
+/* Status Update Popup Styles */
+.statusPopupOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.statusPopupContent {
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.statusPopupHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.statusPopupHeader h2 {
+  margin: 0;
+  font-size: 20px;
+  color: #333;
+}
+
+.statusPopupForm {
+  padding: 20px;
+}
+
+.statusFormGroup {
+  margin-bottom: 20px;
+}
+
+.statusFormGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #333;
+  font-size: 14px;
+}
+
+.statusFormInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.statusFormInput:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+.statusFormInput:read-only {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.statusFormTextarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.3s ease;
+}
+
+.statusFormTextarea:focus {
+  outline: none;
+  border-color: #2196f3;
+}
+
+.statusItemInfo {
+  padding: 10px 12px;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  color: #1976d2;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.statusFormActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.clickableStatus {
+  transition: opacity 0.2s ease;
+}
+
+.clickableStatus:hover {
+  opacity: 0.8;
+}
+
+/* Responsive adjustments for status popup */
+@media (max-width: 768px) {
+  .statusPopupContent {
+    width: 95%;
+    max-height: 95vh;
+  }
+
+  .statusFormActions {
+    flex-direction: column;
+  }
+
+  .statusFormActions .cancelBtn,
+  .statusFormActions .submitBtn {
     width: 100%;
   }
 }

@@ -1,6 +1,6 @@
 import entityEndpoint from "@/api/api";
 import coreEndpoint from "@/api/coreApi";
-import { _DELETE, _GET, _POST } from "@/request/request";
+import { _DELETE, _GET, _POST, _UPDATE } from "@/request/request";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
@@ -47,6 +47,23 @@ function useRequest(entity, action, tail, query, isOnload = true) {
     }
   }
 
+
+  async function updateRequest(body, action, end) {
+    try {
+      const endpoint = end
+        ? coreEndpoint.updateItemWithEndpoint(entity, end)
+        : entityEndpoint.updateItem(entity);
+      const response = await _UPDATE(endpoint, body);
+      action && dispatch(action(response.data));
+      return response.data;
+    } catch (err) {
+      setError(err);
+      return null;
+    } finally {
+      setLoading(false);
+    } 
+  }
+
   useEffect(() => {
     async function makeRequest() {
       const endpoint = tail
@@ -62,7 +79,7 @@ function useRequest(entity, action, tail, query, isOnload = true) {
     isOnload && makeRequest();
   }, []);
 
-  return { requestData, loading, makeRequest, deleteRequest };
+  return { requestData, loading, makeRequest, deleteRequest, updateRequest };
 }
 
 export default useRequest;

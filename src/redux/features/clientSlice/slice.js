@@ -91,6 +91,14 @@ export const clientSlice = createSlice({
   reducers: {
     resetData: (state, action) => {
       state.itemList = action.payload
+    },
+
+    resetMaterialRequests: (state) => {
+      state.materialRequests = {}
+    },
+
+    resetRemainingPayments: (state) => {
+      state.remainingPayments = []
     }
   },
 
@@ -140,6 +148,6 @@ export const clientSlice = createSlice({
   }
 })
 
-export const { addClient, resetData } = clientSlice.actions
+export const { addClient, resetData, resetMaterialRequests, resetRemainingPayments } = clientSlice.actions
 
 export default clientSlice.reducer

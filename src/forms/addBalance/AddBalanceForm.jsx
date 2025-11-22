@@ -2,6 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useEffect } from "react";
 import * as Yup from "yup";
 import styles from "@/pages/clientsVendor/client/modules/requestPanel/Materialrequestpanel.module.css";
+import useRequest from "@/hooks/useRequest";
 
 // Formik validation schema
 const validationSchema = Yup.object({
@@ -20,16 +21,30 @@ const validationSchema = Yup.object({
   payment_status: Yup.string().required("Payment status is required"),
 });
 
-function AddBalanceForm({initialTotalAmount, selectedRows, onClose, onSubmit}) {
+function AddBalanceForm({
+  initialTotalAmount,
+  selectedRows,
+  onClose,
+  pro_id,
+}) {
   const initialValues = {
+    pro_id: pro_id,
     payment_date: new Date().toISOString().split("T")[0],
     payment_mode: "upi",
     total_amount: initialTotalAmount.toString(),
     paid_amount: "",
     remaining: "",
-    payment_status: "remainings",
+    payment_status: "remaining",
+    items: selectedRows,
   };
 
+  const { loading, makeRequest } = useRequest(
+    "material_req",
+    null,
+    null,
+    null,
+    false
+  );
 
   return (
     <div className={styles.popupOverlay} onClick={onClose}>
@@ -44,7 +59,7 @@ function AddBalanceForm({initialTotalAmount, selectedRows, onClose, onSubmit}) {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={onSubmit}
+          onSubmit={(values)=> makeRequest(values, null, `remaining/create/${32}`)}
         >
           {({ values, setFieldValue }) => {
             // Auto-calculate remaining amount
@@ -149,7 +164,7 @@ function AddBalanceForm({initialTotalAmount, selectedRows, onClose, onSubmit}) {
                     name="payment_status"
                     className={styles.formInput}
                   >
-                    <option value="remainings">Remainings</option>
+                    <option value="remaining">Remainings</option>
                     <option value="pending">Pending</option>
                     <option value="completed">Completed</option>
                     <option value="partial">Partial</option>

@@ -2,7 +2,8 @@ import Table from "@/components/table/Table";
 import usePageRender from "@/hooks/usePageRender";
 import PopupLayout from "@/layout/common/popupLayout";
 import { Link, useParams } from "react-router-dom";
-import styles from '@/styles/common.module.css';
+import styles from "@/styles/common.module.css";
+import useRequest from "@/hooks/useRequest";
 
 function SecondSlideInchargeReq() {
   const { id } = useParams();
@@ -12,8 +13,7 @@ function SecondSlideInchargeReq() {
     key: "itemData",
   });
 
-
-  console.log(itemData)
+  const { updateRequest } = useRequest("material_req", null, null, null, false);
 
   return (
     <PopupLayout>
@@ -117,6 +117,7 @@ function SecondSlideInchargeReq() {
               "Item",
               "Quantity",
               "Amount",
+              "Finance Approval",
               "Arrival Status",
             ]}
             Limit={[
@@ -126,9 +127,35 @@ function SecondSlideInchargeReq() {
               { key: "mr_item_amount", type: "amount" },
               (rowData) => (
                 <td>
-                  <select className={`${styles.select} ${styles.arrived}`}>
-                    <option value="arrived">Arrived</option>
-                    <option value="not_arrived">Not Arrived</option>
+                  <span
+                    className={`${styles.select} ${
+                      rowData.fd_approval == 1
+                        ? styles.arrived
+                        : styles.notArrived
+                    }`}
+                  >
+                    {rowData.fd_approval == 1 ? "Approved" : "Not yet"}
+                  </span>
+                </td>
+              ),
+              (rowData) => (
+                <td>
+                  <select
+                    onChange={(event)=> {
+                      updateRequest({}, null, `status/material_delivery/${rowData.mr_item_id}`
+                      ).then((item)=> {
+                        event.target.value = item.updatedStatus;
+                      })}                      
+                    }
+                    value={rowData.mr_delivery_status}
+                    className={`${styles.select} ${
+                      rowData.mr_delivery_status == 1
+                        ? styles.arrived
+                        : styles.notArrived
+                    }`}
+                  >
+                    <option value="1">Arrived</option>
+                    <option value="0">Not Arrived</option>
                   </select>
                 </td>
               ),
