@@ -96,8 +96,8 @@ function generateRoutePages() {
                   path: ":projectId",
                   element: <SecondSlideProject />,
                   children: [
-                    { path: "assign", element: <AssignContractorForm /> },
-                    { path: "assigned", element: <ContractorAssigned /> },
+                    // { path: "assign", element: <AssignContractorForm /> },
+                    // { path: "assigned", element: <ContractorAssigned /> },
                     { path: "add-phase", element: <AddNewPhaseForm /> },
                     { path: "add-subphase", element: <AddSubphaseForm /> },
                   ],

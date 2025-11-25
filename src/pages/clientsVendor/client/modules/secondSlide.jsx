@@ -5,7 +5,7 @@ import TabLayout from "@/layout/tabLayout/TabLayout";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import styles from "@/styles/common.module.css";
-import { BrickWallFire, Component, PlusCircle } from "lucide-react";
+import { BrickWallFire, PlusCircle } from "lucide-react";
 import MaterialRequestPanel from "./requestPanel/RequestPanel";
 import SidePanel from "./requestPanel/Sidepanel";
 
@@ -180,46 +180,14 @@ function SecondSlide() {
                 "col_project_id",
               ],
               tabData: itemDetails.collections,
-            },
-            {
-              main: "Expenses",
-              Topsection: () => (
-                <RedirectToAddExpense formId={currentProject} />
-              ),
-              list: [
-                "No.",
-                "Expense Name",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Date",
-                "project",
-              ],
-              limit: [
-                "exp_id",
-                "exp_name",
-                { key: "exp_amount", type: "amount" },
-                "exp_mode",
-                "exp_remark",
-                "exp_date",
-                "exp_project_ref",
-              ],
-              tabData: itemDetails.expenses,
-            },
+            },           
             {
               main: "Vendor Payments",
               list: ["Ref No", "Phase", "Date of Request", "Client Name"],
               limit: ["material_ref_no", "mr_phase", "mr_date", "client_name"],
               isAction: { viewUrl: "mr_r_id" },
               tabData: itemDetails.requests,
-            },
-            {
-              main: "Materials Request",
-              list: ["Ref No", "Phase", "Date of Request", "Client Name"],
-              limit: ["material_ref_no", "mr_phase", "mr_date", "client_name"],
-              isAction: { viewUrl: "mr_r_id" },
-              tabData: itemDetails.requests,
-            },
+            }            
           ]}
         />
         <SidePanel isOpen={isPanelOpen} onClose={closePanel}>

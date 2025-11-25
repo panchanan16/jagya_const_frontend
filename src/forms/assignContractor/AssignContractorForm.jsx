@@ -154,7 +154,7 @@ function AssignFormWithField({ resetFn }) {
   );
 }
 
-function AssignContractorForm() {
+function AssignContractorForm({isOpen, closePopup}) {
   const { projectId } = useParams();
   const [submithandler, initialSchema, validateSchema, isReturn] =
     useFormSubmit(initialValues, validate, null, "project_contractor");
@@ -165,19 +165,20 @@ function AssignContractorForm() {
   }
 
   return (
+    isOpen &&
     <PopupLayout>
       <div className={`${styles.formContainer} add-employee-popup blur`}>
         <div className={styles.formHeader}>
           <h2 className={styles.formTitle}>Project Contractor</h2>
-          <Link to={`/admin/projects/${projectId}`}>
+          {/* <Link to={`/admin/projects/${projectId}`}> */}
             <button
               type="button"
               className={styles.closeButton}
-              onClick={() => {}} // Removed inline onclick for React consistency
+              onClick={() => closePopup(false)} // Removed inline onclick for React consistency
             >
               Close
             </button>
-          </Link>
+          {/* </Link> */}
         </div>
         
         <hr className={styles.divider} />
