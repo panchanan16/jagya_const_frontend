@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import styles from "../MaterialRequestPanel.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  DELETE_BALANCE_AMOUNT,
   GET_REMAINING_PAYMENTS,
   resetRemainingPayments,
+  UPDATE_REMAINING_STATUS,
 } from "@/redux/features/clientSlice/slice";
 import coreEndpoint from "@/api/coreApi";
 
@@ -13,7 +15,21 @@ function RemainingTab({ pro_id }) {
   const remainingAllPayments = useSelector(
     (state) => state.client.remainingPayments
   );
+
   const dispatch = useDispatch();
+
+  async function deleteRemaining(remainId) {
+    if (confirm("Are you sure to delete the balance??")) {
+      dispatch(
+        DELETE_BALANCE_AMOUNT({
+          endpoint: coreEndpoint.deleteItem(
+            "material_req",
+            `remaining/remove/${remainId}`
+          ),
+        })
+      );
+    }
+  }
 
   useEffect(() => {
     dispatch(resetRemainingPayments());
@@ -39,12 +55,22 @@ function RemainingTab({ pro_id }) {
   };
 
   const handleStatusChange = (remainingId, newStatus) => {
+    dispatch(
+      UPDATE_REMAINING_STATUS({
+        endpoint: coreEndpoint.updateItemWithEndpoint(
+          "material_req",
+          `remaining/update_status/${remainingId}`
+        ),
+        body: {
+          rm_status: newStatus,
+          rm_date: new Date().toISOString().split("T")[0],
+        },
+      })
+    );
     setRemainingStatuses((prev) => ({
       ...prev,
       [remainingId]: newStatus,
     }));
-    console.log(`Status updated for ${remainingId}: ${newStatus}`);
-    alert(`Status updated for ${remainingId}: ${newStatus}`);
   };
 
   return (
@@ -52,6 +78,7 @@ function RemainingTab({ pro_id }) {
       {remainingAllPayments?.map((payment) => {
         const currentStatus =
           remainingStatuses[payment.rm_id] || payment.rm_status;
+          console.log("Re rendering ")
 
         return (
           <div key={payment.rm_id} className={styles.requestSection}>
@@ -60,20 +87,28 @@ function RemainingTab({ pro_id }) {
                 <h3>Remaining {payment.mr_r_id}</h3>
                 <div className={styles.statusUpdateContainer}>
                   <label className={styles.statusLabel}>Status:</label>
-                  <select
-                    className={styles.statusSelect}
-                    value={currentStatus}
-                    onChange={(e) =>
-                      handleStatusChange(payment.rm_id, e.target.value)
-                    }
-                  >
-                    <option value="pending">Pending</option>
-                    <option value="partial">Partial</option>
-                    <option value="completed">Completed</option>
-                  </select>
+                  {payment.rm_status === "completed" ? (
+                    <span className={styles.statusSelect}>Completed</span>
+                  ) : (
+                    <select
+                      className={styles.statusSelect}
+                      value={currentStatus}
+                      onChange={(e) =>
+                        handleStatusChange(payment.rm_id, e.target.value)
+                      }
+                    >
+                      <option value="partial">Partial</option>
+                      <option value="completed">Completed</option>
+                    </select>
+                  )}
                 </div>
               </div>
-              <button className={styles.selectAllBtn}>Delete</button>
+              <button
+                onClick={() => deleteRemaining(payment.rm_id)}
+                className={styles.selectAllBtn}
+              >
+                Delete
+              </button>
             </div>
 
             <div className={styles.tableContainer}>

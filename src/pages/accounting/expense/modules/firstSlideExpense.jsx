@@ -16,7 +16,6 @@ function FirstSlideExpense() {
       BtnFn={"add-expense"}
       HeadingText="All Expenses"
     >
-      <DateRange />
       <div className="main-table">
         <Table
           Theader={["Sl No.", "Name", "Amount", "Mode of pay", "Date"]}

@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
 import fulfilledStateReducer from "../../customReducer";
-import { _GET } from "@/request/request";
+import { _DELETE, _GET, _UPDATE } from "@/request/request";
 
 
 export const GET_ALL_MATERIAL_REQUESTs = createAsyncThunk(
   'GET/Material-Requests',
-  async ({endpoint}, { rejectWithValue }) => {
+  async ({ endpoint }, { rejectWithValue }) => {
     try {
       const response = await _GET(endpoint)
-      return {response}
+      return { response }
     } catch (error) {
       return rejectWithValue(error.message)
     }
@@ -19,14 +19,42 @@ export const GET_ALL_MATERIAL_REQUESTs = createAsyncThunk(
 
 export const GET_REMAINING_PAYMENTS = createAsyncThunk(
   'GET/Remaining-Payments',
-  async ({endpoint}, { rejectWithValue }) => {
+  async ({ endpoint }, { rejectWithValue }) => {
     try {
       const response = await _GET(endpoint)
-      return {response}
+      return { response }
     } catch (error) {
       return rejectWithValue(error.message)
-    } 
+    }
   },
+)
+
+
+
+export const DELETE_BALANCE_AMOUNT = createAsyncThunk(
+  'DELETE/Remaining-Payments',
+  async ({ endpoint }, { rejectWithValue }) => {
+    try {
+      const response = await _DELETE(endpoint)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
+
+export const UPDATE_REMAINING_STATUS = createAsyncThunk(
+  'UPDATE/Remaining-Payments-Status',
+  async ({ endpoint, body }, { rejectWithValue }) => {
+    try {
+      const response = await _UPDATE(endpoint, body)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+
 )
 
 const initialState = {
@@ -37,50 +65,7 @@ const initialState = {
   materialRequests: {},
   remainingPayments: [],
   itemDetails: {
-    collections: [], expenses: [], requests: [{
-      "mr_r_id": 19,
-      "material_ref_no": "JGCMRQ0008",
-      "mr_project_id": 30,
-      "mr_phase": "Phase 33",
-      "mr_date": "2025-10-26",
-      "created_at": "2025-10-26T14:33:43.000Z",
-      "pro_name": "2 BHK house",
-      "pro_ref_no": "ACME-202374",
-      "client_name": "Ravi  Das"
-    },
-    {
-      "mr_r_id": 17,
-      "material_ref_no": "JGCMRQ0007",
-      "mr_project_id": 11,
-      "mr_phase": "Phase 1",
-      "mr_date": "2025-04-03",
-      "created_at": "2025-07-12T15:15:15.000Z",
-      "pro_name": "Lakeview Resort",
-      "pro_ref_no": "JGCP0004",
-      "client_name": "tata industry  motor"
-    },
-    {
-      "mr_r_id": 15,
-      "material_ref_no": "JGCMRQ0006",
-      "mr_project_id": 11,
-      "mr_phase": "Phase 1",
-      "mr_date": "2025-04-03",
-      "created_at": "2025-07-12T14:50:18.000Z",
-      "pro_name": "Lakeview Resort",
-      "pro_ref_no": "JGCP0004",
-      "client_name": "tata industry  motor"
-    },
-    {
-      "mr_r_id": 14,
-      "material_ref_no": "JGCMRQ0005",
-      "mr_project_id": 11,
-      "mr_phase": "Phase 1",
-      "mr_date": "2025-04-03",
-      "created_at": "2025-05-11T08:06:53.000Z",
-      "pro_name": "Lakeview Resort",
-      "pro_ref_no": "JGCP0004",
-      "client_name": "tata industry  motor"
-    }]
+    collections: [], expenses: []
   }
 }
 
@@ -99,7 +84,7 @@ export const clientSlice = createSlice({
 
     resetRemainingPayments: (state) => {
       state.remainingPayments = []
-    }
+    },
   },
 
   extraReducers: (builder) => {
@@ -144,10 +129,23 @@ export const clientSlice = createSlice({
     }).addCase(GET_REMAINING_PAYMENTS.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload
+    }).addCase(DELETE_BALANCE_AMOUNT.fulfilled, (state, action) => {
+      state.loading = false;
+      state.remainingPayments = state.remainingPayments.filter(item => item.rm_id != action.payload?.response?.data.rm_id);
+    }).addCase(DELETE_BALANCE_AMOUNT.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload
+    }).addCase(UPDATE_REMAINING_STATUS.fulfilled, (state, action) => {
+      state.loading = false;
+      state.remainingPayments = state.remainingPayments.map(item =>
+        item.rm_id == action.payload?.response?.data.rm_id ? { ...item, rm_status: 'completed' } : item
+      )
+    }).addCase(UPDATE_REMAINING_STATUS.rejected, (state, action) => {
+      state.loading = false;
     })
   }
 })
 
-export const { addClient, resetData, resetMaterialRequests, resetRemainingPayments } = clientSlice.actions
+export const { addClient, resetData, resetMaterialRequests, deleteRemainingPayment, resetRemainingPayments } = clientSlice.actions
 
 export default clientSlice.reducer

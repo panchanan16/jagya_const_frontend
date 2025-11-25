@@ -1,12 +1,18 @@
-import SectionHeaderBtn from "@/components/buttons/sectionHeaderBtn";
+import entityEndpoint from "@/api/api";
 import DateRange from "@/components/DateRange/DateRange";
 import Table from "@/components/table/Table";
-import usePageRender from "@/hooks/usePageRender";
 import FirstSlideLayout from "@/layout/common/firstSlideLayout";
-import React, { useState } from "react";
+import { GET_ALL_COLLECTION, setDateRange } from "@/redux/features/collectionSlice/slice";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function FirstSlideFinance() {
-  const { itemList } = usePageRender({ entity: "collection" });
+  const { itemList, dateRange } = useSelector((state) => state.collection);
+  const dispatch = useDispatch()
+  
+  useEffect(()=> {
+    dispatch(GET_ALL_COLLECTION({endpoint: entityEndpoint.getAll('collection')}))
+  }, [dateRange.from_date, dateRange.to_date])
 
   return (
     <FirstSlideLayout
@@ -16,8 +22,8 @@ function FirstSlideFinance() {
       HeadingText="All Installments"
       searchFields={["col_project_id", "col_project_phase"]}
       Entity={"collection"}
-    >      
-      <DateRange />
+    >
+      <DateRange dateRange={dateRange} setDateRange={setDateRange} />
       <div className="main-table">
         <Table
           Theader={[

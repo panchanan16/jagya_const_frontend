@@ -140,7 +140,10 @@ const MaterialRequestPanel = ({ projectID }) => {
     const currentStatus = getCurrentItemStatus(item.id, item.status);
 
     // Only allow changing status if not already completed
-    if (currentStatus.toLowerCase() !== "completed" && currentStatus.toLowerCase() !== "remainings") {
+    if (
+      currentStatus.toLowerCase() !== "completed" &&
+      currentStatus.toLowerCase() !== "remainings"
+    ) {
       setSelectedItemForStatus(item);
       setShowStatusPopup(true);
     } else {
@@ -216,14 +219,14 @@ const MaterialRequestPanel = ({ projectID }) => {
               <div key={request.id} className={styles.requestSection}>
                 <div className={styles.requestHeader}>
                   <h3>{request.requestNumber}</h3>
-                  <button
+                  {/* <button
                     className={styles.selectAllBtn}
                     onClick={() => handleSelectAll(request.items)}
                   >
                     {isRequestFullySelected(request.items)
                       ? "Deselect All"
                       : "Select All"}
-                  </button>
+                  </button> */}
                 </div>
 
                 <div className={styles.tableContainer}>
@@ -231,11 +234,11 @@ const MaterialRequestPanel = ({ projectID }) => {
                     <thead>
                       <tr>
                         <th className={styles.checkboxColumn}>
-                          <input
+                          {/* <input
                             type="checkbox"
                             checked={isRequestFullySelected(request.items)}
                             onChange={() => handleSelectAll(request.items)}
-                          />
+                          /> */}
                         </th>
                         <th>Item Name</th>
                         <th>Amount</th>
@@ -261,12 +264,14 @@ const MaterialRequestPanel = ({ projectID }) => {
                             onClick={() => handleRowSelect(item.id)}
                           >
                             <td className={styles.checkboxColumn}>
-                              <input
-                                type="checkbox"
-                                checked={isSelected}
-                                onChange={() => handleRowSelect(item.id)}
-                                onClick={(e) => e.stopPropagation()}
-                              />
+                              {item.status.toLowerCase() !== "completed" && (
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  onChange={() => handleRowSelect(item.id)}
+                                  onClick={(e) => e.stopPropagation()}
+                                />
+                              )}
                             </td>
                             <td>{item.name}</td>
                             <td>₹ {item.amount.toLocaleString()}</td>

@@ -1,5 +1,4 @@
 import { API_CORE } from "@/config/api.config";
-import { update } from "lodash";
 
 const coreEndpoint = {
     getAll: (entity, endpoint) => `${API_CORE}${entity}/${endpoint}`,

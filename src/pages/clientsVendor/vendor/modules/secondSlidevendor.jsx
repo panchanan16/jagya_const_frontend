@@ -117,7 +117,7 @@ function SecondSlideVendor() {
           TabList={[
             {
               main: "Payments",
-              list: ["Project", "Amount", "Mode", "Remarks"],
+              list: ["Project Name", "Amount", "Mode", "Remarks"],
               limit: [
                 (rowData) => (
                   <td className="linkCell">
@@ -125,7 +125,7 @@ function SecondSlideVendor() {
                       to={`/admin/projects/${rowData.pay_project_id}`}
                       className="linkCell"
                     >
-                     Project ID {rowData.pay_project_id}
+                     Project ID {rowData.pro_name}
                     </Link>
                   </td>
                 ),
