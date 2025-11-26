@@ -34,7 +34,7 @@ function SecondSlide() {
   useEffect(() => {
     itemData.length && changeTabContent(itemData[0].pro_ref_no);
     itemData.length && setCurrentProject(itemData[0].pro_ref_no);
-        itemData.length && setCurrentProjectId(itemData[0].pro_id);
+    itemData.length ? setCurrentProjectId(itemData[0].pro_id) : setCurrentProjectId(null);
   }, [itemData]);
 
   return (

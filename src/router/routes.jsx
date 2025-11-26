@@ -60,6 +60,7 @@ import SecondSlideSettings from "@/pages/settings/modules/SecondSlideSettings";
 import WorkType from "@/pages/settings/modules/elements/WorkType";
 import PaymentType from "@/pages/settings/modules/elements/PaymentType";
 import AddFinanceUserForm from "@/forms/addUser/AddFinancleUserForm";
+import AddInchargeUserForm from "@/forms/addUser/AddInchargeuserForm";
 
 function generateRoutePages() {
   const routePages = [
@@ -98,7 +99,7 @@ function generateRoutePages() {
                   children: [
                     // { path: "assign", element: <AssignContractorForm /> },
                     // { path: "assigned", element: <ContractorAssigned /> },
-                    { path: "add-phase", element: <AddNewPhaseForm /> },
+                    // { path: "add-phase", element: <AddNewPhaseForm /> },
                     { path: "add-subphase", element: <AddSubphaseForm /> },
                   ],
                 },
@@ -276,6 +277,10 @@ function generateRoutePages() {
                 {
                   path: "add-finance",
                   element: <AddFinanceUserForm />,
+                },
+                 {
+                  path: "add-supervisor",
+                  element: <AddInchargeUserForm />
                 },
               ],
             },

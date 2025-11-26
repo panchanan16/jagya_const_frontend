@@ -164,10 +164,7 @@ function AddBalanceForm({
                     name="payment_status"
                     className={styles.formInput}
                   >
-                    <option value="remaining">Remainings</option>
-                    <option value="pending">Pending</option>
-                    <option value="completed">Completed</option>
-                    <option value="partial">Partial</option>
+                    <option value="remaining">Remaining</option>
                   </Field>
                   <ErrorMessage
                     name="payment_status"

@@ -20,7 +20,7 @@ export const getStatusClass = (status) => {
       return styles.statusPending;
     case "completed":
       return styles.statusApproved;
-    case "remainings":
+    case "remaining":
       return styles.statusPending;
     default:
       return "";

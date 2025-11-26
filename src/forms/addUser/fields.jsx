@@ -26,3 +26,17 @@ export const financeUserValidate = {
   fd_name: "name",
   fd_email: "email",
 };
+
+export const inchargeUserInitialValues = {
+  sup_name: "",
+  sup_email: "",
+  sup_contact: "",
+  sup_alt_contact: "",
+  sup_address: "",
+};
+
+export const inchargeUserValidate = {
+  sup_name: "name",
+  sup_email: "email",
+  sup_contact: "phnumber",
+};

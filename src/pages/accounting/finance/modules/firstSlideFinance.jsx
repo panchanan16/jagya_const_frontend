@@ -30,7 +30,6 @@ function FirstSlideFinance() {
             "Sl No.",
             "Amount",
             "Mode of pay",
-            "Remarks",
             "Date",
             "Project ID",
             "Phase",
@@ -45,7 +44,6 @@ function FirstSlideFinance() {
               type: "amount",
             },
             "col_mode",
-            "col_remark",
             {
               key: "col_date",
               type: "date",

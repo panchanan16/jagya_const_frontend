@@ -19,7 +19,7 @@ function FirstSlideExpense() {
       <div className="main-table">
         <Table
           Theader={["Sl No.", "Name", "Amount", "Mode of pay", "Date"]}
-          Limit={["exp_id", "exp_name", "exp_amount", "exp_mode", "exp_date"]}
+          Limit={["exp_id", "exp_name", {key: "exp_amount", type: "amount"}, "exp_mode", "exp_date"]}
           Trow={itemList}
           Actions={{
             viewUrl: "exp_id",

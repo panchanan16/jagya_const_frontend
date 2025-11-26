@@ -142,7 +142,7 @@ const MaterialRequestPanel = ({ projectID }) => {
     // Only allow changing status if not already completed
     if (
       currentStatus.toLowerCase() !== "completed" &&
-      currentStatus.toLowerCase() !== "remainings"
+      currentStatus.toLowerCase() !== "remaining"
     ) {
       setSelectedItemForStatus(item);
       setShowStatusPopup(true);
@@ -264,7 +264,7 @@ const MaterialRequestPanel = ({ projectID }) => {
                             onClick={() => handleRowSelect(item.id)}
                           >
                             <td className={styles.checkboxColumn}>
-                              {item.status.toLowerCase() !== "completed" && (
+                              {item.status.toLowerCase() !== "completed" && item.status.toLowerCase() !== "remaining" && (
                                 <input
                                   type="checkbox"
                                   checked={isSelected}
