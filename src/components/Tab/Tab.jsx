@@ -1,6 +1,6 @@
 import Table from "../table/Table";
 
-function Tab({ Heading, isTabActive, TabName, TableHeading, TableRows, limit, isAction, TopSection = null}) {
+function Tab({ isTabActive, TabName, TableHeading, TableRows, limit, isAction, isPaginate = false, TopSection = null}) {
   return (
     <div className={`${isTabActive == TabName ? "" : "hide"} tabName`}>
         {TopSection && <TopSection />}
@@ -9,7 +9,7 @@ function Tab({ Heading, isTabActive, TabName, TableHeading, TableRows, limit, is
           Trow={TableRows}
           Limit={limit}
           Actions={isAction}
-          // Paginate={true}
+          Paginate={isPaginate}
           // totalpage={5}
         />
     </div>

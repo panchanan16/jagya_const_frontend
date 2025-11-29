@@ -8,7 +8,8 @@ const coreEndpoint = {
     updateItem: (entity) => `${API_CORE}${entity}/update`,
     uploadFile: (entity, id, type) => `${API_CORE}${entity}/upload/${type}/${id}`,
     deleteFile: (entity, id) => `${API_CORE}${entity}/file/delete/${id}`,
-    searchItem: (query) => `api/v1/search?${query}`
+    searchItem: (query) => `api/v1/search?${query}`,
+    updateItemWithEndpoint: (entity, endpoint) => `${API_CORE}${entity}/${endpoint}`,
 }
 
 export default coreEndpoint;

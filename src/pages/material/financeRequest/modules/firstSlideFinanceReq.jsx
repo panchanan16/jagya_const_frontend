@@ -13,6 +13,8 @@ function FirstSlideFinanceReq() {
           "Project Ref",
           "Phase",
           "Date",
+          "Project Name",
+          "client Name"
         ]}
         Limit={[
           "mr_r_id",
@@ -20,6 +22,8 @@ function FirstSlideFinanceReq() {
           "mr_project_id",
           "mr_phase",
           "mr_date",
+          "pro_name",
+          "client_name"
         ]}
         Trow={itemList}
         Actions={{

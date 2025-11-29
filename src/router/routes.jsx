@@ -60,6 +60,7 @@ import SecondSlideSettings from "@/pages/settings/modules/SecondSlideSettings";
 import WorkType from "@/pages/settings/modules/elements/WorkType";
 import PaymentType from "@/pages/settings/modules/elements/PaymentType";
 import AddFinanceUserForm from "@/forms/addUser/AddFinancleUserForm";
+import AddInchargeUserForm from "@/forms/addUser/AddInchargeuserForm";
 
 function generateRoutePages() {
   const routePages = [
@@ -96,9 +97,9 @@ function generateRoutePages() {
                   path: ":projectId",
                   element: <SecondSlideProject />,
                   children: [
-                    { path: "assign", element: <AssignContractorForm /> },
-                    { path: "assigned", element: <ContractorAssigned /> },
-                    { path: "add-phase", element: <AddNewPhaseForm /> },
+                    // { path: "assign", element: <AssignContractorForm /> },
+                    // { path: "assigned", element: <ContractorAssigned /> },
+                    // { path: "add-phase", element: <AddNewPhaseForm /> },
                     { path: "add-subphase", element: <AddSubphaseForm /> },
                   ],
                 },
@@ -108,7 +109,7 @@ function generateRoutePages() {
               path: "clients",
               element: <ClientPage />,
               children: [
-                { path: ":id", element: <SecondSlide /> },
+                { path: ":id", element: <SecondSlide />, children: [{ path: ":reqId", element: <SecondSlideFinanceReq /> }]},
                 { path: "create", element: <AddClientForm /> },
                 { path: "create/:id", element: <AddClientForm /> },
               ],
@@ -173,7 +174,7 @@ function generateRoutePages() {
               path: "finance-request",
               element: <FinanceRequestPage />,
               children: [
-                { path: ":id", element: <SecondSlideFinanceReq /> },
+                { path: ":reqId", element: <SecondSlideFinanceReq /> },
                 { path: "create/:id", element: <AddRequestFinance /> },
                 { path: "add-inventory", element: <AddInventoryForm /> },
               ],
@@ -276,6 +277,10 @@ function generateRoutePages() {
                 {
                   path: "add-finance",
                   element: <AddFinanceUserForm />,
+                },
+                 {
+                  path: "add-supervisor",
+                  element: <AddInchargeUserForm />
                 },
               ],
             },

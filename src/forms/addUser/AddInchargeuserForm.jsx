@@ -2,11 +2,11 @@ import PopupLayout from "@/layout/common/popupLayout";
 import { Form, Field, ErrorMessage } from "formik";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { Link } from "react-router-dom";
-import { initialValues, financeUserInitialValues, validate, financeUserValidate } from "./fields";
+import { inchargeUserInitialValues, inchargeUserValidate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import styles from "@/forms/form.module.css";
 
-function FinanceUserFormWithField({ resetFn, isSubmitting }) {
+function InchargeUserFormWithField({ resetFn, isSubmitting }) {
   return (
     <Form>
       <div className={styles.formBody}>
@@ -17,12 +17,12 @@ function FinanceUserFormWithField({ resetFn, isSubmitting }) {
             </label>
             <Field
               type="text"
-              name="fd_name"
+              name="sup_name"
               className={styles.formInput}
               placeholder="Enter name"
             />
             <ErrorMessage
-              name="fd_name"
+              name="sup_name"
               className={styles.errorMessage}
               component="span"
             />
@@ -34,12 +34,12 @@ function FinanceUserFormWithField({ resetFn, isSubmitting }) {
             </label>
             <Field
               type="number"
-              name="fd_contact"
+              name="sup_contact"
               className={styles.formInput}
               placeholder="Enter contact number"
             />
             <ErrorMessage
-              name="fd_contact"
+              name="sup_contact"
               className={styles.errorMessage}
               component="span"
             />
@@ -51,12 +51,12 @@ function FinanceUserFormWithField({ resetFn, isSubmitting }) {
             </label>
             <Field
               type="number"
-              name="fd_alt_contact"
+              name="sup_alt_contact"
               className={styles.formInput}
               placeholder="Enter alternate number"
             />
             <ErrorMessage
-              name="fd_alt_contact"
+              name="sup_alt_contact"
               className={styles.errorMessage}
               component="span"
             />
@@ -68,12 +68,12 @@ function FinanceUserFormWithField({ resetFn, isSubmitting }) {
             </label>
             <Field
               type="email"
-              name="fd_email"
+              name="sup_email"
               className={styles.formInput}
               placeholder="Enter email address"
             />
             <ErrorMessage
-              name="fd_email"
+              name="sup_email"
               className={styles.errorMessage}
               component="span"
             />
@@ -85,12 +85,12 @@ function FinanceUserFormWithField({ resetFn, isSubmitting }) {
             </label>
             <Field
               type="text"
-              name="fd_address"
+              name="sup_address"
               className={styles.formInput}
               placeholder="Enter address"
             />
             <ErrorMessage
-              name="fd_address"
+              name="sup_address"
               className={styles.errorMessage}
               component="span"
             />
@@ -118,11 +118,11 @@ function FinanceUserFormWithField({ resetFn, isSubmitting }) {
   );
 }
 
-function AddFinanceUserForm() {
+function AddInchargeUserForm() {
   const [submithandler, initialSchema, validateSchema, isReturn] =
-    useFormSubmit(financeUserInitialValues, financeUserValidate, "", {
+    useFormSubmit(inchargeUserInitialValues, inchargeUserValidate, "", {
       name: "users",
-      route: "create/finance",
+      route: "create/supervisor",
     });
 
   function testSubmit(values) {
@@ -133,7 +133,7 @@ function AddFinanceUserForm() {
     <PopupLayout>
       <div className={`add-clients-prospects blur ${styles.formContainer}`}>
         <div className={styles.formHeader}>
-          <h2 className={styles.formTitle}>Add a New Financial User</h2>
+          <h2 className={styles.formTitle}>Add a New Incharge</h2>
           <Link to={`/admin/users`}>
             <button type="button" className={styles.closeButton}>
               Close
@@ -142,7 +142,7 @@ function AddFinanceUserForm() {
         </div>
         <hr className={styles.divider} />
         <FormLayout
-          MainForm={FinanceUserFormWithField}
+          MainForm={InchargeUserFormWithField}
           initialValues={initialSchema}
           validationSchema={validateSchema}
           formHandler={submithandler}
@@ -153,4 +153,4 @@ function AddFinanceUserForm() {
   );
 }
 
-export default AddFinanceUserForm;
+export default AddInchargeUserForm;

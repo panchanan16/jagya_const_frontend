@@ -187,7 +187,7 @@ function PhaseFormWithField({ resetFn }) {
   );
 }
 
-function AddNewPhaseForm() {
+function AddNewPhaseForm({isOpen, closePopup}) {
   const { projectId } = useParams();
   const [submithandler, initialSchema, validateSchema, isReturn] =
     useFormSubmit(initialValues, validate, "phase_id", "project_phase");
@@ -198,11 +198,12 @@ function AddNewPhaseForm() {
   }
   
   return (
+    isOpen && 
     <PopupLayout>
       <div className={`${styles.formContainer} phase-popup blur`}>
         <div className={styles.formHeader}>
           <h2 className={styles.formTitle}>Add Phase</h2>
-          <Link to={`/admin/projects/${projectId}`}>
+          <Link onClick={()=> closePopup(false)}>
             <button type="button" className={styles.closeButton}>
                ✕ Close
             </button>

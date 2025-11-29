@@ -14,11 +14,29 @@ export const validate = {
   su_address: "text",
 };
 
-
 export const financeUserInitialValues = {
   fd_name: "",
   fd_email: " ",
   fd_contact: "",
   fd_alt_contact: "",
   fd_address: "",
+};
+
+export const financeUserValidate = {
+  fd_name: "name",
+  fd_email: "email",
+};
+
+export const inchargeUserInitialValues = {
+  sup_name: "",
+  sup_email: "",
+  sup_contact: "",
+  sup_alt_contact: "",
+  sup_address: "",
+};
+
+export const inchargeUserValidate = {
+  sup_name: "name",
+  sup_email: "email",
+  sup_contact: "phnumber",
 };

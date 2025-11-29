@@ -20,20 +20,27 @@ function TabLayout({ TabList }) {
         </div>
       </div>
       <div className="tabs-content">
-        {/* Top Section components */}        
-        {/* <!-- TAB RENDERING --> */}        
+        {/* Top Section components */}
+        {/* <!-- TAB RENDERING --> */}
         {TabList.length &&
-          TabList.map((tabDetails) => (
-            <Tab
-              Heading={tabDetails.main}
-              isTabActive={isTabActive}
-              TabName={tabDetails.main}
-              TableHeading={tabDetails.list}
-              TableRows={tabDetails.tabData}
-              limit={tabDetails.limit}
-              TopSection={tabDetails.Topsection && tabDetails.Topsection}
-            />
-          ))}
+          TabList.map((tabDetails) => {
+            if (tabDetails.Component) {
+              return <tabDetails.Component />;
+            } else {
+              return (
+                <Tab
+                  Heading={tabDetails.main}
+                  isTabActive={isTabActive}
+                  TabName={tabDetails.main}
+                  TableHeading={tabDetails.list}
+                  TableRows={tabDetails.tabData}
+                  limit={tabDetails.limit}
+                  isAction={tabDetails.isAction}
+                  TopSection={tabDetails.Topsection && tabDetails.Topsection}
+                />
+              );
+            }
+          })}
       </div>
     </div>
   );

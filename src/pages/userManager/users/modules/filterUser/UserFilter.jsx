@@ -6,7 +6,7 @@ function UserFilter({ SetFilter }) {
         <option value="super_admin">Super Admin Users</option>
         <option value="branch">Branch Users</option>
         <option value="finance">Finance Users</option>
-        <option value="incharge_user">Incharge Users</option>
+        <option value="supervisor">Incharge Users</option>
       </select>
     </div>
   );

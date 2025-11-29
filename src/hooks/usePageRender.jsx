@@ -11,7 +11,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 //itemid: which item need to access from itemList.
 
 function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = false}) {
-  const { itemList, itemData, pagination } = useSelector(
+  const { itemList, itemData, pagination, dateRange } = useSelector(
     (state) => state[entity]
   );
   const { itemList: filterList, searchEntity, searchQuery,  searchLoading } = useSelector(
@@ -19,13 +19,14 @@ function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = fal
   );
 
 
+  console.log(dateRange)
+
+
   const {pageNo, pageSize} = useSelector((state) => state["paginate"]);
   const { [urlKey ? urlKey : "id"]: urlParam } = useParams();
   const dispatch = useDispatch();
   const Actions = tail ? coreCrudActions : crudActions;
   const { getItemList, getPaginateItems } = Actions;
-
-  // console.log(paginateNumber)
 
   // const pageNo = useMemo(() => {
   //   return searchParams.get("page") || "1";

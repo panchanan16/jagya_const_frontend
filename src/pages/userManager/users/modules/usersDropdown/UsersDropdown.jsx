@@ -26,7 +26,7 @@ function UsersDropdown() {
         </button>
       </div>
       <div className={`${openUser ? "" : "hide"} roles`}>
-        <button className="btn-secondary">Select a Role</button>
+        <button onClick={() => setOpenUser(!openUser)} className="btn-secondary">Select a Role</button>
         <ul className="">
           <li>
             <Link
@@ -41,8 +41,8 @@ function UsersDropdown() {
           <li>
             <Link
               to={{
-                pathname: "add-user",
-                search: "?user=super_admin",
+                pathname: "add-supervisor",
+                search: "?user=supervisor",
               }}
             >
               Incharge

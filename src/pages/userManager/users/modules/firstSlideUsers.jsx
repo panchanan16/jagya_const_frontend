@@ -12,25 +12,15 @@ function FirstSlideUsers() {
     entity: "users",
     tail: `readAll/${userFilter}`,
     urlKey: userFilter,
+    loc: userFilter,
   });
-
-
-  console.log(itemList)
 
   let tableData = { tHeaders: [], tLimits: [] };
 
   switch (userFilter) {
     case "super_admin":
       tableData = {
-        tHeaders: [
-          "ID",
-          "Name",
-          "Email",
-          "Contact",
-          "Alt Contact",
-          "Address",
-          "Action",
-        ],
+        tHeaders: ["ID", "Name", "Email", "Contact", "Alt Contact", "Address"],
         tLimits: [
           "su_id",
           "su_name",
@@ -67,21 +57,27 @@ function FirstSlideUsers() {
       break;
     case "finance":
       tableData = {
-        tHeaders: [
-          "ID",
-          "Name",
-          "Email",
-          "Contact",
-          "Alt Contact",
-          "Address"
-        ],
+        tHeaders: ["ID", "Name", "Email", "Contact", "Alt Contact", "Address"],
         tLimits: [
           "fd_a_id",
           "fd_name",
           "fd_contact",
           "fd_alt_contact",
           "fd_address",
-          "fd_email"
+          "fd_email",
+        ],
+      };
+      break;
+    case "supervisor":
+      tableData = {
+        tHeaders: ["ID", "Name", "Email", "Contact", "Alt Contact", "Address"],
+        tLimits: [
+          "sup_a_id",
+          "sup_name",
+          "sup_email",
+          "sup_contact",
+          "sup_alt_contact",
+          "sup_address",
         ],
       };
       break;
@@ -100,7 +96,7 @@ function FirstSlideUsers() {
       HeaderSection={true}
     >
       <SectionHeaderOption
-        Heading="All Users"
+        Heading={`All ${userFilter.replace("_", " ")} Users`}
         EndBtn={<UsersDropdown />}
         // Entity={"aaaa"}
         FilterComponent={<UserFilter SetFilter={setUserFilter} />}
@@ -111,7 +107,7 @@ function FirstSlideUsers() {
         Limit={tableData.tLimits}
         Trow={itemList}
         Actions={{
-          viewUrl: "su_id",
+          viewUrl: tableData?.tLimits[0] ? tableData?.tLimits[0] : "su_id",
           deleteUrl: "users",
           editUrl: "su_id",
         }}

@@ -3,12 +3,15 @@ import useSecondSlideData from "@/hooks/useSecondSlideData";
 import SecondSlideLayout from "@/layout/common/secondSlideLayout";
 import TabLayout from "@/layout/tabLayout/TabLayout";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styles from "@/styles/common.module.css";
-import { PlusCircle } from "lucide-react";
+import { BrickWallFire, PlusCircle } from "lucide-react";
+import MaterialRequestPanel from "./requestPanel/RequestPanel";
+import SidePanel from "./requestPanel/Sidepanel";
 
 function SecondSlide() {
-  const [currentProject, setCurrentProject] = useState()
+  const [currentProject, setCurrentProject] = useState();
+  const [currentProjectId, setCurrentProjectId] = useState(null);
   const { changeTabContent, isHighlight, itemData, itemDetails } =
     useRenderProjects(
       "client",
@@ -16,11 +19,22 @@ function SecondSlide() {
       { item: "client_id", details: "pro_ref_id" }
     );
 
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
+
+  function openRequestPanel() {
+    setIsPanelOpen(true);
+  }
+
+  function closePanel() {
+    setIsPanelOpen(false);
+  }
+
   const { viewedItem, goBack } = useSecondSlideData("client", "client_id");
 
   useEffect(() => {
     itemData.length && changeTabContent(itemData[0].pro_ref_no);
-    itemData.length && setCurrentProject(itemData[0].pro_ref_no)
+    itemData.length && setCurrentProject(itemData[0].pro_ref_no);
+    itemData.length ? setCurrentProjectId(itemData[0].pro_id) : setCurrentProjectId(null);
   }, [itemData]);
 
   return (
@@ -101,14 +115,18 @@ function SecondSlide() {
         <div className="client-project-list flex align-start">
           <h3>Projects</h3>
           <div className="client-project-container flex align-center">
-            {itemData.length ? (
+            {itemData.length > 0 ? (
               itemData.map((item, key) => (
                 <div
                   key={key}
                   className={`projectName flex align-center ${
                     isHighlight == item.pro_ref_no ? "active" : ""
                   }`}
-                  onClick={() => {changeTabContent(item.pro_ref_no); setCurrentProject(item.pro_ref_no)}}
+                  onClick={() => {
+                    changeTabContent(item.pro_ref_no);
+                    setCurrentProject(item.pro_ref_no);
+                    setCurrentProjectId(item.pro_id);
+                  }}
                 >
                   <p className="text">
                     {item.pro_ref_no} || {item.pro_name}
@@ -129,26 +147,30 @@ function SecondSlide() {
               ))
             ) : (
               <div className="projectName flex align-center">
-                <p className="text">No Project Found</p>
+                <p className="text">No Project Added</p>
               </div>
             )}
           </div>
+        </div>
+
+        <div style={{ marginBottom: "30px" }}>
+          <Link
+            onClick={() => openRequestPanel()}
+            className={styles.linkButton}
+          >
+            <BrickWallFire className={styles.icon} />
+            <span>Material Requests</span>
+          </Link>
         </div>
 
         <TabLayout
           TabList={[
             {
               main: "Installments",
-              Topsection: () => <RedirectToAddInstallment formId={currentProject} />,
-              list: [
-                "No.",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Date",
-                "Project",
-                "Action",
-              ],
+              Topsection: () => (
+                <RedirectToAddInstallment formId={currentProject} />
+              ),
+              list: ["No.", "Amount", "Mode", "Remarks", "Date", "Project"],
               limit: [
                 "col_id",
                 { key: "col_amount", type: "amount" },
@@ -158,64 +180,31 @@ function SecondSlide() {
                 "col_project_id",
               ],
               tabData: itemDetails.collections,
-            },
+            },           
             {
-              main: "Expenses",
-              Topsection: ()=> <RedirectToAddExpense formId={currentProject} />,
-              list: [
-                "No.",
-                "Expense Name",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Date",
-                "project",
-                "Action",
-              ],
-              limit: [
-                "exp_id",
-                "exp_name",
-                { key: "exp_amount", type: "amount" },
-                "exp_mode",
-                "exp_remark",
-                "exp_date",
-                "exp_project_ref",
-              ],
-              tabData: itemDetails.expenses,
-            },
-            {
-              main: "Materials Request",
-              list: [
-                "No.",
-                "Expense Name",
-                "Amount",
-                "Mode",
-                "Remarks",
-                "Date",
-                "project",
-                "Action",
-              ],
-              limit: [
-                "exp_id",
-                "exp_name",
-                { key: "exp_amount", type: "amount" },
-                "exp_mode",
-                "exp_remark",
-                "exp_date",
-                "exp_project_ref",
-              ],
-              tabData: itemDetails.expenses,
-            },
+              main: "Vendor Payments",
+              list: ["Ref No", "Phase", "Date of Request", "Client Name"],
+              limit: ["material_ref_no", "mr_phase", "mr_date", "client_name"],
+              isAction: { viewUrl: "mr_r_id" },
+              tabData: itemDetails.requests,
+            }            
           ]}
         />
+        <SidePanel isOpen={isPanelOpen} onClose={closePanel}>
+          <MaterialRequestPanel projectID={currentProjectId} />
+        </SidePanel>
       </main>
+      <Outlet />
     </SecondSlideLayout>
   );
 }
 
 function RedirectToAddInstallment({ formId }) {
   return (
-    <Link to={`../../finance/add-installment?formProject=${formId}`} className={styles.linkButton}>
+    <Link
+      to={`../../finance/add-installment?formProject=${formId}`}
+      className={styles.linkButton}
+    >
       <PlusCircle className={styles.icon} />
       <span>Add New Installment</span>
     </Link>
@@ -224,7 +213,10 @@ function RedirectToAddInstallment({ formId }) {
 
 function RedirectToAddExpense({ formId }) {
   return (
-    <Link to={`../../expense/add-expense?formProject=${formId}`} className={styles.linkButton}>
+    <Link
+      to={`../../expense/add-expense?formProject=${formId}`}
+      className={styles.linkButton}
+    >
       <PlusCircle className={styles.icon} />
       <span>Add Expense</span>
     </Link>

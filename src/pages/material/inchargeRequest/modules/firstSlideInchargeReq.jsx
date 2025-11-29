@@ -15,17 +15,18 @@ function FirstSlideInchargeReq() {
         Theader={[
           "Sl no.",
           "Ref no.",
-          "Project Ref",
           "Phase",
           "Date",
-          "Action",
+          "Project Name",
+          "Client Name"
         ]}
         Limit={[
           "mr_r_id",
           "material_ref_no",
-          "mr_project_id",
           "mr_phase",
           "mr_date",
+          "pro_name",
+          "client_name"
         ]}
         Trow={itemList}
         Actions={{

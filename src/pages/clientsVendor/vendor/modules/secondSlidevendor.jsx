@@ -117,7 +117,7 @@ function SecondSlideVendor() {
           TabList={[
             {
               main: "Payments",
-              list: ["Project", "Amount", "Mode", "Remarks"],
+              list: ["Project Name", "Amount", "Client Name", "Mode", "Remarks"],
               limit: [
                 (rowData) => (
                   <td className="linkCell">
@@ -125,7 +125,7 @@ function SecondSlideVendor() {
                       to={`/admin/projects/${rowData.pay_project_id}`}
                       className="linkCell"
                     >
-                     Project ID {rowData.pay_project_id}
+                    {rowData.pro_name}
                     </Link>
                   </td>
                 ),
@@ -133,6 +133,7 @@ function SecondSlideVendor() {
                   key: "pay_amount",
                   type: "amount"
                 },
+                "client_name",
                 "pay_mode",
                 "pay_note",
               ],
@@ -140,7 +141,7 @@ function SecondSlideVendor() {
             },
             {
               main: "Purchases",
-              list: ["Project Name", "Item", "Qnt", "Amount", "Date"],
+              list: ["Project Name", "Client Name", "Item", "Qnt", "Amount", "Date"],
               limit: [
                 (rowData) => (
                   <td className="linkCell">
@@ -148,10 +149,11 @@ function SecondSlideVendor() {
                       to={`/admin/projects/${rowData.mr_project_r_id}`}
                       className="linkCell"
                     >
-                     Project ID {rowData.mr_project_r_id}
+                   {rowData.pro_name}
                     </Link>
                   </td>
                 ),
+                "client_name",
                 "mr_item_name",
                 "mr_item_quantity",
                 {

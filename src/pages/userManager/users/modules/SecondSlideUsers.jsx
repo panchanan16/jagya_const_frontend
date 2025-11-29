@@ -120,7 +120,7 @@ function SecondSlideUsers() {
             className={`${styles.description} ${styles.flex} ${styles.alignCenter} ${styles.gap5}`}
           >
             <h3>Email ID:</h3>
-            <p className={styles.descriptionText}>jyotikankan222@gmail.com</p>
+            {/* <p className={styles.descriptionText}>{viewedItem && viewedItem.su_email}</p> */}
           </div>
 
           <div
@@ -130,42 +130,12 @@ function SecondSlideUsers() {
             <p className={styles.descriptionText}>
               House No. 60, Ashram Road, Lachitnagar, Guwahati, Assam
             </p>
-          </div>
-
-          <div
-            className={`${styles.description} ${styles.flex} ${styles.alignCenter} ${styles.gap5}`}
-          >
-            <h3>House type:</h3>
-            <p className={styles.descriptionText}>Assam Type</p>
-          </div>
-
-          <div
-            className={`${styles.description} ${styles.flex} ${styles.alignCenter} ${styles.gap5}`}
-          >
-            <h3>Site Description:</h3>
-            <p className={styles.descriptionText}>
-              Assam Type of ghor juntu assamese hoi
-            </p>
-          </div>
-
-          <div
-            className={`${styles.description} ${styles.flex} ${styles.alignCenter} ${styles.gap5}`}
-          >
-            <h3>Project Initiated:</h3>
-            <p className={styles.descriptionText}>12-June-2024</p>
-          </div>
-
-          <div
-            className={`${styles.description} ${styles.flex} ${styles.alignCenter} ${styles.gap5}`}
-          >
-            <h3>Project Duration:</h3>
-            <p className={styles.descriptionText}>1.5 years</p>
-          </div>
+          </div>         
         </div>
 
         <div className={styles.approveButton}>
           <Link
-            to={`add-credentials/super`}
+            to={`add-credentials/super?user=${viewedItem?.su_email}`}
             className={styles.approveButtonLink}
           >
             <button className={styles.btnPrimary} type="button">

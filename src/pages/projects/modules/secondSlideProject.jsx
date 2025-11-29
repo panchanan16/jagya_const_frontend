@@ -10,11 +10,17 @@ import { FileUp, PaperclipIcon } from "lucide-react";
 import FileUploadPopup from "./fileUpload/FileUploadBoard";
 import { useState } from "react";
 import { LinkBackButton } from "@/components/BackButton/BackButtton";
+import ContractorAssigned from "./contractors/ContractorAssigned";
+import AssignContractorForm from "@/forms/assignContractor/AssignContractorForm";
+import AddNewPhaseForm from "@/forms/addPhase/AddNewPhaseForm";
 
 function SecondSlideProject() {
   const { projectId } = useParams();
   const [uploadPopupOpen, setUploadPopupOpen] = useState(false);
   const { itemList } = useSelector((state) => state["project_phase"]);
+  const [showAssigendContractors, setShowAssignedContractors] = useState(false);
+  const [openAddContractorForm, setOpenAddContractorForm] = useState(false);
+  const [openPhaseForm, setOpenPhaseForm] = useState(false);
 
   const { deleteFile } = coreCrudActions;
   const { itemData } = usePageRender({
@@ -87,7 +93,11 @@ function SecondSlideProject() {
             <h3>Contact:</h3>
             <p className="text">
               {itemData && itemData.client?.length > 0
-                ? `${itemData.client[0]?.client_contact} ${itemData.client[0]?.client_alt_contact ? `| ${itemData.client[0]?.client_alt_contact}` : ""}`
+                ? `${itemData.client[0]?.client_contact} ${
+                    itemData.client[0]?.client_alt_contact
+                      ? `| ${itemData.client[0]?.client_alt_contact}`
+                      : ""
+                  }`
                 : "N/A"}
             </p>
           </div>
@@ -150,10 +160,10 @@ function SecondSlideProject() {
           </div>
         </div>
 
-        {/* <!-- EMPLOYEE LIST --> */}
+        {/* <!-- Assign Contractors --> */}
         <div className="p-employees flex align-center">
           <h3>Assign Contractor:</h3>
-          <Link to="assign">
+          <Link onClick={() => setOpenAddContractorForm(true)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -230,7 +240,7 @@ function SecondSlideProject() {
           <div className="task-header flex align-start j-between">
             <h3>Tasks</h3>
             <div className="btns flex align-center">
-              <Link to="add-phase">
+              <Link onClick={() => setOpenPhaseForm(true)}>
                 <button
                   className="btn-secondary"
                   type="button"
@@ -257,7 +267,12 @@ function SecondSlideProject() {
               .filter((ph) => ph.pro_id == projectId)
               .concat(itemData?.phases)
               ?.map((ph) => (
-                <Phases Name={ph.phase_name} Status={ph.pro_phase_status} phaseId={ph.pro_phase_id} />
+                <Phases
+                  openContractors={setShowAssignedContractors}
+                  Name={ph.phase_name}
+                  Status={ph.pro_phase_status}
+                  phaseId={ph.pro_phase_id}
+                />
               ))}
           </div>
         </div>
@@ -267,7 +282,19 @@ function SecondSlideProject() {
           projectID={projectId}
         />
       </main>
-      <Outlet />
+      <ContractorAssigned
+        isOpen={showAssigendContractors}
+        closePopup={setShowAssignedContractors}
+      />
+      <AssignContractorForm
+        isOpen={openAddContractorForm}
+        closePopup={setOpenAddContractorForm}
+      />
+
+      <AddNewPhaseForm
+        isOpen={openPhaseForm}
+        closePopup={setOpenPhaseForm}
+      />
     </SecondSlideLayout>
   );
 }

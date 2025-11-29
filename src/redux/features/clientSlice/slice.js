@@ -1,13 +1,72 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
 import fulfilledStateReducer from "../../customReducer";
+import { _DELETE, _GET, _UPDATE } from "@/request/request";
+
+
+export const GET_ALL_MATERIAL_REQUESTs = createAsyncThunk(
+  'GET/Material-Requests',
+  async ({ endpoint }, { rejectWithValue }) => {
+    try {
+      const response = await _GET(endpoint)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
+
+export const GET_REMAINING_PAYMENTS = createAsyncThunk(
+  'GET/Remaining-Payments',
+  async ({ endpoint }, { rejectWithValue }) => {
+    try {
+      const response = await _GET(endpoint)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
+
+
+export const DELETE_BALANCE_AMOUNT = createAsyncThunk(
+  'DELETE/Remaining-Payments',
+  async ({ endpoint }, { rejectWithValue }) => {
+    try {
+      const response = await _DELETE(endpoint)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
+
+export const UPDATE_REMAINING_STATUS = createAsyncThunk(
+  'UPDATE/Remaining-Payments-Status',
+  async ({ endpoint, body }, { rejectWithValue }) => {
+    try {
+      const response = await _UPDATE(endpoint, body)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+
+)
 
 const initialState = {
   itemList: [],
   itemData: [],
   loading: null,
   error: null,
-  itemDetails: {collections: [], expenses: []}
+  materialRequests: {},
+  remainingPayments: [],
+  itemDetails: {
+    collections: [], expenses: []
+  }
 }
 
 
@@ -17,7 +76,15 @@ export const clientSlice = createSlice({
   reducers: {
     resetData: (state, action) => {
       state.itemList = action.payload
-    }
+    },
+
+    resetMaterialRequests: (state) => {
+      state.materialRequests = {}
+    },
+
+    resetRemainingPayments: (state) => {
+      state.remainingPayments = []
+    },
   },
 
   extraReducers: (builder) => {
@@ -39,7 +106,7 @@ export const clientSlice = createSlice({
       state.loading = true
       state.error = action.payload
     }).addCase(DELETE_REQUEST.fulfilled, (state, action) => {
-       fulfilledStateReducer(state, action, 'client', 'DELETE')
+      fulfilledStateReducer(state, action, 'client', 'DELETE')
     }).addCase(DELETE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
@@ -48,10 +115,37 @@ export const clientSlice = createSlice({
     }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
-    });
+    }).addCase(GET_ALL_MATERIAL_REQUESTs.fulfilled, (state, action) => {
+      state.loading = false;
+      state.materialRequests = action.payload.response.data;
+      state.error = null
+    }).addCase(GET_ALL_MATERIAL_REQUESTs.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload
+    }).addCase(GET_REMAINING_PAYMENTS.fulfilled, (state, action) => {
+      state.loading = false;
+      state.remainingPayments = action.payload.response.data;
+      state.error = null
+    }).addCase(GET_REMAINING_PAYMENTS.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload
+    }).addCase(DELETE_BALANCE_AMOUNT.fulfilled, (state, action) => {
+      state.loading = false;
+      state.remainingPayments = state.remainingPayments.filter(item => item.rm_id != action.payload?.response?.data.rm_id);
+    }).addCase(DELETE_BALANCE_AMOUNT.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload
+    }).addCase(UPDATE_REMAINING_STATUS.fulfilled, (state, action) => {
+      state.loading = false;
+      state.remainingPayments = state.remainingPayments.map(item =>
+        item.rm_id == action.payload?.response?.data.rm_id ? { ...item, rm_status: 'completed' } : item
+      )
+    }).addCase(UPDATE_REMAINING_STATUS.rejected, (state, action) => {
+      state.loading = false;
+    })
   }
 })
 
-export const { addClient, resetData } = clientSlice.actions
+export const { addClient, resetData, resetMaterialRequests, deleteRemainingPayment, resetRemainingPayments } = clientSlice.actions
 
 export default clientSlice.reducer

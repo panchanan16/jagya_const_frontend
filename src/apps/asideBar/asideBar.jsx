@@ -67,7 +67,7 @@ function AsideBar() {
     <div className={styles.left}>
       <div className={`${styles.logo} ${styles.flex} ${styles.alignCenter}`}>
         <img src="/img/logo.jpg" className={`${styles.logoimg}`} alt="Logo" />
-        <h3 className={styles.uppercase}>JAGYA CONSTRUCTION</h3>
+        {/* <h3 className={styles.uppercase}>JAGYA CONSTRUCTION</h3> */}
       </div>
       
       <div className={`${styles.sideMenu} ${styles.flex} ${styles.alignCenter} ${styles.jCenter} ${styles.hide}`}>

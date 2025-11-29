@@ -1,7 +1,8 @@
 import { useState } from "react";
 import styles from "./DateRange.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
-function DateRange() {
+function DateRange({dateRange, setDateRange}) {
   // Get today's date
   const getTodayDate = () => {
     const today = new Date();
@@ -17,6 +18,7 @@ function DateRange() {
 
   const [fromDate, setFromDate] = useState(getOneMonthAgoDate());
   const [toDate, setToDate] = useState(getTodayDate());
+  const dispatch = useDispatch()
 
   const formatDate = (dateString) => {
     if (!dateString) return "";
@@ -43,6 +45,12 @@ function DateRange() {
 
     return `${day} ${month} ${year}`;
   };
+
+
+  function searchBasedOnDate(params) {
+    console.log("Click date range")
+    dispatch(setDateRange({from_date: fromDate, to_date: toDate}))
+  }
 
   return (
     <div className={styles.dateRangeContainer}>
@@ -82,12 +90,12 @@ function DateRange() {
           className={styles.dateInput}
           value={toDate}
           onChange={(e) => setToDate(e.target.value)}
-          min={fromDate}
+          min={dateRange.fromDate}
         />       
       </div>
 
       <div className={styles.dateGroup}>
-        <button className={styles.searchBtn}>Search</button>
+        <button onClick={searchBasedOnDate} className={styles.searchBtn}>Search</button>
       </div>
     </div>
   );

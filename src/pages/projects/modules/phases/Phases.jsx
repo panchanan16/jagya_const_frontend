@@ -73,7 +73,7 @@ import { useState } from "react";
 import styles from "./Phases.module.css";
 import useRequest from "@/hooks/useRequest";
 
-function Phases({ Name, Status, phaseId }) {
+function Phases({ Name, Status, phaseId, openContractors }) {
   const [currentStatus, setCurrentStatus] = useState(Status);
   const { makeRequest } = useRequest("project_phase", null, null, null, false);
 
@@ -107,8 +107,8 @@ function Phases({ Name, Status, phaseId }) {
         </div>
 
         <div className={styles.actions}>
-          <Link to="assigned" className={styles.linkButton}>
-            <button className={styles.contractorBtn}>
+          {/* <Link to="assigned" className={styles.linkButton}> */}
+            <button onClick={()=> openContractors(true)} className={styles.contractorBtn}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -118,7 +118,7 @@ function Phases({ Name, Status, phaseId }) {
               </svg>
               Contractor
             </button>
-          </Link>
+          {/* </Link> */}
 
           <select
             className={styles.statusSelect}
@@ -136,7 +136,7 @@ function Phases({ Name, Status, phaseId }) {
         </div>
       </div>
 
-      <div className={styles.taskSection}>
+      {/* <div className={styles.taskSection}>
         <div className={styles.task}>
           <span className={styles.taskText}>Slab Casting</span>
           <button
@@ -152,7 +152,7 @@ function Phases({ Name, Status, phaseId }) {
             </svg>
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
