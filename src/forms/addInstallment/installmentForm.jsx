@@ -273,7 +273,7 @@ function InstallmentForm() {
             MainForm={InstallmentFormWithField}
             initialValues={initialSchema}
             validationSchema={validateSchema}
-            formHandler={submithandler}
+            formHandler={addInstallment}
             isReturn={isReturn}
           />
         </div>

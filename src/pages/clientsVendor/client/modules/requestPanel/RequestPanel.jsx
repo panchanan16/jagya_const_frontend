@@ -261,7 +261,7 @@ const MaterialRequestPanel = ({ projectID }) => {
                           <tr
                             key={item.id}
                             className={isSelected ? styles.selectedRow : ""}
-                            onClick={() => handleRowSelect(item.id)}
+                            // onClick={() => handleRowSelect(item.id)}
                           >
                             <td className={styles.checkboxColumn}>
                               {item.status.toLowerCase() !== "completed" && item.status.toLowerCase() !== "remaining" && (

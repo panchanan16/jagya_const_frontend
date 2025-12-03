@@ -1,223 +1,17 @@
-// import SearchInput from "@/components/searchInput/searchInput";
-// import PopupLayout from "@/layout/common/popupLayout";
-// import FormLayout from "@/layout/formLayout/formLayout";
-// import { ErrorMessage, Field, FieldArray, Form } from "formik";
-// import { Link, useParams } from "react-router-dom";
-// import { initialValues, validate } from "./fields";
-// import useFormSubmit from "@/hooks/useFormSubmit";
-// import SelectOption from "@/components/SelectOption/SelectOption";
-// import { addPhase } from "@/redux/features/settingsSlice/slice";
-// import usePageRender from "@/hooks/usePageRender";
-
-// function RequestFinanceFormWithField({ values, resetFn }) {
-//   console.log(values);
-//   return (
-//     <Form>
-//       <div class="grid gtc-3 gap-10">
-//         <SearchInput
-//           Name={"mr_project_ref"}
-//           Label={"Project"}
-//           Entity="project"
-//           SetFKey={{ mr_project_id: "pro_id" }} // setting client ref key in the form which is not displayed
-//           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
-//           editDisplayInput={values.mr_phase}
-//           errorKey={"mr_project_id"}
-//         />
-//         <SelectOption Name={"mr_phase"} Label={"Phase"} action={addPhase} />
-//         <div class="field">
-//           <p class="title v-selector">Select Date</p>
-//           <Field type="date" name="mr_date" id="" />
-//           <ErrorMessage name="mr_date" className="err" component="span" />
-//         </div>
-//       </div>
-
-//       <FieldArray name="materialItemsData">
-//         {({ remove, push }) => (
-//           <div>
-//             <button
-//               class="btn-dashed flex align-items j-center"
-//               type="button"
-//               onClick={() =>
-//                 push({
-//                   mr_item_name: "",
-//                   mr_item_quantity: "",
-//                   mr_item_amount: "",
-//                   fd_approval: 0,
-//                   vendor_id: null,
-//                 })
-//               }
-//             >
-//               <svg
-//                 xmlns="http://www.w3.org/2000/svg"
-//                 viewBox="0 0 24 24"
-//                 id="plus-circle"
-//                 class=""
-//               >
-//                 <path
-//                   fill=""
-//                   d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,12,20Zm4-9H13V8a1,1,0,0,0-2,0v3H8a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0V13h3a1,1,0,0,0,0-2Z"
-//                 ></path>
-//               </svg>
-//               <span class="text">Add Item</span>
-//             </button>
-//             <div class="newItem">
-//               {values.materialItemsData.map((friend, index) => (
-//                 <div class="grid gap-10 inventoryGrid">
-//                   <SearchInput
-//                     Name={"vendor_id"}
-//                     Label={"Vendor"}
-//                     Entity="vendor"
-//                     SetFKey={{
-//                       [`materialItemsData[${index}].vendor_id`]: "vendor_id",
-//                     }} // setting client ref key in the form which is not displayed
-//                     SetDisplayKey={{ id: "vendor_id", name: "vendor_name" }}
-//                     editDisplayInput={friend.vendor_name}
-//                     errorKey={"vendor_id"}
-//                   />
-//                   <div class="field">
-//                     <p class="title">Item</p>
-//                     <Field
-//                       type="text"
-//                       name={`materialItemsData[${index}].mr_item_name`}
-//                       id=""
-//                     />
-//                     <ErrorMessage
-//                       name={`materialItemsData[${index}].mr_item_name`}
-//                       className="err"
-//                       component="span"
-//                     />
-//                   </div>
-//                   <div class="field">
-//                     <p class="title">Quantity</p>
-//                     <Field
-//                       type="text"
-//                       name={`materialItemsData[${index}].mr_item_quantity`}
-//                       id=""
-//                     />
-//                     <ErrorMessage
-//                       name={`materialItemsData[${index}].mr_item_quantity`}
-//                       className="err"
-//                       component="span"
-//                     />
-//                   </div>
-
-//                   <div class="field">
-//                     <p class="title">Amount</p>
-//                     <Field
-//                       type="text"
-//                       name={`materialItemsData[${index}].mr_item_amount`}
-//                       id=""
-//                     />
-//                     <ErrorMessage
-//                       name={`materialItemsData[${index}].mr_item_amount`}
-//                       className="err"
-//                       component="span"
-//                     />
-//                   </div>
-
-//                   <div class="field">
-//                     <p class="title v-selector">Select Status</p>
-//                     <Field
-//                       as="select"
-//                       name={`materialItemsData[${index}].fd_approval`}
-//                       id=""
-//                       class="v-selector"
-//                     >
-//                       <option value="1">Approve</option>
-//                       <option value="0">Decline</option>
-//                     </Field>
-//                     <ErrorMessage
-//                       name={`materialItemsData[${index}].fd_approval`}
-//                       className="err"
-//                       component="span"
-//                     />
-//                   </div>
-
-//                   <div class="field" onClick={() => remove(index)}>
-//                     <p class="opacity-0 title">p</p>
-//                     <button type="button" className="btn-warning delete">
-//                       Delete Item
-//                     </button>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         )}
-//       </FieldArray>
-
-//       <div class="action-btn flex gap-10">
-//         <button type="submit" class="btn-success flex-1">
-//           Confirm
-//         </button>
-//         <button
-//           type="button"
-//           class="btn-warning flex-1"
-//           onClick={() => resetFn()}
-//         >
-//           Cancel
-//         </button>
-//       </div>
-//     </Form>
-//   );
-// }
-
-// function AddRequestFinance() {
-//   const [submithandler, initialSchema, validateSchema, isReturn, urlParam] =
-//     useFormSubmit(initialValues, validate, "mr_r_id", {
-//       name: "material_req",
-//       route: "create",
-//     });
-//   const { id } = useParams();
-//   const { itemData } = usePageRender({
-//     entity: "material_req",
-//     tail: `realAll_by_materialId/${id}`,
-//     key: "itemData",
-//     loc: location,
-//   });
-
-//   function addRequest(values) {
-//     console.log(values);
-//     alert(JSON.stringify(values));
-//   }
-
-//   return (
-//     <PopupLayout>
-//       <div class="add-collection blur">
-//         <div class="form">
-//           <h2>Request Materials</h2>
-//           <Link to={`/admin/finance-request/${urlParam}`}>
-//             <button type="button" class="btn-warning close">
-//               Close
-//             </button>
-//           </Link>
-//           <hr />
-//           <FormLayout
-//             MainForm={RequestFinanceFormWithField}
-//             initialValues={initialSchema}
-//             validationSchema={validateSchema}
-//             formHandler={submithandler}
-//             isReturn={isReturn}
-//           />
-//         </div>
-//       </div>
-//     </PopupLayout>
-//   );
-// }
-
-// export default AddRequestFinance;
-
 import SearchInput from "@/components/searchInput/searchInput";
 import PopupLayout from "@/layout/common/popupLayout";
 import FormLayout from "@/layout/formLayout/formLayout";
 import { ErrorMessage, Field, FieldArray, Form } from "formik";
-import { Link, useParams } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import SelectOption from "@/components/SelectOption/SelectOption";
 import { addPhase } from "@/redux/features/settingsSlice/slice";
 import usePageRender from "@/hooks/usePageRender";
 import styles from "@/forms/form.module.css";
+import { useEffect } from "react";
+import { GET_MATERIALITEM_BYID, UPDATE_FINANCE_REQUEST } from "@/redux/features/materiai_reqSlice/slice";
+import coreEndpoint from "@/api/coreApi";
+import { useDispatch, useSelector } from "react-redux";
 
 function RequestFinanceFormWithField({ values, resetFn }) {
   console.log(values);
@@ -230,7 +24,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
           Entity="project"
           SetFKey={{ mr_project_id: "pro_id" }} // setting client ref key in the form which is not displayed
           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
-          editDisplayInput={values.mr_phase}
+          editDisplayInput={values.pro_name}
           errorKey={"mr_project_id"}
         />
         <SelectOption Name={"mr_phase"} Label={"Phase"} action={addPhase} />
@@ -388,7 +182,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
                       <div
                         className={styles.fieldGroup}
                         style={{ alignSelf: "end" }}
-                      >                      
+                      >
                         <button
                           type="button"
                           onClick={() => remove(index)}
@@ -415,7 +209,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
                           onMouseLeave={(e) => {
                             e.target.style.background = "#fee2e2";
                             e.target.style.transform = "translateY(0)";
-                          }}              
+                          }}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -444,10 +238,7 @@ function RequestFinanceFormWithField({ values, resetFn }) {
       </FieldArray>
 
       <div className={styles.formActions}>
-        <button
-          type="submit"
-         className={`btn-success ${styles.primaryButton}`}
-        >
+        <button type="submit" className={`btn-success ${styles.primaryButton}`}>
           Confirm
         </button>
         <button
@@ -462,23 +253,34 @@ function RequestFinanceFormWithField({ values, resetFn }) {
   );
 }
 
-function AddRequestFinance() {
+function AddRequestFinance({ id, onClose }) {
+  const { itemData } = useSelector((state) => state.material_req);
+  const editData = {...initialValues, materialItemsData: itemData?.materialItemsData}
+  const ini = id && itemData ? itemData : initialValues;
+  const dispatch = useDispatch();
   const [submithandler, initialSchema, validateSchema, isReturn, urlParam] =
-    useFormSubmit(initialValues, validate, "mr_r_id", {
+    useFormSubmit(ini, validate, "mr_r_id", {
       name: "material_req",
       route: "create",
     });
-  const { id } = useParams();
-  const { itemData } = usePageRender({
-    entity: "material_req",
-    tail: `realAll_by_materialId/${id}`,
-    key: "itemData",
-    loc: location,
-  });
+
+  useEffect(() => {
+    dispatch(
+      GET_MATERIALITEM_BYID({
+        endpoint: coreEndpoint.getAll(
+          "material_req",
+          `realAll_by_materialId/${id}`
+        ),
+      })
+    );
+  }, [id]);
 
   function addRequest(values) {
     console.log(values);
-    alert(JSON.stringify(values));
+    dispatch(UPDATE_FINANCE_REQUEST({
+      endpoint: coreEndpoint.updateItem('material_req'),
+      body: values
+    }))
   }
 
   return (
@@ -487,25 +289,27 @@ function AddRequestFinance() {
         className={`add-collection blur ${styles.formContainer} ${styles.formContainerLarge}`}
       >
         {/* <div className={styles.formContainer}> */}
-          <div className={styles.formHeader}>
-            <h2 className={styles.formTitle}>Request Materials</h2>
-            <Link to={`/admin/finance-request/${urlParam}`}>
-              <button type="button" className={styles.closeButton}>
-                ✕ Close
-              </button>
-            </Link>
-          </div>
-          <hr className={styles.divider} />
-          <div className={styles.formBody}>
-            <FormLayout
-              MainForm={RequestFinanceFormWithField}
-              initialValues={initialSchema}
-              validationSchema={validateSchema}
-              formHandler={submithandler}
-              isReturn={isReturn}
-            />
-          </div>
+        <div className={styles.formHeader}>
+          <h2 className={styles.formTitle}>Request Materials</h2>
+          <button
+            onClick={() => onClose(false)}
+            type="button"
+            className={styles.closeButton}
+          >
+            ✕ Close
+          </button>
         </div>
+        <hr className={styles.divider} />
+        <div className={styles.formBody}>
+          <FormLayout
+            MainForm={RequestFinanceFormWithField}
+            initialValues={ini}
+            validationSchema={validateSchema}
+            formHandler={addRequest}
+            isReturn={isReturn}
+          />
+        </div>
+      </div>
       {/* </div> */}
     </PopupLayout>
   );

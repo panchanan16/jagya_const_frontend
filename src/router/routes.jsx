@@ -175,7 +175,7 @@ function generateRoutePages() {
               element: <FinanceRequestPage />,
               children: [
                 { path: ":reqId", element: <SecondSlideFinanceReq /> },
-                { path: "create/:id", element: <AddRequestFinance /> },
+                // { path: "create/:id", element: <AddRequestFinance /> },
                 { path: "add-inventory", element: <AddInventoryForm /> },
               ],
             },
