@@ -171,6 +171,7 @@ import { addPhase } from "@/redux/features/settingsSlice/slice";
 import styles from "@/forms/form.module.css";
 
 function RequestFormWithField({ values, resetFn }) {
+  console.log("Maal is rendering...")
   return (
     <Form>
       <div className={`${styles.formGrid} ${styles.formGridThreeColumns}`}>
@@ -182,7 +183,7 @@ function RequestFormWithField({ values, resetFn }) {
           SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
           errorKey={'mr_project_id'}
         />
-        <SelectOption Name={"mr_phase"} Label={"Phase"} action={addPhase} />
+        <SelectOption Name={"mr_phase"} Label={"Phase"} action={addPhase} byProjectId={values.mr_project_id} isProjectPhase={true} />
         <div className={styles.fieldGroup}>
           <label className={styles.fieldLabel}>Select Date</label>
           <Field

@@ -118,7 +118,7 @@ function RemainingTab({ pro_id }) {
                     <th>Request Ref</th>
                     <th>Item Name</th>
                     <th>Vendor Name</th>
-                    <th>Payment Remaining</th>
+                    <th>Item Amount</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -136,7 +136,7 @@ function RemainingTab({ pro_id }) {
                       <td>{item.item_name}</td>
                       <td>{item.vendor_name || "N/A"}</td>
                       <td className={styles.remainingAmount}>
-                        ₹ {parseFloat(payment.remaining).toLocaleString()}
+                        ₹ {item.item_amount}
                       </td>
                     </tr>
                   ))}

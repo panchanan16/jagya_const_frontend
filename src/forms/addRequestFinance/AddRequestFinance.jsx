@@ -6,7 +6,6 @@ import { initialValues, validate } from "./fields";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import SelectOption from "@/components/SelectOption/SelectOption";
 import { addPhase } from "@/redux/features/settingsSlice/slice";
-import usePageRender from "@/hooks/usePageRender";
 import styles from "@/forms/form.module.css";
 import { useEffect } from "react";
 import { GET_MATERIALITEM_BYID, UPDATE_FINANCE_REQUEST } from "@/redux/features/materiai_reqSlice/slice";
@@ -14,7 +13,7 @@ import coreEndpoint from "@/api/coreApi";
 import { useDispatch, useSelector } from "react-redux";
 
 function RequestFinanceFormWithField({ values, resetFn }) {
-  console.log(values);
+
   return (
     <Form>
       <div className={`${styles.formGrid} ${styles.formGridThreeColumns}`}>
@@ -258,7 +257,7 @@ function AddRequestFinance({ id, onClose }) {
   const editData = {...initialValues, materialItemsData: itemData?.materialItemsData}
   const ini = id && itemData ? itemData : initialValues;
   const dispatch = useDispatch();
-  const [submithandler, initialSchema, validateSchema, isReturn, urlParam] =
+  const [submithandler, initialSchema, validateSchema, isReturn] =
     useFormSubmit(ini, validate, "mr_r_id", {
       name: "material_req",
       route: "create",

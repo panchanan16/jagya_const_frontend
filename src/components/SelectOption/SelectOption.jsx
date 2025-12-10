@@ -1,14 +1,28 @@
 import useRequest from "@/hooks/useRequest";
 import { ErrorMessage, Field, useFormikContext } from "formik";
 import styles from "@/forms/form.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { GET_PHASES_BY_PROJECT_ID } from "@/redux/features/projectPhaseSlice/slice";
+import entityEndpoint from "@/api/api";
 import { useEffect } from "react";
 
-function SelectOption({ Name, Label, action, keyValue, setName, byProjectId = null }) {
-  const { requestData } = useRequest("phase", action, byProjectId ? byProjectId : null);
+function SelectOption({ Name, Label, action, keyValue, setName, byProjectId, isProjectPhase }) {
+  // const { requestData } = useRequest("phase", action, null, byProjectId ? `?pro_id=${byProjectId}` : null);
+  const dispatch = useDispatch();
+  const requestData = useSelector((state) => state.project_phase);
   const { setFieldValue } = useFormikContext();
 
+  console.log(byProjectId)
 
-  // useEffect(()=> {}, [])
+  useEffect(()=> {
+    if (isProjectPhase) {
+      if (byProjectId) {
+        dispatch(GET_PHASES_BY_PROJECT_ID({endpoint: entityEndpoint.getAllWithQuery('phase', `?pro_id=${byProjectId}`)}))
+      }
+    } else {
+      dispatch(GET_PHASES_BY_PROJECT_ID({endpoint: entityEndpoint.getAll('phase')}))
+    }
+  }, [byProjectId])
 
   function SetPhaseName(e) {
     setFieldValue(Name, e.target.value);
@@ -34,7 +48,7 @@ function SelectOption({ Name, Label, action, keyValue, setName, byProjectId = nu
           Select from here
         </option>
         {requestData &&
-          requestData.map((el) => (
+          requestData.itemList.map((el) => (
             <option value={el[keyValue]}>{el.phase_name}</option>
           ))}
       </Field>
