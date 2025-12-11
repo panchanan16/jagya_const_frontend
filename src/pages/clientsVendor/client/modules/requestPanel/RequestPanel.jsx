@@ -261,17 +261,19 @@ const MaterialRequestPanel = ({ projectID }) => {
                           <tr
                             key={item.id}
                             className={isSelected ? styles.selectedRow : ""}
-                            onClick={() => handleRowSelect(item.id)}
+                            // onClick={() => handleRowSelect(item.id)}
                           >
                             <td className={styles.checkboxColumn}>
-                              {item.status.toLowerCase() !== "completed" && item.status.toLowerCase() !== "remaining" && (
-                                <input
-                                  type="checkbox"
-                                  checked={isSelected}
-                                  onChange={() => handleRowSelect(item.id)}
-                                  onClick={(e) => e.stopPropagation()}
-                                />
-                              )}
+                              {item.status.toLowerCase() !== "completed" &&
+                                item.status.toLowerCase() !== "remaining" &&
+                                item.fstatus == "Approved" && (
+                                  <input
+                                    type="checkbox"
+                                    checked={isSelected}
+                                    onChange={() => handleRowSelect(item.id)}
+                                    onClick={(e) => e.stopPropagation()}
+                                  />
+                                )}
                             </td>
                             <td>{item.name}</td>
                             <td>₹ {item.amount.toLocaleString()}</td>
@@ -287,7 +289,7 @@ const MaterialRequestPanel = ({ projectID }) => {
                               </span>
                             </td>
                             <td>
-                              {userType === "admin" ? (
+                              {userType === "admin" && item.fstatus == "Approved" ? (
                                 <div>
                                   <span
                                     className={`${

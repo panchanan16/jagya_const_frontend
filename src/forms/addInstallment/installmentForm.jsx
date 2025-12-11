@@ -117,6 +117,7 @@ import styles from "@/forms/form.module.css";
 import BackButtton from "@/components/BackButton/BackButtton";
 
 function InstallmentFormWithField({ values, resetFn }) {
+  console.log(values)
   const [searchParam] = useSearchParams();
 
   return (
@@ -129,7 +130,7 @@ function InstallmentFormWithField({ values, resetFn }) {
             Label={"Project"}
             Entity="project"
             SetDisplayKey={{ id: "pro_ref_no", name: "pro_name" }}
-            SetFKey={{ col_project_id: "pro_ref_no" }}
+            SetFKey={{ col_project_id: "pro_id" }}
             errorKey={"col_project_id"}
             projectSearchParam={searchParam.get('formProject')}
           />
@@ -141,6 +142,8 @@ function InstallmentFormWithField({ values, resetFn }) {
             Name="col_project_phase"
             Label={"Phase"}
             keyValue={"phase_name"}
+            isProjectPhase={true}
+            byProjectId={values.col_project_id}
           />
         </div>
 

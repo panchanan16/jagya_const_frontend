@@ -11,7 +11,7 @@ export const initialValues = {
       fd_approval: 0,
       vendor_id: "",
       mr_delivery_status: 0,
-    },
+    },    
   ],
 };
 
@@ -30,5 +30,5 @@ export const validate = {
   mr_project_id: "number",
   mr_phase: "text",
   mr_date: "text",
-  vendor_id: ""
+  vendor_id: "",
 };

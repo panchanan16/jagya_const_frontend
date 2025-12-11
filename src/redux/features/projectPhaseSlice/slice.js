@@ -1,6 +1,20 @@
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import fulfilledStateReducer from "../../customReducer";
+import { _GET } from "@/request/request";
+
+
+export const GET_PHASES_BY_PROJECT_ID = createAsyncThunk(
+  'GET/phaselist',
+  async ({ endpoint }, { rejectWithValue }) => {
+    try {
+      const response = await _GET(endpoint)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
 
 const initialState = {
     loading: false,
@@ -49,6 +63,13 @@ const projectPhaseSlice = createSlice({
         }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
             fulfilledStateReducer(state, action, 'project_phase', 'UPDATE', 'phase_id')
         }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+        }).addCase(GET_PHASES_BY_PROJECT_ID.fulfilled, (state, action) => {
+            state.loading = false
+            console.log(action.payload)
+            state.itemList = action.payload.response.data
+        }).addCase(GET_PHASES_BY_PROJECT_ID.rejected, (state, action) => {
             state.loading = false
             state.error = action.payload
         });

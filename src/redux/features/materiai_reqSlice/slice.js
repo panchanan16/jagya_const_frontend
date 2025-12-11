@@ -1,6 +1,36 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { DELETE_REQUEST, GET_REQUEST, POST_REQUEST, UPDATE_REQUEST } from "@/redux/createThunk";
 import fulfilledStateReducer from "../../customReducer";
+import { _GET, _UPDATE } from "@/request/request";
+
+
+export const GET_MATERIALITEM_BYID = createAsyncThunk(
+  'GET/MaterialItem-ByID',
+  async ({ endpoint }, { rejectWithValue }) => {
+    try {
+      const response = await _GET(endpoint)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
+
+
+export const UPDATE_FINANCE_REQUEST = createAsyncThunk(
+  'PUT/upadte-MaterialItem',
+  async ({ endpoint, body }, { rejectWithValue }) => {
+    try {
+      const response = await _UPDATE(endpoint, body)
+      return { response }
+    } catch (error) {
+      return rejectWithValue(error.message)
+    }
+  },
+)
+
+
 
 const initialState = {
   itemList: [],
@@ -45,6 +75,17 @@ export const material_reqSlice = createSlice({
     }).addCase(UPDATE_REQUEST.fulfilled, (state, action) => {
       fulfilledStateReducer(state, action, 'material_req', 'UPDATE', 'mr_r_id')
     }).addCase(UPDATE_REQUEST.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    }).addCase(GET_MATERIALITEM_BYID.fulfilled, (state, action) => {
+        state.loading = false;
+        state.itemData = action.payload.response?.data
+    }).addCase(GET_MATERIALITEM_BYID.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.payload
+    }).addCase(UPDATE_FINANCE_REQUEST.fulfilled, (state, action) => {
+      state.loading = false;
+    }).addCase(UPDATE_FINANCE_REQUEST.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
     });

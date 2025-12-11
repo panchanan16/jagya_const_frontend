@@ -1,4 +1,4 @@
-import styles from './SidePanel.module.css';
+import styles from './Sidepanel.module.css';
 
 const SidePanel = ({ isOpen, onClose, children }) => {
   return (

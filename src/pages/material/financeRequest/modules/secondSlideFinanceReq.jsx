@@ -7,16 +7,27 @@ import PopupLayout from "@/layout/common/popupLayout";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import styles from "@/styles/common.module.css";
 import StatusSpan, { StatusSpanAll } from "@/components/statusSpan/StatusSpan";
+import AddRequestFinance from "@/forms/addRequestFinance/AddRequestFinance";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import coreEndpoint from "@/api/coreApi";
+import { GET_MATERIALITEM_BYID } from "@/redux/features/materiai_reqSlice/slice";
 
 function SecondSlideFinanceReq() {
   const { reqId } = useParams();
   const location = useLocation();
-  const { itemData } = usePageRender({
-    entity: "material_req",
-    tail: `realAll_by_materialId/${reqId}`,
-    key: "itemData",
-    loc: location,
-  });
+  // const { itemData } = usePageRender({
+  //   entity: "material_req",
+  //   tail: `realAll_by_materialId/${reqId}`,
+  //   key: "itemData",
+  // });
+  const dispatch = useDispatch()
+  const [isOpen, setIsOpen] = useState(false)
+  const {itemData} = useSelector(state => state.material_req)
+
+  useEffect(()=> {
+    dispatch(GET_MATERIALITEM_BYID({endpoint: coreEndpoint.getAll('material_req', `realAll_by_materialId/${reqId}`)}))
+  }, [reqId])
 
   const user = { username: "Panchanan deka", role: "admi" };
 
@@ -76,7 +87,8 @@ function SecondSlideFinanceReq() {
             </svg>
 
             <Link
-              to={`/admin/finance-request/create/${reqId}`}
+              // to={`/admin/finance-request/create/${reqId}`}
+              onClick={()=> setIsOpen(true)}
               style={{ color: "inherit" }}
             >
               <span class="text">Edit</span>
@@ -137,7 +149,7 @@ function SecondSlideFinanceReq() {
           />
         </div>
       </div>
-      <Outlet />
+      {isOpen && <AddRequestFinance id={reqId} onClose={setIsOpen} isOpen={isOpen} />}
     </PopupLayout>
   );
 }

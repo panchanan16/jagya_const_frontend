@@ -19,7 +19,10 @@ function usePageRender({entity, tail, key, itemId, loc, urlKey, isPaginate = fal
   );
 
 
-  console.log(dateRange)
+  console.log("I am rendred usePagerender")
+
+
+  // console.log(dateRange)
 
 
   const {pageNo, pageSize} = useSelector((state) => state["paginate"]);
