@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React, { useEffect } from "react";
 import * as Yup from "yup";
-import styles from "@/pages/clientsVendor/client/modules/requestPanel/Materialrequestpanel.module.css";
+import styles from "../../pages/clientsVendor/client/modules/requestPanel/MaterialRequestPanel.module.css";
 import useRequest from "@/hooks/useRequest";
 
 // Formik validation schema
