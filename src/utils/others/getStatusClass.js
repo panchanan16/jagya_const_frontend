@@ -1,4 +1,4 @@
-import styles from "@/pages/clientsVendor/client/modules/requestPanel/Materialrequestpanel.module.css";
+import styles from "../../pages/clientsVendor/client/modules/requestPanel/MaterialRequestPanel.module.css";
 
 export const getStatusClass = (status) => {
   switch (status.toLowerCase()) {
