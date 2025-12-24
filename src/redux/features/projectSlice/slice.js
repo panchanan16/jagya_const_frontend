@@ -35,6 +35,10 @@ const projectSlice = createSlice({
     reducers: {
         updateDocuments: (state, action) => {
             state.itemData.documents.push(action.payload)
+        },
+        addNewPhase: (state, action)=> {
+            console.log(action.payload)
+            state.itemData.phases.push(action.payload)
         }
     },
     extraReducers: (builder) => {
@@ -81,6 +85,6 @@ const projectSlice = createSlice({
     }
 })
 
-export const { updateDocuments } = projectSlice.actions
+export const { updateDocuments, addNewPhase } = projectSlice.actions
 export default projectSlice.reducer;
 

@@ -6,32 +6,48 @@ import { GET_PHASES_BY_PROJECT_ID } from "@/redux/features/projectPhaseSlice/sli
 import entityEndpoint from "@/api/api";
 import { useEffect } from "react";
 
-function SelectOption({ Name, Label, action, keyValue, setName, byProjectId, isProjectPhase }) {
+function SelectOption({
+  Name,
+  Label,
+  action,
+  keyValue,
+  setName,
+  byProjectId,
+  isProjectPhase,
+}) {
   // const { requestData } = useRequest("phase", action, null, byProjectId ? `?pro_id=${byProjectId}` : null);
   const dispatch = useDispatch();
   const requestData = useSelector((state) => state.project_phase);
   const { setFieldValue } = useFormikContext();
 
-  console.log(byProjectId)
 
-  useEffect(()=> {
+  useEffect(() => {
     if (isProjectPhase) {
       if (byProjectId) {
-        dispatch(GET_PHASES_BY_PROJECT_ID({endpoint: entityEndpoint.getAllWithQuery('phase', `?pro_id=${byProjectId}`)}))
+        dispatch(
+          GET_PHASES_BY_PROJECT_ID({
+            endpoint: entityEndpoint.getAllWithQuery(
+              "phase",
+              `?pro_id=${byProjectId}`
+            ),
+          })
+        );
       }
     } else {
-      dispatch(GET_PHASES_BY_PROJECT_ID({endpoint: entityEndpoint.getAll('phase')}))
+      dispatch(
+        GET_PHASES_BY_PROJECT_ID({ endpoint: entityEndpoint.getAll("phase") })
+      );
     }
-  }, [byProjectId])
+  }, [byProjectId]);
 
   function SetPhaseName(e) {
     setFieldValue(Name, e.target.value);
     if (setName) {
-      const curPhase = requestData.filter(
+      const curPhase = requestData?.itemList?.filter(
         (el) => el.phase_id == e.target.value
       );
       setFieldValue("phase_name", curPhase[0]?.phase_name);
-    }
+    } 
   }
   // class="v-selector"
   return (
@@ -52,7 +68,11 @@ function SelectOption({ Name, Label, action, keyValue, setName, byProjectId, isP
             <option value={el[keyValue]}>{el.phase_name}</option>
           ))}
       </Field>
-      <ErrorMessage name={Name} className={`err ${styles.errorMessage}`}  component="span" />
+      <ErrorMessage
+        name={Name}
+        className={`err ${styles.errorMessage}`}
+        component="span"
+      />
     </div>
   );
 }

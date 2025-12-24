@@ -70,7 +70,6 @@
 //   const [submithandler, initialSchema, validateSchema, isReturn] =
 //     useFormSubmit(initialValues, validate, "phase_id", "project_phase");
 
-
 //   function addPhase(values) {
 //     console.log(values);
 //     alert(JSON.stringify(values));
@@ -101,7 +100,6 @@
 
 // export default AddNewPhaseForm;
 
-
 import SelectOption from "@/components/SelectOption/SelectOption";
 import useFormSubmit from "@/hooks/useFormSubmit";
 import PopupLayout from "@/layout/common/popupLayout";
@@ -111,6 +109,8 @@ import { Link, useParams } from "react-router-dom";
 import { initialValues, validate } from "./fields";
 import { useEffect } from "react";
 import styles from "@/forms/form.module.css";
+import { addNewPhase } from "@/redux/features/projectSlice/slice";
+import useRequest from "@/hooks/useRequest";
 
 function PhaseFormWithField({ resetFn }) {
   const { projectId } = useParams();
@@ -132,10 +132,12 @@ function PhaseFormWithField({ resetFn }) {
           />
 
           <div className={styles.fieldGroup}>
-            <label className={`${styles.fieldLabel} ${styles.required}`}>Date:</label>
-            <Field 
-              type="date" 
-              name="pro_phase_deadline" 
+            <label className={`${styles.fieldLabel} ${styles.required}`}>
+              Date:
+            </label>
+            <Field
+              type="date"
+              name="pro_phase_deadline"
               className={styles.formInput}
             />
             <ErrorMessage
@@ -144,12 +146,14 @@ function PhaseFormWithField({ resetFn }) {
               component="span"
             />
           </div>
-          
+
           <div className={styles.fieldGroup}>
-            <label className={`${styles.fieldLabel} ${styles.required}`}>Select status:</label>
-            <Field 
-              as="select" 
-              name={"pro_phase_status"} 
+            <label className={`${styles.fieldLabel} ${styles.required}`}>
+              Select status:
+            </label>
+            <Field
+              as="select"
+              name={"pro_phase_status"}
               className={styles.formSelect}
             >
               <option value="" disabled>
@@ -168,15 +172,12 @@ function PhaseFormWithField({ resetFn }) {
         </div>
 
         <div className={styles.formActions}>
-          <button 
-            type="submit" 
-            className={styles.primaryButton}
-          >
+          <button type="submit" className={styles.primaryButton}>
             Confirm
           </button>
-          <button 
-            type="button" 
-            onClick={resetFn} 
+          <button
+            type="button"
+            onClick={resetFn}
             className={styles.secondaryButton}
           >
             Cancel
@@ -187,40 +188,45 @@ function PhaseFormWithField({ resetFn }) {
   );
 }
 
-function AddNewPhaseForm({isOpen, closePopup}) {
-  const { projectId } = useParams();
+function AddNewPhaseForm({ isOpen, closePopup }) {
   const [submithandler, initialSchema, validateSchema, isReturn] =
     useFormSubmit(initialValues, validate, "phase_id", "project_phase");
+  const { makeRequest } = useRequest("project_phase", null, null, null, null);
+
+  console.log(initialSchema);
 
   function addPhase(values) {
-    console.log(values);
-    alert(JSON.stringify(values));
+    // console.log(values);
+    // alert(JSON.stringify(values));
+    makeRequest(values, addNewPhase)
+    closePopup(false)
   }
-  
+
   return (
-    isOpen && 
-    <PopupLayout>
-      <div className={`${styles.formContainer} phase-popup blur`}>
-        <div className={styles.formHeader}>
-          <h2 className={styles.formTitle}>Add Phase</h2>
-          <Link onClick={()=> closePopup(false)}>
-            <button type="button" className={styles.closeButton}>
-               ✕ Close
-            </button>
-          </Link>
+    isOpen && (
+      <PopupLayout>
+        <div className={`${styles.formContainer} phase-popup blur`}>
+          <div className={styles.formHeader}>
+            <h2 className={styles.formTitle}>Add Phase</h2>
+            <Link onClick={() => closePopup(false)}>
+              <button type="button" className={styles.closeButton}>
+                ✕ Close
+              </button>
+            </Link>
+          </div>
+
+          <hr className={styles.divider} />
+
+          <FormLayout
+            MainForm={PhaseFormWithField}
+            initialValues={initialSchema}
+            validationSchema={validateSchema}
+            formHandler={addPhase}
+            isReturn={isReturn}     
+          />
         </div>
-        
-        <hr className={styles.divider} />
-        
-        <FormLayout
-          MainForm={PhaseFormWithField}
-          initialValues={initialSchema}
-          validationSchema={validateSchema}
-          formHandler={submithandler}
-          isReturn={isReturn}
-        />
-      </div>
-    </PopupLayout>
+      </PopupLayout>
+    )
   );
 }
 

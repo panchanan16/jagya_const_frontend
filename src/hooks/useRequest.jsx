@@ -14,8 +14,6 @@ function useRequest(entity, action, tail, query, isOnload = true) {
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
-  console.log(query)
-
   async function makeRequest(body, action, end) {
     try {
       const endpoint = end

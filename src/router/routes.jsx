@@ -265,7 +265,7 @@ function generateRoutePages() {
                   element: <SecondSlideUsers />,
                   children: [
                     {
-                      path: "add-credentials/:user",
+                      path: "add-credentials/:usertype",
                       element: <AddCredentialForm />,
                     },
                   ],

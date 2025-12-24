@@ -5,6 +5,7 @@ import FirstSlideLayout from "@/layout/common/firstSlideLayout";
 import UsersDropdown from "./usersDropdown/UsersDropdown";
 import UserFilter from "./filterUser/UserFilter";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function FirstSlideUsers() {
   const [userFilter, setUserFilter] = useState("super_admin");
@@ -20,7 +21,15 @@ function FirstSlideUsers() {
   switch (userFilter) {
     case "super_admin":
       tableData = {
-        tHeaders: ["ID", "Name", "Email", "Contact", "Alt Contact", "Address"],
+        tHeaders: [
+          "ID",
+          "Name",
+          "Email",
+          "Contact",
+          "Alt Contact",
+          "Address",
+          "Actions",
+        ],
         tLimits: [
           "su_id",
           "su_name",
@@ -28,6 +37,11 @@ function FirstSlideUsers() {
           "su_contact",
           "su_alt_contact",
           "su_address",
+          (u) => (
+            <div>
+              <Link to={`${u.su_a_id}?type=super_admin`}>View</Link>
+            </div>
+          ),
         ],
       };
       break;
@@ -42,6 +56,7 @@ function FirstSlideUsers() {
           "Alt Contact",
           "Location",
           "Commssion",
+          "Actions",
         ],
         tLimits: [
           "br_id",
@@ -52,12 +67,25 @@ function FirstSlideUsers() {
           "b_email",
           "b_location",
           "b_commision",
+          (u) => (
+            <div>
+              <Link to={`${u.b_a_id}?type=branch`}>View</Link>
+            </div>
+          ),
         ],
       };
       break;
     case "finance":
       tableData = {
-        tHeaders: ["ID", "Name", "Email", "Contact", "Alt Contact", "Address"],
+        tHeaders: [
+          "ID",
+          "Name",
+          "Email",
+          "Contact",
+          "Alt Contact",
+          "Address",
+          "Actions",
+        ],
         tLimits: [
           "fd_a_id",
           "fd_name",
@@ -65,12 +93,25 @@ function FirstSlideUsers() {
           "fd_alt_contact",
           "fd_address",
           "fd_email",
+          (u) => (
+            <div>
+              <Link to={`${u.fd_a_id}?type=finance`}>View</Link>
+            </div>
+          ),
         ],
       };
       break;
     case "supervisor":
       tableData = {
-        tHeaders: ["ID", "Name", "Email", "Contact", "Alt Contact", "Address"],
+        tHeaders: [
+          "ID",
+          "Name",
+          "Email",
+          "Contact",
+          "Alt Contact",
+          "Address",
+          "Actions",
+        ],
         tLimits: [
           "sup_a_id",
           "sup_name",
@@ -78,6 +119,11 @@ function FirstSlideUsers() {
           "sup_contact",
           "sup_alt_contact",
           "sup_address",
+          (u) => (
+            <div>
+              <Link to={`${u.sup_a_id}?type=supervisor`}>View</Link>
+            </div>
+          ),
         ],
       };
       break;
@@ -106,11 +152,11 @@ function FirstSlideUsers() {
         Theader={tableData.tHeaders}
         Limit={tableData.tLimits}
         Trow={itemList}
-        Actions={{
-          viewUrl: tableData?.tLimits[0] ? tableData?.tLimits[0] : "su_id",
-          deleteUrl: "users",
-          editUrl: "su_id",
-        }}
+        // Actions={{
+        //   viewUrl: tableData?.tLimits[0] ? tableData?.tLimits[0] : "su_id",
+        //   deleteUrl: "users",
+        //   editUrl: "su_id",
+        // }}
       />
     </FirstSlideLayout>
   );

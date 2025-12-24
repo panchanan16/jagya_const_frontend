@@ -31,6 +31,8 @@ function SecondSlideProject() {
     urlKey: "projectId",
   });
 
+  console.log(itemData);
+
   const dispatch = useDispatch();
 
   function openFileBoard(params) {
@@ -263,17 +265,14 @@ function SecondSlideProject() {
             </div>
           </div>
           <div className="task-grid grid">
-            {itemList
-              .filter((ph) => ph.pro_id == projectId)
-              .concat(itemData?.phases)
-              ?.map((ph) => (
-                <Phases
-                  openContractors={setShowAssignedContractors}
-                  Name={ph.phase_name}
-                  Status={ph.pro_phase_status}
-                  phaseId={ph.pro_phase_id}
-                />
-              ))}
+            {itemData?.phases?.map((ph) => (
+              <Phases
+                openContractors={setShowAssignedContractors}
+                Name={ph.phase_name}
+                Status={ph.pro_phase_status}
+                phaseId={ph.pro_phase_id}
+              />
+            ))}
           </div>
         </div>
         <FileUploadPopup
@@ -291,10 +290,7 @@ function SecondSlideProject() {
         closePopup={setOpenAddContractorForm}
       />
 
-      <AddNewPhaseForm
-        isOpen={openPhaseForm}
-        closePopup={setOpenPhaseForm}
-      />
+      <AddNewPhaseForm isOpen={openPhaseForm} closePopup={setOpenPhaseForm} />
     </SecondSlideLayout>
   );
 }
